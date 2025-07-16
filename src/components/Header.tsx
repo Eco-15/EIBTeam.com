@@ -20,7 +20,7 @@ const Header = () => {
             <img 
               src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnfYSbXDWwS0j4D1ydoNBhk8RHX5asGlYQ39iZ" 
               alt="EIB Team Logo" 
-              className="h-12 w-auto"
+              className="h-12 w-12 rounded-full object-cover"
             />
             <div>
               <h1 className="text-2xl font-bold text-black">EIB Team</h1>
