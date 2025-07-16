@@ -4,20 +4,16 @@ import { ArrowRight, MapPin, Users, TrendingUp, Star, Shield } from 'lucide-reac
 const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-0">
-      {/* Background Video */}
+      {/* Background Image */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/aerial-texas-dallas-september-2016-4k-SBV-312742999-HD.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')`
+          }}
+        ></div>
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
       </div>
 
       {/* Background Pattern */}
