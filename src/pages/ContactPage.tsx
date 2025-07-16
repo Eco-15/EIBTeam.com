@@ -74,26 +74,26 @@ const ContactPage = () => {
     {
       icon: Phone,
       title: 'Phone',
-      primary: '(214) 555-0123',
+      primary: '(214) 263-7979',
       secondary: 'Mon-Fri 8:00 AM - 6:00 PM',
       action: 'Call Now',
-      href: 'tel:(214)555-0123'
+      href: 'tel:(214) 263-7979'
     },
     {
       icon: Mail,
       title: 'Email',
-      primary: 'careers@eibteam.com',
+      primary: 'EIB.PHP@gmail.com',
       secondary: 'We\'ll respond within 24 hours',
       action: 'Send Email',
-      href: 'mailto:careers@eibteam.com'
+      href: 'mailto:EIB.PHP@gmail.com'
     },
     {
       icon: MapPin,
       title: 'Office',
-      primary: '5800 Democracy Drive',
+      primary: '6200 Tennyson Pkwy, Ste 175',
       secondary: 'Plano, TX 75024',
       action: 'Get Directions',
-      href: 'https://maps.google.com'
+      href: 'https://share.google/fJd4R3i6QGS450T7g'
     },
     {
       icon: Calendar,
