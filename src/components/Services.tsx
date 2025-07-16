@@ -72,6 +72,8 @@ const Services = () => {
           </p>
         </div>
         {/* Why Our Services Section */}
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 md:p-12 mb-16">
+         
           <div className="grid md:grid-cols-3 gap-8">
             {whyOurServices.map((reason, index) => (
               <div key={index} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
