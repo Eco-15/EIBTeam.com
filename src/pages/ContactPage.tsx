@@ -95,14 +95,6 @@ const ContactPage = () => {
       action: 'Get Directions',
       href: 'https://share.google/fJd4R3i6QGS450T7g'
     },
-    {
-      icon: Calendar,
-      title: 'Schedule Meeting',
-      primary: 'Book a consultation',
-      secondary: 'Available slots this week',
-      action: 'Schedule Now',
-      href: '#schedule'
-    }
   ];
 
   const officeHours = [
