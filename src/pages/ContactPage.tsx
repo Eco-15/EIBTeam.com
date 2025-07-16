@@ -316,7 +316,7 @@ const ContactPage = () => {
                           value={consultationForm.phone}
                           onChange={handleConsultationChange}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors"
-                          placeholder="(214) 555-0123"
+                          placeholder="(214) 263-7979"
                         />
                       </div>
                       
