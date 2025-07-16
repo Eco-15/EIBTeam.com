@@ -71,39 +71,6 @@ const Services = () => {
             Our agents are experts in helping you choose the right coverage for your unique situation.
           </p>
         </div>
-
-        {/* Service Options */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {serviceOptions.map((service, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group">
-              <div className="p-8">
-                <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="h-8 w-8 text-black" />
-                </div>
-                
-                <h3 className="text-2xl font-bold text-black mb-6">{service.title}</h3>
-                
-                <div className="mb-6">
-                  <h4 className="font-bold text-black mb-4">Key Features:</h4>
-                  <div className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-yellow-500 rounded-full flex-shrink-0"></div>
-                        <span className="text-gray-600 text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-4 rounded-xl">
-                  <h5 className="font-semibold text-black mb-2">Ideal For:</h5>
-                  <p className="text-gray-600 text-sm">{service.idealFor}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
         {/* Why Our Services Section */}
         <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 md:p-12 mb-16">
           <div className="text-center mb-12">
