@@ -270,15 +270,15 @@ const AboutPage = () => {
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div className="flex items-center justify-center space-x-3">
                 <Phone className="h-6 w-6 text-yellow-400" />
-                <span>(214) 555-0123</span>
+                <span>(214) 263-7979</span>
               </div>
               <div className="flex items-center justify-center space-x-3">
                 <Mail className="h-6 w-6 text-yellow-400" />
-                <span></span>
+                <span>EIB.PHP@Gmail.com</span>
               </div>
               <div className="flex items-center justify-center space-x-3">
                 <MapPin className="h-6 w-6 text-yellow-400" />
-                <span>Plano, TX</span>
+                <span>6200 Tennyson Parkway Plano Tx 75024</span>
               </div>
             </div>
             

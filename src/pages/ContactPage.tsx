@@ -77,21 +77,21 @@ const ContactPage = () => {
       primary: '(214) 263-7979',
       secondary: 'Mon-Fri 8:00 AM - 6:00 PM',
       action: 'Call Now',
-      href: 'tel:(214) 263-7979'
+      href: 'tel:(214)263-7979'
     },
     {
       icon: Mail,
       title: 'Email',
-      primary: 'EIB.PHP@gmail.com',
+      primary: 'EIB.PHP@Gmail.com',
       secondary: 'We\'ll respond within 24 hours',
       action: 'Send Email',
-      href: 'mailto:EIB.PHP@gmail.com'
+      href: 'mailto:EIB.PHP@Gmail.com'
     },
     {
       icon: MapPin,
       title: 'Office',
-      primary: '6200 Tennyson Pkwy, Ste 175',
-      secondary: 'Plano, TX 75024',
+      primary: '6200 Tennyson Parkway',
+      secondary: 'Plano Tx 75024',
       action: 'Get Directions',
       href: 'https://share.google/fJd4R3i6QGS450T7g'
     },
@@ -192,7 +192,7 @@ const ContactPage = () => {
           <div className="grid md:grid-cols-3 gap-6">
             {contactMethods.map((method, index) => (
               <a
-                key={index}
+                href="mailto:EIB.PHP@Gmail.com"
                 href={method.href}
                 className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
               >
@@ -646,7 +646,7 @@ const ContactPage = () => {
                   For urgent matters or immediate assistance, call our direct line.
                 </p>
                 <a
-                  href="tel:(214)555-0123"
+                  href="tel:(214)263-7979"
                   className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-6 py-3 rounded-lg font-bold hover:from-yellow-600 hover:to-yellow-700 transition-colors duration-300 inline-flex items-center space-x-2"
                 >
                   <Phone className="h-5 w-5" />
@@ -707,7 +707,7 @@ const ContactPage = () => {
                 <div className="text-center">
                   <MapPin className="h-16 w-16 mx-auto mb-4 text-yellow-500" />
                   <p className="text-lg font-medium text-gray-700">Interactive Map Coming Soon</p>
-                  <p className="text-gray-600">5800 Democracy Drive, Plano, TX 75024</p>
+                  <p className="text-gray-600">6200 Tennyson Parkway Plano Tx 75024</p>
                   <a
                     href="https://maps.google.com"
                     className="mt-4 inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-colors duration-300"
