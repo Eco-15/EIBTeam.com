@@ -152,81 +152,7 @@ const WhyJoinUsPage = () => {
         </div>
       </section>
 
-      {/* Main Benefits */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black mb-6">Complete Career Development</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We believe that when our agents succeed, everyone wins. That's why we've built 
-              a comprehensive support system designed to help you thrive.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {benefitCategories.map((category, index) => (
-              <div key={index} className="group bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <category.icon className="h-8 w-8 text-black" />
-                </div>
-                
-                <h3 className="text-2xl font-bold text-black mb-4">{category.title}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">{category.description}</p>
-                
-                <div className="space-y-3">
-                  {category.items.map((item, idx) => (
-                    <div key={idx} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700 font-medium">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Compensation Structure */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black mb-6">Competitive Compensation</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our commission structure rewards performance and provides clear paths for advancement. 
-              The more you grow, the more you earn.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {compensationStructure.map((level, index) => (
-              <div key={index} className={`bg-white rounded-2xl p-8 shadow-lg border-2 ${index === 1 ? 'border-yellow-500 transform scale-105' : 'border-gray-200'} hover:shadow-xl transition-all duration-300`}>
-                {index === 1 && (
-                  <div className="bg-yellow-500 text-black px-4 py-2 rounded-full text-sm font-bold text-center mb-6">
-                    Most Popular
-                  </div>
-                )}
-                
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-black mb-2">{level.level}</h3>
-                  <div className="text-4xl font-bold text-yellow-600 mb-2">{level.commission}</div>
-                  <p className="text-gray-600">{level.description}</p>
-                </div>
-
-                <div className="space-y-3">
-                  {level.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+    
       {/* Support Services */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -280,6 +206,48 @@ const WhyJoinUsPage = () => {
           </div>
         </div>
       </section>
+
+        
+      {/* Compensation Structure */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-black mb-6">Competitive Compensation</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our commission structure rewards performance and provides clear paths for advancement. 
+              The more you grow, the more you earn.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {compensationStructure.map((level, index) => (
+              <div key={index} className={`bg-white rounded-2xl p-8 shadow-lg border-2 ${index === 1 ? 'border-yellow-500 transform scale-105' : 'border-gray-200'} hover:shadow-xl transition-all duration-300`}>
+                {index === 1 && (
+                  <div className="bg-yellow-500 text-black px-4 py-2 rounded-full text-sm font-bold text-center mb-6">
+                    Most Popular
+                  </div>
+                )}
+                
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-black mb-2">{level.level}</h3>
+                  <div className="text-4xl font-bold text-yellow-600 mb-2">{level.commission}</div>
+                  <p className="text-gray-600">{level.description}</p>
+                </div>
+
+                <div className="space-y-3">
+                  {level.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
