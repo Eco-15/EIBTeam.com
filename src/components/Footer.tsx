@@ -33,9 +33,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 p-2 rounded-lg">
-                <Shield className="h-7 w-7 text-black" />
-              </div>
+              <img 
+                src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnfYSbXDWwS0j4D1ydoNBhk8RHX5asGlYQ39iZ" 
+                alt="EIB Team Logo" 
+                className="h-12 w-auto"
+              />
               <div>
                 <h3 className="text-2xl font-bold text-white">EIB Team</h3>
                 <p className="text-sm text-gray-300">PHP Agency Partner</p>

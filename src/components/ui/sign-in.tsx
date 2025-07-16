@@ -177,9 +177,11 @@ const AnimatedSignIn: React.FC = () => {
 
               <div className="mb-8">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 p-2 rounded-lg">
-                    <Shield className="h-6 w-6 text-black" />
-                  </div>
+                  <img 
+                    src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnfYSbXDWwS0j4D1ydoNBhk8RHX5asGlYQ39iZ" 
+                    alt="EIB Team Logo" 
+                    className="h-8 w-auto"
+                  />
                   <div>
                     <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
                       Agent Login
