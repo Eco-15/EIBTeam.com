@@ -189,7 +189,7 @@ const ContactPage = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {contactMethods.map((method, index) => (
               <a
                 key={index}
