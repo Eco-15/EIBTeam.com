@@ -4,13 +4,18 @@ import { ArrowRight, MapPin, Users, TrendingUp, Star, Shield } from 'lucide-reac
 const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-0">
-      {/* Background GIF */}
-      <div className="absolute inset-0 w-full h-full">
-        <img
-          src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExam9iYXFiMWN2YWZneTdpcWRncG5tdXE3azhoOHZqNmZiZXIwaG82eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fhF1sfv9E5q28c3aOc/giphy.gif"
-          alt="Background Animation"
+      {/* Background Video */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute inset-0 w-full h-full object-cover"
-        />
+        >
+          <source src="/aerial-texas-dallas-september-2016-4k-SBV-312742999-HD.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
@@ -78,7 +83,7 @@ const Hero = () => {
             </a>
             <a
               href="/about"
-              className="border-2 border-White text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-black hover:text-white transition-all duration-300"
+              className="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-black hover:text-white transition-all duration-300"
             >
               Learn About Us
             </a>
