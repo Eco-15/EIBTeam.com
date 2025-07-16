@@ -52,15 +52,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-yellow-400" />
-                <span className="text-gray-300">(214) 555-0123</span>
+                <span className="text-gray-300">(214) 263-7979</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-yellow-400" />
-                <span className="text-gray-300">careers@eibteam.com</span>
+                <span className="text-gray-300">EIB.PHP@Gmail.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-yellow-400" />
-                <span className="text-gray-300">Plano, TX 75024</span>
+                <span className="text-gray-300">6200 Tennyson Parkway Plano Tx 75024</span>
               </div>
             </div>
           </div>
