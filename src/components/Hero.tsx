@@ -9,7 +9,7 @@ const Hero = () => {
         <div 
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://images.pexels.com/photos/2422915/pexels-photo-2422915.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')`
+            backgroundImage: `https://images.fineartamerica.com/images/artworkimages/medium/2/dallas-skyline-at-sunset-texas-panorama-gregory-ballos.jpg`
           }}
         ></div>
         {/* Dark overlay for better text readability */}
@@ -21,7 +21,7 @@ const Hero = () => {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `https://images.fineartamerica.com/images/artworkimages/medium/2/dallas-skyline-at-sunset-texas-panorama-gregory-ballos.jpg`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         ></div>
       </div>
