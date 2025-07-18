@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Phone, Mail, MapPin, Instagram, Twitter } from 'lucide-react';
+import { Shield, Phone, Mail, MapPin, Instagram } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -21,7 +21,6 @@ const Footer = () => {
 
   const socialLinks = [
     { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/eibteam/' },
-    { name: 'Twitter', icon: Twitter, href: 'https://x.com/EliyahuCohen101' },
     { 
       name: 'TikTok', 
       icon: () => (
