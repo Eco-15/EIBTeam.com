@@ -104,7 +104,7 @@ For insurance professionals, this book is invaluable because the insurance busin
       progress: 65,
       dateStarted: '2024-01-05',
       amazonLink: 'https://www.amazon.com/How-Win-Friends-Influence-People/dp/0937539007',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
+      cover: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442726934i/4865.jpg',
       recommended: true,
       publishedYear: 1936,
       keyTakeaways: [
