@@ -162,7 +162,7 @@ For insurance professionals, this book is particularly relevant because success 
       status: 'to-read',
       progress: 0,
       amazonLink: 'https://www.amazon.com/Think-Grow-Rich-Landmark-Bestseller/dp/1585424331',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbh5NGbQ9BuattUET-oMSyVDoz5PIB6nQijw&s',
       recommended: true,
       publishedYear: 1937,
       keyTakeaways: [
