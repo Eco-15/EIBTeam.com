@@ -219,7 +219,7 @@ const BooksPage = () => {
       readingTime: '5 hours',
       status: 'to-read',
       amazonLink: 'https://www.amazon.com/Secrets-Millionaire-Mind-Mastering-Wealth/dp/0060763280',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
+      cover: 'https://m.media-amazon.com/images/I/41UXoaMiscL._SY445_SX342_.jpg',
       recommended: true
     },
     {
