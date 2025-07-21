@@ -897,7 +897,7 @@ For insurance professionals, this book provides timeless principles for building
       progress: 100,
       dateCompleted: '2023-12-05',
       amazonLink: 'https://www.amazon.com/Greatest-Salesman-World-Og-Mandino/dp/055327757X',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
+      cover: 'https://m.media-amazon.com/images/I/41tjU69-NSL._SY445_SX342_.jpg',
       recommended: true,
       publishedYear: 1968,
       keyTakeaways: [
