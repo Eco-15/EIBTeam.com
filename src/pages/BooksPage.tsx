@@ -175,7 +175,7 @@ const BooksPage = () => {
       readingTime: '8 hours',
       status: 'to-read',
       amazonLink: 'https://www.amazon.com/21-Irrefutable-Laws-Leadership-Follow/dp/0785288376',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      cover: 'https://m.media-amazon.com/images/I/41D6HT9Kn8L._SY445_SX342_.jpg',
       recommended: true
     },
     {
