@@ -73,7 +73,7 @@ const BooksPage = () => {
       status: 'completed',
       dateCompleted: '2023-12-15',
       amazonLink: 'https://www.amazon.com/Habits-Highly-Effective-People-Powerful/dp/1982137274',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
+      cover: 'https://m.media-amazon.com/images/I/41f3shLJf5L._SY445_SX342_.jpg',
       recommended: true
     },
     {
