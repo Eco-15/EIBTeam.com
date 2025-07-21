@@ -302,7 +302,7 @@ For insurance professionals at EIB Team, this book provides crucial insights int
       author: 'Malcolm Gladwell',
       category: 'personal',
       description: 'How little things can make a big difference in creating trends and social epidemics.',
-      longSummary: `"The Tipping Point" by Malcolm Gladwell explores the moment when ideas, trends, and social behaviors cross a threshold, tip, and spread like wildfire. Gladwell examines the factors that determine whether a particular trend will "tip" into wide-scale popularity.
+      longSummary: `xThe Tipping Point" by Malcolm Gladwell explores the moment when ideas, trends, and social behaviors cross a threshold, tip, and spread like wildfire. Gladwell examines the factors that determine whether a particular trend will "tip" into wide-scale popularity.
 
 The book identifies three key factors that determine whether something will reach a tipping point:
 
