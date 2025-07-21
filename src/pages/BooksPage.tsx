@@ -131,7 +131,7 @@ const BooksPage = () => {
       status: 'completed',
       dateCompleted: '2023-11-20',
       amazonLink: 'https://www.amazon.com/Myth-Revisited-Small-Businesses-About/dp/0887307280',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
+      cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifXDpAVQjkoGwF6nt96sPBCGXbtGTV6lxdw&s',
       recommended: true
     },
     {
