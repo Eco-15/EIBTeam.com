@@ -415,42 +415,6 @@ const BooksPage = () => {
                 </div>
               </div>
 
-              {/* Currently Reading */}
-              <div className="mb-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Currently Reading</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {books.filter(book => book.status === 'reading').map((book) => (
-                    <div key={book.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                      <div className="flex items-start space-x-4">
-                        <img
-                          src={book.cover}
-                          alt={book.title}
-                          className="w-20 h-28 object-cover rounded-lg shadow-md"
-                        />
-                        <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-1">{book.title}</h3>
-                          <p className="text-gray-600 mb-2">by {book.author}</p>
-                          <div className="mb-3">
-                            <div className="flex items-center justify-between text-sm text-gray-600 mb-1">
-                              <span>Progress</span>
-                              <span>{book.progress}%</span>
-                            </div>
-                            <div className="w-full bg-gray-200 rounded-full h-2">
-                              <div
-                                className="bg-gradient-to-r from-yellow-500 to-yellow-600 h-2 rounded-full transition-all duration-300"
-                                style={{ width: `${book.progress}%` }}
-                              ></div>
-                            </div>
-                          </div>
-                          <button className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors">
-                            Continue Reading
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 {/* Sidebar */}
@@ -544,15 +508,23 @@ const BooksPage = () => {
                                 <span className={`px-2 py-1 text-xs rounded-full font-medium ${getStatusColor(book.status)}`}>
                                   {getStatusText(book.status)}
                                 </span>
-                                <a
-                                  href={book.amazonLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex items-center space-x-1 text-sm text-blue-600 hover:text-blue-800 transition-colors"
-                                >
-                                  <ExternalLink className="h-4 w-4" />
-                                  <span>View on Amazon</span>
-                                </a>
+                                <div className="flex items-center space-x-2">
+                                  <a
+                                    href={`/books/${book.id}`}
+                                    className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-3 py-1 rounded-lg text-sm font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors"
+                                  >
+                                    View Details
+                                  </a>
+                                  <a
+                                    href={book.amazonLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center space-x-1 text-sm text-blue-600 hover:text-blue-800 transition-colors"
+                                  >
+                                    <ExternalLink className="h-4 w-4" />
+                                    <span>Amazon</span>
+                                  </a>
+                                </div>
                               </div>
                               
                               {book.progress > 0 && book.status !== 'completed' && (
