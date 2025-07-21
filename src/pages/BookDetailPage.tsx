@@ -995,7 +995,7 @@ For insurance professionals, these agreements provide powerful tools for managin
       progress: 75,
       dateStarted: '2024-01-14',
       amazonLink: 'https://www.amazon.com/Four-Agreements-Practical-Personal-Freedom/dp/1878424319',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDdD4_MYgAkDZwQMfWklaw2vlrvRqt8h1smw&s',
       recommended: true,
       publishedYear: 1997,
       keyTakeaways: [
