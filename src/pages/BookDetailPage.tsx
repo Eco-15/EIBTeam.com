@@ -675,7 +675,7 @@ For insurance professionals, this book provides crucial insights into wealth bui
       progress: 100,
       dateCompleted: '2023-10-15',
       amazonLink: 'https://www.amazon.com/Rich-Dad-Poor-Teach-Middle/dp/1612680194',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
+      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnZ3q517CoJ8al2Ln3qhY1jXVbCwIOStx7fH9P',
       recommended: true,
       publishedYear: 1997,
       keyTakeaways: [
