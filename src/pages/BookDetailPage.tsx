@@ -339,7 +339,7 @@ For insurance professionals, understanding tipping points is crucial for viral m
       status: 'to-read',
       progress: 0,
       amazonLink: 'https://www.amazon.com/Tipping-Point-Little-Things-Difference/dp/0316346624',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
+      cover: 'https://m.media-amazon.com/images/I/71wSEW6WohL._SY522_.jpg',
       recommended: true,
       publishedYear: 2000,
       keyTakeaways: [
