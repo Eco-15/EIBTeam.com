@@ -29,7 +29,7 @@ const BooksPage = () => {
       status: 'completed',
       dateCompleted: '2024-01-10',
       amazonLink: 'https://www.amazon.com/Go-Pro-Network-Marketing-Million/dp/0988667908',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      cover: 'https://m.media-amazon.com/images/I/81gfrYfKBoL._SY522_.jpg',
       recommended: true
     },
     {
