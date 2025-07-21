@@ -116,7 +116,7 @@ const BooksPage = () => {
       readingTime: '5 hours',
       status: 'to-read',
       amazonLink: 'https://www.amazon.com/Five-Dysfunctions-Team-Leadership-Fable/dp/0787960756',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREjJyx78LcnCIapxebJQ3OxJfXHJrMdbsNSg&s',
       recommended: true
     },
     {
