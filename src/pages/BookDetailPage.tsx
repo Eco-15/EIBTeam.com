@@ -282,7 +282,7 @@ For insurance professionals at EIB Team, this book provides crucial insights int
       progress: 45,
       dateStarted: '2024-01-12',
       amazonLink: 'https://www.amazon.com/Good-Great-Some-Companies-Others/dp/0066620996',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD1VLfo7Ra1asodsWkcKmkjmi7QYjCEbAa6Q&s',
       recommended: true,
       publishedYear: 2001,
       keyTakeaways: [
