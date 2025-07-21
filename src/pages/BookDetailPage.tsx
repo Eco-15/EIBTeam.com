@@ -1241,7 +1241,7 @@ For insurance professionals, starting with Why is crucial for building trust wit
       progress: 100,
       dateCompleted: '2023-09-22',
       amazonLink: 'https://www.amazon.com/Start-Why-Leaders-Inspire-Everyone/dp/1591846447',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      cover: 'https://m.media-amazon.com/images/I/41iZulVq18L._SY445_SX342_.jpg',
       recommended: true,
       publishedYear: 2009,
       keyTakeaways: [
