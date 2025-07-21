@@ -579,7 +579,7 @@ For insurance professionals, crucial conversations happen regularly - with diffi
       progress: 60,
       dateStarted: '2024-01-08',
       amazonLink: 'https://www.amazon.com/Crucial-Conversations-Talking-Stakes-Second/dp/1469266822',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT03AHJeDiOeFQ5Rtq_0X24fhLyzPgJeVP8_A&s',
       recommended: true,
       publishedYear: 2002,
       keyTakeaways: [
