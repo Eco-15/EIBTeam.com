@@ -103,7 +103,7 @@ For insurance professionals, this book is invaluable because the insurance busin
       status: 'reading',
       progress: 65,
       dateStarted: '2024-01-05',
-      amazonLink: 'https://www.amazon.com/How-Win-Friends-Influence-People/dp/0937539007',
+      amazonLink: 'https://www.amazon.com/How-Win-Friends-Influence-People/dp/0671027034/ref=sr_1_1?crid=3IIALYX0SZAGN&dib=eyJ2IjoiMSJ9.Qgn-N_y0ZylQLOnQEdlfbzqJ0y3t7CL1TOdA9UheUoyK-GWXqjKzhEhWDtJ4lJstw7KDxhAVuZiJoPWM5oMhjwziiuslyQ5XZSxvJuQYqsau5yiWxu6CaMrGywoDm9XArwPTATTxCKs0xZd5oIfp0u50z4sWjHBsH2VJnRto9qCPRap49_w4GleF2FxAL4EcvuEqwsLygIatIwbMigLpEk-vEOoKOpOGDMKoAlm_pXI.nrhDOLyf_YXnG3laEdvB2jk-d4wHnm4IU9aXsByXI_8&dib_tag=se&keywords=how+to+win+friends+and+influence+people&qid=1753140566&s=books&sprefix=How+t%2Cstripbooks%2C146&sr=1-1',
       cover: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442726934i/4865.jpg',
       recommended: true,
       publishedYear: 1936,
