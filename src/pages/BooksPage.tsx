@@ -42,7 +42,6 @@ const BooksPage = () => {
       pages: 291,
       readingTime: '7 hours',
       status: 'reading',
-      progress: 65,
       dateStarted: '2024-01-05',
       amazonLink: 'https://www.amazon.com/How-Win-Friends-Influence-People/dp/0937539007',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
@@ -58,7 +57,6 @@ const BooksPage = () => {
       pages: 320,
       readingTime: '9 hours',
       status: 'to-read',
-      progress: 0,
       amazonLink: 'https://www.amazon.com/Think-Grow-Rich-Landmark-Bestseller/dp/1585424331',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       recommended: true
@@ -73,7 +71,6 @@ const BooksPage = () => {
       pages: 432,
       readingTime: '10 hours',
       status: 'completed',
-      progress: 100,
       dateCompleted: '2023-12-15',
       amazonLink: 'https://www.amazon.com/Habits-Highly-Effective-People-Powerful/dp/1982137274',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
@@ -89,7 +86,6 @@ const BooksPage = () => {
       pages: 320,
       readingTime: '8 hours',
       status: 'reading',
-      progress: 30,
       dateStarted: '2024-01-12',
       amazonLink: 'https://www.amazon.com/Good-Great-Some-Companies-Others/dp/0066620996',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
@@ -105,7 +101,6 @@ const BooksPage = () => {
       pages: 301,
       readingTime: '6 hours',
       status: 'to-read',
-      progress: 0,
       amazonLink: 'https://www.amazon.com/Tipping-Point-Little-Things-Difference/dp/0316346624',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       recommended: true
@@ -120,7 +115,6 @@ const BooksPage = () => {
       pages: 229,
       readingTime: '5 hours',
       status: 'to-read',
-      progress: 0,
       amazonLink: 'https://www.amazon.com/Five-Dysfunctions-Team-Leadership-Fable/dp/0787960756',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       recommended: true
@@ -135,7 +129,6 @@ const BooksPage = () => {
       pages: 288,
       readingTime: '7 hours',
       status: 'completed',
-      progress: 100,
       dateCompleted: '2023-11-20',
       amazonLink: 'https://www.amazon.com/Myth-Revisited-Small-Businesses-About/dp/0887307280',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
@@ -151,7 +144,6 @@ const BooksPage = () => {
       pages: 288,
       readingTime: '7 hours',
       status: 'reading',
-      progress: 45,
       dateStarted: '2024-01-08',
       amazonLink: 'https://www.amazon.com/Crucial-Conversations-Talking-Stakes-Second/dp/1469266822',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
@@ -167,7 +159,6 @@ const BooksPage = () => {
       pages: 336,
       readingTime: '8 hours',
       status: 'completed',
-      progress: 100,
       dateCompleted: '2023-10-15',
       amazonLink: 'https://www.amazon.com/Rich-Dad-Poor-Teach-Middle/dp/1612680194',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
@@ -183,7 +174,6 @@ const BooksPage = () => {
       pages: 320,
       readingTime: '8 hours',
       status: 'to-read',
-      progress: 0,
       amazonLink: 'https://www.amazon.com/21-Irrefutable-Laws-Leadership-Follow/dp/0785288376',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       recommended: true
@@ -198,7 +188,6 @@ const BooksPage = () => {
       pages: 128,
       readingTime: '3 hours',
       status: 'completed',
-      progress: 100,
       dateCompleted: '2023-12-05',
       amazonLink: 'https://www.amazon.com/Greatest-Salesman-World-Og-Mandino/dp/055327757X',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
@@ -214,7 +203,6 @@ const BooksPage = () => {
       pages: 160,
       readingTime: '4 hours',
       status: 'reading',
-      progress: 75,
       dateStarted: '2024-01-14',
       amazonLink: 'https://www.amazon.com/Four-Agreements-Practical-Personal-Freedom/dp/1878424319',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
@@ -230,7 +218,6 @@ const BooksPage = () => {
       pages: 224,
       readingTime: '5 hours',
       status: 'to-read',
-      progress: 0,
       amazonLink: 'https://www.amazon.com/Secrets-Millionaire-Mind-Mastering-Wealth/dp/0060763280',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       recommended: true
@@ -245,7 +232,6 @@ const BooksPage = () => {
       pages: 256,
       readingTime: '6 hours',
       status: 'completed',
-      progress: 100,
       dateCompleted: '2023-09-22',
       amazonLink: 'https://www.amazon.com/Start-Why-Leaders-Inspire-Everyone/dp/1591846447',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
@@ -261,7 +247,6 @@ const BooksPage = () => {
       pages: 320,
       readingTime: '8 hours',
       status: 'reading',
-      progress: 20,
       dateStarted: '2024-01-16',
       amazonLink: 'https://www.amazon.com/Your-Next-Five-Moves-Business/dp/1982154810',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
@@ -277,7 +262,6 @@ const BooksPage = () => {
       pages: 240,
       readingTime: '6 hours',
       status: 'to-read',
-      progress: 0,
       amazonLink: 'https://www.amazon.com/Coach-AL-Williams/dp/0892212845',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       recommended: true
@@ -292,7 +276,6 @@ const BooksPage = () => {
       pages: 592,
       readingTime: '15 hours',
       status: 'to-read',
-      progress: 0,
       amazonLink: 'https://www.amazon.com/Principles-Life-Work-Ray-Dalio/dp/1501124021',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       recommended: true
@@ -307,7 +290,6 @@ const BooksPage = () => {
       pages: 496,
       readingTime: '12 hours',
       status: 'completed',
-      progress: 100,
       dateCompleted: '2023-08-10',
       amazonLink: 'https://www.amazon.com/48-Laws-Power-Robert-Greene/dp/0140280197',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
@@ -323,7 +305,6 @@ const BooksPage = () => {
       pages: 304,
       readingTime: '7 hours',
       status: 'to-read',
-      progress: 0,
       amazonLink: 'https://www.amazon.com/Wooden-Leadership-Create-Winning-Organization/dp/0071453393',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       recommended: true
@@ -383,15 +364,6 @@ const BooksPage = () => {
                       <p className="text-3xl font-bold text-green-600">{completedBooks}</p>
                     </div>
                     <CheckCircle className="h-8 w-8 text-green-600" />
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">Currently Reading</p>
-                      <p className="text-3xl font-bold text-yellow-600">{currentlyReading}</p>
-                    </div>
-                    <BookOpen className="h-8 w-8 text-yellow-600" />
                   </div>
                 </div>
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
