@@ -25,9 +25,14 @@ const AnimatedSignIn: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
     setTimeout(() => {
-      console.log('Sign in attempt with:', { email, password });
+      // Check credentials
+      if (email === 'Eliyahucohen101@gmail.com' && password === 'EIBTeam123') {
+        // Redirect to dashboard
+        window.location.href = '/dashboard';
+      } else {
+        alert('Invalid credentials. Please try again.');
+      }
       setIsLoading(false);
     }, 1500);
   };
