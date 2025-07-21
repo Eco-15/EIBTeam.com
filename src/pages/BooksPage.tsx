@@ -249,7 +249,7 @@ const BooksPage = () => {
       status: 'reading',
       dateStarted: '2024-01-16',
       amazonLink: 'https://www.amazon.com/Your-Next-Five-Moves-Business/dp/1982154810',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
+      cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNZbPnOcGbFhItWwmD8etb_veGaCCDqWrFzw&s',
       recommended: true
     },
     {
