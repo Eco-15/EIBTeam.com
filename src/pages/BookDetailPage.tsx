@@ -2072,17 +2072,7 @@ For insurance professionals, Wooden's leadership principles provide a framework 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Main Content */}
                 <div className="lg:col-span-1 space-y-8">
-                  {/* Summary */}
-                  <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Detailed Summary</h2>
-                    <div className="prose prose-gray max-w-none">
-                      {book.longSummary.split('\n\n').map((paragraph, index) => (
-                        <p key={index} className="text-gray-700 leading-relaxed mb-4">
-                          {paragraph}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
+                  
 
                   {/* Key Takeaways */}
                   <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
@@ -2095,6 +2085,17 @@ For insurance professionals, Wooden's leadership principles provide a framework 
                           </div>
                           <p className="text-gray-700 leading-relaxed">{takeaway}</p>
                         </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Summary */}
+                  <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Detailed Summary</h2>
+                    <div className="prose prose-gray max-w-none">
+                      {book.longSummary.split('\n\n').map((paragraph, index) => (
+                        <p key={index} className="text-gray-700 leading-relaxed mb-4">
+                          {paragraph}
+                        </p>
                       ))}
                     </div>
                   </div>
