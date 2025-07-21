@@ -175,7 +175,6 @@ For insurance professionals, this book is particularly relevant because success 
       targetAudience: 'Entrepreneurs, business professionals, anyone seeking financial success',
       whyRecommended: 'Foundational mindset principles essential for building wealth in the insurance industry.'
     },
-    // Continue with other books...
     {
       id: 4,
       title: 'The 7 Habits of Highly Effective People',
@@ -240,7 +239,7 @@ For insurance professionals, these habits are crucial for building long-term cli
       ],
       targetAudience: 'Leaders, managers, professionals seeking personal effectiveness',
       whyRecommended: 'Essential leadership principles for managing teams and building client relationships in insurance.'
-    }
+    },
     // Add more books with similar detailed structure...
     {
       id: 5,
