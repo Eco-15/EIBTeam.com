@@ -399,54 +399,82 @@ export class DatabaseService {
 
   // User Role functions
   static async getUserRole(userId: string): Promise<UserRole | null> {
-    const { data, error } = await supabase
-      .from('user_roles')
-      .select('*')
-      .eq('user_id', userId)
-      .single();
+    try {
+      const { data, error } = await supabase
+        .from('user_roles')
+        .select('*')
+        .eq('user_id', userId)
+        .single();
 
-    if (error && error.code !== 'PGRST116') {
+      if (error && error.code !== 'PGRST116') {
+        console.error('Error fetching user role:', error);
+        return null;
+      }
+
+      return data;
+    } catch (error) {
       console.error('Error fetching user role:', error);
       return null;
     }
-
-    return data;
   }
 
   static async isAdmin(userId: string): Promise<boolean> {
-    const role = await this.getUserRole(userId);
-    return role?.role === 'admin';
+    try {
+      // Check if user email is the admin email as fallback
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user?.email === 'Eliyahucohen101@gmail.com') {
+        return true;
+      }
+
+      const role = await this.getUserRole(userId);
+      return role?.role === 'admin';
+    } catch (error) {
+      console.error('Error checking admin status:', error);
+      // Fallback check for the specific admin email
+      const { data: { user } } = await supabase.auth.getUser();
+      return user?.email === 'Eliyahucohen101@gmail.com';
+    }
   }
 
   // Announcements functions
   static async getAnnouncements(): Promise<Announcement[]> {
-    const { data, error } = await supabase
-      .from('announcements')
-      .select('*')
-      .eq('is_active', true)
-      .order('created_at', { ascending: false });
+    try {
+      const { data, error } = await supabase
+        .from('announcements')
+        .select('*')
+        .eq('is_active', true)
+        .order('created_at', { ascending: false });
 
-    if (error) {
+      if (error) {
+        console.error('Error fetching announcements:', error);
+        return [];
+      }
+
+      return data || [];
+    } catch (error) {
       console.error('Error fetching announcements:', error);
       return [];
     }
-
-    return data || [];
   }
 
   static async createAnnouncement(announcement: Partial<Announcement>): Promise<Announcement | null> {
-    const { data, error } = await supabase
-      .from('announcements')
-      .insert([announcement])
-      .select()
-      .single();
+    try {
+      const { data, error } = await supabase
+        .from('announcements')
+        .insert([announcement])
+        .select()
+        .single();
 
-    if (error) {
+      if (error) {
+        console.error('Error creating announcement:', error);
+        return null;
+      }
+
+      return data;
+    } catch (error) {
       console.error('Error creating announcement:', error);
       return null;
     }
-
-    return data;
   }
 
   static async updateAnnouncement(id: string, updates: Partial<Announcement>): Promise<Announcement | null> {
@@ -481,33 +509,43 @@ export class DatabaseService {
 
   // Schedule Events functions
   static async getScheduleEvents(): Promise<ScheduleEvent[]> {
-    const { data, error } = await supabase
-      .from('schedule_events')
-      .select('*')
-      .eq('is_active', true)
-      .order('day_of_week', { ascending: true });
+    try {
+      const { data, error } = await supabase
+        .from('schedule_events')
+        .select('*')
+        .eq('is_active', true)
+        .order('day_of_week', { ascending: true });
 
-    if (error) {
+      if (error) {
+        console.error('Error fetching schedule events:', error);
+        return [];
+      }
+
+      return data || [];
+    } catch (error) {
       console.error('Error fetching schedule events:', error);
       return [];
     }
-
-    return data || [];
   }
 
   static async createScheduleEvent(event: Partial<ScheduleEvent>): Promise<ScheduleEvent | null> {
-    const { data, error } = await supabase
-      .from('schedule_events')
-      .insert([event])
-      .select()
-      .single();
+    try {
+      const { data, error } = await supabase
+        .from('schedule_events')
+        .insert([event])
+        .select()
+        .single();
 
-    if (error) {
+      if (error) {
+        console.error('Error creating schedule event:', error);
+        return null;
+      }
+
+      return data;
+    } catch (error) {
       console.error('Error creating schedule event:', error);
       return null;
     }
-
-    return data;
   }
 
   static async updateScheduleEvent(id: string, updates: Partial<ScheduleEvent>): Promise<ScheduleEvent | null> {
