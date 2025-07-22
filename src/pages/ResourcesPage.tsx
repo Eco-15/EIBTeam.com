@@ -36,54 +36,6 @@ const ResourcesPage = () => {
     loadUserData();
   }, []);
 
-  const handleCompletionToggle = (resourceId: number, isCompleted: boolean) => {
-    if (!currentUser) return;
-
-    const newCompleted = new Set(completedResources);
-    if (isCompleted) {
-      newCompleted.add(resourceId);
-    } else {
-      newCompleted.delete(resourceId);
-    }
-    
-    setCompletedResources(newCompleted);
-    localStorage.setItem(`completed_resources_${currentUser.id}`, JSON.stringify([...newCompleted]));
-  };
-
-  // Calculate category counts dynamically
-  const getCompletedCountByCategory = (category: string) => {
-    return resources.filter(resource => 
-      resource.category === category && completedResources.has(resource.id)
-    ).length;
-  };
-
-  const licensingResourcesCompleted = getCompletedCountByCategory('licensing');
-  const trainingResourcesCompleted = getCompletedCountByCategory('training');
-  const toolsResourcesCompleted = getCompletedCountByCategory('tools');
-  const supportResourcesCompleted = getCompletedCountByCategory('support');
-
-  // Update categories with dynamic counts
-  const updatedCategories = categories.map(category => {
-    let count = 0;
-    switch (category.id) {
-      case 'all':
-        count = completedResources.size;
-        break;
-      case 'licensing':
-        count = licensingResourcesCompleted;
-        break;
-      case 'training':
-        count = trainingResourcesCompleted;
-        break;
-      case 'tools':
-        count = toolsResourcesCompleted;
-        break;
-      case 'support':
-        count = supportResourcesCompleted;
-        break;
-    }
-    return { ...category, count };
-  });
   const categories = [
     { id: 'all', name: 'All Resources', count: 0 },
     { id: 'licensing', name: 'Licensing', count: 0 },
@@ -244,6 +196,55 @@ const ResourcesPage = () => {
       featured: false
     }
   ];
+
+  const handleCompletionToggle = (resourceId: number, isCompleted: boolean) => {
+    if (!currentUser) return;
+
+    const newCompleted = new Set(completedResources);
+    if (isCompleted) {
+      newCompleted.add(resourceId);
+    } else {
+      newCompleted.delete(resourceId);
+    }
+    
+    setCompletedResources(newCompleted);
+    localStorage.setItem(`completed_resources_${currentUser.id}`, JSON.stringify([...newCompleted]));
+  };
+
+  // Calculate category counts dynamically
+  const getCompletedCountByCategory = (category: string) => {
+    return resources.filter(resource => 
+      resource.category === category && completedResources.has(resource.id)
+    ).length;
+  };
+
+  const licensingResourcesCompleted = getCompletedCountByCategory('licensing');
+  const trainingResourcesCompleted = getCompletedCountByCategory('training');
+  const toolsResourcesCompleted = getCompletedCountByCategory('tools');
+  const supportResourcesCompleted = getCompletedCountByCategory('support');
+
+  // Update categories with dynamic counts
+  const updatedCategories = categories.map(category => {
+    let count = 0;
+    switch (category.id) {
+      case 'all':
+        count = completedResources.size;
+        break;
+      case 'licensing':
+        count = licensingResourcesCompleted;
+        break;
+      case 'training':
+        count = trainingResourcesCompleted;
+        break;
+      case 'tools':
+        count = toolsResourcesCompleted;
+        break;
+      case 'support':
+        count = supportResourcesCompleted;
+        break;
+    }
+    return { ...category, count };
+  });
 
   const filteredResources = resources.filter(resource => {
     const matchesCategory = selectedCategory === 'all' || resource.category === selectedCategory;
