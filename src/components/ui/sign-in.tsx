@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Eye, EyeOff, LogIn, ArrowLeft, Shield } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
 const AnimatedSignIn: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -25,16 +26,27 @@ const AnimatedSignIn: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    setTimeout(() => {
-      // Check credentials
-      if (email === 'Eliyahucohen101@gmail.com' && password === 'EIBTeam123') {
-        // Redirect to dashboard
-        window.location.href = '/dashboard';
-      } else {
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      if (error) {
         alert('Invalid credentials. Please try again.');
+        setIsSubmitting(false);
+        return;
       }
-      setIsLoading(false);
-    }, 1500);
+
+      if (data.user) {
+        // Successful login - redirect to dashboard
+        window.location.href = '/dashboard';
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('An error occurred during login. Please try again.');
+      setIsSubmitting(false);
+    }
   };
 
   // Only show the component once mounted to avoid hydration issues
