@@ -1,77 +1,38 @@
 import React, { useState } from 'react';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
+import { DatabaseService, Announcement, ScheduleEvent } from '@/lib/database';
 import { Calendar, Clock, MapPin, Users, Bell, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const CalendarPage = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [scheduleEvents, setScheduleEvents] = useState<ScheduleEvent[]>([]);
 
-  const announcements = [
-    {
-      id: 1,
-      title: 'New Product Launch: Enhanced IUL',
-      message: 'We are excited to announce the launch of our new Enhanced Indexed Universal Life product with improved benefits and competitive rates.',
-      date: '2024-01-15',
-      priority: 'high',
-      author: 'Jason Graziani'
-    },
-    {
-      id: 2,
-      title: 'Monthly Team Meeting',
-      message: 'Join us for our monthly team meeting to discuss Q1 goals and new training opportunities.',
-      date: '2024-01-12',
-      priority: 'medium',
-      author: 'Nataly Graziani'
-    },
-    {
-      id: 3,
-      title: 'System Maintenance Notice',
-      message: 'Our CRM system will undergo scheduled maintenance this weekend. Please save your work.',
-      date: '2024-01-10',
-      priority: 'low',
-      author: 'IT Department'
-    }
-  ];
+  // Load announcements and schedule events
+  React.useEffect(() => {
+    const loadData = async () => {
+      const announcementsList = await DatabaseService.getAnnouncements();
+      setAnnouncements(announcementsList);
+      
+      const scheduleList = await DatabaseService.getScheduleEvents();
+      setScheduleEvents(scheduleList);
+    };
+    
+    loadData();
+  }, []);
 
-  const events = [
-    {
-      id: 1,
-      title: 'Team Meeting',
-      date: '2024-01-15',
-      time: '2:00 PM - 3:30 PM',
-      location: 'Conference Room A',
-      type: 'meeting',
-      attendees: 12
-    },
-    {
-      id: 2,
-      title: 'Product Training: Annuities',
-      date: '2024-01-16',
-      time: '10:00 AM - 12:00 PM',
-      location: 'Training Room',
-      type: 'training',
-      attendees: 8
-    },
-    {
-      id: 3,
-      title: 'Client Presentation',
-      date: '2024-01-17',
-      time: '3:00 PM - 4:00 PM',
-      location: 'Client Office',
-      type: 'client',
-      attendees: 3
-    },
-    {
-      id: 4,
-      title: 'Monthly Review',
-      date: '2024-01-22',
-      time: '9:00 AM - 10:30 AM',
-      location: 'Main Office',
-      type: 'review',
-      attendees: 15
-    }
-  ];
+  // Convert schedule events to display format
+  const events = scheduleEvents.map(event => ({
+    id: event.id,
+    title: event.title,
+    date: new Date().toISOString().split('T')[0], // Today's date for demo
+    time: `${event.start_time}${event.end_time ? ` - ${event.end_time}` : ''} ${event.timezone}`,
+    location: event.zoom_link ? 'Virtual Meeting' : 'TBD',
+    type: event.event_type,
+    attendees: Math.floor(Math.random() * 20) + 5 // Random for demo
+  }));
 
   const getDaysInMonth = (date: Date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -209,7 +170,7 @@ const CalendarPage = () => {
                     
                     <div className="p-6">
                       <div className="space-y-4">
-                        {events.map((event) => (
+                        {events.slice(0, 5).map((event) => (
                           <div key={event.id} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
                             <div className={`p-2 rounded-full ${
                               event.type === 'meeting' ? 'bg-yellow-100' :
@@ -267,6 +228,7 @@ const CalendarPage = () => {
                               <span className={`px-2 py-1 text-xs rounded-full ${
                                 announcement.priority === 'high' ? 'bg-red-100 text-red-800' :
                                 announcement.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
+                                announcement.priority === 'urgent' ? 'bg-red-100 text-red-800' :
                                 'bg-gray-100 text-gray-800'
                               }`}>
                                 {announcement.priority}
@@ -274,8 +236,8 @@ const CalendarPage = () => {
                             </div>
                             <p className="text-sm text-gray-600 mt-2">{announcement.message}</p>
                             <div className="flex items-center justify-between mt-3 text-xs text-gray-500">
-                              <span>By {announcement.author}</span>
-                              <span>{new Date(announcement.date).toLocaleDateString()}</span>
+                              <span>By {announcement.author_name}</span>
+                              <span>{new Date(announcement.created_at).toLocaleDateString()}</span>
                             </div>
                           </div>
                         ))}
