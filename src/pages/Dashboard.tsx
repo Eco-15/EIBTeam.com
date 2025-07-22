@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import { TrendingUp, Users, DollarSign, Calendar, Bell, BookOpen, FileText, Target, Plus, X, CheckCircle, ExternalLink } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+import { DatabaseService, SalesActivity, Appointment } from '@/lib/database';
 
 const Dashboard = () => {
   const [showActivityForm, setShowActivityForm] = useState(false);
   const [showAppointmentForm, setShowAppointmentForm] = useState(false);
-  const [salesActivities, setSalesActivities] = useState([]);
+  const [salesActivities, setSalesActivities] = useState<SalesActivity[]>([]);
   const [totalMonthlySales, setTotalMonthlySales] = useState(0);
   const [activeClients, setActiveClients] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState<any>(null);
   const [activityForm, setActivityForm] = useState({
     clientName: '',
     policyType: '',
@@ -27,6 +31,40 @@ const Dashboard = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  // Load user data and dashboard stats
+  useEffect(() => {
+    const loadDashboardData = async () => {
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+          window.location.href = '/agent-login';
+          return;
+        }
+
+        setCurrentUser(user);
+
+        // Load sales activities
+        const activities = await DatabaseService.getSalesActivities(user.id);
+        setSalesActivities(activities);
+
+        // Load monthly sales total
+        const monthlyTotal = await DatabaseService.getMonthlySalesTotal(user.id);
+        setTotalMonthlySales(monthlyTotal);
+
+        // Load active clients count
+        const clientsCount = await DatabaseService.getActiveClientsCount(user.id);
+        setActiveClients(clientsCount);
+
+      } catch (error) {
+        console.error('Error loading dashboard data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadDashboardData();
+  }, []);
 
   const stats = [
     { 
@@ -97,58 +135,101 @@ const Dashboard = () => {
 
   const handleActivitySubmit = async (e) => {
     e.preventDefault();
+    if (!currentUser) return;
+    
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Create new activity
-    const newActivity = {
-      id: Date.now(),
-      type: 'sale',
-      clientName: activityForm.clientName,
-      policyType: activityForm.policyType,
-      premium: parseFloat(activityForm.premium) || 0,
-      commission: parseFloat(activityForm.commission) || 0,
-      notes: activityForm.notes,
-      timestamp: new Date(),
-      message: `Sold ${activityForm.policyType} policy to ${activityForm.clientName}`,
-      amount: activityForm.commission ? `$${parseFloat(activityForm.commission).toLocaleString()}` : null
-    };
-    
-    // Update activities
-    setSalesActivities(prev => [newActivity, ...prev]);
-    
-    // Update monthly sales (add premium amount)
-    setTotalMonthlySales(prev => prev + (parseFloat(activityForm.premium) || 0));
-    
-    // Update active clients (increment by 1)
-    setActiveClients(prev => prev + 1);
+    try {
+      // Create sales activity in database
+      const newActivity = await DatabaseService.createSalesActivity({
+        user_id: currentUser.id,
+        client_name: activityForm.clientName,
+        policy_type: activityForm.policyType,
+        annual_premium: parseFloat(activityForm.premium) || 0,
+        commission_earned: parseFloat(activityForm.commission) || 0,
+        notes: activityForm.notes,
+        status: 'completed'
+      });
+
+      if (newActivity) {
+        // Update local state
+        setSalesActivities(prev => [newActivity, ...prev]);
+        setTotalMonthlySales(prev => prev + (parseFloat(activityForm.premium) || 0));
+        
+        // Create client record if it doesn't exist
+        await DatabaseService.createClient({
+          user_id: currentUser.id,
+          first_name: activityForm.clientName.split(' ')[0] || activityForm.clientName,
+          last_name: activityForm.clientName.split(' ').slice(1).join(' ') || '',
+          status: 'active',
+          source: 'referral'
+        });
+        
+        // Update active clients count
+        const clientsCount = await DatabaseService.getActiveClientsCount(currentUser.id);
+        setActiveClients(clientsCount);
+        
+        setSubmitSuccess(true);
+        setShowActivityForm(false);
+        setActivityForm({ clientName: '', policyType: '', premium: '', commission: '', notes: '' });
+        
+        // Reset success message after 3 seconds
+        setTimeout(() => setSubmitSuccess(false), 3000);
+      }
+    } catch (error) {
+      console.error('Error creating sales activity:', error);
+      alert('Error saving sales activity. Please try again.');
+    }
     
     setIsSubmitting(false);
-    setSubmitSuccess(true);
-    setShowActivityForm(false);
-    setActivityForm({ clientName: '', policyType: '', premium: '', commission: '', notes: '' });
-    
-    // Reset success message after 3 seconds
-    setTimeout(() => setSubmitSuccess(false), 3000);
   };
 
   const handleAppointmentSubmit = async (e) => {
     e.preventDefault();
+    if (!currentUser) return;
+    
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      // Create appointment in database
+      const newAppointment = await DatabaseService.createAppointment({
+        user_id: currentUser.id,
+        client_name: appointmentForm.clientName,
+        client_phone: appointmentForm.phone,
+        client_email: appointmentForm.email,
+        appointment_date: appointmentForm.date,
+        appointment_time: appointmentForm.time,
+        appointment_type: appointmentForm.type,
+        notes: appointmentForm.notes,
+        status: 'scheduled'
+      });
+
+      if (newAppointment) {
+        setSubmitSuccess(true);
+        setShowAppointmentForm(false);
+        setAppointmentForm({ clientName: '', phone: '', email: '', date: '', time: '', type: '', notes: '' });
+        
+        // Reset success message after 3 seconds
+        setTimeout(() => setSubmitSuccess(false), 3000);
+      }
+    } catch (error) {
+      console.error('Error creating appointment:', error);
+      alert('Error booking appointment. Please try again.');
+    }
     
     setIsSubmitting(false);
-    setSubmitSuccess(true);
-    setShowAppointmentForm(false);
-    setAppointmentForm({ clientName: '', phone: '', email: '', date: '', time: '', type: '', notes: '' });
-    
-    // Reset success message after 3 seconds
-    setTimeout(() => setSubmitSuccess(false), 3000);
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -161,7 +242,7 @@ const Dashboard = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
               {/* Welcome Section */}
               <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900">Welcome back, Eliyahu!</h1>
+                <h1 className="text-3xl font-bold text-gray-900">Welcome back, {currentUser?.email?.split('@')[0] || 'Agent'}!</h1>
                 <p className="mt-2 text-gray-600">Ready to start your journey with EIB Team? Let's build your success together!</p>
                 
                 {submitSuccess && (
@@ -218,25 +299,27 @@ const Dashboard = () => {
                       <div className="space-y-4">
                         {salesActivities.slice(0, 5).map((activity) => (
                           <div key={activity.id} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
-                            <div className={`p-2 rounded-full ${
-                              activity.type === 'sale' ? 'bg-green-100' :
-                              activity.type === 'training' ? 'bg-blue-100' :
-                              'bg-purple-100'
-                            }`}>
+                            <div className="p-2 rounded-full bg-green-100">
                               <DollarSign className="h-4 w-4 text-green-600" />
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center justify-between">
-                                <p className="text-sm font-medium text-gray-900">{activity.message}</p>
-                                {activity.amount && (
-                                  <p className="text-sm font-semibold text-green-600">{activity.amount}</p>
+                                <p className="text-sm font-medium text-gray-900">
+                                  Sold {activity.policy_type} policy to {activity.client_name}
+                                </p>
+                                {activity.commission_earned && (
+                                  <p className="text-sm font-semibold text-green-600">
+                                    ${activity.commission_earned.toLocaleString()}
+                                  </p>
                                 )}
                               </div>
                               <p className="text-xs text-gray-600 mt-1">
-                                Premium: ${activity.premium.toLocaleString()} • {activity.policyType}
+                                Premium: ${activity.annual_premium.toLocaleString()} • {activity.policy_type}
                               </p>
                               <div className="flex items-center justify-between mt-1">
-                                <p className="text-xs text-gray-500">{formatTimeAgo(activity.timestamp)}</p>
+                                <p className="text-xs text-gray-500">
+                                  {formatTimeAgo(new Date(activity.created_at))}
+                                </p>
                               </div>
                             </div>
                           </div>

@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
 import { Bell, User, LogOut, Menu, X } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
 const DashboardHeader = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState<any>(null);
 
-  const handleLogout = () => {
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setCurrentUser(user);
+    };
+
+    getCurrentUser();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     window.location.href = '/';
   };
 
@@ -45,7 +57,9 @@ const DashboardHeader = () => {
                   <User className="h-5 w-5 text-black" />
                 </div>
                 <div className="hidden md:block text-left">
-                  <p className="text-sm font-medium text-gray-900">Eliyahu Cohen</p>
+                  <p className="text-sm font-medium text-gray-900">
+                    {currentUser?.email?.split('@')[0] || 'Agent'}
+                  </p>
                   <p className="text-xs text-gray-500">Agent</p>
                 </div>
               </button>
@@ -53,8 +67,10 @@ const DashboardHeader = () => {
               {isProfileOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                   <div className="px-4 py-2 border-b border-gray-100">
-                    <p className="text-sm font-medium text-gray-900">Eliyahu Cohen</p>
-                    <p className="text-xs text-gray-500">Eliyahucohen101@gmail.com</p>
+                    <p className="text-sm font-medium text-gray-900">
+                      {currentUser?.email?.split('@')[0] || 'Agent'}
+                    </p>
+                    <p className="text-xs text-gray-500">{currentUser?.email || ''}</p>
                   </div>
                   <button
                     onClick={handleLogout}
