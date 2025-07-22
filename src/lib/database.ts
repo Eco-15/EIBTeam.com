@@ -94,6 +94,48 @@ export interface BookProgress {
   updated_at: string;
 }
 
+export interface UserRole {
+  id: string;
+  user_id: string;
+  role: 'admin' | 'agent' | 'manager';
+  assigned_by?: string;
+  assigned_at: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Announcement {
+  id: string;
+  title: string;
+  message: string;
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  author_id: string;
+  author_name: string;
+  target_audience: 'all' | 'agents' | 'managers';
+  expires_at?: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ScheduleEvent {
+  id: string;
+  title: string;
+  description?: string;
+  event_type: 'meeting' | 'training' | 'call' | 'bom' | 'hierarchy' | 'sales';
+  day_of_week: string;
+  start_time: string;
+  end_time?: string;
+  timezone: string;
+  zoom_link?: string;
+  passcode?: string;
+  is_recurring: boolean;
+  is_active: boolean;
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+}
+
 // Database service functions
 export class DatabaseService {
   // Agent Profile functions
@@ -338,5 +380,148 @@ export class DatabaseService {
     }
 
     return data;
+  }
+
+  // User Role functions
+  static async getUserRole(userId: string): Promise<UserRole | null> {
+    const { data, error } = await supabase
+      .from('user_roles')
+      .select('*')
+      .eq('user_id', userId)
+      .single();
+
+    if (error && error.code !== 'PGRST116') {
+      console.error('Error fetching user role:', error);
+      return null;
+    }
+
+    return data;
+  }
+
+  static async isAdmin(userId: string): Promise<boolean> {
+    const role = await this.getUserRole(userId);
+    return role?.role === 'admin';
+  }
+
+  // Announcements functions
+  static async getAnnouncements(): Promise<Announcement[]> {
+    const { data, error } = await supabase
+      .from('announcements')
+      .select('*')
+      .eq('is_active', true)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching announcements:', error);
+      return [];
+    }
+
+    return data || [];
+  }
+
+  static async createAnnouncement(announcement: Partial<Announcement>): Promise<Announcement | null> {
+    const { data, error } = await supabase
+      .from('announcements')
+      .insert([announcement])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error creating announcement:', error);
+      return null;
+    }
+
+    return data;
+  }
+
+  static async updateAnnouncement(id: string, updates: Partial<Announcement>): Promise<Announcement | null> {
+    const { data, error } = await supabase
+      .from('announcements')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error updating announcement:', error);
+      return null;
+    }
+
+    return data;
+  }
+
+  static async deleteAnnouncement(id: string): Promise<boolean> {
+    const { error } = await supabase
+      .from('announcements')
+      .update({ is_active: false })
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error deleting announcement:', error);
+      return false;
+    }
+
+    return true;
+  }
+
+  // Schedule Events functions
+  static async getScheduleEvents(): Promise<ScheduleEvent[]> {
+    const { data, error } = await supabase
+      .from('schedule_events')
+      .select('*')
+      .eq('is_active', true)
+      .order('day_of_week', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching schedule events:', error);
+      return [];
+    }
+
+    return data || [];
+  }
+
+  static async createScheduleEvent(event: Partial<ScheduleEvent>): Promise<ScheduleEvent | null> {
+    const { data, error } = await supabase
+      .from('schedule_events')
+      .insert([event])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error creating schedule event:', error);
+      return null;
+    }
+
+    return data;
+  }
+
+  static async updateScheduleEvent(id: string, updates: Partial<ScheduleEvent>): Promise<ScheduleEvent | null> {
+    const { data, error } = await supabase
+      .from('schedule_events')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error updating schedule event:', error);
+      return null;
+    }
+
+    return data;
+  }
+
+  static async deleteScheduleEvent(id: string): Promise<boolean> {
+    const { error } = await supabase
+      .from('schedule_events')
+      .update({ is_active: false })
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error deleting schedule event:', error);
+      return false;
+    }
+
+    return true;
   }
 }

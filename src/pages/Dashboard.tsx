@@ -3,16 +3,21 @@ import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import { TrendingUp, Users, DollarSign, Calendar, Bell, BookOpen, FileText, Target, Plus, X, CheckCircle, ExternalLink } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
-import { DatabaseService, SalesActivity, Appointment } from '@/lib/database';
+import { DatabaseService, SalesActivity, Appointment, Announcement, ScheduleEvent } from '@/lib/database';
 
 const Dashboard = () => {
   const [showActivityForm, setShowActivityForm] = useState(false);
   const [showAppointmentForm, setShowAppointmentForm] = useState(false);
+  const [showAnnouncementForm, setShowAnnouncementForm] = useState(false);
+  const [showScheduleForm, setShowScheduleForm] = useState(false);
   const [salesActivities, setSalesActivities] = useState<SalesActivity[]>([]);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [scheduleEvents, setScheduleEvents] = useState<ScheduleEvent[]>([]);
   const [totalMonthlySales, setTotalMonthlySales] = useState(0);
   const [activeClients, setActiveClients] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState<any>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [activityForm, setActivityForm] = useState({
     clientName: '',
     policyType: '',
@@ -29,6 +34,16 @@ const Dashboard = () => {
     type: '',
     notes: ''
   });
+  const [announcementForm, setAnnouncementForm] = useState({
+    title: '',
+    message: '',
+    priority: 'medium',
+    targetAudience: 'all'
+  });
+  const [scheduleForm, setScheduleForm] = useState({
+    title: '', description: '', eventType: '', dayOfWeek: '', startTime: '', 
+    endTime: '', zoomLink: '', passcode: ''
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -44,6 +59,10 @@ const Dashboard = () => {
 
         setCurrentUser(user);
 
+        // Check if user is admin
+        const adminStatus = await DatabaseService.isAdmin(user.id);
+        setIsAdmin(adminStatus);
+
         // Load sales activities
         const activities = await DatabaseService.getSalesActivities(user.id);
         setSalesActivities(activities);
@@ -55,6 +74,14 @@ const Dashboard = () => {
         // Load active clients count
         const clientsCount = await DatabaseService.getActiveClientsCount(user.id);
         setActiveClients(clientsCount);
+
+        // Load announcements
+        const announcementsList = await DatabaseService.getAnnouncements();
+        setAnnouncements(announcementsList);
+
+        // Load schedule events
+        const scheduleList = await DatabaseService.getScheduleEvents();
+        setScheduleEvents(scheduleList);
 
       } catch (error) {
         console.error('Error loading dashboard data:', error);
@@ -220,6 +247,75 @@ const Dashboard = () => {
     setIsSubmitting(false);
   };
 
+  const handleAnnouncementSubmit = async (e) => {
+    e.preventDefault();
+    if (!currentUser || !isAdmin) return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      const newAnnouncement = await DatabaseService.createAnnouncement({
+        title: announcementForm.title,
+        message: announcementForm.message,
+        priority: announcementForm.priority as any,
+        author_id: currentUser.id,
+        author_name: currentUser.email?.split('@')[0] || 'Admin',
+        target_audience: announcementForm.targetAudience as any,
+        is_active: true
+      });
+
+      if (newAnnouncement) {
+        setAnnouncements(prev => [newAnnouncement, ...prev]);
+        setSubmitSuccess(true);
+        setShowAnnouncementForm(false);
+        setAnnouncementForm({ title: '', message: '', priority: 'medium', targetAudience: 'all' });
+        setTimeout(() => setSubmitSuccess(false), 3000);
+      }
+    } catch (error) {
+      console.error('Error creating announcement:', error);
+      alert('Error creating announcement. Please try again.');
+    }
+    
+    setIsSubmitting(false);
+  };
+
+  const handleScheduleSubmit = async (e) => {
+    e.preventDefault();
+    if (!currentUser || !isAdmin) return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      const newEvent = await DatabaseService.createScheduleEvent({
+        title: scheduleForm.title,
+        description: scheduleForm.description,
+        event_type: scheduleForm.eventType as any,
+        day_of_week: scheduleForm.dayOfWeek,
+        start_time: scheduleForm.startTime,
+        end_time: scheduleForm.endTime || undefined,
+        zoom_link: scheduleForm.zoomLink || undefined,
+        passcode: scheduleForm.passcode || undefined,
+        created_by: currentUser.id,
+        is_active: true,
+        is_recurring: true,
+        timezone: 'CST'
+      });
+
+      if (newEvent) {
+        setScheduleEvents(prev => [...prev, newEvent]);
+        setSubmitSuccess(true);
+        setShowScheduleForm(false);
+        setScheduleForm({ title: '', description: '', eventType: '', dayOfWeek: '', startTime: '', endTime: '', zoomLink: '', passcode: '' });
+        setTimeout(() => setSubmitSuccess(false), 3000);
+      }
+    } catch (error) {
+      console.error('Error creating schedule event:', error);
+      alert('Error creating schedule event. Please try again.');
+    }
+    
+    setIsSubmitting(false);
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -243,7 +339,9 @@ const Dashboard = () => {
               {/* Welcome Section */}
               <div className="mb-8">
                 <h1 className="text-3xl font-bold text-gray-900">Welcome back, {currentUser?.email?.split('@')[0] || 'Agent'}!</h1>
-                <p className="mt-2 text-gray-600">Ready to start your journey with EIB Team? Let's build your success together!</p>
+                <p className="mt-2 text-gray-600">
+                  {isAdmin ? 'Admin Dashboard - Manage your team and announcements' : 'Ready to start your journey with EIB Team? Let\'s build your success together!'}
+                </p>
                 
                 {submitSuccess && (
                   <div className="mt-4 bg-green-50 border-l-4 border-green-500 p-4 rounded">
@@ -272,6 +370,29 @@ const Dashboard = () => {
                   </div>
                 ))}
               </div>
+
+              {/* Admin Controls */}
+              {isAdmin && (
+                <div className="mb-8 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+                  <h2 className="text-xl font-bold text-purple-900 mb-4">Admin Controls</h2>
+                  <div className="flex flex-wrap gap-4">
+                    <button
+                      onClick={() => setShowAnnouncementForm(true)}
+                      className="bg-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-700 transition-colors flex items-center space-x-2"
+                    >
+                      <Bell className="h-4 w-4" />
+                      <span>Create Announcement</span>
+                    </button>
+                    <button
+                      onClick={() => setShowScheduleForm(true)}
+                      className="bg-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-700 transition-colors flex items-center space-x-2"
+                    >
+                      <Calendar className="h-4 w-4" />
+                      <span>Manage Schedule</span>
+                    </button>
+                  </div>
+                </div>
+              )}
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Recent Activity */}
@@ -352,18 +473,18 @@ const Dashboard = () => {
                   </div>
                   <div className="p-6">
                     <div className="space-y-4">
-                      {weeklySchedule.map((event, index) => (
+                      {scheduleEvents.map((event, index) => (
                         <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
                           <div className={`p-2 rounded-full ${
-                            event.type === 'hierarchy' ? 'bg-purple-100' :
-                            event.type === 'sales' ? 'bg-green-100' :
-                            event.type === 'bom' ? 'bg-blue-100' :
+                            event.event_type === 'hierarchy' ? 'bg-purple-100' :
+                            event.event_type === 'sales' ? 'bg-green-100' :
+                            event.event_type === 'bom' ? 'bg-blue-100' :
                             'bg-purple-100'
                           }`}>
                             <Calendar className={`h-4 w-4 ${
-                              event.type === 'hierarchy' ? 'text-purple-600' :
-                              event.type === 'sales' ? 'text-green-600' :
-                              event.type === 'bom' ? 'text-blue-600' :
+                              event.event_type === 'hierarchy' ? 'text-purple-600' :
+                              event.event_type === 'sales' ? 'text-green-600' :
+                              event.event_type === 'bom' ? 'text-blue-600' :
                               'text-purple-600'
                             }`} />
                           </div>
@@ -371,7 +492,7 @@ const Dashboard = () => {
                             <div className="flex items-center justify-between">
                               <div>
                                 <h4 className="font-semibold text-gray-900">{event.title}</h4>
-                                <p className="text-sm text-gray-600">{event.day} at {event.time}</p>
+                                <p className="text-sm text-gray-600">{event.day_of_week} at {event.start_time} {event.timezone}</p>
                               </div>
                               {event.zoomLink && (
                                 <div className="flex items-center space-x-2">
@@ -395,6 +516,44 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Announcements Section */}
+              {announcements.length > 0 && (
+                <div className="mt-8">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Latest Announcements</h3>
+                  <div className="space-y-4">
+                    {announcements.slice(0, 3).map((announcement) => (
+                      <div key={announcement.id} className={`p-4 rounded-lg border-l-4 ${
+                        announcement.priority === 'urgent' ? 'bg-red-50 border-red-500' :
+                        announcement.priority === 'high' ? 'bg-orange-50 border-orange-500' :
+                        announcement.priority === 'medium' ? 'bg-yellow-50 border-yellow-500' :
+                        'bg-blue-50 border-blue-500'
+                      }`}>
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-gray-900">{announcement.title}</h4>
+                            <p className="text-gray-600 mt-1">{announcement.message}</p>
+                            <div className="flex items-center justify-between mt-2">
+                              <span className="text-sm text-gray-500">By {announcement.author_name}</span>
+                              <span className="text-xs text-gray-400">
+                                {new Date(announcement.created_at).toLocaleDateString()}
+                              </span>
+                            </div>
+                          </div>
+                          <span className={`px-2 py-1 text-xs rounded-full font-medium ${
+                            announcement.priority === 'urgent' ? 'bg-red-100 text-red-800' :
+                            announcement.priority === 'high' ? 'bg-orange-100 text-orange-800' :
+                            announcement.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-blue-100 text-blue-800'
+                          }`}>
+                            {announcement.priority}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Quick Actions */}
               <div className="mt-8">
@@ -644,6 +803,240 @@ const Dashboard = () => {
                     className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Booking...' : 'Book Appointment'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* Announcement Form Modal */}
+        {showAnnouncementForm && isAdmin && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-gray-900">Create Announcement</h3>
+                  <button
+                    onClick={() => setShowAnnouncementForm(false)}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
+                </div>
+              </div>
+              
+              <form onSubmit={handleAnnouncementSubmit} className="p-6 space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+                  <input
+                    type="text"
+                    required
+                    value={announcementForm.title}
+                    onChange={(e) => setAnnouncementForm({...announcementForm, title: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="Announcement title"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                  <textarea
+                    required
+                    value={announcementForm.message}
+                    onChange={(e) => setAnnouncementForm({...announcementForm, message: e.target.value})}
+                    rows={4}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                    placeholder="Announcement message..."
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Priority</label>
+                  <select
+                    value={announcementForm.priority}
+                    onChange={(e) => setAnnouncementForm({...announcementForm, priority: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  >
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="urgent">Urgent</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Target Audience</label>
+                  <select
+                    value={announcementForm.targetAudience}
+                    onChange={(e) => setAnnouncementForm({...announcementForm, targetAudience: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  >
+                    <option value="all">All Users</option>
+                    <option value="agents">Agents Only</option>
+                    <option value="managers">Managers Only</option>
+                  </select>
+                </div>
+                
+                <div className="flex space-x-3 pt-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowAnnouncementForm(false)}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Creating...' : 'Create Announcement'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* Schedule Form Modal */}
+        {showScheduleForm && isAdmin && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-gray-900">Create Schedule Event</h3>
+                  <button
+                    onClick={() => setShowScheduleForm(false)}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
+                </div>
+              </div>
+              
+              <form onSubmit={handleScheduleSubmit} className="p-6 space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+                  <input
+                    type="text"
+                    required
+                    value={scheduleForm.title}
+                    onChange={(e) => setScheduleForm({...scheduleForm, title: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="Event title"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                  <textarea
+                    value={scheduleForm.description}
+                    onChange={(e) => setScheduleForm({...scheduleForm, description: e.target.value})}
+                    rows={3}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                    placeholder="Event description..."
+                  />
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Event Type *</label>
+                    <select
+                      required
+                      value={scheduleForm.eventType}
+                      onChange={(e) => setScheduleForm({...scheduleForm, eventType: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    >
+                      <option value="">Select type</option>
+                      <option value="meeting">Meeting</option>
+                      <option value="training">Training</option>
+                      <option value="call">Call</option>
+                      <option value="bom">BOM</option>
+                      <option value="hierarchy">Hierarchy</option>
+                      <option value="sales">Sales</option>
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Day *</label>
+                    <select
+                      required
+                      value={scheduleForm.dayOfWeek}
+                      onChange={(e) => setScheduleForm({...scheduleForm, dayOfWeek: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    >
+                      <option value="">Select day</option>
+                      <option value="Monday">Monday</option>
+                      <option value="Tuesday">Tuesday</option>
+                      <option value="Wednesday">Wednesday</option>
+                      <option value="Thursday">Thursday</option>
+                      <option value="Friday">Friday</option>
+                      <option value="Saturday">Saturday</option>
+                      <option value="Sunday">Sunday</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Start Time *</label>
+                    <input
+                      type="time"
+                      required
+                      value={scheduleForm.startTime}
+                      onChange={(e) => setScheduleForm({...scheduleForm, startTime: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">End Time</label>
+                    <input
+                      type="time"
+                      value={scheduleForm.endTime}
+                      onChange={(e) => setScheduleForm({...scheduleForm, endTime: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Zoom Link</label>
+                  <input
+                    type="url"
+                    value={scheduleForm.zoomLink}
+                    onChange={(e) => setScheduleForm({...scheduleForm, zoomLink: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="https://zoom.us/j/..."
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Passcode</label>
+                  <input
+                    type="text"
+                    value={scheduleForm.passcode}
+                    onChange={(e) => setScheduleForm({...scheduleForm, passcode: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="Meeting passcode"
+                  />
+                </div>
+                
+                <div className="flex space-x-3 pt-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowScheduleForm(false)}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Creating...' : 'Create Event'}
                   </button>
                 </div>
               </form>
