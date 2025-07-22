@@ -356,7 +356,7 @@ const BooksPage = () => {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -366,51 +366,13 @@ const BooksPage = () => {
                     <BookOpen className="h-8 w-8 text-blue-600" />
                   </div>
                 </div>
-                 <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-8">
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Total Books</p>
-                      <p className="text-3xl font-bold text-blue-600">{books.length}</p>
+                      <p className="text-sm font-medium text-gray-600">Recommended</p>
+                      <p className="text-3xl font-bold text-purple-600">{recommendedBooks}</p>
                     </div>
-                    <BookOpen className="h-8 w-8 text-blue-600" />
-                  </div>
-                </div>
-                    <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-8">
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">Total Books</p>
-                      <p className="text-3xl font-bold text-blue-600">{books.length}</p>
-                    </div>
-                    <BookOpen className="h-8 w-8 text-blue-600" />
-                  </div>
-                </div>
-                                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">Total Books</p>
-                      <p className="text-3xl font-bold text-blue-600">{books.length}</p>
-                    </div>
-                    <BookOpen className="h-8 w-8 text-blue-600" />
-                  </div>
-                </div>
-                                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">Total Books</p>
-                      <p className="text-3xl font-bold text-blue-600">{books.length}</p>
-                    </div>
-                    <BookOpen className="h-8 w-8 text-blue-600" />
-                  </div>
-                </div>
-                                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">Total Books</p>
-                      <p className="text-3xl font-bold text-blue-600">{books.length}</p>
-                    </div>
-                    <BookOpen className="h-8 w-8 text-blue-600" />
+                    <Star className="h-8 w-8 text-purple-600" />
                   </div>
                 </div>
               </div>
@@ -505,6 +467,7 @@ const BooksPage = () => {
                               </div>
                               
                               <div className="flex items-center justify-between">
+
                                 <div className="flex items-center space-x-2">
                                   <a
                                     href={`/books/${book.id}`}
