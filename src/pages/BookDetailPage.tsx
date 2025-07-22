@@ -1499,7 +1499,7 @@ For insurance professionals, this book provides invaluable insights into buildin
       readingTime: '6 hours',
       status: 'to-read',
       progress: 0,
-      amazonLink: 'https://www.amazon.com/Coach-AL-Williams/dp/0892212845',
+      amazonLink: 'https://www.goodreads.com/book/show/6114738-coach',
       cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       recommended: true,
       publishedYear: 1990,
