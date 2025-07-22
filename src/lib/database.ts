@@ -346,11 +346,13 @@ export class DatabaseService {
   static async updateTrainingProgress(userId: string, trainingId: number, updates: Partial<TrainingProgress>): Promise<TrainingProgress | null> {
     const { data, error } = await supabase
       .from('training_progress')
-      .upsert([{
+      .upsert({
         user_id: userId,
         training_id: trainingId,
         ...updates
-      }])
+      }, {
+        onConflict: 'user_id,training_id'
+      })
       .select()
       .single();
 
