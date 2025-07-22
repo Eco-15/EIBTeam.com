@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import { FileText, ExternalLink, Search, Filter, Users, BookOpen, Shield, Building, MessageSquare, MapPin, HelpCircle, User, TrendingUp } from 'lucide-react';
@@ -6,13 +7,55 @@ import { FileText, ExternalLink, Search, Filter, Users, BookOpen, Shield, Buildi
 const ResourcesPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [completedResources, setCompletedResources] = useState<Set<number>>(new Set());
+  const [isLoading, setIsLoading] = useState(true);
+
+  React.useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+          window.location.href = '/agent-login';
+          return;
+        }
+        setCurrentUser(user);
+        
+        // Load completed resources from localStorage for now
+        const saved = localStorage.getItem(`completed_resources_${user.id}`);
+        if (saved) {
+          setCompletedResources(new Set(JSON.parse(saved)));
+        }
+      } catch (error) {
+        console.error('Error loading user data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadUserData();
+  }, []);
+
+  const handleCompletionToggle = (resourceId: number, isCompleted: boolean) => {
+    if (!currentUser) return;
+
+    const newCompleted = new Set(completedResources);
+    if (isCompleted) {
+      newCompleted.add(resourceId);
+    } else {
+      newCompleted.delete(resourceId);
+    }
+    
+    setCompletedResources(newCompleted);
+    localStorage.setItem(`completed_resources_${currentUser.id}`, JSON.stringify([...newCompleted]));
+  };
 
   const categories = [
-    { id: 'all', name: 'All Resources', count: 15 },
-    { id: 'licensing', name: 'Licensing', count: 6 },
-    { id: 'training', name: 'Training', count: 2 },
-    { id: 'tools', name: 'Tools & Systems', count: 4 },
-    { id: 'support', name: 'Support', count: 3 },
+    { id: 'all', name: 'All Resources', count: 0 },
+    { id: 'licensing', name: 'Licensing', count: 0 },
+    { id: 'training', name: 'Training', count: 0 },
+    { id: 'tools', name: 'Tools & Systems', count: 0 },
+    { id: 'support', name: 'Support', count: 0 },
   ];
 
   const resources = [
@@ -175,10 +218,21 @@ const ResourcesPage = () => {
     return matchesCategory && matchesSearch;
   });
 
-  const featuredResources = resources.filter(r => r.featured);
-  const licensingResources = resources.filter(r => r.category === 'licensing').length;
-  const trainingResources = resources.filter(r => r.category === 'training').length;
-  const toolsResources = resources.filter(r => r.category === 'tools').length;
+  const completedCount = completedResources.size;
+  const licensingResources = 0;
+  const trainingResources = 0;
+  const toolsResources = 0;
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading resources...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -227,45 +281,14 @@ const ResourcesPage = () => {
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Total Resources</p>
-                      <p className="text-3xl font-bold text-yellow-600">{resources.length}</p>
+                      <p className="text-sm font-medium text-gray-600">Completed</p>
+                      <p className="text-3xl font-bold text-yellow-600">{completedCount}</p>
                     </div>
                     <FileText className="h-8 w-8 text-yellow-600" />
                   </div>
                 </div>
               </div>
 
-              {/* Featured Resources */}
-              <div className="mb-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Essential Resources</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {featuredResources.map((resource) => (
-                    <div key={resource.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                      <div className="flex items-start space-x-4">
-                        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 p-3 rounded-lg">
-                          <resource.icon className="h-6 w-6 text-black" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-2">{resource.title}</h3>
-                          <p className="text-sm text-gray-600 mb-3">{resource.description}</p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                              {resource.type}
-                            </span>
-                            <a
-                              href={resource.link}
-                              className="flex items-center space-x-1 text-sm text-yellow-600 hover:text-yellow-700 font-medium"
-                            >
-                              <span>Access</span>
-                              <ExternalLink className="h-4 w-4" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 {/* Sidebar */}
@@ -355,11 +378,6 @@ const ResourcesPage = () => {
                                 <div className="flex-1">
                                   <h4 className="text-lg font-semibold text-gray-900 mb-1">
                                     {resource.title}
-                                    {resource.featured && (
-                                      <span className="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                        Essential
-                                      </span>
-                                    )}
                                   </h4>
                                   <p className="text-gray-600 mb-3">{resource.description}</p>
                                   <div className="flex items-center space-x-4 text-sm text-gray-500">
@@ -371,6 +389,30 @@ const ResourcesPage = () => {
                                   </div>
                                 </div>
                                 <div className="flex items-center space-x-2 ml-4">
+                                  {/* Completion Toggle */}
+                                  <div className="flex items-center space-x-2 mr-4">
+                                    <span className="text-sm font-medium text-gray-700">Completed:</span>
+                                    <button
+                                      onClick={() => handleCompletionToggle(resource.id, true)}
+                                      className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
+                                        completedResources.has(resource.id)
+                                          ? 'bg-green-500 text-white'
+                                          : 'bg-gray-200 text-gray-700 hover:bg-green-100'
+                                      }`}
+                                    >
+                                      Yes
+                                    </button>
+                                    <button
+                                      onClick={() => handleCompletionToggle(resource.id, false)}
+                                      className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
+                                        !completedResources.has(resource.id)
+                                          ? 'bg-red-500 text-white'
+                                          : 'bg-gray-200 text-gray-700 hover:bg-red-100'
+                                      }`}
+                                    >
+                                      No
+                                    </button>
+                                  </div>
                                   <a
                                     href={resource.link}
                                     className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors flex items-center space-x-2"
