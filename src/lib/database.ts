@@ -420,24 +420,12 @@ export class DatabaseService {
 
   static async isAdmin(userId: string): Promise<boolean> {
     try {
-      // Use the database function to check admin status  
-      const { data, error } = await supabase.rpc('is_admin', {
-        user_id: userId
-      });
-
-      if (error) {
-        console.error('Admin check error:', error);
-        // Fallback to email check
-        const { data: { user } } = await supabase.auth.getUser();
-        return user?.email === 'Eliyahucohen101@gmail.com';
-      }
-
-      return data === true;
-    } catch (error) {
-      console.error('Error checking admin status:', error);
-      // Fallback check for the specific admin email
+      // Check admin status by email
       const { data: { user } } = await supabase.auth.getUser();
       return user?.email === 'Eliyahucohen101@gmail.com';
+    } catch (error) {
+      console.error('Error checking admin status:', error);
+      return false;
     }
   }
 
