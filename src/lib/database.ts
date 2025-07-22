@@ -400,18 +400,26 @@ export class DatabaseService {
   // User Role functions
   static async getUserRole(userId: string): Promise<UserRole | null> {
     try {
-      const { data, error } = await supabase
-        .from('user_roles')
-        .select('*')
-        .eq('user_id', userId)
-        .single();
+      // Use the database function to get user role
+      const { data, error } = await supabase.rpc('get_user_role', {
+        user_id: userId
+      });
 
-      if (error && error.code !== 'PGRST116') {
-        console.log('No user role found or error:', error.message);
+      if (error) {
+        console.log('Error getting user role:', error.message);
         return null;
       }
 
-      return data;
+      // Return a UserRole-like object
+      return {
+        id: '',
+        user_id: userId,
+        role: data || 'agent',
+        assigned_by: '',
+        assigned_at: '',
+        created_at: '',
+        updated_at: ''
+      } as UserRole;
     } catch (error) {
       console.log('Error fetching user role:', error);
       return null;
@@ -420,26 +428,19 @@ export class DatabaseService {
 
   static async isAdmin(userId: string): Promise<boolean> {
     try {
-      // Check if user email is the admin email as fallback
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user?.email === 'Eliyahucohen101@gmail.com') {
-        return true;
-      }
-
-      // Simple role check without recursion
-      const { data, error } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', userId)
-        .maybeSingle();
+      // Use the database function to check admin status
+      const { data, error } = await supabase.rpc('is_admin', {
+        user_id: userId
+      });
 
       if (error) {
-        console.log('Role check error:', error.message);
+        console.log('Admin check error:', error.message);
         // Fallback to email check
+        const { data: { user } } = await supabase.auth.getUser();
         return user?.email === 'Eliyahucohen101@gmail.com';
       }
 
-      return data?.role === 'admin';
+      return data === true;
     } catch (error) {
       console.log('Error checking admin status:', error);
       // Fallback check for the specific admin email
@@ -448,92 +449,39 @@ export class DatabaseService {
     }
   }
 
-  // Create admin user function
-  static async createAdminUser(): Promise<boolean> {
+  // Create admin user using Supabase Auth signup
+  static async createAdminUser(email: string = 'Eliyahucohen101@gmail.com', password: string = 'EIBTeam123'): Promise<boolean> {
     try {
-      // Check if admin user already exists
-      const { data: existingUser } = await supabase.auth.admin.listUsers();
-      const adminExists = existingUser?.users?.find(user => user.email === 'Eliyahucohen101@gmail.com');
-      
-      if (adminExists) {
-        console.log('Admin user already exists');
-        // Update existing user records with correct user ID
-        await this.updateAdminRecords(adminExists.id);
-        return true;
-      }
-
-      // Create the admin user using Supabase Admin API
-      const { data: newUser, error: authError } = await supabase.auth.admin.createUser({
-        email: 'Eliyahucohen101@gmail.com',
-        password: 'EIBTeam123',
-        email_confirm: true,
-        user_metadata: {
-          first_name: 'Admin',
-          last_name: 'User',
-          role: 'admin'
+      // Try to sign up the admin user
+      const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            first_name: 'Admin',
+            last_name: 'User',
+            role: 'admin'
+          }
         }
       });
 
-      if (authError) {
-        console.error('Error creating admin user:', authError);
+      if (error && error.message !== 'User already registered') {
+        console.error('Error creating admin user:', error);
         return false;
       }
 
-      if (!newUser.user) {
-        console.error('No user returned from auth creation');
-        return false;
+      if (data.user) {
+        console.log('Admin user created successfully:', data.user.email);
+        return true;
       }
 
-      // Update records with actual user ID
-      await this.updateAdminRecords(newUser.user.id);
-
-      console.log('Admin user created successfully:', newUser.user.email);
+      // If user already exists, that's fine
+      console.log('Admin user already exists or created');
       return true;
 
     } catch (error) {
       console.error('Error in createAdminUser:', error);
       return false;
-    }
-  }
-
-  // Helper function to update admin records with correct user ID
-  private static async updateAdminRecords(userId: string): Promise<void> {
-    try {
-      // Update user role record
-      await supabase
-        .from('user_roles')
-        .upsert([{
-          user_id: userId,
-          role: 'admin',
-          assigned_by: userId
-        }]);
-
-      // Update agent profile
-      await supabase
-        .from('agent_profiles')
-        .upsert([{
-          user_id: userId,
-          first_name: 'Admin',
-          last_name: 'User',
-          status: 'active'
-        }]);
-
-      // Update invitation record
-      await supabase
-        .from('user_invitations')
-        .upsert([{
-          email: 'Eliyahucohen101@gmail.com',
-          first_name: 'Admin',
-          last_name: 'User',
-          role: 'admin',
-          temporary_password: 'EIBTeam123',
-          invited_by: userId,
-          accepted_at: new Date().toISOString(),
-          is_active: true
-        }]);
-
-    } catch (error) {
-      console.error('Error updating admin records:', error);
     }
   }
 

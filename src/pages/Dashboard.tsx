@@ -59,6 +59,11 @@ const Dashboard = () => {
 
         setCurrentUser(user);
         
+        // Try to create admin user if it's the admin email
+        if (user.email === 'Eliyahucohen101@gmail.com') {
+          await DatabaseService.createAdminUser();
+        }
+
         // Auto-create admin user if this is the admin email
         if (user.email === 'Eliyahucohen101@gmail.com') {
           await DatabaseService.createAdminUser();
