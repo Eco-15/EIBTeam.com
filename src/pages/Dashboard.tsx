@@ -28,7 +28,6 @@ const Dashboard = () => {
   const stats = [
     { name: 'Monthly Sales', value: '$0', change: 'Start selling!', icon: DollarSign, color: 'text-green-600' },
     { name: 'Active Clients', value: '0', change: 'Build your base', icon: Users, color: 'text-blue-600' },
-    { name: 'Conversion Rate', value: '0%', change: 'Track progress', icon: Target, color: 'text-purple-600' },
     { name: 'Training Hours', value: '0', change: 'Start learning', icon: BookOpen, color: 'text-yellow-600' },
   ];
 
@@ -126,7 +125,7 @@ const Dashboard = () => {
               </div>
 
               {/* Stats Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 {stats.map((stat) => (
                   <div key={stat.name} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                     <div className="flex items-center justify-between">
