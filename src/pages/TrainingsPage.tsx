@@ -8,19 +8,18 @@ const TrainingsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const categories = [
-    { id: 'all', name: 'All Courses', count: 24 },
-    { id: 'fundamentals', name: 'Fundamentals', count: 8 },
-    { id: 'products', name: 'Product Training', count: 10 },
-    { id: 'sales', name: 'Sales Techniques', count: 6 },
-    { id: 'compliance', name: 'Compliance', count: 4 },
+    { id: 'all', name: 'All Courses', count: 10 },
+    { id: 'fundamentals', name: 'Fundamentals', count: 4 },
+    { id: 'sales', name: 'Sales Techniques', count: 5 },
+    { id: 'products', name: 'Product Training', count: 1 },
   ];
 
   const trainings = [
     {
       id: 1,
-      title: 'Insurance Fundamentals',
-      description: 'Learn the basics of life insurance, types of policies, and how they work.',
-      duration: '2 hours',
+      title: 'Welcome',
+      description: 'Introduction to EIB Team, our mission, values, and what to expect in your journey with us.',
+      duration: '30 minutes',
       difficulty: 'Beginner',
       category: 'fundamentals',
       progress: 100,
@@ -31,68 +30,120 @@ const TrainingsPage = () => {
     },
     {
       id: 2,
-      title: 'Indexed Universal Life (IUL) Deep Dive',
-      description: 'Comprehensive training on IUL products, benefits, and sales strategies.',
-      duration: '3 hours',
-      difficulty: 'Intermediate',
-      category: 'products',
+      title: 'Builder\'s Mindset',
+      description: 'Develop the entrepreneurial mindset needed to build a successful insurance business.',
+      duration: '45 minutes',
+      difficulty: 'Beginner',
+      category: 'fundamentals',
       progress: 65,
       completed: false,
       rating: 4.9,
-      instructor: 'Nataly Graziani',
+      instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
     {
       id: 3,
-      title: 'Effective Sales Presentations',
-      description: 'Master the art of presenting insurance products to potential clients.',
-      duration: '1.5 hours',
-      difficulty: 'Intermediate',
-      category: 'sales',
+      title: 'Mental Toughness',
+      description: 'Build resilience and mental strength to overcome challenges in the insurance industry.',
+      duration: '40 minutes',
+      difficulty: 'Beginner',
+      category: 'fundamentals',
       progress: 0,
       completed: false,
       rating: 4.7,
-      instructor: 'Mike Johnson',
+      instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
     },
     {
       id: 4,
-      title: 'Annuities Explained',
-      description: 'Understanding different types of annuities and their applications.',
-      duration: '2.5 hours',
+      title: '6 Steps (PCA/Schedule)',
+      description: 'Master the 6-step process for client acquisition and appointment scheduling.',
+      duration: '1 hour',
       difficulty: 'Intermediate',
-      category: 'products',
+      category: 'sales',
       progress: 30,
       completed: false,
       rating: 4.6,
-      instructor: 'Sarah Williams',
+      instructor: 'Nataly Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
     {
       id: 5,
-      title: 'Compliance and Ethics',
-      description: 'Essential compliance requirements and ethical practices in insurance sales.',
-      duration: '1 hour',
-      difficulty: 'Beginner',
-      category: 'compliance',
-      progress: 100,
-      completed: true,
+      title: 'RI (Referral Interview)',
+      description: 'Learn the referral interview process to expand your client base through warm referrals.',
+      duration: '50 minutes',
+      difficulty: 'Intermediate',
+      category: 'sales',
+      progress: 0,
+      completed: false,
       rating: 4.5,
-      instructor: 'Legal Team',
+      instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
     },
     {
       id: 6,
-      title: 'Objection Handling Mastery',
-      description: 'Learn to handle common objections and turn them into opportunities.',
-      duration: '2 hours',
-      difficulty: 'Advanced',
+      title: 'KTP (Know the Person)',
+      description: 'Understand your clients deeply to provide personalized financial solutions.',
+      duration: '45 minutes',
+      difficulty: 'Intermediate',
       category: 'sales',
       progress: 0,
       completed: false,
       rating: 4.8,
-      instructor: 'Tom Anderson',
+      instructor: 'Nataly Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
+     },
+     {
+       id: 7,
+       title: 'FS (Financial Survey)',
+       description: 'Conduct comprehensive financial surveys to identify client needs and opportunities.',
+       duration: '1 hour',
+       difficulty: 'Intermediate',
+       category: 'sales',
+       progress: 0,
+       completed: false,
+       rating: 4.7,
+       instructor: 'Jason Graziani',
+       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
+     },
+     {
+       id: 8,
+       title: 'Goal Setting / Business Plan',
+       description: 'Create actionable goals and develop a comprehensive business plan for success.',
+       duration: '1.5 hours',
+       difficulty: 'Intermediate',
+       category: 'fundamentals',
+       progress: 0,
+       completed: false,
+       rating: 4.9,
+       instructor: 'Jason Graziani',
+       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
+     },
+     {
+       id: 9,
+       title: 'What We Do / (HTCW)',
+       description: 'Understand our products, services, and how to communicate our value proposition.',
+       duration: '1 hour',
+       difficulty: 'Beginner',
+       category: 'products',
+       progress: 0,
+       completed: false,
+       rating: 4.6,
+       instructor: 'Nataly Graziani',
+       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
+     },
+     {
+       id: 10,
+       title: 'How to Get Promoted',
+       description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
+       duration: '45 minutes',
+       difficulty: 'Advanced',
+       category: 'fundamentals',
+       progress: 0,
+       completed: false,
+       rating: 4.8,
+       instructor: 'Jason Graziani',
+       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     }
   ];
 
@@ -105,7 +156,12 @@ const TrainingsPage = () => {
 
   const completedCount = trainings.filter(t => t.completed).length;
   const inProgressCount = trainings.filter(t => t.progress > 0 && !t.completed).length;
-  const totalHours = trainings.reduce((acc, t) => acc + parseFloat(t.duration), 0);
+  const totalHours = trainings.reduce((acc, t) => {
+    const duration = t.duration.includes('hour') ? 
+      parseFloat(t.duration) : 
+      parseFloat(t.duration) / 60;
+    return acc + duration;
+  }, 0);
 
   return (
     <div className="min-h-screen bg-gray-50">
