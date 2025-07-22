@@ -7,6 +7,7 @@ import { DatabaseService } from '@/lib/database';
 
 const TrainingsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedDifficulty, setSelectedDifficulty] = useState('all');
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [trainingProgress, setTrainingProgress] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -164,7 +165,8 @@ const TrainingsPage = () => {
   const filteredTrainings = trainings.filter(training => {
     const matchesSearch = training.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          training.description.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesSearch;
+    const matchesDifficulty = selectedDifficulty === 'all' || training.difficulty === selectedDifficulty;
+    return matchesSearch && matchesDifficulty;
   });
 
   const completedCount = trainingProgress.filter(t => t.completed).length || 0;
@@ -254,10 +256,19 @@ const TrainingsPage = () => {
                       className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                     />
                   </div>
-                  <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                    <Filter className="h-5 w-5 text-gray-400" />
-                    <span>Filter</span>
-                  </button>
+                  <div className="relative">
+                    <select
+                      value={selectedDifficulty}
+                      onChange={(e) => setSelectedDifficulty(e.target.value)}
+                      className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors appearance-none bg-white pr-8"
+                    >
+                      <option value="all">All Levels</option>
+                      <option value="Beginner">Beginner</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Advanced">Advanced</option>
+                    </select>
+                    <Filter className="absolute right-2 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+                  </div>
                 </div>
               </div>
 
