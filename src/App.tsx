@@ -9,6 +9,7 @@ import AgentLogin from './components/AgentLogin';
 import Dashboard from './pages/Dashboard';
 import CalendarPage from './pages/CalendarPage';
 import TrainingsPage from './pages/TrainingsPage';
+import TrainingDetailPage from './pages/TrainingDetailPage';
 import ResourcesPage from './pages/ResourcesPage';
 import BooksPage from './pages/BooksPage';
 import BookDetailPage from './pages/BookDetailPage';
@@ -27,6 +28,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/trainings" element={<TrainingsPage />} />
+        <Route path="/training/:id" element={<TrainingDetailPage />} />
         <Route path="/resources" element={<ResourcesPage />} />
         <Route path="/books" element={<BooksPage />} />
         <Route path="/books/:id" element={<BookDetailPage />} />
