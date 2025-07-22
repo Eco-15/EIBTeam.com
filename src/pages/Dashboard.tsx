@@ -59,6 +59,11 @@ const Dashboard = () => {
 
         setCurrentUser(user);
         
+        // Ensure admin user is properly set up
+        if (user.email === 'Eliyahucohen101@gmail.com') {
+          await DatabaseService.ensureAdminRole(user.id);
+        }
+        
         // Ensure admin user setup is complete
         if (user.email === 'Eliyahucohen101@gmail.com') {
           await DatabaseService.ensureAdminUser();
@@ -335,6 +340,66 @@ const Dashboard = () => {
     setIsSubmitting(false);
   };
 
+  const handleCreateAnnouncement = async () => {
+    const title = prompt('Announcement Title:');
+    if (!title) return;
+    
+    const message = prompt('Announcement Message:');
+    if (!message) return;
+    
+    const priority = prompt('Priority (low/medium/high/urgent):', 'medium') as 'low' | 'medium' | 'high' | 'urgent';
+    
+    try {
+      await DatabaseService.createAnnouncement({
+        title,
+        message,
+        priority: priority || 'medium',
+        author_name: 'Admin',
+        target_audience: 'all'
+      });
+      
+      alert('Announcement created successfully!');
+      // Reload announcements
+      const newAnnouncements = await DatabaseService.getAnnouncements();
+      setAnnouncements(newAnnouncements);
+    } catch (error) {
+      console.error('Error creating announcement:', error);
+      alert('Error creating announcement');
+    }
+  };
+
+  const handleManageSchedule = async () => {
+    const title = prompt('Event Title:');
+    if (!title) return;
+    
+    const dayOfWeek = prompt('Day of Week (Monday/Tuesday/etc.):');
+    if (!dayOfWeek) return;
+    
+    const startTime = prompt('Start Time (HH:MM format):', '09:00');
+    if (!startTime) return;
+    
+    const eventType = prompt('Event Type (meeting/training/call/bom/hierarchy/sales):', 'meeting') as 'meeting' | 'training' | 'call' | 'bom' | 'hierarchy' | 'sales';
+    
+    try {
+      await DatabaseService.createScheduleEvent({
+        title,
+        day_of_week: dayOfWeek,
+        start_time: startTime,
+        event_type: eventType || 'meeting',
+        timezone: 'CST',
+        is_recurring: true
+      });
+      
+      alert('Schedule event created successfully!');
+      // Reload schedule events
+      const newEvents = await DatabaseService.getScheduleEvents();
+      setScheduleEvents(newEvents);
+    } catch (error) {
+      console.error('Error creating schedule event:', error);
+      alert('Error creating schedule event');
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -347,6 +412,7 @@ const Dashboard = () => {
   }
 
   return (
+                        onClick={() => window.location.href = '/admin/users'}
     <div className="min-h-screen bg-gray-50">
       <DashboardHeader />
       <DashboardSidebar />
@@ -354,6 +420,7 @@ const Dashboard = () => {
       <div className="md:pl-64 flex flex-col flex-1">
         <main className="flex-1">
           <div className="py-6">
+                        onClick={() => handleCreateAnnouncement()}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
               {/* Welcome Section */}
               <div className="mb-8">
@@ -361,6 +428,7 @@ const Dashboard = () => {
                 <p className="mt-2 text-gray-600">
                   {isAdmin ? 'Admin Dashboard - Manage your team and announcements' : 'Ready to start your journey with EIB Team? Let\'s build your success together!'}
                 </p>
+                        onClick={() => handleManageSchedule()}
                 
                 {submitSuccess && (
                   <div className="mt-4 bg-green-50 border-l-4 border-green-500 p-4 rounded">

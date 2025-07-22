@@ -444,10 +444,15 @@ export class DatabaseService {
   // Create admin user using Supabase Auth signup
   static async ensureAdminUser(email: string = 'Eliyahucohen101@gmail.com', password: string = 'EIBTeam123'): Promise<boolean> {
     try {
-      // Check if admin user already exists
-      const { data: existingUser } = await supabase.auth.getUser();
-      if (existingUser?.user?.email === email) {
-        console.log('Admin user already logged in');
+      // Check if user is already signed up
+      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      if (signInData.user && !signInError) {
+        console.log('Admin user already exists and can sign in');
+        await this.ensureAdminRole(signInData.user.id);
         return true;
       }
 
@@ -456,7 +461,7 @@ export class DatabaseService {
         email: email,
         password: password,
         options: {
-          emailRedirectTo: undefined, // Disable email confirmation
+          emailRedirectTo: undefined,
           data: {
             first_name: 'Admin',
             last_name: 'User',
@@ -465,9 +470,24 @@ export class DatabaseService {
         }
       });
 
-      if (signUpError && !signUpError.message.includes('already registered')) {
+      if (signUpError) {
         console.error('Error creating admin user:', signUpError);
+        // If user already exists, try to sign them in
+        if (signUpError.message.includes('already registered')) {
+          const { data: signInRetry } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+          });
+          if (signInRetry.user) {
+            await this.ensureAdminRole(signInRetry.user.id);
+            return true;
+          }
+        }
         return false;
+      }
+
+      if (signUpData.user) {
+        await this.ensureAdminRole(signUpData.user.id);
       }
 
       console.log('Admin user setup completed');
@@ -475,6 +495,41 @@ export class DatabaseService {
     } catch (error) {
       console.error('Error in createAdminUser:', error);
       return false;
+    }
+  }
+
+  // Ensure admin role is properly assigned
+  static async ensureAdminRole(userId: string): Promise<void> {
+    try {
+      // Create or update user role
+      await supabase
+        .from('user_roles')
+        .upsert([{
+          user_id: userId,
+          role: 'admin',
+          assigned_by: userId
+        }]);
+
+      // Create or update agent profile
+      await supabase
+        .from('agent_profiles')
+        .upsert([{
+          user_id: userId,
+          first_name: 'Admin',
+          last_name: 'User',
+          status: 'active'
+        }]);
+
+      // Update invitation record if exists
+      await supabase
+        .from('user_invitations')
+        .update({
+          accepted_at: new Date().toISOString()
+        })
+        .eq('email', 'Eliyahucohen101@gmail.com');
+
+    } catch (error) {
+      console.error('Error ensuring admin role:', error);
     }
   }
 

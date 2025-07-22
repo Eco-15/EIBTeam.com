@@ -34,6 +34,12 @@ const DashboardSidebar = () => {
       icon: Users,
       current: window.location.pathname === '/admin/users'
     });
+    menuItems.push({
+      name: 'Admin Panel',
+      href: '/dashboard',
+      icon: BarChart3,
+      current: false
+    });
   }
 
   return (
