@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, User, LogOut, Menu, X } from 'lucide-react';
+import { Bell, User, LogOut, Menu, X, CheckCircle, AlertCircle, Calendar, MessageSquare } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 const DashboardHeader = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<any>(null);
 
   useEffect(() => {
@@ -18,6 +19,56 @@ const DashboardHeader = () => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     window.location.href = '/';
+  };
+
+  const notifications = [
+    {
+      id: 1,
+      type: 'success',
+      title: 'Training Completed',
+      message: 'You completed "Video 1 - Welcome" training',
+      time: '2 hours ago',
+      read: false,
+      icon: CheckCircle
+    },
+    {
+      id: 2,
+      type: 'info',
+      title: 'New Announcement',
+      message: 'Monthly team meeting scheduled for next Friday',
+      time: '1 day ago',
+      read: false,
+      icon: MessageSquare
+    },
+    {
+      id: 3,
+      type: 'warning',
+      title: 'License Renewal',
+      message: 'Your insurance license expires in 30 days',
+      time: '3 days ago',
+      read: true,
+      icon: AlertCircle
+    },
+    {
+      id: 4,
+      type: 'info',
+      title: 'Appointment Reminder',
+      message: 'Client meeting with John Smith tomorrow at 2 PM',
+      time: '1 week ago',
+      read: true,
+      icon: Calendar
+    }
+  ];
+
+  const unreadCount = notifications.filter(n => !n.read).length;
+
+  const getNotificationColor = (type: string) => {
+    switch (type) {
+      case 'success': return 'text-green-600';
+      case 'warning': return 'text-yellow-600';
+      case 'info': return 'text-blue-600';
+      default: return 'text-gray-600';
+    }
   };
 
   return (
@@ -40,12 +91,67 @@ const DashboardHeader = () => {
           {/* Right side */}
           <div className="flex items-center space-x-4">
             {/* Notifications */}
-            <button className="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-              <Bell className="h-6 w-6" />
-              <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                3
-              </span>
-            </button>
+            <div className="relative">
+              <button
+                onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+                className="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <Bell className="h-6 w-6" />
+                {unreadCount > 0 && (
+                  <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                    {unreadCount}
+                  </span>
+                )}
+              </button>
+
+              {isNotificationsOpen && (
+                <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 max-h-96 overflow-y-auto">
+                  <div className="px-4 py-2 border-b border-gray-100">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-semibold text-gray-900">Notifications</h3>
+                      {unreadCount > 0 && (
+                        <span className="text-sm text-gray-500">{unreadCount} unread</span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div className="max-h-80 overflow-y-auto">
+                    {notifications.map((notification) => (
+                      <div
+                        key={notification.id}
+                        className={`px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 ${
+                          !notification.read ? 'bg-blue-50' : ''
+                        }`}
+                      >
+                        <div className="flex items-start space-x-3">
+                          <div className={`p-1 rounded-full ${getNotificationColor(notification.type)}`}>
+                            <notification.icon className="h-4 w-4" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between">
+                              <p className={`text-sm font-medium ${!notification.read ? 'text-gray-900' : 'text-gray-700'}`}>
+                                {notification.title}
+                              </p>
+                              {!notification.read && (
+                                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                              )}
+                            </div>
+                            <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.time}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="px-4 py-2 border-t border-gray-100">
+                    <button className="w-full text-center text-sm text-blue-600 hover:text-blue-800 font-medium">
+                      View All Notifications
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Profile Dropdown */}
             <div className="relative">
