@@ -312,37 +312,13 @@ const TrainingsPage = () => {
                           <span className="text-sm text-gray-500">By {training.instructor}</span>
                         </div>
 
-                        {/* Completion Toggle */}
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-center">
                           <a
                             href={`/training/${training.id}`}
                             className="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors text-sm"
                           >
                             View More
                           </a>
-                          <div className="flex items-center space-x-2">
-                            <span className="text-sm font-medium text-gray-700">Completed:</span>
-                            <button
-                              onClick={() => handleCompletionToggle(training.id, training.title, true)}
-                              className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
-                                completed
-                                  ? 'bg-green-500 text-white'
-                                  : 'bg-gray-200 text-gray-700 hover:bg-green-200'
-                              }`}
-                            >
-                              Yes
-                            </button>
-                            <button
-                              onClick={() => handleCompletionToggle(training.id, training.title, false)}
-                              className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
-                                !completed
-                                  ? 'bg-red-500 text-white'
-                                  : 'bg-gray-200 text-gray-700 hover:bg-red-200'
-                              }`}
-                            >
-                              No
-                            </button>
-                          </div>
                         </div>
                       </div>
                     </div>
