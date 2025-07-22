@@ -1636,7 +1636,7 @@ For insurance professionals, Dalio's principles provide a framework for building
       status: 'to-read',
       progress: 0,
       amazonLink: 'https://www.amazon.com/Principles-Life-Work-Ray-Dalio/dp/1501124021',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
+      cover: 'https://m.media-amazon.com/images/I/41Dn20bdaAL._SY445_SX342_.jpg',
       recommended: true,
       publishedYear: 2017,
       keyTakeaways: [
