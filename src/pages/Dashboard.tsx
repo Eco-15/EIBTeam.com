@@ -6,6 +6,9 @@ import { TrendingUp, Users, DollarSign, Calendar, Bell, BookOpen, FileText, Targ
 const Dashboard = () => {
   const [showActivityForm, setShowActivityForm] = useState(false);
   const [showAppointmentForm, setShowAppointmentForm] = useState(false);
+  const [salesActivities, setSalesActivities] = useState([]);
+  const [totalMonthlySales, setTotalMonthlySales] = useState(0);
+  const [activeClients, setActiveClients] = useState(0);
   const [activityForm, setActivityForm] = useState({
     clientName: '',
     policyType: '',
@@ -26,12 +29,36 @@ const Dashboard = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const stats = [
-    { name: 'Monthly Sales', value: '$0', change: 'Start selling!', icon: DollarSign, color: 'text-green-600' },
-    { name: 'Active Clients', value: '0', change: 'Build your base', icon: Users, color: 'text-blue-600' },
+    { 
+      name: 'Monthly Sales', 
+      value: totalMonthlySales > 0 ? `$${totalMonthlySales.toLocaleString()}` : '$0', 
+      change: totalMonthlySales > 0 ? `${salesActivities.length} sales this month` : 'Start selling!', 
+      icon: DollarSign, 
+      color: 'text-green-600' 
+    },
+    { 
+      name: 'Active Clients', 
+      value: activeClients.toString(), 
+      change: activeClients > 0 ? `${activeClients} clients served` : 'Build your base', 
+      icon: Users, 
+      color: 'text-blue-600' 
+    },
     { name: 'Training Hours', value: '0', change: 'Start learning', icon: BookOpen, color: 'text-yellow-600' },
   ];
 
-  const recentActivities = [];
+  const formatTimeAgo = (date) => {
+    const now = new Date();
+    const diffInMinutes = Math.floor((now - date) / (1000 * 60));
+    
+    if (diffInMinutes < 1) return 'Just now';
+    if (diffInMinutes < 60) return `${diffInMinutes} minutes ago`;
+    
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    if (diffInHours < 24) return `${diffInHours} hours ago`;
+    
+    const diffInDays = Math.floor(diffInHours / 24);
+    return `${diffInDays} days ago`;
+  };
 
   const weeklySchedule = [
     { 
@@ -74,6 +101,29 @@ const Dashboard = () => {
     
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    // Create new activity
+    const newActivity = {
+      id: Date.now(),
+      type: 'sale',
+      clientName: activityForm.clientName,
+      policyType: activityForm.policyType,
+      premium: parseFloat(activityForm.premium) || 0,
+      commission: parseFloat(activityForm.commission) || 0,
+      notes: activityForm.notes,
+      timestamp: new Date(),
+      message: `Sold ${activityForm.policyType} policy to ${activityForm.clientName}`,
+      amount: activityForm.commission ? `$${parseFloat(activityForm.commission).toLocaleString()}` : null
+    };
+    
+    // Update activities
+    setSalesActivities(prev => [newActivity, ...prev]);
+    
+    // Update monthly sales (add premium amount)
+    setTotalMonthlySales(prev => prev + (parseFloat(activityForm.premium) || 0));
+    
+    // Update active clients (increment by 1)
+    setActiveClients(prev => prev + 1);
     
     setIsSubmitting(false);
     setSubmitSuccess(true);
@@ -158,7 +208,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <div className="p-6">
-                    {recentActivities.length === 0 ? (
+                    {salesActivities.length === 0 ? (
                       <div className="text-center py-8">
                         <DollarSign className="h-12 w-12 text-gray-300 mx-auto mb-4" />
                         <p className="text-gray-500 mb-4">No sales activity yet</p>
@@ -166,32 +216,38 @@ const Dashboard = () => {
                       </div>
                     ) : (
                       <div className="space-y-4">
-                        {recentActivities.map((activity, index) => (
-                          <div key={index} className="flex items-start space-x-3">
+                        {salesActivities.slice(0, 5).map((activity) => (
+                          <div key={activity.id} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
                             <div className={`p-2 rounded-full ${
                               activity.type === 'sale' ? 'bg-green-100' :
                               activity.type === 'training' ? 'bg-blue-100' :
                               'bg-purple-100'
                             }`}>
-                              {activity.type === 'sale' ? (
-                                <DollarSign className="h-4 w-4 text-green-600" />
-                              ) : activity.type === 'training' ? (
-                                <BookOpen className="h-4 w-4 text-blue-600" />
-                              ) : (
-                                <Calendar className="h-4 w-4 text-purple-600" />
-                              )}
+                              <DollarSign className="h-4 w-4 text-green-600" />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-gray-900">{activity.message}</p>
-                              <div className="flex items-center justify-between mt-1">
-                                <p className="text-xs text-gray-500">{activity.time}</p>
+                              <div className="flex items-center justify-between">
+                                <p className="text-sm font-medium text-gray-900">{activity.message}</p>
                                 {activity.amount && (
                                   <p className="text-sm font-semibold text-green-600">{activity.amount}</p>
                                 )}
                               </div>
+                              <p className="text-xs text-gray-600 mt-1">
+                                Premium: ${activity.premium.toLocaleString()} • {activity.policyType}
+                              </p>
+                              <div className="flex items-center justify-between mt-1">
+                                <p className="text-xs text-gray-500">{formatTimeAgo(activity.timestamp)}</p>
+                              </div>
                             </div>
                           </div>
                         ))}
+                        {salesActivities.length > 5 && (
+                          <div className="text-center pt-4">
+                            <p className="text-sm text-gray-500">
+                              Showing 5 of {salesActivities.length} activities
+                            </p>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
