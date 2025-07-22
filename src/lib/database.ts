@@ -448,6 +448,80 @@ export class DatabaseService {
     }
   }
 
+  // Create admin user function
+  static async createAdminUser(): Promise<boolean> {
+    try {
+      // Create the admin user using Supabase Admin API
+      const { data: newUser, error: authError } = await supabase.auth.admin.createUser({
+        email: 'Eliyahucohen101@gmail.com',
+        password: 'EIBTeam123',
+        email_confirm: true,
+        user_metadata: {
+          first_name: 'Admin',
+          last_name: 'User',
+          role: 'admin'
+        }
+      });
+
+      if (authError) {
+        console.error('Error creating admin user:', authError);
+        return false;
+      }
+
+      if (!newUser.user) {
+        console.error('No user returned from auth creation');
+        return false;
+      }
+
+      // Update user role record with actual user ID
+      const { error: roleError } = await supabase
+        .from('user_roles')
+        .upsert([{
+          user_id: newUser.user.id,
+          role: 'admin',
+          assigned_by: newUser.user.id
+        }]);
+
+      if (roleError) {
+        console.error('Error creating user role:', roleError);
+      }
+
+      // Update agent profile with actual user ID
+      const { error: profileError } = await supabase
+        .from('agent_profiles')
+        .upsert([{
+          user_id: newUser.user.id,
+          first_name: 'Admin',
+          last_name: 'User',
+          status: 'active'
+        }]);
+
+      if (profileError) {
+        console.error('Error creating agent profile:', profileError);
+      }
+
+      // Update invitation record with actual user ID
+      const { error: inviteError } = await supabase
+        .from('user_invitations')
+        .update({
+          invited_by: newUser.user.id,
+          accepted_at: new Date().toISOString()
+        })
+        .eq('email', 'Eliyahucohen101@gmail.com');
+
+      if (inviteError) {
+        console.error('Error updating invitation:', inviteError);
+      }
+
+      console.log('Admin user created successfully:', newUser.user.email);
+      return true;
+
+    } catch (error) {
+      console.error('Error in createAdminUser:', error);
+      return false;
+    }
+  }
+
   // Announcements functions
   static async getAnnouncements(): Promise<Announcement[]> {
     try {

@@ -59,6 +59,15 @@ const Dashboard = () => {
 
         setCurrentUser(user);
 
+        // Create admin user if it's the admin email and doesn't exist in roles
+        if (user.email === 'Eliyahucohen101@gmail.com') {
+          const existingRole = await DatabaseService.getUserRole(user.id);
+          if (!existingRole) {
+            console.log('Creating admin user role...');
+            await DatabaseService.createAdminUser();
+          }
+        }
+
         // Check if user is admin
         const adminStatus = await DatabaseService.isAdmin(user.id);
         setIsAdmin(adminStatus);
