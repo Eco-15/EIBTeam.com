@@ -451,6 +451,17 @@ export class DatabaseService {
   // Create admin user function
   static async createAdminUser(): Promise<boolean> {
     try {
+      // Check if admin user already exists
+      const { data: existingUser } = await supabase.auth.admin.listUsers();
+      const adminExists = existingUser?.users?.find(user => user.email === 'Eliyahucohen101@gmail.com');
+      
+      if (adminExists) {
+        console.log('Admin user already exists');
+        // Update existing user records with correct user ID
+        await this.updateAdminRecords(adminExists.id);
+        return true;
+      }
+
       // Create the admin user using Supabase Admin API
       const { data: newUser, error: authError } = await supabase.auth.admin.createUser({
         email: 'Eliyahucohen101@gmail.com',
@@ -473,45 +484,8 @@ export class DatabaseService {
         return false;
       }
 
-      // Update user role record with actual user ID
-      const { error: roleError } = await supabase
-        .from('user_roles')
-        .upsert([{
-          user_id: newUser.user.id,
-          role: 'admin',
-          assigned_by: newUser.user.id
-        }]);
-
-      if (roleError) {
-        console.error('Error creating user role:', roleError);
-      }
-
-      // Update agent profile with actual user ID
-      const { error: profileError } = await supabase
-        .from('agent_profiles')
-        .upsert([{
-          user_id: newUser.user.id,
-          first_name: 'Admin',
-          last_name: 'User',
-          status: 'active'
-        }]);
-
-      if (profileError) {
-        console.error('Error creating agent profile:', profileError);
-      }
-
-      // Update invitation record with actual user ID
-      const { error: inviteError } = await supabase
-        .from('user_invitations')
-        .update({
-          invited_by: newUser.user.id,
-          accepted_at: new Date().toISOString()
-        })
-        .eq('email', 'Eliyahucohen101@gmail.com');
-
-      if (inviteError) {
-        console.error('Error updating invitation:', inviteError);
-      }
+      // Update records with actual user ID
+      await this.updateAdminRecords(newUser.user.id);
 
       console.log('Admin user created successfully:', newUser.user.email);
       return true;
@@ -519,6 +493,47 @@ export class DatabaseService {
     } catch (error) {
       console.error('Error in createAdminUser:', error);
       return false;
+    }
+  }
+
+  // Helper function to update admin records with correct user ID
+  private static async updateAdminRecords(userId: string): Promise<void> {
+    try {
+      // Update user role record
+      await supabase
+        .from('user_roles')
+        .upsert([{
+          user_id: userId,
+          role: 'admin',
+          assigned_by: userId
+        }]);
+
+      // Update agent profile
+      await supabase
+        .from('agent_profiles')
+        .upsert([{
+          user_id: userId,
+          first_name: 'Admin',
+          last_name: 'User',
+          status: 'active'
+        }]);
+
+      // Update invitation record
+      await supabase
+        .from('user_invitations')
+        .upsert([{
+          email: 'Eliyahucohen101@gmail.com',
+          first_name: 'Admin',
+          last_name: 'User',
+          role: 'admin',
+          temporary_password: 'EIBTeam123',
+          invited_by: userId,
+          accepted_at: new Date().toISOString(),
+          is_active: true
+        }]);
+
+    } catch (error) {
+      console.error('Error updating admin records:', error);
     }
   }
 
