@@ -112,7 +112,7 @@ const About = () => {
               
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Jason co-founded Excellence in Building (EIB) in 2007 with a vision to serve people and treat them right. 
+                  Jason founded Excellence in Building (EIB) in 2007 with a vision to serve people and treat them right. 
                   With over 15 years of experience in the financial services industry, Jason has built EIB into one of the 
                   most successful PHP Agency partners in Texas.
                 </p>
