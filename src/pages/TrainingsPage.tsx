@@ -4,24 +4,16 @@ import DashboardSidebar from '../components/DashboardSidebar';
 import { BookOpen, Play, CheckCircle, Clock, Star, Award, Filter, Search } from 'lucide-react';
 
 const TrainingsPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const categories = [
-    { id: 'all', name: 'All Courses', count: 10 },
-    { id: 'fundamentals', name: 'Fundamentals', count: 4 },
-    { id: 'sales', name: 'Sales Techniques', count: 5 },
-    { id: 'products', name: 'Product Training', count: 1 },
-  ];
 
   const trainings = [
     {
       id: 1,
-      title: 'Welcome',
+      title: '1. Welcome',
       description: 'Introduction to EIB Team, our mission, values, and what to expect in your journey with us.',
       duration: '30 minutes',
       difficulty: 'Beginner',
-      category: 'fundamentals',
       progress: 100,
       completed: true,
       rating: 4.8,
@@ -30,11 +22,10 @@ const TrainingsPage = () => {
     },
     {
       id: 2,
-      title: 'Builder\'s Mindset',
+      title: '2. Builder\'s Mindset',
       description: 'Develop the entrepreneurial mindset needed to build a successful insurance business.',
       duration: '45 minutes',
       difficulty: 'Beginner',
-      category: 'fundamentals',
       progress: 65,
       completed: false,
       rating: 4.9,
@@ -43,11 +34,10 @@ const TrainingsPage = () => {
     },
     {
       id: 3,
-      title: 'Mental Toughness',
+      title: '3. Mental Toughness',
       description: 'Build resilience and mental strength to overcome challenges in the insurance industry.',
       duration: '40 minutes',
       difficulty: 'Beginner',
-      category: 'fundamentals',
       progress: 0,
       completed: false,
       rating: 4.7,
@@ -56,11 +46,10 @@ const TrainingsPage = () => {
     },
     {
       id: 4,
-      title: '6 Steps (PCA/Schedule)',
+      title: '4. 6 Steps (PCA/Schedule)',
       description: 'Master the 6-step process for client acquisition and appointment scheduling.',
       duration: '1 hour',
       difficulty: 'Intermediate',
-      category: 'sales',
       progress: 30,
       completed: false,
       rating: 4.6,
@@ -69,11 +58,10 @@ const TrainingsPage = () => {
     },
     {
       id: 5,
-      title: 'RI (Referral Interview)',
+      title: '5. RI (Referral Interview)',
       description: 'Learn the referral interview process to expand your client base through warm referrals.',
       duration: '50 minutes',
       difficulty: 'Intermediate',
-      category: 'sales',
       progress: 0,
       completed: false,
       rating: 4.5,
@@ -82,11 +70,10 @@ const TrainingsPage = () => {
     },
     {
       id: 6,
-      title: 'KTP (Know the Person)',
+      title: '6. KTP (Know the Person)',
       description: 'Understand your clients deeply to provide personalized financial solutions.',
       duration: '45 minutes',
       difficulty: 'Intermediate',
-      category: 'sales',
       progress: 0,
       completed: false,
       rating: 4.8,
@@ -95,11 +82,10 @@ const TrainingsPage = () => {
      },
      {
        id: 7,
-       title: 'FS (Financial Survey)',
+       title: '7. FS (Financial Survey)',
        description: 'Conduct comprehensive financial surveys to identify client needs and opportunities.',
        duration: '1 hour',
        difficulty: 'Intermediate',
-       category: 'sales',
        progress: 0,
        completed: false,
        rating: 4.7,
@@ -108,11 +94,10 @@ const TrainingsPage = () => {
      },
      {
        id: 8,
-       title: 'Goal Setting / Business Plan',
+       title: '8. Goal Setting / Business Plan',
        description: 'Create actionable goals and develop a comprehensive business plan for success.',
        duration: '1.5 hours',
        difficulty: 'Intermediate',
-       category: 'fundamentals',
        progress: 0,
        completed: false,
        rating: 4.9,
@@ -121,11 +106,10 @@ const TrainingsPage = () => {
      },
      {
        id: 9,
-       title: 'What We Do / (HTCW)',
+       title: '9. What We Do / (HTCW)',
        description: 'Understand our products, services, and how to communicate our value proposition.',
        duration: '1 hour',
        difficulty: 'Beginner',
-       category: 'products',
        progress: 0,
        completed: false,
        rating: 4.6,
@@ -134,11 +118,10 @@ const TrainingsPage = () => {
      },
      {
        id: 10,
-       title: 'How to Get Promoted',
+       title: '10. How to Get Promoted',
        description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
        duration: '45 minutes',
        difficulty: 'Advanced',
-       category: 'fundamentals',
        progress: 0,
        completed: false,
        rating: 4.8,
@@ -148,10 +131,9 @@ const TrainingsPage = () => {
   ];
 
   const filteredTrainings = trainings.filter(training => {
-    const matchesCategory = selectedCategory === 'all' || training.category === selectedCategory;
     const matchesSearch = training.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          training.description.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesSearch;
   });
 
   const completedCount = trainings.filter(t => t.completed).length;
@@ -218,134 +200,101 @@ const TrainingsPage = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                {/* Sidebar */}
-                <div className="lg:col-span-1">
-                  <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Categories</h3>
-                    <div className="space-y-2">
-                      {categories.map((category) => (
-                        <button
-                          key={category.id}
-                          onClick={() => setSelectedCategory(category.id)}
-                          className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
-                            selectedCategory === category.id
-                              ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-black'
-                              : 'text-gray-600 hover:bg-gray-100'
-                          }`}
-                        >
-                          <div className="flex items-center justify-between">
-                            <span className="font-medium">{category.name}</span>
-                            <span className={`text-sm ${
-                              selectedCategory === category.id ? 'text-black' : 'text-gray-400'
-                            }`}>
-                              {category.count}
-                            </span>
-                          </div>
+
+              {/* Search Bar */}
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex-1 relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder="Search trainings..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                    />
+                  </div>
+                  <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                    <Filter className="h-5 w-5 text-gray-400" />
+                    <span>Filter</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Training Gallery */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredTrainings.map((training) => (
+                  <div key={training.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                    <div className="relative">
+                      <img
+                        src={training.thumbnail}
+                        alt={training.title}
+                        className="w-full h-48 object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <button className="bg-white bg-opacity-90 rounded-full p-3 hover:bg-opacity-100 transition-all">
+                          <Play className="h-6 w-6 text-gray-900 ml-1" />
                         </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Main Content */}
-                <div className="lg:col-span-3">
-                  {/* Search and Filter */}
-                  <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <div className="flex-1 relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                        <input
-                          type="text"
-                          placeholder="Search trainings..."
-                          value={searchTerm}
-                          onChange={(e) => setSearchTerm(e.target.value)}
-                          className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                        />
                       </div>
-                      <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                        <Filter className="h-5 w-5 text-gray-400" />
-                        <span>Filter</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Training Cards */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {filteredTrainings.map((training) => (
-                      <div key={training.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
-                        <div className="relative">
-                          <img
-                            src={training.thumbnail}
-                            alt={training.title}
-                            className="w-full h-48 object-cover"
-                          />
-                          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <button className="bg-white bg-opacity-90 rounded-full p-3 hover:bg-opacity-100 transition-all">
-                              <Play className="h-6 w-6 text-gray-900 ml-1" />
-                            </button>
-                          </div>
-                          {training.completed && (
-                            <div className="absolute top-4 right-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-                              Completed
-                            </div>
-                          )}
+                      {training.completed && (
+                        <div className="absolute top-4 right-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Completed
                         </div>
-                        
-                        <div className="p-6">
-                          <div className="flex items-start justify-between mb-3">
-                            <h3 className="text-lg font-semibold text-gray-900">{training.title}</h3>
-                            <div className="flex items-center space-x-1">
-                              <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                              <span className="text-sm text-gray-600">{training.rating}</span>
-                            </div>
-                          </div>
-                          
-                          <p className="text-gray-600 text-sm mb-4">{training.description}</p>
-                          
-                          <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                            <span>{training.duration}</span>
-                            <span className={`px-2 py-1 rounded-full text-xs ${
-                              training.difficulty === 'Beginner' ? 'bg-green-100 text-green-800' :
-                              training.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' :
-                              'bg-red-100 text-red-800'
-                            }`}>
-                              {training.difficulty}
-                            </span>
-                          </div>
-                          
-                          {training.progress > 0 && (
-                            <div className="mb-4">
-                              <div className="flex items-center justify-between text-sm text-gray-600 mb-1">
-                                <span>Progress</span>
-                                <span>{training.progress}%</span>
-                              </div>
-                              <div className="w-full bg-gray-200 rounded-full h-2">
-                                <div
-                                  className="bg-gradient-to-r from-yellow-500 to-yellow-600 h-2 rounded-full transition-all duration-300"
-                                  style={{ width: `${training.progress}%` }}
-                                ></div>
-                              </div>
-                            </div>
-                          )}
-                          
-                          <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-500">By {training.instructor}</span>
-                            <button className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                              training.completed
-                                ? 'bg-green-100 text-green-800'
-                                : training.progress > 0
-                                ? 'bg-yellow-500 text-black hover:bg-yellow-600'
-                                : 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-black hover:from-yellow-600 hover:to-yellow-700'
-                            }`}>
-                              {training.completed ? 'Review' : training.progress > 0 ? 'Continue' : 'Start'}
-                            </button>
-                          </div>
+                      )}
+                    </div>
+                    
+                    <div className="p-6">
+                      <div className="flex items-start justify-between mb-3">
+                        <h3 className="text-lg font-semibold text-gray-900">{training.title}</h3>
+                        <div className="flex items-center space-x-1">
+                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                          <span className="text-sm text-gray-600">{training.rating}</span>
                         </div>
                       </div>
-                    ))}
+                      
+                      <p className="text-gray-600 text-sm mb-4">{training.description}</p>
+                      
+                      <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                        <span>{training.duration}</span>
+                        <span className={`px-2 py-1 rounded-full text-xs ${
+                          training.difficulty === 'Beginner' ? 'bg-green-100 text-green-800' :
+                          training.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' :
+                          'bg-red-100 text-red-800'
+                        }`}>
+                          {training.difficulty}
+                        </span>
+                      </div>
+                      
+                      {training.progress > 0 && (
+                        <div className="mb-4">
+                          <div className="flex items-center justify-between text-sm text-gray-600 mb-1">
+                            <span>Progress</span>
+                            <span>{training.progress}%</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div
+                              className="bg-gradient-to-r from-yellow-500 to-yellow-600 h-2 rounded-full transition-all duration-300"
+                              style={{ width: `${training.progress}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      )}
+                      
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-500">By {training.instructor}</span>
+                        <button className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                          training.completed
+                            ? 'bg-green-100 text-green-800'
+                            : training.progress > 0
+                            ? 'bg-yellow-500 text-black hover:bg-yellow-600'
+                            : 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-black hover:from-yellow-600 hover:to-yellow-700'
+                        }`}>
+                          {training.completed ? 'Review' : training.progress > 0 ? 'Continue' : 'Start'}
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
