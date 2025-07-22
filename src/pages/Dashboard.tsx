@@ -412,7 +412,6 @@ const Dashboard = () => {
   }
 
   return (
-                        onClick={() => window.location.href = '/admin/users'}
     <div className="min-h-screen bg-gray-50">
       <DashboardHeader />
       <DashboardSidebar />
