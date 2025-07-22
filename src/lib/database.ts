@@ -400,41 +400,33 @@ export class DatabaseService {
   // User Role functions
   static async getUserRole(userId: string): Promise<UserRole | null> {
     try {
-      // Use the database function to get user role
-      const { data, error } = await supabase.rpc('get_user_role', {
-        user_id: userId
-      });
+      const { data, error } = await supabase
+        .from('user_roles')
+        .select('*')
+        .eq('user_id', userId)
+        .maybeSingle();
 
       if (error) {
-        console.log('Error getting user role:', error.message);
+        console.error('Error getting user role:', error);
         return null;
       }
 
-      // Return a UserRole-like object
-      return {
-        id: '',
-        user_id: userId,
-        role: data || 'agent',
-        assigned_by: '',
-        assigned_at: '',
-        created_at: '',
-        updated_at: ''
-      } as UserRole;
+      return data;
     } catch (error) {
-      console.log('Error fetching user role:', error);
+      console.error('Error fetching user role:', error);
       return null;
     }
   }
 
   static async isAdmin(userId: string): Promise<boolean> {
     try {
-      // Use the database function to check admin status
+      // Use the database function to check admin status  
       const { data, error } = await supabase.rpc('is_admin', {
         user_id: userId
       });
 
       if (error) {
-        console.log('Admin check error:', error.message);
+        console.error('Admin check error:', error);
         // Fallback to email check
         const { data: { user } } = await supabase.auth.getUser();
         return user?.email === 'Eliyahucohen101@gmail.com';
@@ -442,7 +434,7 @@ export class DatabaseService {
 
       return data === true;
     } catch (error) {
-      console.log('Error checking admin status:', error);
+      console.error('Error checking admin status:', error);
       // Fallback check for the specific admin email
       const { data: { user } } = await supabase.auth.getUser();
       return user?.email === 'Eliyahucohen101@gmail.com';
@@ -450,13 +442,21 @@ export class DatabaseService {
   }
 
   // Create admin user using Supabase Auth signup
-  static async createAdminUser(email: string = 'Eliyahucohen101@gmail.com', password: string = 'EIBTeam123'): Promise<boolean> {
+  static async ensureAdminUser(email: string = 'Eliyahucohen101@gmail.com', password: string = 'EIBTeam123'): Promise<boolean> {
     try {
-      // Try to sign up the admin user
-      const { data, error } = await supabase.auth.signUp({
+      // Check if admin user already exists
+      const { data: existingUser } = await supabase.auth.getUser();
+      if (existingUser?.user?.email === email) {
+        console.log('Admin user already logged in');
+        return true;
+      }
+
+      // Try to sign up the admin user (this will trigger our database functions)
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
         email: email,
         password: password,
         options: {
+          emailRedirectTo: undefined, // Disable email confirmation
           data: {
             first_name: 'Admin',
             last_name: 'User',
@@ -465,20 +465,13 @@ export class DatabaseService {
         }
       });
 
-      if (error && error.message !== 'User already registered') {
-        console.error('Error creating admin user:', error);
+      if (signUpError && !signUpError.message.includes('already registered')) {
+        console.error('Error creating admin user:', signUpError);
         return false;
       }
 
-      if (data.user) {
-        console.log('Admin user created successfully:', data.user.email);
-        return true;
-      }
-
-      // If user already exists, that's fine
-      console.log('Admin user already exists or created');
+      console.log('Admin user setup completed');
       return true;
-
     } catch (error) {
       console.error('Error in createAdminUser:', error);
       return false;
@@ -486,6 +479,35 @@ export class DatabaseService {
   }
 
   // Announcements functions
+  static async createAnnouncement(announcement: Partial<Announcement>): Promise<Announcement | null> {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return null;
+
+      const announcementData = {
+        ...announcement,
+        author_id: user.id,
+        author_name: announcement.author_name || 'Admin'
+      };
+
+      const { data, error } = await supabase
+        .from('announcements')
+        .insert([announcementData])
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error creating announcement:', error);
+        return null;
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error creating announcement:', error);
+      return null;
+    }
+  }
+
   static async getAnnouncements(): Promise<Announcement[]> {
     try {
       const { data, error } = await supabase
@@ -503,26 +525,6 @@ export class DatabaseService {
     } catch (error) {
       console.error('Error fetching announcements:', error);
       return [];
-    }
-  }
-
-  static async createAnnouncement(announcement: Partial<Announcement>): Promise<Announcement | null> {
-    try {
-      const { data, error } = await supabase
-        .from('announcements')
-        .insert([announcement])
-        .select()
-        .single();
-
-      if (error) {
-        console.error('Error creating announcement:', error);
-        return null;
-      }
-
-      return data;
-    } catch (error) {
-      console.error('Error creating announcement:', error);
-      return null;
     }
   }
 
@@ -557,6 +559,34 @@ export class DatabaseService {
   }
 
   // Schedule Events functions
+  static async createScheduleEvent(event: Partial<ScheduleEvent>): Promise<ScheduleEvent | null> {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return null;
+
+      const eventData = {
+        ...event,
+        created_by: user.id
+      };
+
+      const { data, error } = await supabase
+        .from('schedule_events')
+        .insert([eventData])
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error creating schedule event:', error);
+        return null;
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error creating schedule event:', error);
+      return null;
+    }
+  }
+
   static async getScheduleEvents(): Promise<ScheduleEvent[]> {
     try {
       const { data, error } = await supabase
@@ -574,26 +604,6 @@ export class DatabaseService {
     } catch (error) {
       console.error('Error fetching schedule events:', error);
       return [];
-    }
-  }
-
-  static async createScheduleEvent(event: Partial<ScheduleEvent>): Promise<ScheduleEvent | null> {
-    try {
-      const { data, error } = await supabase
-        .from('schedule_events')
-        .insert([event])
-        .select()
-        .single();
-
-      if (error) {
-        console.error('Error creating schedule event:', error);
-        return null;
-      }
-
-      return data;
-    } catch (error) {
-      console.error('Error creating schedule event:', error);
-      return null;
     }
   }
 
