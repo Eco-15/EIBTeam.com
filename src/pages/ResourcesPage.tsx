@@ -50,6 +50,40 @@ const ResourcesPage = () => {
     localStorage.setItem(`completed_resources_${currentUser.id}`, JSON.stringify([...newCompleted]));
   };
 
+  // Calculate category counts dynamically
+  const getCompletedCountByCategory = (category: string) => {
+    return resources.filter(resource => 
+      resource.category === category && completedResources.has(resource.id)
+    ).length;
+  };
+
+  const licensingResourcesCompleted = getCompletedCountByCategory('licensing');
+  const trainingResourcesCompleted = getCompletedCountByCategory('training');
+  const toolsResourcesCompleted = getCompletedCountByCategory('tools');
+  const supportResourcesCompleted = getCompletedCountByCategory('support');
+
+  // Update categories with dynamic counts
+  const updatedCategories = categories.map(category => {
+    let count = 0;
+    switch (category.id) {
+      case 'all':
+        count = completedResources.size;
+        break;
+      case 'licensing':
+        count = licensingResourcesCompleted;
+        break;
+      case 'training':
+        count = trainingResourcesCompleted;
+        break;
+      case 'tools':
+        count = toolsResourcesCompleted;
+        break;
+      case 'support':
+        count = supportResourcesCompleted;
+        break;
+    }
+    return { ...category, count };
+  });
   const categories = [
     { id: 'all', name: 'All Resources', count: 0 },
     { id: 'licensing', name: 'Licensing', count: 0 },
@@ -219,9 +253,6 @@ const ResourcesPage = () => {
   });
 
   const completedCount = completedResources.size;
-  const licensingResources = 0;
-  const trainingResources = 0;
-  const toolsResources = 0;
 
   if (isLoading) {
     return (
@@ -255,7 +286,7 @@ const ResourcesPage = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Licensing Resources</p>
-                      <p className="text-3xl font-bold text-blue-600">{licensingResources}</p>
+                      <p className="text-3xl font-bold text-blue-600">{licensingResourcesCompleted}</p>
                     </div>
                     <Shield className="h-8 w-8 text-blue-600" />
                   </div>
@@ -264,7 +295,7 @@ const ResourcesPage = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Training Materials</p>
-                      <p className="text-3xl font-bold text-green-600">{trainingResources}</p>
+                      <p className="text-3xl font-bold text-green-600">{trainingResourcesCompleted}</p>
                     </div>
                     <BookOpen className="h-8 w-8 text-green-600" />
                   </div>
@@ -273,7 +304,7 @@ const ResourcesPage = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Tools & Systems</p>
-                      <p className="text-3xl font-bold text-purple-600">{toolsResources}</p>
+                      <p className="text-3xl font-bold text-purple-600">{toolsResourcesCompleted}</p>
                     </div>
                     <Building className="h-8 w-8 text-purple-600" />
                   </div>
@@ -296,7 +327,7 @@ const ResourcesPage = () => {
                   <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Categories</h3>
                     <div className="space-y-2">
-                      {categories.map((category) => (
+                      {updatedCategories.map((category) => (
                         <button
                           key={category.id}
                           onClick={() => setSelectedCategory(category.id)}
