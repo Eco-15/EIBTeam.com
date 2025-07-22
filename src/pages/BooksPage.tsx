@@ -361,7 +361,7 @@ const BooksPage = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Sales & Marketing </p>
-                      <p className="text-3xl font-bold text-blue-600">{books.catagories.name('Sales & Marketing')}</p>
+                      <p className="text-3xl font-bold text-blue-600">3</p>
                     </div>
                     <BookOpen className="h-8 w-8 text-blue-600" />
                   </div>
