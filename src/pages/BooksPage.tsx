@@ -9,11 +9,11 @@ const BooksPage = () => {
 
   const categories = [
     { id: 'all', name: 'All Books', count: 20 },
-    { id: 'sales', name: 'Sales & Marketing', count: 3 },
-    { id: 'finance', name: 'Finance & Wealth', count: 3 },
-    { id: 'leadership', name: 'Leadership', count: 6 },
-    { id: 'personal', name: 'Personal Development', count: 5 },
-    { id: 'business', name: 'Business Strategy', count: 3 },
+    { id: 'sales', name: 'Sales & Marketing', count: books.filter(b => b.category === 'sales').length },
+    { id: 'finance', name: 'Finance & Wealth', count: books.filter(b => b.category === 'finance').length },
+    { id: 'leadership', name: 'Leadership', count: books.filter(b => b.category === 'leadership').length },
+    { id: 'personal', name: 'Personal Development', count: books.filter(b => b.category === 'personal').length },
+    { id: 'business', name: 'Business Strategy', count: books.filter(b => b.category === 'business').length },
   ];
 
   const books = [
@@ -357,49 +357,37 @@ const BooksPage = () => {
 
               {/* Stats */}
               <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-8">
+                {categories.map((category) => (
+                  <div key={category.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-gray-600">{category.name}</p>
+                        <p className="text-3xl font-bold text-blue-600">{category.count}</p>
+                      </div>
+                      <BookOpen className="h-8 w-8 text-blue-600" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Additional Stats */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Sales & Marketing </p>
-                      <p className="text-3xl font-bold text-blue-600">{}</p>
+                      <p className="text-sm font-medium text-gray-600">Completed</p>
+                      <p className="text-3xl font-bold text-green-600">{completedBooks}</p>
                     </div>
-                    <BookOpen className="h-8 w-8 text-blue-600" />
+                    <CheckCircle className="h-8 w-8 text-green-600" />
                   </div>
                 </div>
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Recommended</p>
-                      <p className="text-3xl font-bold text-purple-600">{recommendedBooks}</p>
+                      <p className="text-sm font-medium text-gray-600">Currently Reading</p>
+                      <p className="text-3xl font-bold text-yellow-600">{currentlyReading}</p>
                     </div>
-                    <Star className="h-8 w-8 text-purple-600" />
-                  </div>
-                </div>
-                                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">Total Books</p>
-                      <p className="text-3xl font-bold text-blue-600">{books.length}</p>
-                    </div>
-                    <BookOpen className="h-8 w-8 text-blue-600" />
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">Recommended</p>
-                      <p className="text-3xl font-bold text-purple-600">{recommendedBooks}</p>
-                    </div>
-                    <Star className="h-8 w-8 text-purple-600" />
-                  </div>
-                </div>
-                                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">Total Books</p>
-                      <p className="text-3xl font-bold text-blue-600">{books.length}</p>
-                    </div>
-                    <BookOpen className="h-8 w-8 text-blue-600" />
+                    <Clock className="h-8 w-8 text-yellow-600" />
                   </div>
                 </div>
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -412,7 +400,6 @@ const BooksPage = () => {
                   </div>
                 </div>
               </div>
-
 
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 {/* Sidebar */}
