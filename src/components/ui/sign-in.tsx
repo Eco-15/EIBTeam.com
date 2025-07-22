@@ -22,7 +22,7 @@ const AnimatedSignIn: React.FC = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
