@@ -366,6 +366,33 @@ const BooksPage = () => {
                     <BookOpen className="h-8 w-8 text-blue-600" />
                   </div>
                 </div>
+                                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-600">Total Books</p>
+                      <p className="text-3xl font-bold text-blue-600">{books.length}</p>
+                    </div>
+                    <BookOpen className="h-8 w-8 text-blue-600" />
+                  </div>
+                </div>
+                                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-600">Total Books</p>
+                      <p className="text-3xl font-bold text-blue-600">{books.length}</p>
+                    </div>
+                    <BookOpen className="h-8 w-8 text-blue-600" />
+                  </div>
+                </div>
+                                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-600">Total Books</p>
+                      <p className="text-3xl font-bold text-blue-600">{books.length}</p>
+                    </div>
+                    <BookOpen className="h-8 w-8 text-blue-600" />
+                  </div>
+                </div>
               </div>
 
 
