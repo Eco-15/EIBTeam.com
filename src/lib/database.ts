@@ -431,7 +431,7 @@ export class DatabaseService {
         .from('user_roles')
         .select('role')
         .eq('user_id', userId)
-        .single();
+        .maybeSingle();
 
       if (error) {
         console.log('Role check error:', error.message);
