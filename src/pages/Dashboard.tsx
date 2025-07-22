@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import { TrendingUp, Users, DollarSign, Calendar, Bell, BookOpen, FileText, Target, Plus, X, CheckCircle, ExternalLink } from 'lucide-react';
