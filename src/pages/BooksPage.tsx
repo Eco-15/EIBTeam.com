@@ -467,9 +467,6 @@ const BooksPage = () => {
                               </div>
                               
                               <div className="flex items-center justify-between">
-                                <span className={`px-2 py-1 text-xs rounded-full font-medium ${getStatusColor(book.status)}`}>
-                                  {getStatusText(book.status)}
-                                </span>
                                 <div className="flex items-center space-x-2">
                                   <a
                                     href={`/books/${book.id}`}
