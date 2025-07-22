@@ -407,13 +407,13 @@ export class DatabaseService {
         .single();
 
       if (error && error.code !== 'PGRST116') {
-        console.error('Error fetching user role:', error);
+        console.log('No user role found or error:', error.message);
         return null;
       }
 
       return data;
     } catch (error) {
-      console.error('Error fetching user role:', error);
+      console.log('Error fetching user role:', error);
       return null;
     }
   }
@@ -426,10 +426,22 @@ export class DatabaseService {
         return true;
       }
 
-      const role = await this.getUserRole(userId);
-      return role?.role === 'admin';
+      // Simple role check without recursion
+      const { data, error } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', userId)
+        .single();
+
+      if (error) {
+        console.log('Role check error:', error.message);
+        // Fallback to email check
+        return user?.email === 'Eliyahucohen101@gmail.com';
+      }
+
+      return data?.role === 'admin';
     } catch (error) {
-      console.error('Error checking admin status:', error);
+      console.log('Error checking admin status:', error);
       // Fallback check for the specific admin email
       const { data: { user } } = await supabase.auth.getUser();
       return user?.email === 'Eliyahucohen101@gmail.com';
