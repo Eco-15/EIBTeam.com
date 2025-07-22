@@ -15,7 +15,7 @@ const TrainingsPage = () => {
   const trainings = [
     {
       id: 1,
-      title: 'Video 1 - Welcome',
+      title: 'Video 1 - Welcome To EIB',
       description: 'Introduction to EIB Team, our mission, values, and what to expect in your journey with us.',
       duration: '30 minutes',
       difficulty: 'Beginner',
