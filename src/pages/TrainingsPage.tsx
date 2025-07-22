@@ -265,21 +265,6 @@ const TrainingsPage = () => {
                         </span>
                       </div>
                       
-                      {training.progress > 0 && (
-                        <div className="mb-4">
-                          <div className="flex items-center justify-between text-sm text-gray-600 mb-1">
-                            <span>Progress</span>
-                            <span>{training.progress}%</span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div
-                              className="bg-gradient-to-r from-yellow-500 to-yellow-600 h-2 rounded-full transition-all duration-300"
-                              style={{ width: `${training.progress}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      )}
-                      
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-500">By {training.instructor}</span>
                         <button className={`px-4 py-2 rounded-lg font-medium transition-colors ${

@@ -488,21 +488,6 @@ const BooksPage = () => {
                                   </a>
                                 </div>
                               </div>
-                              
-                              {book.progress > 0 && book.status !== 'completed' && (
-                                <div className="mt-3">
-                                  <div className="flex items-center justify-between text-sm text-gray-600 mb-1">
-                                    <span>Progress</span>
-                                    <span>{book.progress}%</span>
-                                  </div>
-                                  <div className="w-full bg-gray-200 rounded-full h-2">
-                                    <div
-                                      className="bg-gradient-to-r from-yellow-500 to-yellow-600 h-2 rounded-full transition-all duration-300"
-                                      style={{ width: `${book.progress}%` }}
-                                    ></div>
-                                  </div>
-                                </div>
-                              )}
                             </div>
                           </div>
                         </div>
