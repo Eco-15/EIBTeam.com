@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { supabase } from '@/lib/supabase';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import { BookOpen, Star, Clock, CheckCircle, Search, Filter, ExternalLink } from 'lucide-react';
@@ -7,35 +6,15 @@ import { BookOpen, Star, Clock, CheckCircle, Search, Filter, ExternalLink } from
 const BooksPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentUser, setCurrentUser] = useState<any>(null);
-  const [completedBooks, setCompletedBooks] = useState<Set<number>>(new Set());
-  const [isLoading, setIsLoading] = useState(true);
 
-  React.useEffect(() => {
-    const loadUserData = async () => {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) {
-          window.location.href = '/agent-login';
-          return;
-        }
-        setCurrentUser(user);
-        
-        // Load completed books from localStorage for now
-        const saved = localStorage.getItem(`completed_books_${user.id}`);
-        if (saved) {
-          setCompletedBooks(new Set(JSON.parse(saved)));
-        }
-      } catch (error) {
-        console.error('Error loading user data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadUserData();
-  }, []);
-
+  const categories = [
+    { id: 'all', name: 'All Books', count: 20 },
+    { id: 'sales', name: 'Sales & Marketing', count: 3 },
+    { id: 'finance', name: 'Finance & Wealth', count: 3 },
+    { id: 'leadership', name: 'Leadership', count: 6 },
+    { id: 'personal', name: 'Personal Development', count: 5 },
+    { id: 'business', name: 'Business Strategy', count: 3 },
+  ];
 
   const books = [
     {
@@ -332,29 +311,6 @@ const BooksPage = () => {
     }
   ];
 
-  // Calculate completed books by category
-  const getCompletedCountByCategory = (category: string) => {
-    return books.filter(book => 
-      book.category === category && completedBooks.has(book.id)
-    ).length;
-  };
-
-  const salesBooksCompleted = getCompletedCountByCategory('sales');
-  const financeBooksCompleted = getCompletedCountByCategory('finance');
-  const leadershipBooksCompleted = getCompletedCountByCategory('leadership');
-  const personalBooksCompleted = getCompletedCountByCategory('personal');
-  const businessBooksCompleted = getCompletedCountByCategory('business');
-  const totalCompletedBooks = completedBooks.size;
-
-  const categories = [
-    { id: 'all', name: 'All Books', count: totalCompletedBooks },
-    { id: 'sales', name: 'Sales & Marketing', count: salesBooksCompleted },
-    { id: 'finance', name: 'Finance & Wealth', count: financeBooksCompleted },
-    { id: 'leadership', name: 'Leadership', count: leadershipBooksCompleted },
-    { id: 'personal', name: 'Personal Development', count: personalBooksCompleted },
-    { id: 'business', name: 'Business Strategy', count: businessBooksCompleted },
-  ];
-
   const filteredBooks = books.filter(book => {
     const matchesCategory = selectedCategory === 'all' || book.category === selectedCategory;
     const matchesSearch = book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -362,6 +318,8 @@ const BooksPage = () => {
     return matchesCategory && matchesSearch;
   });
 
+  const completedBooks = books.filter(b => b.status === 'completed').length;
+  const currentlyReading = books.filter(b => b.status === 'reading').length;
   const recommendedBooks = books.filter(b => b.recommended).length;
 
   const getStatusColor = (status: string) => {
@@ -381,17 +339,6 @@ const BooksPage = () => {
       default: return 'Unknown';
     }
   };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading books...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -413,8 +360,8 @@ const BooksPage = () => {
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Books Completed</p>
-                      <p className="text-3xl font-bold text-blue-600">{totalCompletedBooks}</p>
+                      <p className="text-sm font-medium text-gray-600">Total Books</p>
+                      <p className="text-3xl font-bold text-blue-600">{books.length}</p>
                     </div>
                     <BookOpen className="h-8 w-8 text-blue-600" />
                   </div>
@@ -426,24 +373,6 @@ const BooksPage = () => {
                       <p className="text-3xl font-bold text-purple-600">{recommendedBooks}</p>
                     </div>
                     <Star className="h-8 w-8 text-purple-600" />
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">Total Books</p>
-                      <p className="text-3xl font-bold text-green-600">{books.length}</p>
-                    </div>
-                    <BookOpen className="h-8 w-8 text-green-600" />
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">Reading Progress</p>
-                      <p className="text-3xl font-bold text-yellow-600">{Math.round((totalCompletedBooks / books.length) * 100)}%</p>
-                    </div>
-                    <CheckCircle className="h-8 w-8 text-yellow-600" />
                   </div>
                 </div>
               </div>
