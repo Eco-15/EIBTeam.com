@@ -1,7 +1,23 @@
 import React from 'react';
-import { Calendar, BookOpen, FileText, Library, Home, BarChart3 } from 'lucide-react';
+import { Calendar, BookOpen, FileText, Library, Home, BarChart3, Users } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+import { DatabaseService } from '@/lib/database';
 
 const DashboardSidebar = () => {
+  const [isAdmin, setIsAdmin] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkAdminStatus = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const adminStatus = await DatabaseService.isAdmin(user.id);
+        setIsAdmin(adminStatus);
+      }
+    };
+
+    checkAdminStatus();
+  }, []);
+
   const menuItems = [
     { name: 'Dashboard', href: '/dashboard', icon: Home, current: window.location.pathname === '/dashboard' },
     { name: 'Calendar & Announcements', href: '/calendar', icon: Calendar, current: window.location.pathname === '/calendar' },
@@ -9,6 +25,16 @@ const DashboardSidebar = () => {
     { name: 'Resources', href: '/resources', icon: FileText, current: window.location.pathname === '/resources' },
     { name: 'Books to Read', href: '/books', icon: Library, current: window.location.pathname === '/books' },
   ];
+
+  // Add admin-only menu items
+  if (isAdmin) {
+    menuItems.push({
+      name: 'Manage Users',
+      href: '/admin/users',
+      icon: Users,
+      current: window.location.pathname === '/admin/users'
+    });
+  }
 
   return (
     <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 md:pt-20">

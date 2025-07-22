@@ -136,6 +136,21 @@ export interface ScheduleEvent {
   updated_at: string;
 }
 
+export interface UserInvitation {
+  id: string;
+  email: string;
+  first_name?: string;
+  last_name?: string;
+  role: 'admin' | 'agent' | 'manager';
+  temporary_password: string;
+  invited_by: string;
+  invited_at: string;
+  accepted_at?: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 // Database service functions
 export class DatabaseService {
   // Agent Profile functions
@@ -519,6 +534,67 @@ export class DatabaseService {
 
     if (error) {
       console.error('Error deleting schedule event:', error);
+      return false;
+    }
+
+    return true;
+  }
+
+  // User Invitations functions
+  static async getUserInvitations(): Promise<UserInvitation[]> {
+    const { data, error } = await supabase
+      .from('user_invitations')
+      .select('*')
+      .eq('is_active', true)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching user invitations:', error);
+      return [];
+    }
+
+    return data || [];
+  }
+
+  static async createUserInvitation(invitation: Partial<UserInvitation>): Promise<UserInvitation | null> {
+    const { data, error } = await supabase
+      .from('user_invitations')
+      .insert([invitation])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error creating user invitation:', error);
+      return null;
+    }
+
+    return data;
+  }
+
+  static async updateUserInvitation(id: string, updates: Partial<UserInvitation>): Promise<UserInvitation | null> {
+    const { data, error } = await supabase
+      .from('user_invitations')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error updating user invitation:', error);
+      return null;
+    }
+
+    return data;
+  }
+
+  static async deleteUserInvitation(id: string): Promise<boolean> {
+    const { error } = await supabase
+      .from('user_invitations')
+      .update({ is_active: false })
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error deleting user invitation:', error);
       return false;
     }
 
