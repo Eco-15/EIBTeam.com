@@ -34,7 +34,7 @@ const AnimatedSignIn: React.FC = () => {
 
       if (error) {
         alert('Invalid credentials. Please try again.');
-        setIsSubmitting(false);
+        setIsLoading(false);
         return;
       }
 
@@ -45,7 +45,7 @@ const AnimatedSignIn: React.FC = () => {
     } catch (error) {
       console.error('Login error:', error);
       alert('An error occurred during login. Please try again.');
-      setIsSubmitting(false);
+      setIsLoading(false);
     }
   };
 
