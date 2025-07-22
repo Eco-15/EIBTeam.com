@@ -16,7 +16,7 @@ const TrainingDetailPage = () => {
   const trainings = [
     {
       id: 1,
-      title: 'Training 1',
+      title: 'Video 1 - Welcome',
       description: 'Introduction to EIB Team, our mission, values, and what to expect in your journey with us.',
       fullDescription: 'Welcome to EIB Team! This comprehensive introduction training will walk you through our company mission, core values, and what you can expect as you begin your journey with us. You\'ll learn about our history, our commitment to excellence, and how we support our agents in achieving their goals. This training covers the foundational knowledge every EIB Team member needs to succeed.',
       duration: '30 minutes',
@@ -39,7 +39,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 2,
-      title: 'Training 2',
+      title: 'Video 2 – Builder\'s Mindset',
       description: 'Develop the entrepreneurial mindset needed to build a successful insurance business.',
       fullDescription: 'Building a successful insurance business requires more than just product knowledge - it requires an entrepreneurial mindset. This training will help you develop the mental framework needed to think like a business owner, take calculated risks, and build long-term success. You\'ll learn about goal setting, persistence, and the importance of continuous learning and adaptation.',
       duration: '45 minutes',
@@ -62,7 +62,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 3,
-      title: 'Training 3',
+      title: 'Video 3 – Mental Toughness',
       description: 'Build resilience and mental strength to overcome challenges in the insurance industry.',
       fullDescription: 'The insurance industry can be challenging, and success requires mental toughness and resilience. This training focuses on building the psychological tools you need to handle rejection, overcome obstacles, and maintain motivation during difficult times. You\'ll learn stress management techniques, how to reframe negative experiences, and strategies for maintaining a positive outlook.',
       duration: '40 minutes',
@@ -85,7 +85,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 4,
-      title: 'Training 4',
+      title: 'Video 4 – 6 Steps (PCA/Schedule)',
       description: 'Master the 6-step process for client acquisition and appointment scheduling.',
       fullDescription: 'Client acquisition is the lifeblood of any successful insurance business. This training breaks down our proven 6-step process for finding, qualifying, and scheduling appointments with potential clients. You\'ll learn prospecting techniques, how to make effective initial contact, qualification questions, and strategies for converting prospects into scheduled appointments.',
       duration: '1 hour',
@@ -108,7 +108,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 5,
-      title: 'Training 5',
+      title: 'Video 5 – RI',
       description: 'Learn the referral interview process to expand your client base through warm referrals.',
       fullDescription: 'Referrals are one of the most effective ways to grow your business. This training teaches you how to conduct referral interviews that naturally lead to warm introductions to new prospects. You\'ll learn when and how to ask for referrals, how to make the process comfortable for your clients, and strategies for following up on referral opportunities.',
       duration: '50 minutes',
@@ -131,7 +131,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 6,
-      title: 'Training 6',
+      title: 'Video 6 – KTP',
       description: 'Understand your clients deeply to provide personalized financial solutions.',
       fullDescription: 'Every client is unique, with different needs, goals, and financial situations. This training teaches you how to truly understand your clients through active listening, asking the right questions, and identifying both spoken and unspoken needs. You\'ll learn how to build rapport, gather comprehensive information, and use that understanding to provide truly personalized solutions.',
       duration: '45 minutes',
@@ -154,7 +154,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 7,
-      title: 'Training 7',
+      title: 'Video 7 – FS',
       description: 'Conduct comprehensive financial surveys to identify client needs and opportunities.',
       fullDescription: 'A thorough financial survey is the foundation of excellent client service. This training covers how to conduct comprehensive financial surveys that uncover all aspects of your client\'s financial situation. You\'ll learn what questions to ask, how to organize the information, and how to identify opportunities for additional products and services.',
       duration: '1 hour',
@@ -177,7 +177,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 8,
-      title: 'Training 8',
+      title: 'Video 8 – Goal Setting / Business Plan',
       description: 'Create actionable goals and develop a comprehensive business plan for success.',
       fullDescription: 'Success in the insurance industry requires clear goals and a solid business plan. This comprehensive training will guide you through creating SMART goals, developing action plans, and building a business plan that will drive your success. You\'ll learn about different types of goals, how to break them down into actionable steps, and how to track your progress.',
       duration: '1.5 hours',
@@ -200,7 +200,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 9,
-      title: 'Training 9',
+      title: 'Video 9 – What we do / (HTCW)',
       description: 'Understand our products, services, and how to communicate our value proposition.',
       fullDescription: 'To be successful, you need to thoroughly understand all the products and services we offer. This training provides a comprehensive overview of our product portfolio, including life insurance, annuities, and other financial products. You\'ll learn the features and benefits of each product, who they\'re best suited for, and how to communicate our value proposition effectively.',
       duration: '1 hour',
@@ -223,7 +223,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 10,
-      title: 'Training 10',
+      title: 'Video 10 – How to Get Promoted',
       description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
       fullDescription: 'EIB Team offers numerous opportunities for career advancement and leadership development. This training outlines the various career paths available, from senior agent roles to management and leadership positions. You\'ll learn about the requirements for advancement, the skills needed for leadership, and how to position yourself for growth within the organization.',
       duration: '45 minutes',

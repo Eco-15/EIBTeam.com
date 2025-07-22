@@ -15,7 +15,7 @@ const TrainingsPage = () => {
   const trainings = [
     {
       id: 1,
-      title: 'Training 1',
+      title: 'Video 1 - Welcome',
       description: 'Introduction to EIB Team, our mission, values, and what to expect in your journey with us.',
       duration: '30 minutes',
       difficulty: 'Beginner',
@@ -25,7 +25,7 @@ const TrainingsPage = () => {
     },
     {
       id: 2,
-      title: 'Training 2',
+      title: 'Video 2 – Builder\'s Mindset',
       description: 'Develop the entrepreneurial mindset needed to build a successful insurance business.',
       duration: '45 minutes',
       difficulty: 'Beginner',
@@ -35,7 +35,7 @@ const TrainingsPage = () => {
     },
     {
       id: 3,
-      title: 'Training 3',
+      title: 'Video 3 – Mental Toughness',
       description: 'Build resilience and mental strength to overcome challenges in the insurance industry.',
       duration: '40 minutes',
       difficulty: 'Beginner',
@@ -45,7 +45,7 @@ const TrainingsPage = () => {
     },
     {
       id: 4,
-      title: 'Training 4',
+      title: 'Video 4 – 6 Steps (PCA/Schedule)',
       description: 'Master the 6-step process for client acquisition and appointment scheduling.',
       duration: '1 hour',
       difficulty: 'Intermediate',
@@ -55,7 +55,7 @@ const TrainingsPage = () => {
     },
     {
       id: 5,
-      title: 'Training 5',
+      title: 'Video 5 – RI',
       description: 'Learn the referral interview process to expand your client base through warm referrals.',
       duration: '50 minutes',
       difficulty: 'Intermediate',
@@ -65,7 +65,7 @@ const TrainingsPage = () => {
     },
     {
       id: 6,
-      title: 'Training 6',
+      title: 'Video 6 – KTP',
       description: 'Understand your clients deeply to provide personalized financial solutions.',
       duration: '45 minutes',
       difficulty: 'Intermediate',
@@ -75,7 +75,7 @@ const TrainingsPage = () => {
     },
     {
       id: 7,
-      title: 'Training 7',
+      title: 'Video 7 – FS',
       description: 'Conduct comprehensive financial surveys to identify client needs and opportunities.',
       duration: '1 hour',
       difficulty: 'Intermediate',
@@ -85,7 +85,7 @@ const TrainingsPage = () => {
     },
     {
       id: 8,
-      title: 'Training 8',
+      title: 'Video 8 – Goal Setting / Business Plan',
       description: 'Create actionable goals and develop a comprehensive business plan for success.',
       duration: '1.5 hours',
       difficulty: 'Intermediate',
@@ -95,7 +95,7 @@ const TrainingsPage = () => {
     },
     {
       id: 9,
-      title: 'Training 9',
+      title: 'Video 9 – What we do / (HTCW)',
       description: 'Understand our products, services, and how to communicate our value proposition.',
       duration: '1 hour',
       difficulty: 'Beginner',
@@ -105,7 +105,7 @@ const TrainingsPage = () => {
     },
     {
       id: 10,
-      title: 'Training 10',
+      title: 'Video 10 – How to Get Promoted',
       description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
       duration: '45 minutes',
       difficulty: 'Advanced',
