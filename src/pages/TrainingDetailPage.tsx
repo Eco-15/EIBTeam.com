@@ -16,7 +16,7 @@ const TrainingDetailPage = () => {
   const trainings = [
     {
       id: 1,
-      title: 'Video 1 - Welcome',
+      title: 'Video 1 - Welcome To EIB',
       description: 'Introduction to EIB Team, our mission, values, and what to expect in your journey with us.',
       fullDescription: 'Welcome to EIB Team! This comprehensive introduction training will walk you through our company mission, core values, and what you can expect as you begin your journey with us. You\'ll learn about our history, our commitment to excellence, and how we support our agents in achieving their goals. This training covers the foundational knowledge every EIB Team member needs to succeed.',
       duration: '30 minutes',
