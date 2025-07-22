@@ -306,7 +306,7 @@ const BooksPage = () => {
     { id: 'all', name: 'All Books', count: 20 },
     { id: 'sales', name: 'Sales & Marketing', count: books.filter(b => b.category === 'sales').length },
     { id: 'finance', name: 'Finance & Wealth', count: books.filter(b => b.category === 'finance').length },
-    { id: 'leadership', name: 'Leadership', count: books.filter(b => b.category === 'leadership').length },
+    { id: 'leadership', name: 'Leadership & Management', count: books.filter(b => b.category === 'leadership').length },
     { id: 'personal', name: 'Personal Development', count: books.filter(b => b.category === 'personal').length },
     { id: 'business', name: 'Business Strategy', count: books.filter(b => b.category === 'business').length },
   ];
