@@ -2088,10 +2088,6 @@ For insurance professionals, Wooden's leadership principles provide a framework 
                       ))}
                     </div>
                   </div>
-                  <label>
-  Completed:
-  <input type="checkbox" checked={book.completed} onChange={toggleCompleted} />
-</label>
                   {/* Summary */}
                   <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Detailed Summary</h2>
