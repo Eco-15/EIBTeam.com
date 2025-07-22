@@ -292,7 +292,7 @@ const BooksPage = () => {
       status: 'completed',
       dateCompleted: '2023-08-10',
       amazonLink: 'https://www.amazon.com/48-Laws-Power-Robert-Greene/dp/0140280197',
-      cover: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      cover: 'https://m.media-amazon.com/images/I/31hSni7bS6L._SY445_SX342_.jpg',
       recommended: false
     },
     {
