@@ -8,6 +8,7 @@ const ServicesPage = () => {
     {
       icon: Clock,
       title: 'Term Life Insurance',
+      slug: 'term-life-insurance',
       description: 'Affordable protection for a specific period, perfect for young families and mortgage protection.',
       features: ['Affordable premiums', 'Flexible terms (10-30 years)', 'Convertible options', 'Living benefits available'],
       idealFor: 'Young families, mortgage protection, income replacement',
@@ -15,6 +16,7 @@ const ServicesPage = () => {
     {
       icon: Shield,
       title: 'Whole Life Insurance',
+      slug: 'whole-life-insurance',
       description: 'Permanent coverage with guaranteed cash value accumulation and fixed premiums.',
       features: ['Lifetime coverage', 'Fixed premiums', 'Cash value accumulation', 'Living benefits'],
       idealFor: 'Estate planning, long-term savings, guaranteed protection',
@@ -22,6 +24,7 @@ const ServicesPage = () => {
     {
       icon: TrendingUp,
       title: 'Indexed Universal Life (IUL)',
+      slug: 'indexed-universal-life',
       description: 'Flexible permanent life insurance with cash value growth linked to market performance.',
       features: ['Lifetime coverage with flexibility', 'Market-linked growth potential', 'Tax advantages', 'Living benefits'],
       idealFor: 'Investment-minded individuals, flexible financial planning, business owners',
@@ -29,6 +32,7 @@ const ServicesPage = () => {
     {
       icon: DollarSign,
       title: 'Annuities',
+      slug: 'annuities',
       description: 'Secure your retirement with guaranteed income and tax-deferred growth.',
       features: ['Avoids probate', 'Principal protection', 'Guaranteed lifetime income', 'Tax-deferred growth'],
       idealFor: 'Retirement planning, guaranteed income, tax-deferred growth',
@@ -36,6 +40,7 @@ const ServicesPage = () => {
     {
       icon: CreditCard,
       title: 'Debt Solutions',
+      slug: 'debt-solutions',
       description: 'Consolidate high-interest debt and improve your financial health.',
       features: ['Debt consolidation', 'Lower interest rates', 'Improves cash flow', 'Credit score improvement'],
       idealFor: 'High-interest debt, multiple creditors, improving financial health',
@@ -43,6 +48,7 @@ const ServicesPage = () => {
     {
       icon: Umbrella,
       title: 'Supplemental Coverage',
+      slug: 'supplemental-coverage',
       description: 'Additional health coverage to fill gaps in your primary insurance.',
       features: ['No network constraints', 'Multiple plan options', 'Nationwide access', '12-month rate guarantee'],
       idealFor: 'Gap coverage, additional protection, flexible healthcare options',
@@ -189,10 +195,13 @@ const ServicesPage = () => {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <button className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-colors duration-300 flex items-center space-x-2">
+                    <a
+                      href={`/services/${service.slug}`}
+                      className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-colors duration-300 flex items-center space-x-2"
+                    >
                       <span>Learn More</span>
                       <ArrowRight className="w-4 h-4" />
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
