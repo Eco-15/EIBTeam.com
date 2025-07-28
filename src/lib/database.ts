@@ -442,7 +442,7 @@ export class DatabaseService {
       if (error) {
         console.error('Error checking admin role:', error);
         // If email matches, still return true even if role check fails
-        if (user.email === 'admin@eibagency.com') {
+        if (user.email === 'Eliyahucohendallas199@gmail.com') {
           return true;
         }
         return false;
@@ -455,7 +455,7 @@ export class DatabaseService {
       // Fallback to email check
       try {
         const { data: { user } } = await supabase.auth.getUser();
-        return user?.email === 'admin@eibagency.com';
+        return user?.email === 'Eliyahucohendallas199@gmail.com';
       } catch {
         return false;
       }
@@ -463,7 +463,7 @@ export class DatabaseService {
   }
 
   // Create admin user using Supabase Auth signup
-  static async ensureAdminUser(email: string = 'admin@eibagency.com', password: string = 'EIBTeam123'): Promise<boolean> {
+  static async ensureAdminUser(email: string = 'Eliyahucohendallas199@gmail.com', password: string = 'EIBTeam123'): Promise<boolean> {
     try {
       // Use admin client to create user with confirmed email
       const { data: adminData, error: adminError } = await supabase.auth.admin.createUser({
@@ -537,7 +537,7 @@ export class DatabaseService {
         .update({
           accepted_at: new Date().toISOString()
         })
-        .eq('email', 'admin@eibagency.com');
+        .eq('email', 'Eliyahucohendallas199@gmail.com');
 
       if (inviteError) {
         console.log('No invitation record to update (this is normal)');
