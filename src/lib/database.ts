@@ -469,7 +469,7 @@ export class DatabaseService {
       const { data: adminData, error: adminError } = await supabase.auth.admin.createUser({
         email: email,
         password: password,
-        email_confirm: false,
+        email_confirm: true,
         user_metadata: {
           first_name: 'Admin',
           last_name: 'User',

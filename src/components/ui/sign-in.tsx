@@ -27,15 +27,6 @@ const AnimatedSignIn: React.FC = () => {
     setIsLoading(true);
     
     try {
-      // Ensure admin user exists before attempting login
-      if (email === 'admin@eibagency.com') {
-        const { DatabaseService } = await import('@/lib/database');
-        const adminCreated = await DatabaseService.ensureAdminUser(email, password);
-        if (!adminCreated) {
-          console.log('Admin user creation failed, but continuing with login attempt');
-        }
-      }
-
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
