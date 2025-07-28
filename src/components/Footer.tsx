@@ -50,11 +50,6 @@ const Footer = () => {
               </div>
             </div>
             
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              Building successful insurance careers in the Dallas-Fort Worth area as a leading insurance brokerage. 
-              Join our team of professionals and exceed your potential.
-            </p>
-            
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-yellow-400" />
