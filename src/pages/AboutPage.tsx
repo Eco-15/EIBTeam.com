@@ -294,7 +294,9 @@ const AboutPage = () => {
       </section>
 
       {/* Timeline Section */}
-      <Timeline data={timelineData} />
+      <section className="py-20 bg-white">
+        <Timeline data={timelineData} />
+      </section>
 
       {/* Meet Our Founders Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
