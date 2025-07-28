@@ -73,11 +73,7 @@ const PartnersSlider = () => {
           ))}
         </InfiniteSlider>
 
-        <div className="text-center mt-12">
-          <div className="inline-flex items-center space-x-2 bg-white rounded-full px-6 py-3 shadow-lg border border-gray-200">
-            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-          </div>
-        </div>
+      
       </div>
     </section>
   );
