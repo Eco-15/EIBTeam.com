@@ -104,7 +104,7 @@ const ContactPage = () => {
   ];
 
   const quickFacts = [
-    { label: 'Starting Commission', value: 'Up to 80%' },
+    { label: 'Training Program', value: 'Comprehensive' },
     { label: 'Training Length', value: '2-4 Weeks' },
     { label: 'License Required', value: 'We Help!' },
     { label: 'Remote Work', value: 'Available' }

@@ -110,8 +110,8 @@ const AnimatedSignIn: React.FC = () => {
                     transitionDelay: '0.2s',
                   }}
                 >
-                  <h2 className="text-5xl font-bold mb-2 text-black">80%</h2>
-                  <p className="text-center text-sm text-black">Commission rates for top performing agents at EIB Team.</p>
+                  <h2 className="text-5xl font-bold mb-2 text-black">24/7</h2>
+                  <p className="text-center text-sm text-black">Support available for all EIB Agency members.</p>
                 </div>
                 
                 {/* Middle left - Person at computer */}

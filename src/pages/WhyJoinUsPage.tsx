@@ -312,16 +312,16 @@ const WhyJoinUsPage = () => {
               <div className="text-gray-300">Training Program</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-yellow-400 mb-2">80%</div>
-              <div className="text-gray-300">Max Commission</div>
-            </div>
-            <div>
               <div className="text-3xl font-bold text-yellow-400 mb-2">24/7</div>
               <div className="text-gray-300">Support</div>
             </div>
             <div>
+              <div className="text-3xl font-bold text-yellow-400 mb-2">100%</div>
+              <div className="text-gray-300">Success Focused</div>
+            </div>
+            <div>
               <div className="text-3xl font-bold text-yellow-400 mb-2">Unlimited</div>
-              <div className="text-gray-300">Earning Potential</div>
+              <div className="text-gray-300">Growth Opportunities</div>
             </div>
           </div>
         </div>
