@@ -159,9 +159,9 @@ export class DatabaseService {
       .from('agent_profiles')
       .select('*')
       .eq('user_id', userId)
-      .single();
+      .maybeSingle();
 
-    if (error && error.code !== 'PGRST116') {
+    if (error) {
       console.error('Error fetching agent profile:', error);
       return null;
     }
