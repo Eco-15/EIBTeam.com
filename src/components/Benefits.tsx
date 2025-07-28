@@ -59,8 +59,7 @@ const Benefits = () => {
             Ready to Transform Your Career?
           </h3>
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Join a team that's committed to your success. We provide the tools, training, 
-            and support you need to build a thriving insurance career in the DFW market.
+            Join a team that's committed to your success. We provide the tools, training, and support you need to be successful in the insurance industry.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
             <a
