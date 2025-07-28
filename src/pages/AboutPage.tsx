@@ -82,23 +82,6 @@ const AboutPage = () => {
       ),
     },
     {
-      title: '2010',
-      content: (
-        <div>
-          <h4 className="text-xl font-bold text-black mb-4">PHP Partnership</h4>
-          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
-            Established partnerships with leading insurance carriers, gaining access to proven systems and training methodologies. 
-            This partnership provided the foundation for our systematic approach to agent development.
-          </p>
-          <img
-            src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800"
-            alt="Partnership handshake"
-            className="rounded-lg object-cover h-32 md:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-          />
-        </div>
-      ),
-    },
-    {
       title: '2015',
       content: (
         <div>
