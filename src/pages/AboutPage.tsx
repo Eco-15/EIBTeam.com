@@ -8,7 +8,7 @@ const AboutPage = () => {
     {
       icon: Shield,
       title: 'PHP Agency Partner',
-      description: 'As a proud PHP Agency partner, we leverage their proven system, training, and support to help our agents achieve extraordinary success.',
+      description: 'As a leading insurance brokerage, we leverage proven systems, training, and support to help our agents achieve extraordinary success.',
     },
     {
       icon: Target,
@@ -36,7 +36,7 @@ const AboutPage = () => {
     {
       year: '2010',
       title: 'PHP Partnership',
-      description: 'Became an official PHP Agency partner, gaining access to proven systems and training methodologies.'
+      description: 'Established partnerships with leading insurance carriers, gaining access to proven systems and training methodologies.'
     },
     {
       year: '2015',
@@ -51,7 +51,7 @@ const AboutPage = () => {
     {
       year: '2024',
       title: 'Industry Leader',
-      description: 'Recognized as one of the top PHP Agency partners with over 15,000 families protected nationwide.'
+      description: 'Recognized as one of the top insurance brokerages with over 15,000 families protected nationwide.'
     }
   ];
 
@@ -114,8 +114,8 @@ const AboutPage = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-yellow-500 to-yellow-600 p-6 rounded-xl shadow-xl">
-                <div className="text-black font-bold text-lg">PHP Agency</div>
-                <div className="text-black font-bold text-lg">Partner</div>
+                <div className="text-black font-bold text-lg">Insurance</div>
+                <div className="text-black font-bold text-lg">Leaders</div>
               </div>
             </div>
           </div>

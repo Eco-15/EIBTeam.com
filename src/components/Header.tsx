@@ -24,7 +24,7 @@ const Header = () => {
             />
             <div>
               <h1 className="text-2xl font-bold text-black">EIB Team</h1>
-              <p className="text-sm text-gray-600">PHP Agency • Insurance Brokerage</p>
+              <p className="text-sm text-gray-600">Insurance Brokerage</p>
             </div>
           </div>
 

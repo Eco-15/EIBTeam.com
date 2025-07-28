@@ -5,8 +5,8 @@ const About = () => {
   const features = [
     {
       icon: Shield,
-      title: 'PHP Agency Partner',
-      description: 'As a proud PHP Agency partner, we leverage their proven system, training, and support to help our agents achieve extraordinary success.',
+      title: 'Industry Leadership',
+      description: 'As a leading insurance brokerage, we leverage proven systems, training, and support to help our agents achieve extraordinary success.',
     },
     {
       icon: Target,
@@ -33,7 +33,7 @@ const About = () => {
             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">EIB Team</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We're not just another insurance brokerage. We're a <strong>PHP Agency</strong> partner 
+            We're not just another insurance brokerage. We're a leading insurance team
             dedicated to protecting what matters most to our clients while building 
             exceptional careers for our team members.
           </p>
@@ -46,7 +46,7 @@ const About = () => {
               Excellence in Building (EIB) started in 2007 with a simple mission: To Serve People & Treat Them Right. Founded by Jason and Nataly Graziani, EIB was created to provide families with financial solutions and to develop leaders in the financial services industry.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              Over the years, EIB has proudly helped protect thousands of families across the U.S. while also mentoring the next generation of leaders in our industry. For us, success isn’t just about policies—it’s about people, purpose, and impact.
+              Over the years, EIB has proudly helped protect thousands of families across the U.S. while also mentoring the next generation of leaders in our industry. For us, success isn't just about policies—it's about people, purpose, and impact.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
               Jason and Nataly currently reside in Prosper, Texas, and raise their four children. They serve as trustees at Revolution Church in McKinney and continue to lead their organization.
@@ -78,8 +78,8 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
             <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-yellow-500 to-yellow-600 p-6 rounded-xl shadow-xl">
-              <div className="text-black font-bold text-lg">PHP Agency</div>
-              <div className="text-black font-bold text-lg">Partner</div>
+              <div className="text-black font-bold text-lg">Insurance</div>
+              <div className="text-black font-bold text-lg">Leaders</div>
             </div>
           </div>
         </div>

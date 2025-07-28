@@ -46,12 +46,12 @@ const Footer = () => {
               />
               <div>
                 <h3 className="text-2xl font-bold text-white">EIB Team</h3>
-                <p className="text-sm text-gray-300">PHP Agency Partner</p>
+                <p className="text-sm text-gray-300">Insurance Brokerage</p>
               </div>
             </div>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Building successful insurance careers in the Dallas-Fort Worth area as a proud PHP Agency partner. 
+              Building successful insurance careers in the Dallas-Fort Worth area as a leading insurance brokerage. 
               Join our team of professionals and exceed your potential.
             </p>
             
@@ -146,7 +146,7 @@ const Footer = () => {
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-300 text-sm">
-              © {currentYear} EIB Team Insurance Brokerage • PHP Agency Partner. All rights reserved.
+              © {currentYear} EIB Team Insurance Brokerage. All rights reserved.
             </div>
             
             <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
@@ -167,7 +167,7 @@ const Footer = () => {
           
           <div className="mt-6 text-center">
             <p className="text-gray-400 text-xs">
-              EIB Team is a PHP Agency partner licensed in Texas. Insurance products are offered through licensed agents. 
+              EIB Team is licensed in Texas. Insurance products are offered through licensed agents. 
               Not all products available in all states.
             </p>
           </div>

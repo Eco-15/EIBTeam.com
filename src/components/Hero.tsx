@@ -44,7 +44,7 @@ const Hero = () => {
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
-            Join EIB Team, a <span className="font-semibold text-white">PHP Agency</span> partner and the <span className="font-semibold text-white">fastest-growing insurance brokerage</span> in Texas. 
+            Join EIB Team, the <span className="font-semibold text-white">fastest-growing insurance brokerage</span> in Texas. 
             We're building a world-class team of professionals who want to 
             <span className="text-yellow-600 font-semibold"> exceed their potential</span>.
           </p>
@@ -92,7 +92,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-8 text-sm text-gray-200">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span>PHP Agency Partner</span>
+              <span>Licensed Insurance Brokerage</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
