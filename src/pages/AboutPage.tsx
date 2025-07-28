@@ -90,20 +90,6 @@ const AboutPage = () => {
             Established partnerships with leading insurance carriers, gaining access to proven systems and training methodologies. 
             This partnership provided the foundation for our systematic approach to agent development.
           </p>
-          <div className="mb-8">
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Partnership with PHP Agency established
-            </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Access to proven training systems
-            </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Enhanced carrier relationships
-            </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Systematic agent development programs
-            </div>
-          </div>
           <img
             src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800"
             alt="Partnership handshake"
