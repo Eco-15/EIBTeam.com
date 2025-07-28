@@ -82,10 +82,10 @@ const ContactPage = () => {
     {
       icon: Mail,
       title: 'Email',
-      primary: 'EIB.PHP@Gmail.com',
+      primary: 'admin@eibagency.com',
       secondary: 'We\'ll respond within 24 hours',
       action: 'Send Email',
-      href: 'mailto:EIB.PHP@Gmail.com'
+      href: 'mailto:admin@eibagency.com'
     },
     {
       icon: MapPin,
@@ -192,7 +192,6 @@ const ContactPage = () => {
           <div className="grid md:grid-cols-3 gap-6">
             {contactMethods.map((method, index) => (
               <a
-                href="mailto:EIB.PHP@Gmail.com"
                 href={method.href}
                 className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
               >
@@ -680,7 +679,7 @@ const ContactPage = () => {
           <div className="text-center mt-12">
             <p className="text-gray-600 mb-4">Still have questions?</p>
             <a
-              href="mailto:careers@eibteam.com"
+              href="mailto:admin@eibagency.com"
               className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-6 py-3 rounded-lg font-bold hover:from-yellow-600 hover:to-yellow-700 transition-colors duration-300 inline-flex items-center space-x-2"
             >
               <MessageSquare className="h-5 w-5" />

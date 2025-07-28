@@ -424,7 +424,7 @@ export class DatabaseService {
     try {
       // Check admin status by email
       const { data: { user } } = await supabase.auth.getUser();
-      return user?.email === 'Eliyahucohen101@gmail.com';
+      return user?.email === 'admin@eibagency.com';
     } catch (error) {
       console.error('Error checking admin status:', error);
       return false;
@@ -432,7 +432,7 @@ export class DatabaseService {
   }
 
   // Create admin user using Supabase Auth signup
-  static async ensureAdminUser(email: string = 'Eliyahucohen101@gmail.com', password: string = 'EIBTeam123'): Promise<boolean> {
+  static async ensureAdminUser(email: string = 'admin@eibagency.com', password: string = 'EIBTeam123'): Promise<boolean> {
     try {
       // Check if user is already signed up
       const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
@@ -516,7 +516,7 @@ export class DatabaseService {
         .update({
           accepted_at: new Date().toISOString()
         })
-        .eq('email', 'Eliyahucohen101@gmail.com');
+        .eq('email', 'admin@eibagency.com');
 
     } catch (error) {
       console.error('Error ensuring admin role:', error);
