@@ -74,18 +74,18 @@ const ContactPage = () => {
     {
       icon: Phone,
       title: 'Phone',
-      primary: '(214) 263-7979',
+      primary: '(972) 805-1002',
       secondary: 'Mon-Fri 8:00 AM - 6:00 PM',
       action: 'Call Now',
-      href: 'tel:(214)263-7979'
+      href: 'tel:(972)805-1002'
     },
     {
       icon: Mail,
       title: 'Email',
-      primary: 'admin@eibagency.com',
+      primary: 'EIB.PHP@Gmail.com',
       secondary: 'We\'ll respond within 24 hours',
       action: 'Send Email',
-      href: 'mailto:admin@eibagency.com'
+      href: 'mailto:EIB.PHP@Gmail.com'
     },
     {
       icon: MapPin,
@@ -192,6 +192,7 @@ const ContactPage = () => {
           <div className="grid md:grid-cols-3 gap-6">
             {contactMethods.map((method, index) => (
               <a
+                href="mailto:EIB.PHP@Gmail.com"
                 href={method.href}
                 className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
               >
@@ -307,7 +308,7 @@ const ContactPage = () => {
                           value={consultationForm.phone}
                           onChange={handleConsultationChange}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors"
-                          placeholder="(214) 263-7979"
+                          placeholder="(972) 805-1002"
                         />
                       </div>
                       
@@ -478,7 +479,7 @@ const ContactPage = () => {
                           value={teamForm.phone}
                           onChange={handleTeamChange}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors"
-                          placeholder="(214) 555-0123"
+                          placeholder="(972) 805-1002"
                         />
                       </div>
                       
@@ -645,7 +646,7 @@ const ContactPage = () => {
                   For urgent matters or immediate assistance, call our direct line.
                 </p>
                 <a
-                  href="tel:(214)263-7979"
+                  href="tel:(972)805-1002"
                   className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-6 py-3 rounded-lg font-bold hover:from-yellow-600 hover:to-yellow-700 transition-colors duration-300 inline-flex items-center space-x-2"
                 >
                   <Phone className="h-5 w-5" />
@@ -679,7 +680,7 @@ const ContactPage = () => {
           <div className="text-center mt-12">
             <p className="text-gray-600 mb-4">Still have questions?</p>
             <a
-              href="mailto:admin@eibagency.com"
+              href="mailto:careers@eibteam.com"
               className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-6 py-3 rounded-lg font-bold hover:from-yellow-600 hover:to-yellow-700 transition-colors duration-300 inline-flex items-center space-x-2"
             >
               <MessageSquare className="h-5 w-5" />

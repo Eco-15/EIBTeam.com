@@ -242,10 +242,10 @@ const ServicesPage = () => {
               <ArrowRight className="w-5 h-5" />
             </a>
             <a
-              href="tel:(214)263-7979"
+              href="tel:(972)805-1002"
               className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-black transition-all duration-300"
             >
-              Call (214) 263-7979
+              Call (972) 805-1002
             </a>
           </div>
 

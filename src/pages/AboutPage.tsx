@@ -263,11 +263,11 @@ const AboutPage = () => {
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div className="flex items-center justify-center space-x-3">
                 <Phone className="h-6 w-6 text-yellow-400" />
-                <span>(214) 263-7979</span>
+                <span>(972) 805-1002</span>
               </div>
               <div className="flex items-center justify-center space-x-3">
                 <Mail className="h-6 w-6 text-yellow-400" />
-                <span>admin@eibagency.com</span>
+                <span>EIB.PHP@Gmail.com</span>
               </div>
               <div className="flex items-center justify-center space-x-3">
                 <MapPin className="h-6 w-6 text-yellow-400" />
