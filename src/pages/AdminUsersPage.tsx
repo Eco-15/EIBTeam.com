@@ -263,7 +263,7 @@ const AdminUsersPage = () => {
               {/* Header */}
               <div className="mb-8">
                 <h1 className="text-3xl font-bold text-gray-900">User Management</h1>
-                <p className="mt-2 text-gray-600">Manage user accounts and invitations for the EIB Team platform.</p>
+                <p className="mt-2 text-gray-600">Manage user accounts and invitations for the EIB Agency platform.</p>
                 
                 {submitSuccess && (
                   <div className="mt-4 bg-green-50 border-l-4 border-green-500 p-4 rounded">

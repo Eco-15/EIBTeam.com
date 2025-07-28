@@ -17,11 +17,18 @@ const TrainingsPage = () => {
       id: 1,
       title: 'Video 1 - Welcome To EIB',
       description: 'Introduction to EIB Team, our mission, values, and what to expect in your journey with us.',
+      fullDescription: 'Welcome to EIB Agency! This comprehensive introduction training will walk you through our company mission, core values, and what you can expect as you begin your journey with us. You\'ll learn about our history, our commitment to excellence, and how we support our agents in achieving their goals. This training covers the foundational knowledge every EIB Agency member needs to succeed.',
       duration: '30 minutes',
       difficulty: 'Beginner',
       rating: 4.8,
       instructor: 'Jason Graziani',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      learningObjectives: [
+        'Understand EIB Agency\'s mission and values',
+        'Learn about company history and culture',
+        'Discover available resources and support systems',
+        'Set expectations for your career journey'
+      ]
     },
     {
       id: 2,

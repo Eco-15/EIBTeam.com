@@ -18,7 +18,7 @@ const TrainingDetailPage = () => {
       id: 1,
       title: 'Video 1 - Welcome To EIB',
       description: 'Introduction to EIB Team, our mission, values, and what to expect in your journey with us.',
-      fullDescription: 'Welcome to EIB Team! This comprehensive introduction training will walk you through our company mission, core values, and what you can expect as you begin your journey with us. You\'ll learn about our history, our commitment to excellence, and how we support our agents in achieving their goals. This training covers the foundational knowledge every EIB Team member needs to succeed.',
+      fullDescription: 'Welcome to EIB Agency! This comprehensive introduction training will walk you through our company mission, core values, and what you can expect as you begin your journey with us. You\'ll learn about our history, our commitment to excellence, and how we support our agents in achieving their goals. This training covers the foundational knowledge every EIB Agency member needs to succeed.',
       duration: '30 minutes',
       difficulty: 'Beginner',
       rating: 4.8,
@@ -26,6 +26,7 @@ const TrainingDetailPage = () => {
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       objectives: [
         'Understand EIB Team\'s mission and values',
+        'Understand EIB Agency\'s mission and values',
         'Learn about company history and culture',
         'Discover available support systems',
         'Set expectations for your journey'
@@ -225,7 +226,7 @@ const TrainingDetailPage = () => {
       id: 10,
       title: 'Video 10 – How to Get Promoted',
       description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
-      fullDescription: 'EIB Team offers numerous opportunities for career advancement and leadership development. This training outlines the various career paths available, from senior agent roles to management and leadership positions. You\'ll learn about the requirements for advancement, the skills needed for leadership, and how to position yourself for growth within the organization.',
+      fullDescription: 'EIB Agency offers numerous opportunities for career advancement and leadership development. This training outlines the various career paths available, from senior agent roles to management and leadership positions. You\'ll learn about the requirements for advancement, the skills needed for leadership, and how to position yourself for growth within the organization.',
       duration: '45 minutes',
       difficulty: 'Advanced',
       rating: 4.8,
@@ -494,7 +495,7 @@ const TrainingDetailPage = () => {
                   {/* Action Button */}
                   <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl p-6 text-center">
                     <h3 className="text-lg font-bold text-black mb-2">Ready to Start?</h3>
-                    <p className="text-black mb-4 text-sm">Begin this training and advance your career with EIB Team.</p>
+                    <p className="text-black mb-4 text-sm">Begin this training and advance your career with EIB Agency.</p>
                     <button className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors w-full">
                       Start Training
                     </button>
