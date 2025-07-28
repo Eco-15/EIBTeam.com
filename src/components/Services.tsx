@@ -54,8 +54,8 @@ const Services = () => {
     },
     {
       icon: Users,
-      title: 'Estate Planning',
-      description: 'Create a legacy and provide for future generations while minimizing tax implications.'
+      title: 'Retirement Planning',
+      description: 'Enjoy peace of mind in retirement while leaving a legacy to provide for future generations.'
     }
   ];
 
