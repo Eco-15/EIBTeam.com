@@ -38,8 +38,8 @@ const Hero = () => {
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Build Your
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-700"> Dream Career</span>
+            Excellence In 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-700"> Building</span>
             <br />
           </h1>
 
