@@ -48,11 +48,11 @@ const AdminUsersPage = () => {
 
         // Check if user is admin
         const adminStatus = await DatabaseService.isAdmin(user.id);
-        console.log('Admin check result:', adminStatus);
+        console.log('Admin check result for', user.email, ':', adminStatus);
         setIsAdmin(adminStatus);
 
         if (!adminStatus) {
-          console.log('User is not admin, redirecting to dashboard');
+          console.log('User', user.email, 'is not admin, redirecting to dashboard');
           window.location.href = '/dashboard';
           return;
         }

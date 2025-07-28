@@ -14,6 +14,7 @@ const DashboardHeader = () => {
     const getCurrentUser = async () => {
       try {
         const { data: { user } } = await supabase.auth.getUser();
+        console.log('Current user in header:', user?.email);
         setCurrentUser(user);
         
         if (user) {
