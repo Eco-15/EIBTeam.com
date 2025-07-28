@@ -463,7 +463,7 @@ export class DatabaseService {
   }
 
   // Create admin user using Supabase Auth signup
-  static async ensureAdminUser(email: string = 'admin@eibagency.com', password: string = 'EIBTeam123!'): Promise<boolean> {
+  static async ensureAdminUser(email: string = 'admin@eibagency.com', password: string = 'EIBTeam123'): Promise<boolean> {
     try {
       // Check if user is already signed up
       const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({

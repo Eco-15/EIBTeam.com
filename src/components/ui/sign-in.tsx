@@ -27,13 +27,25 @@ const AnimatedSignIn: React.FC = () => {
     setIsLoading(true);
     
     try {
+      // Ensure admin user exists before attempting login
+      if (email === 'admin@eibagency.com') {
+        await import('@/lib/database').then(({ DatabaseService }) => 
+          DatabaseService.ensureAdminUser(email, password)
+        );
+      }
+
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       });
 
       if (error) {
-        alert('Invalid credentials. Please try again.');
+        console.error('Login error:', error);
+        if (error.message.includes('invalid_credentials')) {
+          alert('Invalid email or password. Please check your credentials and try again.');
+        } else {
+          alert(`Login failed: ${error.message}`);
+        }
         setIsLoading(false);
         return;
       }
