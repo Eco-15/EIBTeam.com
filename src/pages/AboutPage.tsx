@@ -139,7 +139,7 @@ const AboutPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold text-black mb-6">
-              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">EIB Team</span>
+              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">EIB Agency</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Excellence in Building was founded in 2007 with a simple yet powerful mission: 
@@ -305,7 +305,7 @@ const AboutPage = () => {
           <div className="bg-gradient-to-r from-black to-gray-900 rounded-2xl p-12 text-center text-white">
             <h2 className="text-3xl font-bold mb-6">Ready to Join Our Team?</h2>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Discover how EIB Team can help you build a successful career in the insurance industry. 
+              Discover how EIB Agency can help you build a successful career in the insurance industry. 
               We're here to support your journey every step of the way.
             </p>
             
