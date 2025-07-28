@@ -43,10 +43,11 @@ const Hero = () => {
             <br />
           </h1>
 
+  
+          
           <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
-            Join EIB Team, the <span className="font-semibold text-white">fastest-growing insurance brokerage</span> in Texas. 
-            We're building a world-class team of professionals who want to 
-            <span className="text-yellow-600 font-semibold"> exceed their potential</span>.
+            Join EIB Team, Excellence In Building,<span className="font-semibold text-white">an organization dedicated to developing leaders</span> within the financial services industry. 
+            </span>.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
