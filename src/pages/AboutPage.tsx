@@ -116,40 +116,6 @@ const AboutPage = () => {
       ),
     },
     {
-      title: '2020',
-      content: (
-        <div>
-          <h4 className="text-xl font-bold text-black mb-4">Digital Innovation</h4>
-          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
-            Implemented cutting-edge technology and remote capabilities to better serve clients and agents. 
-            This digital transformation ensured continuity during challenging times while enhancing our service delivery.
-          </p>
-          <div className="mb-8">
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Remote work capabilities implemented
-            </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Digital client consultation platforms
-            </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Enhanced CRM and training systems
-            </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Virtual team collaboration tools
-            </div>
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
-              ✅ Online training and certification programs
-            </div>
-          </div>
-          <img
-            src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=800"
-            alt="Digital technology"
-            className="rounded-lg object-cover h-32 md:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-          />
-        </div>
-      ),
-    },
-    {
       title: '2024',
       content: (
         <div>
