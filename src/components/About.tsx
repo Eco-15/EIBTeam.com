@@ -32,11 +32,6 @@ const About = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">EIB Team</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We're not just another insurance brokerage. We're a leading insurance team
-            dedicated to protecting what matters most to our clients while building 
-            exceptional careers for our team members.
-          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
