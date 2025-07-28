@@ -53,14 +53,14 @@ const Hero = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
               <div className="flex items-center justify-center mb-3">
-                <Users className="h-8 w-8 text-yellow-600" />
+                <TrendingUp className="h-8 w-8 text-yellow-600" />
               </div>
               <div className="text-3xl font-bold text-black mb-1">20+</div>
               <div className="text-gray-700 font-medium">Years Experience</div>
             </div>
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
               <div className="flex items-center justify-center mb-3">
-                <TrendingUp className="h-8 w-8 text-yellow-600" />
+                <Users className="h-8 w-8 text-yellow-600" />
               </div>
               <div className="text-3xl font-bold text-black mb-1">15k+</div>
               <div className="text-gray-700 font-medium">Families Helped</div>
@@ -69,8 +69,8 @@ const Hero = () => {
               <div className="flex items-center justify-center mb-3">
                 <Star className="h-8 w-8 text-yellow-600" />
               </div>
-              <div className="text-3xl font-bold text-black mb-1">3K</div>
-              <div className="text-gray-700 font-medium">Agents</div>
+              <div className="text-3xl font-bold text-black mb-1">3k+</div>
+              <div className="text-gray-700 font-medium">Families Helped</div>
             </div>
           </div>
 
