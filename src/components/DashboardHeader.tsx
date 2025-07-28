@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Bell, User, LogOut, Menu, X, CheckCircle, AlertCircle, Calendar, MessageSquare } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { DatabaseService } from '@/lib/database';
 
 const DashboardHeader = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<any>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdminMode, setIsAdminMode] = useState(false);
 
   useEffect(() => {
     const getCurrentUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       setCurrentUser(user);
+      
+      if (user) {
+        const adminStatus = await DatabaseService.isAdmin(user.id);
+        setIsAdmin(adminStatus);
+        
+        // Check if currently on admin page
+        setIsAdminMode(window.location.pathname.startsWith('/admin'));
+      }
     };
 
     getCurrentUser();
@@ -90,6 +101,31 @@ const DashboardHeader = () => {
 
           {/* Right side */}
           <div className="flex items-center space-x-4">
+            {/* Admin Toggle */}
+            {isAdmin && (
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-gray-600">Admin Mode</span>
+                <button
+                  onClick={() => {
+                    if (isAdminMode) {
+                      window.location.href = '/dashboard';
+                    } else {
+                      window.location.href = '/admin/users';
+                    }
+                  }}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 ${
+                    isAdminMode ? 'bg-purple-600' : 'bg-gray-200'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      isAdminMode ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+              </div>
+            )}
+
             {/* Notifications */}
             <div className="relative">
               <button
