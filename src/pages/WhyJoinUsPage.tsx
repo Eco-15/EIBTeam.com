@@ -126,7 +126,7 @@ const WhyJoinUsPage = () => {
               Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">EIB Team?</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Join a team that's committed to your success. We provide the tools, training, 
+              Join a team that's committed to your success. We provide the tools, training,
               and support you need to build a thriving insurance career in the DFW market.
             </p>
           </div>
@@ -160,8 +160,8 @@ const WhyJoinUsPage = () => {
             <div>
               <h2 className="text-4xl font-bold text-black mb-6">Comprehensive Support System</h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                We provide everything you need to succeed, from initial training to ongoing business support. 
-                Our proven PHP Agency system combined with local mentorship creates the perfect environment 
+                We provide everything you need to succeed, from initial training to ongoing business support.
+                Our proven systems combined with local mentorship creates the perfect environment
                 for building a thriving insurance career.
               </p>
               
