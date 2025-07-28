@@ -11,14 +11,6 @@ const Footer = () => {
     { name: 'Contact', href: '/contact' }
   ];
 
-  const services = [
-    { name: 'Term Life Insurance', href: '/services' },
-    { name: 'Whole Life Insurance', href: '/services' },
-    { name: 'Universal Life Insurance', href: '/services' },
-    { name: 'Business Insurance', href: '/services' },
-    { name: 'Health Insurance', href: '/services' }
-  ];
-
   const socialLinks = [
     { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/eibteam/' },
     { 
@@ -35,7 +27,7 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-black to-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6">
@@ -61,7 +53,10 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-yellow-400" />
-                <span className="text-gray-300">6200 Tennyson Parkway Plano Tx 75024</span>
+                <div className="text-gray-300">
+                  <div>6200 Tennyson Parkway Suite 175</div>
+                  <div>Plano, TX 75024</div>
+                </div>
               </div>
             </div>
           </div>
@@ -78,24 +73,6 @@ const Footer = () => {
                   >
                     <span className="w-2 h-2 bg-yellow-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="text-lg font-bold text-white mb-6">Our Services</h4>
-            <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service.name}>
-                  <a
-                    href={service.href}
-                    className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 flex items-center group"
-                  >
-                    <span className="w-2 h-2 bg-yellow-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                    {service.name}
                   </a>
                 </li>
               ))}
