@@ -100,7 +100,7 @@ const DashboardHeader = () => {
               className="h-10 w-10 rounded-full object-cover"
             />
             <div>
-              <h1 className="text-xl font-bold text-black">EIB Team Portal</h1>
+              <h1 className="text-xl font-bold text-black">EIB Agency Portal</h1>
               <p className="text-sm text-gray-600">
                 {isAdminMode ? 'Admin Dashboard' : 'Agent Dashboard'}
               </p>

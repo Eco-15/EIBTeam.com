@@ -46,7 +46,7 @@ const Hero = () => {
   
           
           <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
-            Join EIB Team, Excellence In Building,<span className="font-semibold text-white">an organization dedicated to developing leaders</span> within the financial services industry. 
+            Join EIB Agency, Excellence In Building,<span className="font-semibold text-white">an organization dedicated to developing leaders</span> within the financial services industry. 
             <span className="text-yellow-600 font-semibold"></span>.
           </p>
 

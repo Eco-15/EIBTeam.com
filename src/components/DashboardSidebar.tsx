@@ -74,7 +74,7 @@ const DashboardSidebar = () => {
             <div className="flex items-center">
               <div className="ml-3">
                 <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                  EIB Team Agent Portal
+                  EIB Agency Agent Portal
                 </p>
                 <p className="text-xs text-gray-400">v2.1.0</p>
               </div>
