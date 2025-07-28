@@ -242,14 +242,7 @@ const AboutPage = () => {
               
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Nataly co-founded EIB alongside Jason, bringing her passion for people development and operational 
-                  excellence to the organization. Her background in business operations and team leadership has been 
-                  instrumental in scaling EIB's success across multiple markets.
-                </p>
-                <p>
-                  She is dedicated to creating a culture of excellence and ensuring that every team member has the 
-                  support and resources they need to succeed. Nataly is actively involved in community service and 
-                  mentoring the next generation of leaders.
+                  Nataly works daily alongside Jason running operations for EIB. She brings her passion for people development and cultural excellence to the organization. Her background in business development and team leadership has been instrumental in scaling EIB's success across multiple markets.
                 </p>
               </div>
             </div>
