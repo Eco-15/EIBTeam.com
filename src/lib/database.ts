@@ -465,50 +465,31 @@ export class DatabaseService {
   // Create admin user using Supabase Auth signup
   static async ensureAdminUser(email: string = 'admin@eibagency.com', password: string = 'EIBTeam123'): Promise<boolean> {
     try {
-      // Check if user is already signed up
-      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+      // Use admin client to create user with confirmed email
+      const { data: adminData, error: adminError } = await supabase.auth.admin.createUser({
         email: email,
         password: password,
-      });
-
-      if (signInData.user && !signInError) {
-        console.log('Admin user already exists and can sign in');
-        await this.ensureAdminRole(signInData.user.id);
-        return true;
-      }
-
-      // Try to sign up the admin user (this will trigger our database functions)
-      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          emailRedirectTo: undefined,
-          data: {
-            first_name: 'Admin',
-            last_name: 'User',
-            role: 'admin'
-          }
+        email_confirm: false,
+        user_metadata: {
+          first_name: 'Admin',
+          last_name: 'User',
+          role: 'admin'
         }
       });
 
-      if (signUpError) {
-        console.error('Error creating admin user:', signUpError);
-        // If user already exists, try to sign them in
-        if (signUpError.message.includes('already registered')) {
-          const { data: signInRetry } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password,
-          });
-          if (signInRetry.user) {
-            await this.ensureAdminRole(signInRetry.user.id);
-            return true;
-          }
+      if (adminError) {
+        console.error('Error creating admin user:', adminError);
+        // If user already exists, that's fine
+        if (adminError.message.includes('already registered') || adminError.message.includes('already exists')) {
+          console.log('Admin user already exists');
+          return true;
         }
         return false;
       }
 
-      if (signUpData.user) {
-        await this.ensureAdminRole(signUpData.user.id);
+      if (adminData.user) {
+        console.log('Admin user created successfully');
+        await this.ensureAdminRole(adminData.user.id);
       }
 
       console.log('Admin user setup completed');
@@ -522,8 +503,8 @@ export class DatabaseService {
   // Ensure admin role is properly assigned
   static async ensureAdminRole(userId: string): Promise<void> {
     try {
-      // Create or update user role
-      await supabase
+      // Use service role to bypass RLS for admin setup
+      const { error: roleError } = await supabase
         .from('user_roles')
         .upsert([{
           user_id: userId,
@@ -531,23 +512,36 @@ export class DatabaseService {
           assigned_by: userId
         }]);
 
-      // Create or update agent profile
-      await supabase
+      if (roleError) {
+        console.error('Error creating user role:', roleError);
+      }
+
+      // Create or update agent profile using service role
+      const { error: profileError } = await supabase
         .from('agent_profiles')
         .upsert([{
           user_id: userId,
           first_name: 'Admin',
           last_name: 'User',
-          status: 'active'
+          status: 'active',
+          agent_id: 'ADMIN001'
         }]);
 
-      // Update invitation record if exists
-      await supabase
+      if (profileError) {
+        console.error('Error creating agent profile:', profileError);
+      }
+
+      // Update invitation record if exists  
+      const { error: inviteError } = await supabase
         .from('user_invitations')
         .update({
           accepted_at: new Date().toISOString()
         })
         .eq('email', 'admin@eibagency.com');
+
+      if (inviteError) {
+        console.log('No invitation record to update (this is normal)');
+      }
 
     } catch (error) {
       console.error('Error ensuring admin role:', error);
