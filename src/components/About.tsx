@@ -44,7 +44,7 @@ const About = () => {
               Over the years, EIB has proudly helped protect thousands of families across the U.S. while also mentoring the next generation of leaders in our industry. For us, success isn't just about policies—it's about people, purpose, and impact.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              Jason and Nataly currently reside in Prosper, Texas, and raise their four children. They serve as trustees at Revolution Church in McKinney and continue to lead their organization.
+              Jason and Nataly currently reside in Prosper, Texas, and raise their four children. They serve as trustees at Revolution Church in McKinney while continuing to lead.
             </p>
             
             <div className="grid grid-cols-3 gap-6">
@@ -102,14 +102,14 @@ const About = () => {
                   </div>
                 </div>
                 <h4 className="text-2xl font-bold text-black mb-2">Jason Graziani</h4>
-                <p className="text-yellow-600 font-semibold mb-4">Co-Founder & CEO</p>
+                <p className="text-yellow-600 font-semibold mb-4">Founder & CEO</p>
               </div>
               
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
                   Jason founded Excellence in Building (EIB) in 2007 with a vision to serve people and treat them right. 
-                  With over 15 years of experience in the financial services industry, Jason has built EIB into one of the 
-                  most successful PHP Agency partners in Texas.
+                  With over 20+ years of experience in the financial services industry, Jason has built EIB into one of the 
+                  most most respected organizations in the industry.
                 </p>
               </div>
             </div>
@@ -128,14 +128,12 @@ const About = () => {
                   </div>
                 </div>
                 <h4 className="text-2xl font-bold text-black mb-2">Nataly Graziani</h4>
-                <p className="text-yellow-600 font-semibold mb-4">Co-Founder & COO</p>
+                <p className="text-yellow-600 font-semibold mb-4">First Lady & COO</p>
               </div>
               
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Nataly co-founded EIB alongside Jason, bringing her passion for people development and operational 
-                  excellence to the organization. Her background in business operations and team leadership has been 
-                  instrumental in scaling EIB's success across multiple markets.
+                  Nataly works daily alongside Jason running operations for EIB. She brings her passion for people development and cultural excellence to the organization. Her background in business development and team leadership has been instrumental in scaling EIB's success across multiple markets.
                 </p>
               </div>
             </div>
