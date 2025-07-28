@@ -12,15 +12,20 @@ const DashboardHeader = () => {
 
   useEffect(() => {
     const getCurrentUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setCurrentUser(user);
-      
-      if (user) {
-        const adminStatus = await DatabaseService.isAdmin(user.id);
-        setIsAdmin(adminStatus);
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        setCurrentUser(user);
         
-        // Check if currently on admin page
-        setIsAdminMode(window.location.pathname.startsWith('/admin'));
+        if (user) {
+          const adminStatus = await DatabaseService.isAdmin(user.id);
+          console.log('Admin status for user:', user.email, adminStatus);
+          setIsAdmin(adminStatus);
+          
+          // Check if currently on admin page
+          setIsAdminMode(window.location.pathname.startsWith('/admin'));
+        }
+      } catch (error) {
+        console.error('Error getting current user:', error);
       }
     };
 

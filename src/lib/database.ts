@@ -422,9 +422,28 @@ export class DatabaseService {
 
   static async isAdmin(userId: string): Promise<boolean> {
     try {
-      // Check admin status by email
       const { data: { user } } = await supabase.auth.getUser();
-      return user?.email === 'admin@eibagency.com';
+      if (!user) return false;
+      
+      // Check admin status by email first
+      if (user.email === 'admin@eibagency.com') {
+        return true;
+      }
+      
+      // Also check user_roles table
+      const { data, error } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', userId)
+        .eq('role', 'admin')
+        .maybeSingle();
+      
+      if (error) {
+        console.error('Error checking admin role:', error);
+        return false;
+      }
+      
+      return data?.role === 'admin';
     } catch (error) {
       console.error('Error checking admin status:', error);
       return false;
