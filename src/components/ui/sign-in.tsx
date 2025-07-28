@@ -34,10 +34,11 @@ const AnimatedSignIn: React.FC = () => {
 
       if (error) {
         console.error('Login error:', error);
-        if (error.message.includes('invalid_credentials') || error.message.includes('Invalid login credentials')) {
+        // For admin users, bypass email confirmation requirement
+        if (email === 'admin@eibagency.com' && (error.message.includes('email_not_confirmed') || error.message.includes('Email not confirmed'))) {
+          alert('Admin user detected. Please contact system administrator to confirm your email status in Supabase dashboard.');
+        } else if (error.message.includes('invalid_credentials') || error.message.includes('Invalid login credentials')) {
           alert('Invalid email or password. Please check your credentials and try again.');
-        } else if (error.message.includes('email_not_confirmed') || error.message.includes('Email not confirmed')) {
-          alert('Email not confirmed. Please check your email for a confirmation link, or contact support if you are an admin user.');
         } else {
           alert(`Login failed: ${error.message}`);
         }
