@@ -308,7 +308,7 @@ const AdminDashboard = () => {
         result = await DatabaseService.updateAnnouncement(editingAnnouncement.id, {
           title: announcementForm.title,
           message: announcementForm.message,
-          priority: announcementForm.priority as 'Low' | 'Medium' | 'High' | 'URGENT',
+          priority: announcementForm.priority as 'low' | 'medium' | 'high' | 'urgent',
           target_audience: announcementForm.targetAudience as 'all' | 'agents',
           expires_at: announcementForm.expiresAt ? new Date(announcementForm.expiresAt).toISOString() : null
         });
@@ -317,7 +317,7 @@ const AdminDashboard = () => {
         result = await DatabaseService.createAnnouncement({
           title: announcementForm.title,
           message: announcementForm.message,
-          priority: announcementForm.priority as 'Low' | 'Medium' | 'High' | 'URGENT',
+          priority: announcementForm.priority as 'low' | 'medium' | 'high' | 'urgent',
           target_audience: announcementForm.targetAudience as 'all' | 'agents' ,
           expires_at: announcementForm.expiresAt || null,
           author_name: `${currentUser.email?.split('@')[0] || 'Admin'}`
@@ -996,10 +996,10 @@ const AdminDashboard = () => {
                       onChange={(e) => setAnnouncementForm({...announcementForm, priority: e.target.value})}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     >
-                      <option value="Low">Low</option>
-                      <option value="Medium">Medium</option>
-                      <option value="High">High</option>
-                      <option value="URGENTt">Urgent</option>
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                      <option value="urgent">Urgent</option>
                     </select>
                   </div>
                   
