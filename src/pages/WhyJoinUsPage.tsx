@@ -133,10 +133,6 @@ const WhyJoinUsPage = () => {
 
           <div className="grid md:grid-cols-4 gap-8">
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="text-3xl font-bold text-yellow-600 mb-2">80%</div>
-              <div className="text-gray-700">Max Commission</div>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
               <div className="text-3xl font-bold text-yellow-600 mb-2">2-4</div>
               <div className="text-gray-700">Weeks Training</div>
             </div>
