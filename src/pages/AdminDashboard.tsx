@@ -194,6 +194,12 @@ const AdminDashboard = () => {
       return;
     }
 
+    // Validate password complexity
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
+    if (!passwordRegex.test(createUserForm.password)) {
+      alert('Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)');
+      return;
+    }
     setIsSubmitting(true);
 
     try {
