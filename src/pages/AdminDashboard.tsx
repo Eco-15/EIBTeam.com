@@ -274,8 +274,8 @@ const AdminDashboard = () => {
       const announcement = await DatabaseService.createAnnouncement({
         title: announcementForm.title,
         message: announcementForm.message,
-        priority: announcementForm.priority as 'low' | 'medium' | 'high' | 'urgent',
-        target_audience: announcementForm.targetAudience as 'all' | 'agents' | 'managers',
+        priority: announcementForm.priority as 'Low' | 'Medium' | 'High' | 'URGENT',
+        target_audience: announcementForm.targetAudience as 'all' | 'agents' ,
         expires_at: announcementForm.expiresAt || null,
         author_name: `${currentUser.email?.split('@')[0] || 'Admin'}`
       });
