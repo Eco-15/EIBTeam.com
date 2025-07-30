@@ -208,7 +208,7 @@ const AboutPage = () => {
           </p>
           <div className="w-full">
             <img
-              src="https://placeholder-image-url-2016.jpg"
+              src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnU6WHBiEtjKqYRZg1aCTbApezkOJIGxs48of6"
               alt="EIB RV Tour 2016"
              className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
              style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
