@@ -9,6 +9,7 @@ export interface AgentProfile {
   phone?: string;
   agent_id?: string;
   hire_date?: string;
+  date_of_birth?: string;
   commission_rate?: number;
   team_lead?: string;
   status?: 'active' | 'inactive' | 'suspended';

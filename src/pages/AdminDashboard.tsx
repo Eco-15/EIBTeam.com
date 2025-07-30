@@ -26,6 +26,7 @@ const AdminDashboard = () => {
     email: '',
     firstName: '',
     lastName: '',
+    dateOfBirth: '',
     role: 'agent',
     password: ''
   });
@@ -156,6 +157,7 @@ const AdminDashboard = () => {
               user_metadata: {
                 first_name: userForm.firstName,
                 last_name: userForm.lastName,
+                date_of_birth: userForm.dateOfBirth || null,
                 full_name: `${userForm.firstName} ${userForm.lastName}`.trim()
               }
             });
