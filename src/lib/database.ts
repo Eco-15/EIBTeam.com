@@ -109,10 +109,10 @@ export interface Announcement {
   id: string;
   title: string;
   message: string;
-  priority: 'low' | 'medium' | 'high' | 'urgent';
+  priority: 'Low' | 'Medium' | 'High' | 'Urgent';
   author_id: string;
   author_name: string;
-  target_audience: 'all' | 'agents' | 'managers';
+  target_audience: 'all' | 'agents' ;
   expires_at?: string;
   is_active: boolean;
   created_at: string;
@@ -123,7 +123,7 @@ export interface ScheduleEvent {
   id: string;
   title: string;
   description?: string;
-  event_type: 'meeting' | 'training' | 'call' | 'bom' | 'hierarchy' | 'sales';
+  event_type: 'Meeting' | 'Training' | 'Call' | 'BOM' | 'Hierarchy' | 'Sales';
   day_of_week: string;
   start_time: string;
   end_time?: string;
