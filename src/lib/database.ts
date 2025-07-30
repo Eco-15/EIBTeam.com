@@ -395,6 +395,7 @@ export class DatabaseService {
       console.error('Error updating book progress:', error);
       return null;
     }
+  }
 
   // User Role functions
   static async getUserRole(userId: string): Promise<UserRole | null> {
