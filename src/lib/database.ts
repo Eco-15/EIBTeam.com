@@ -446,8 +446,6 @@ export class DatabaseService {
     }
   }
 
-  // Create admin user using Supabase Auth signup
-
   // Announcements functions
   static async createAnnouncement(announcement: Partial<Announcement>): Promise<Announcement | null> {
     try {
