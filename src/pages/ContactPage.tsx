@@ -51,9 +51,10 @@ const ContactPage = () => {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    setIsSubmitting(false);
     setIsSubmitted(true);
+    setIsSubmitting(false);
     
+    // Reset form data
     if (formType === 'consultation') {
       setConsultationForm({
         name: '', email: '', phone: '', city: '', state: '',
