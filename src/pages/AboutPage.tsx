@@ -58,55 +58,292 @@ const AboutPage = () => {
 
   const timelineData = [
     {
-      title: '2007',
+      title: '2007 - EIB Founded',
       content: (
         <div>
-          <h4 className="text-xl font-bold text-black mb-4">EIB Founded</h4>
+          <h4 className="text-xl font-bold text-black mb-4">EIB is Founded</h4>
           <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
             Jason and Nataly Graziani founded Excellence in Building with a mission to serve people and treat them right. 
             Starting with a vision to provide families with financial solutions and develop the next wave of leaders.
           </p>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="w-full">
             <img
-              src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnl9TWdtn8EfQTV7ApbyFLmjY5GCZhaPcN4nzo"
-              alt="Business founding"
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <img
-              src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnrlzWuiu9IxL6na5HN8Cmj2VAkDRBdih9JyY4"
-              alt="Team collaboration"
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              src="https://placeholder-image-url-2007.jpg"
+              alt="EIB founding in 2007"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
             />
           </div>
         </div>
       ),
     },
     {
-      title: '2015',
+      title: '2010 - First HQ',
       content: (
         <div>
-          <h4 className="text-xl font-bold text-black mb-4">Texas Expansion</h4>
+          <h4 className="text-xl font-bold text-black mb-4">EIB Opens 1st HQ in Oxnard, CA</h4>
           <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
-            Expanded operations throughout Texas, establishing a strong presence in the Dallas-Fort Worth market. 
-            This growth phase allowed us to serve more families while maintaining our commitment to excellence.
+            EIB establishes its first headquarters in Oxnard, California, marking the beginning of our expansion 
+            and commitment to serving families across the nation.
           </p>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="w-full">
             <img
-              src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnQhLRN6tkdtnWgyXhariuKjx2YqbGcZpReB7H"
-              alt="Texas map"
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <img
-              src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn3dcBm4pHEmVwYtLheWFjdDMo68CiN0Bqyp7b"
-              alt="Team meeting"
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              src="https://placeholder-image-url-2010.jpg"
+              alt="EIB first headquarters in Oxnard, CA"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
             />
           </div>
         </div>
       ),
     },
     {
-      title: '2024',
+      title: '2011 - PHP Partnership',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">EIB Team Joins PHP Agency</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            A pivotal moment in EIB's history as we partner with PHP Agency, gaining access to proven systems, 
+            training methodologies, and a network of successful agents nationwide.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2011.jpg"
+              alt="EIB Team joins PHP Agency"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2013 - SVP Achievement',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">EIB Becomes 1st SVP Team in PHP</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            A historic achievement as EIB becomes the first Senior Vice President team in PHP Agency, 
+            setting the standard for excellence and leadership in the organization.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2013.jpg"
+              alt="EIB becomes first SVP team in PHP"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2014 - Dallas Office',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">EIB Opens Office in Dallas, TX</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            Expanding into the Texas market, EIB opens its first office in Dallas, beginning our strong 
+            presence in the Dallas-Fort Worth metroplex.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2014.jpg"
+              alt="EIB opens Dallas office"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2015 - Key Team Member',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">EIB's Backbone - Liz Arredondo</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            Liz Arredondo joins the EIB team, becoming an integral part of our operations and contributing 
+            significantly to our continued growth and success.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2015-liz.jpg"
+              alt="Liz Arredondo joins EIB team"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2015 - Plano HQ',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">EIB Opens HQ in Plano, TX</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            Establishing our headquarters in Plano, Texas, solidifying our commitment to the Dallas-Fort Worth 
+            market and creating a central hub for our growing operations.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2015-plano.jpg"
+              alt="EIB headquarters in Plano, TX"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2016 - RV Tour',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">RV Tour</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            EIB embarks on an innovative RV tour, bringing our message and opportunities directly to communities 
+            across the country, demonstrating our commitment to reaching people where they are.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2016.jpg"
+              alt="EIB RV Tour 2016"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2017 - Magic Johnson',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">Magic Johnson in Fort Worth</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            A memorable event featuring NBA legend Magic Johnson in Fort Worth, showcasing EIB's ability to 
+            bring world-class speakers and inspiration to our team and community.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2017.jpg"
+              alt="Magic Johnson event in Fort Worth"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2018 - Wedding',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">Jason & Nataly Get Married</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            A personal milestone as EIB founders Jason and Nataly Graziani celebrate their wedding, 
+            strengthening the partnership that drives EIB's continued success.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2018-wedding.jpg"
+              alt="Jason and Nataly wedding"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2018 - Kevin Hart',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">Kevin Hart in Vegas</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            Another star-studded event featuring comedian Kevin Hart in Las Vegas, demonstrating EIB's 
+            commitment to providing exceptional experiences and motivation for our team.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2018-kevin.jpg"
+              alt="Kevin Hart event in Vegas"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2019 - Builders Bowl',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">EIB's First Builders Bowl Event</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            Launching our signature Builders Bowl event, creating an annual tradition of recognition, 
+            celebration, and team building that continues to inspire our organization.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2019-bowl.jpg"
+              alt="First Builders Bowl event 2019"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2019 - Kobe Bryant',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">Kobe Bryant Event</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            An unforgettable experience with NBA legend Kobe Bryant, bringing his "Mamba Mentality" 
+            and championship mindset to inspire our team to achieve greatness.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2019-kobe.jpg"
+              alt="Kobe Bryant event 2019"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2019 - George Bush',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">George Bush Event</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            Hosting former President George Bush, demonstrating EIB's ability to bring distinguished 
+            leaders and their wisdom to our organization and community.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2019-bush.jpg"
+              alt="George Bush event 2019"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2019 - Dallas Stadium',
+      content: (
+        <div>
+          <h4 className="text-xl font-bold text-black mb-4">Dallas Stadium Event</h4>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
+            A spectacular event at Dallas Stadium, showcasing EIB's growth and ability to host 
+            large-scale events that inspire and motivate our expanding team.
+          </p>
+          <div className="w-full">
+            <img
+              src="https://placeholder-image-url-2019-stadium.jpg"
+              alt="Dallas Stadium event 2019"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: '2024 - Industry Leader',
       content: (
         <div>
           <h4 className="text-xl font-bold text-black mb-4">Industry Leader</h4>
@@ -114,16 +351,11 @@ const AboutPage = () => {
             Recognized as one of the top insurance brokerages with over 15,000 families protected nationwide. 
             Our commitment to excellence and innovation continues to drive our success and growth.
           </p>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="w-full">
             <img
-              src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlmOrmln8EfQTV7ApbyFLmjY5GCZhaPcN4nzo"
-              alt="Award ceremony"
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <img
-              src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnPOoGZPAdscr0bGLESYikhm9wWV6MUX84gjFQ"
-              alt="Client satisfaction"
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              src="https://placeholder-image-url-2024.jpg"
+              alt="EIB as industry leader in 2024"
+              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
             />
           </div>
         </div>
