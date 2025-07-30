@@ -85,7 +85,7 @@ const ContactPage = () => {
       primary: 'admin@eibagency.com',
       secondary: 'We\'ll respond within 24 hours',
       action: 'Send Email',
-      href: 'mailto:EIB.PHP@Gmail.com'
+      href: 'mailto:admin@eibagency.com'
     },
     {
       icon: MapPin,
