@@ -82,7 +82,7 @@ const ContactPage = () => {
     {
       icon: Mail,
       title: 'Email',
-      primary: 'EIB.PHP@Gmail.com',
+      primary: 'admin@eibagency.com',
       secondary: 'We\'ll respond within 24 hours',
       action: 'Send Email',
       href: 'mailto:EIB.PHP@Gmail.com'
