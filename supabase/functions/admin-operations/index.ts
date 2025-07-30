@@ -10,7 +10,7 @@ interface CreateUserRequest {
   email: string;
   firstName: string;
   lastName: string;
-  role: 'admin' | 'agent' | 'manager';
+  role: 'admin' | 'agent';
   temporaryPassword?: string;
 }
 
@@ -18,7 +18,7 @@ interface CreateInvitationRequest {
   email: string;
   first_name?: string;
   last_name?: string;
-  role: 'admin' | 'agent' | 'manager';
+  role: 'admin' | 'agent';
   temporary_password: string;
   invited_by: string;
 }

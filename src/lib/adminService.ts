@@ -33,7 +33,7 @@ class AdminService {
     firstName: string;
     lastName: string;
     dateOfBirth?: string;
-    role: 'admin' | 'agent' | 'manager';
+    role: 'admin' | 'agent';
     temporaryPassword?: string;
   }) {
     return this.callAdminFunction('create-user', userData);
@@ -43,7 +43,7 @@ class AdminService {
     email: string;
     first_name?: string;
     last_name?: string;
-    role: 'admin' | 'agent' | 'manager';
+    role: 'admin' | 'agent';
     temporary_password: string;
     invited_by: string;
   }) {
