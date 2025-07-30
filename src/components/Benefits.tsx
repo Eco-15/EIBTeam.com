@@ -56,7 +56,7 @@ const Benefits = () => {
 
         <div className="bg-gradient-to-r from-black to-gray-900 rounded-2xl p-8 md:p-12 text-center">
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Transform Your Career?
+            Ready to Make a Change?
           </h3>
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
             Join a team that's committed to your success. We provide the tools, training, and support you need to be successful in the insurance industry.
