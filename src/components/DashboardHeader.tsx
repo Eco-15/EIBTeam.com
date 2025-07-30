@@ -48,7 +48,7 @@ const DashboardHeader = () => {
   // Convert announcements to notification format
   const notifications = announcements.map((announcement, index) => ({
     id: announcement.id,
-    type: announcement.priority === 'urgent' ? 'warning' : 'info',
+    type: announcement.priority === 'URGENT' ? 'Warning' : 'Info',
     title: announcement.title,
     message: announcement.message,
     time: new Date(announcement.created_at).toLocaleDateString(),
