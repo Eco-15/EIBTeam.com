@@ -225,7 +225,7 @@ const AdminDashboard = () => {
       }
     } catch (error) {
       console.error('Account creation error:', error);
-      alert('An error occurred during account creation. Please try again.');
+      alert(`Account creation error: ${(error as Error).message}`);
     }
 
     setIsSubmitting(false);
