@@ -109,7 +109,7 @@ export interface Announcement {
   id: string;
   title: string;
   message: string;
-  priority: 'Low' | 'Medium' | 'High' | 'Urgent';
+  priority: 'low' | 'medium' | 'high' | 'urgent';
   author_id: string;
   author_name: string;
   target_audience: 'all' | 'agents' ;
