@@ -645,9 +645,9 @@ const AdminDashboard = () => {
                                 <div className="flex items-center space-x-3 mb-2">
                                   <h4 className="text-lg font-semibold text-gray-900">{announcement.title}</h4>
                                   <span className={`px-2 py-1 text-xs rounded-full ${
-                                    announcement.priority === 'urgent' ? 'bg-red-100 text-red-800' :
-                                    announcement.priority === 'high' ? 'bg-orange-100 text-orange-800' :
-                                    announcement.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
+                                    announcement.priority === 'URGENT' ? 'bg-red-100 text-red-800' :
+                                    announcement.priority === 'High' ? 'bg-orange-100 text-orange-800' :
+                                    announcement.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
                                     'bg-gray-100 text-gray-800'
                                   }`}>
                                     {announcement.priority}
