@@ -116,17 +116,6 @@ const AnimatedSignIn: React.FC = () => {
             console.error('Error creating agent profile:', profileError);
           }
 
-          // Create default user role
-          const { error: roleError } = await supabase
-            .from('user_roles')
-            .insert([{
-              user_id: data.user.id,
-              role: 'agent'
-            }]);
-
-          if (roleError) {
-            console.error('Error creating user role:', roleError);
-          }
         } catch (error) {
           console.error('Error setting up user profile:', error);
         }
