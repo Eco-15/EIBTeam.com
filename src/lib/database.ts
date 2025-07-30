@@ -98,7 +98,7 @@ export interface BookProgress {
 export interface UserRole {
   id: string;
   user_id: string;
-  role: 'admin' | 'agent' | 'manager';
+  role: 'admin' | 'agent';
   assigned_by?: string;
   assigned_at: string;
   created_at: string;
@@ -142,7 +142,7 @@ export interface UserInvitation {
   email: string;
   first_name?: string;
   last_name?: string;
-  role: 'admin' | 'agent' | 'manager';
+  role: 'admin' | 'agent';
   temporary_password: string;
   invited_by: string;
   invited_at: string;

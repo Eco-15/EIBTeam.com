@@ -1012,7 +1012,6 @@ const AdminDashboard = () => {
                     >
                       <option value="all">All Users</option>
                       <option value="agents">Agents Only</option>
-                      <option value="managers">Managers Only</option>
                     </select>
                   </div>
                 </div>
