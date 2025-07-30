@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import { DatabaseService, Announcement, ScheduleEvent } from '@/lib/database';
-import { Calendar, Clock, MapPin, Users, Bell, Plus, ChevronLeft, ChevronRight, MessageSquare } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Bell, Plus, ChevronLeft, ChevronRight, MessageSquare, X, ExternalLink } from 'lucide-react';
 
 const CalendarPage = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -280,14 +280,6 @@ const CalendarPage = () => {
                             <div className="flex items-center justify-between mt-3 text-xs text-gray-500">
                               <span>By {announcement.author_name}</span>
                               <span>{new Date(announcement.created_at).toLocaleDateString()}</span>
-                            </div>
-                            <div className="mt-3">
-                              <button
-                                onClick={() => setSelectedAnnouncement(announcement)}
-                                className="text-blue-600 hover:text-blue-800 text-xs font-medium"
-                              >
-                                View More
-                              </button>
                             </div>
                           </div>
                         )) : (
