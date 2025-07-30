@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Eye, EyeOff, LogIn, ArrowLeft, Shield, UserPlus } from 'lucide-react';
+import { Eye, EyeOff, LogIn, ArrowLeft, Shield, UserPlus, X, CheckCircle } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 const AnimatedSignIn: React.FC = () => {
@@ -8,6 +8,10 @@ const AnimatedSignIn: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
+  const [isResettingPassword, setIsResettingPassword] = useState(false);
+  const [resetEmailSent, setResetEmailSent] = useState(false);
   const [mounted, setMounted] = useState(false);
   
   // Animation states
@@ -51,6 +55,31 @@ const AnimatedSignIn: React.FC = () => {
       console.error('Login error:', error);
       alert('An error occurred during login. Please try again.');
       setIsLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsResettingPassword(true);
+    
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(forgotPasswordEmail, {
+        redirectTo: `${window.location.origin}/agent-login?reset=true`,
+      });
+
+      if (error) {
+        console.error('Password reset error:', error);
+        alert(`Password reset failed: ${error.message}`);
+        setIsResettingPassword(false);
+        return;
+      }
+
+      setResetEmailSent(true);
+      setIsResettingPassword(false);
+    } catch (error) {
+      console.error('Password reset error:', error);
+      alert('An error occurred during password reset. Please try again.');
+      setIsResettingPassword(false);
     }
   };
 
@@ -279,7 +308,12 @@ const AnimatedSignIn: React.FC = () => {
                     </label>
                   </div>
                   <a 
-                    href="#forgot-password" 
+                    href="#forgot-password"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowForgotPassword(true);
+                      setForgotPasswordEmail(email);
+                    }}
                     className={`text-sm font-medium ${
                       theme === 'dark' ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-500 hover:text-yellow-600'
                     }`}
@@ -336,6 +370,108 @@ const AnimatedSignIn: React.FC = () => {
                   </div>
                 </div>
               </div>
+              
+              {/* Forgot Password Modal */}
+              {showForgotPassword && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                  <div className={`rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto ${
+                    theme === 'dark' ? 'bg-slate-800' : 'bg-white'
+                  }`}>
+                    <div className={`p-6 border-b ${theme === 'dark' ? 'border-slate-600' : 'border-gray-200'}`}>
+                      <div className="flex items-center justify-between">
+                        <h3 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                          Reset Password
+                        </h3>
+                        <button
+                          onClick={() => {
+                            setShowForgotPassword(false);
+                            setResetEmailSent(false);
+                            setForgotPasswordEmail('');
+                          }}
+                          className={`${theme === 'dark' ? 'text-gray-400 hover:text-gray-300' : 'text-gray-400 hover:text-gray-600'} transition-colors`}
+                        >
+                          <X className="h-6 w-6" />
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div className="p-6">
+                      {!resetEmailSent ? (
+                        <form onSubmit={handleForgotPassword} className="space-y-4">
+                          <div>
+                            <p className={`text-sm mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                              Enter your email address and we'll send you a link to reset your password.
+                            </p>
+                            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
+                              Email Address
+                            </label>
+                            <input
+                              type="email"
+                              required
+                              value={forgotPasswordEmail}
+                              onChange={(e) => setForgotPasswordEmail(e.target.value)}
+                              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent ${
+                                theme === 'dark' 
+                                  ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400' 
+                                  : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400'
+                              }`}
+                              placeholder="your.email@example.com"
+                            />
+                          </div>
+                          
+                          <div className="flex space-x-3 pt-4">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setShowForgotPassword(false);
+                                setResetEmailSent(false);
+                                setForgotPasswordEmail('');
+                              }}
+                              className={`flex-1 px-4 py-2 border rounded-lg transition-colors ${
+                                theme === 'dark' 
+                                  ? 'border-slate-600 text-gray-300 hover:bg-slate-700' 
+                                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                              }`}
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              type="submit"
+                              disabled={isResettingPassword}
+                              className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                              {isResettingPassword ? 'Sending...' : 'Send Reset Link'}
+                            </button>
+                          </div>
+                        </form>
+                      ) : (
+                        <div className="text-center">
+                          <div className="bg-green-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                            <CheckCircle className="h-8 w-8 text-green-600" />
+                          </div>
+                          <h4 className={`text-lg font-semibold mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                            Reset Link Sent!
+                          </h4>
+                          <p className={`text-sm mb-6 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                            We've sent a password reset link to <strong>{forgotPasswordEmail}</strong>. 
+                            Check your email and follow the instructions to reset your password.
+                          </p>
+                          <button
+                            onClick={() => {
+                              setShowForgotPassword(false);
+                              setResetEmailSent(false);
+                              setForgotPasswordEmail('');
+                            }}
+                            className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-6 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
