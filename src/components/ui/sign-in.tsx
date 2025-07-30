@@ -93,6 +93,8 @@ const AnimatedSignIn: React.FC = () => {
         console.error('Sign up error:', error);
         if (error.message.includes('already_registered')) {
           alert('An account with this email already exists. Please try logging in instead.');
+        } else if (error.message.includes('over_email_send_rate_limit')) {
+          alert('Please wait a few seconds before trying to sign up again. This is a temporary security measure.');
         } else {
           alert(`Sign up failed: ${error.message}`);
         }
