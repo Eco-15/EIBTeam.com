@@ -18,6 +18,7 @@ const AdminDashboard = () => {
   // Form states
   const [showAnnouncementForm, setShowAnnouncementForm] = useState(false);
   const [showEventForm, setShowEventForm] = useState(false);
+  const [showCreateAccountForm, setShowCreateAccountForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState('');
 
@@ -41,6 +42,14 @@ const AdminDashboard = () => {
     timezone: 'CST',
     zoomLink: '',
     passcode: ''
+  });
+
+  const [createAccountForm, setCreateAccountForm] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+    firstName: '',
+    lastName: ''
   });
 
   useEffect(() => {
@@ -162,6 +171,93 @@ const AdminDashboard = () => {
     } catch (error) {
       console.error('Error creating event:', error);
       alert('Error creating event');
+    }
+
+    setIsSubmitting(false);
+  };
+
+  const handleCreateAccount = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Validate passwords match
+    if (createAccountForm.password !== createAccountForm.confirmPassword) {
+      alert('Passwords do not match. Please try again.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validate password strength
+    if (createAccountForm.password.length < 6) {
+      alert('Password must be at least 6 characters long.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: createAccountForm.email,
+        password: createAccountForm.password,
+        options: {
+          data: {
+            first_name: createAccountForm.firstName,
+            last_name: createAccountForm.lastName,
+            full_name: `${createAccountForm.firstName} ${createAccountForm.lastName}`.trim()
+          }
+        }
+      });
+
+      if (error) {
+        console.error('Sign up error:', error);
+        if (error.message.includes('already_registered')) {
+          alert('An account with this email already exists. Please try logging in instead.');
+        } else if (error.message.includes('over_email_send_rate_limit')) {
+          alert('Please wait a few seconds before trying to sign up again. This is a temporary security measure.');
+        } else {
+          alert(`Sign up failed: ${error.message}`);
+        }
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (data.user) {
+        // Create agent profile after successful signup
+        try {
+          const { error: profileError } = await supabase
+            .from('agent_profiles')
+            .insert([{
+              user_id: data.user.id,
+              first_name: createAccountForm.firstName,
+              last_name: createAccountForm.lastName,
+              status: 'active'
+            }]);
+
+          if (profileError) {
+            console.error('Error creating agent profile:', profileError);
+          }
+
+        } catch (error) {
+          console.error('Error setting up user profile:', error);
+        }
+
+        setSubmitSuccess('Account created successfully! The user can now log in with their credentials.');
+        
+        // Reset form
+        setCreateAccountForm({
+          email: '',
+          password: '',
+          confirmPassword: '',
+          firstName: '',
+          lastName: ''
+        });
+        setShowCreateAccountForm(false);
+        await loadAllData();
+        
+        setTimeout(() => setSubmitSuccess(''), 5000);
+      }
+    } catch (error) {
+      console.error('Sign up error:', error);
+      alert('An error occurred during sign up. Please try again.');
     }
 
     setIsSubmitting(false);
@@ -348,6 +444,13 @@ const AdminDashboard = () => {
                             >
                               <Calendar className="h-5 w-5 text-purple-600" />
                               <span className="text-purple-700 font-medium">Schedule Event</span>
+                            </button>
+                            <button
+                              onClick={() => setShowCreateAccountForm(true)}
+                              className="w-full flex items-center space-x-3 p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                            >
+                              <Users className="h-5 w-5 text-blue-600" />
+                              <span className="text-blue-700 font-medium">Create Account</span>
                             </button>
                           </div>
                         </div>
@@ -790,6 +893,118 @@ const AdminDashboard = () => {
                     className="flex-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Creating...' : 'Create Event'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* Create Account Modal */}
+        {showCreateAccountForm && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-gray-900">Create Account</h3>
+                  <button
+                    onClick={() => setShowCreateAccountForm(false)}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
+                </div>
+              </div>
+              
+              <form onSubmit={handleCreateAccount} className="p-6 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={createAccountForm.firstName}
+                      onChange={(e) => setCreateAccountForm({...createAccountForm, firstName: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="John"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={createAccountForm.lastName}
+                      onChange={(e) => setCreateAccountForm({...createAccountForm, lastName: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Doe"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                  <input
+                    type="email"
+                    required
+                    value={createAccountForm.email}
+                    onChange={(e) => setCreateAccountForm({...createAccountForm, email: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Password *</label>
+                  <input
+                    type="password"
+                    required
+                    value={createAccountForm.password}
+                    onChange={(e) => setCreateAccountForm({...createAccountForm, password: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Minimum 6 characters"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password *</label>
+                  <input
+                    type="password"
+                    required
+                    value={createAccountForm.confirmPassword}
+                    onChange={(e) => setCreateAccountForm({...createAccountForm, confirmPassword: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Confirm your password"
+                  />
+                </div>
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-start space-x-3">
+                    <Shield className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="text-sm font-medium text-blue-900 mb-1">Secure Registration</h4>
+                      <p className="text-xs text-blue-700">
+                        Your account information is encrypted and secure. You will be assigned the agent role by default.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex space-x-3 pt-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowCreateAccountForm(false)}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:from-blue-600 hover:to-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Creating Account...' : 'Create Account'}
                   </button>
                 </div>
               </form>
