@@ -10,6 +10,8 @@ const DashboardHeader = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [announcements, setAnnouncements] = useState<any[]>([]);
+  const [showAnnouncementModal, setShowAnnouncementModal] = useState(false);
+  const [selectedAnnouncement, setSelectedAnnouncement] = useState<any>(null);
 
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -140,17 +142,9 @@ const DashboardHeader = () => {
                     {notifications.map((notification) => (
                       <div
                         key={notification.id}
-                        className={`px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 cursor-pointer group ${
+                        className={`px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 ${
                           !notification.read ? 'bg-blue-50' : ''
                         }`}
-                        onClick={() => {
-                          const announcement = announcements.find(a => a.id === notification.id);
-                          if (announcement) {
-                            setSelectedAnnouncement(announcement);
-                            setShowAnnouncementModal(true);
-                            setIsNotificationsOpen(false);
-                          }
-                        }}
                       >
                         <div className="flex items-start space-x-3">
                           <div className={`p-1 rounded-full ${getNotificationColor(notification.type)}`}>
@@ -161,14 +155,11 @@ const DashboardHeader = () => {
                               <p className={`text-sm font-medium ${!notification.read ? 'text-gray-900' : 'text-gray-700'}`}>
                                 {notification.title}
                               </p>
-                              <div className="flex items-center space-x-2">
-                                {!notification.read && (
-                                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                )}
-                                <Eye className="h-3 w-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                              </div>
+                              {!notification.read && (
+                                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                              )}
                             </div>
-                            <p className="text-sm text-gray-600 mt-1 line-clamp-2">{notification.message}</p>
+                            <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
                             <p className="text-xs text-gray-400 mt-1">{notification.time}</p>
                           </div>
                         </div>
@@ -231,6 +222,93 @@ const DashboardHeader = () => {
           </div>
         </div>
       </div>
+
+      {/* Announcement Detail Modal */}
+      {showAnnouncementModal && selectedAnnouncement && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <h3 className="text-xl font-semibold text-gray-900">{selectedAnnouncement.title}</h3>
+                  <span className={`px-2 py-1 text-xs rounded-full font-medium ${
+                    selectedAnnouncement.priority === 'high' ? 'bg-red-100 text-red-800' :
+                    selectedAnnouncement.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
+                    selectedAnnouncement.priority === 'urgent' ? 'bg-red-100 text-red-800' :
+                    'bg-gray-100 text-gray-800'
+                  }`}>
+                    {selectedAnnouncement.priority}
+                  </span>
+                </div>
+                <button
+                  onClick={() => {
+                    setShowAnnouncementModal(false);
+                    setSelectedAnnouncement(null);
+                  }}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+            </div>
+            
+            <div className="p-6 space-y-6">
+              {/* Author Info */}
+              <div className="flex items-center space-x-3">
+                <div className="h-10 w-10 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center">
+                  <span className="text-black font-medium text-sm">
+                    {selectedAnnouncement.author_name.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <div>
+                  <p className="font-medium text-gray-900">{selectedAnnouncement.author_name}</p>
+                  <p className="text-sm text-gray-500">
+                    {new Date(selectedAnnouncement.created_at).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </p>
+                </div>
+              </div>
+
+              {/* Message */}
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-3">Message</h4>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{selectedAnnouncement.message}</p>
+                </div>
+              </div>
+
+              {/* Metadata */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="text-sm font-medium text-gray-700 mb-2">Target Audience</h4>
+                  <span className="inline-flex px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                    {selectedAnnouncement.target_audience === 'all' ? 'All Members' : 
+                     selectedAnnouncement.target_audience.charAt(0).toUpperCase() + selectedAnnouncement.target_audience.slice(1)}
+                  </span>
+                </div>
+                
+                {selectedAnnouncement.expires_at && (
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-700 mb-2">Expires</h4>
+                    <p className="text-gray-600">
+                      {new Date(selectedAnnouncement.expires_at).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

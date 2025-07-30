@@ -129,6 +129,7 @@ Deno.serve(async (req) => {
                 user_id: newUser.user.id,
                 first_name: firstName,
                 last_name: lastName,
+                date_of_birth: dateOfBirth || null,
                 status: 'active'
               }])
 
