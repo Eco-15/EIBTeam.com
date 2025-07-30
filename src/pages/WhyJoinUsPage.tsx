@@ -263,7 +263,7 @@ const WhyJoinUsPage = () => {
             </a>
           </div>
 
-          <div className="mt-12 grid md:grid-cols-4 gap-8 text-center">
+          <div className="mt-12 grid md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-yellow-400 mb-2">24/7</div>
               <div className="text-gray-300">Support</div>
