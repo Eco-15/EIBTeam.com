@@ -564,7 +564,7 @@ const AboutPage = () => {
               </div>
               <div className="flex items-center justify-center space-x-3">
                 <Mail className="h-6 w-6 text-yellow-400" />
-                <span>EIB.PHP@Gmail.com</span>
+                <span>admin@eibagency.com</span>
               </div>
               <div className="flex items-center justify-center space-x-3">
                 <MapPin className="h-6 w-6 text-yellow-400" />
