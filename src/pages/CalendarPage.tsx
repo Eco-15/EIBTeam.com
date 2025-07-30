@@ -281,6 +281,14 @@ const CalendarPage = () => {
                               <span>By {announcement.author_name}</span>
                               <span>{new Date(announcement.created_at).toLocaleDateString()}</span>
                             </div>
+                            <div className="mt-3">
+                              <button
+                                onClick={() => setSelectedAnnouncement(announcement)}
+                                className="text-blue-600 hover:text-blue-800 text-xs font-medium"
+                              >
+                                View More
+                              </button>
+                            </div>
                           </div>
                         )) : (
                           <div className="text-center py-8">
