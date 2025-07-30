@@ -22,6 +22,8 @@ const AdminDashboard = () => {
   const [submitSuccess, setSubmitSuccess] = useState('');
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<{type: 'announcement' | 'event', id: string, title: string} | null>(null);
+  const [editingAnnouncement, setEditingAnnouncement] = useState<Announcement | null>(null);
+  const [editingEvent, setEditingEvent] = useState<ScheduleEvent | null>(null);
 
   // Form data
   const [userForm, setUserForm] = useState({
@@ -264,6 +266,34 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleEditAnnouncement = (announcement: Announcement) => {
+    setEditingAnnouncement(announcement);
+    setAnnouncementForm({
+      title: announcement.title,
+      message: announcement.message,
+      priority: announcement.priority,
+      targetAudience: announcement.target_audience,
+      expiresAt: announcement.expires_at ? announcement.expires_at.split('T')[0] : ''
+    });
+    setShowAnnouncementForm(true);
+  };
+
+  const handleEditEvent = (event: ScheduleEvent) => {
+    setEditingEvent(event);
+    setEventForm({
+      title: event.title,
+      description: event.description || '',
+      eventType: event.event_type,
+      dayOfWeek: event.day_of_week,
+      startTime: event.start_time,
+      endTime: event.end_time || '',
+      timezone: event.timezone,
+      zoomLink: event.zoom_link || '',
+      passcode: event.passcode || ''
+    });
+    setShowEventForm(true);
+  };
+
   const handleCreateAnnouncement = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!currentUser || !isAdmin) return;
@@ -271,28 +301,43 @@ const AdminDashboard = () => {
     setIsSubmitting(true);
 
     try {
-      const announcement = await DatabaseService.createAnnouncement({
-        title: announcementForm.title,
-        message: announcementForm.message,
-        priority: announcementForm.priority as 'Low' | 'Medium' | 'High' | 'URGENT',
-        target_audience: announcementForm.targetAudience as 'all' | 'agents' ,
-        expires_at: announcementForm.expiresAt || null,
-        author_name: `${currentUser.email?.split('@')[0] || 'Admin'}`
-      });
+      let result;
+      
+      if (editingAnnouncement) {
+        // Update existing announcement
+        result = await DatabaseService.updateAnnouncement(editingAnnouncement.id, {
+          title: announcementForm.title,
+          message: announcementForm.message,
+          priority: announcementForm.priority as 'Low' | 'Medium' | 'High' | 'URGENT',
+          target_audience: announcementForm.targetAudience as 'all' | 'agents',
+          expires_at: announcementForm.expiresAt ? new Date(announcementForm.expiresAt).toISOString() : null
+        });
+      } else {
+        // Create new announcement
+        result = await DatabaseService.createAnnouncement({
+          title: announcementForm.title,
+          message: announcementForm.message,
+          priority: announcementForm.priority as 'Low' | 'Medium' | 'High' | 'URGENT',
+          target_audience: announcementForm.targetAudience as 'all' | 'agents' ,
+          expires_at: announcementForm.expiresAt || null,
+          author_name: `${currentUser.email?.split('@')[0] || 'Admin'}`
+        });
+      }
 
-      if (announcement) {
-        setSubmitSuccess('Announcement created successfully!');
+      if (result) {
+        setSubmitSuccess(editingAnnouncement ? 'Announcement updated successfully!' : 'Announcement created successfully!');
         setAnnouncementForm({ title: '', message: '', priority: 'medium', targetAudience: 'all', expiresAt: '' });
         setShowAnnouncementForm(false);
+        setEditingAnnouncement(null);
         await loadAllData();
         
         setTimeout(() => setSubmitSuccess(''), 5000);
       } else {
-        alert('Error creating announcement');
+        alert(editingAnnouncement ? 'Error updating announcement' : 'Error creating announcement');
       }
     } catch (error) {
       console.error('Error creating announcement:', error);
-      alert('Error creating announcement');
+      alert(`Error ${editingAnnouncement ? 'updating' : 'creating'} announcement: ${error.message}`);
     }
 
     setIsSubmitting(false);
@@ -305,33 +350,52 @@ const AdminDashboard = () => {
     setIsSubmitting(true);
 
     try {
-      const event = await DatabaseService.createScheduleEvent({
-        title: eventForm.title,
-        description: eventForm.description,
-        event_type: eventForm.eventType as 'meeting' | 'training' | 'call' | 'bom' | 'hierarchy' | 'sales',
-        day_of_week: eventForm.dayOfWeek,
-        start_time: eventForm.startTime,
-        end_time: eventForm.endTime || null,
-        timezone: eventForm.timezone,
-        zoom_link: eventForm.zoomLink || null,
-        passcode: eventForm.passcode || null,
-        is_recurring: true,
-        is_active: true
-      });
+      let result;
+      
+      if (editingEvent) {
+        // Update existing event
+        result = await DatabaseService.updateScheduleEvent(editingEvent.id, {
+          title: eventForm.title,
+          description: eventForm.description,
+          event_type: eventForm.eventType as 'meeting' | 'training' | 'call' | 'bom' | 'hierarchy' | 'sales',
+          day_of_week: eventForm.dayOfWeek,
+          start_time: eventForm.startTime,
+          end_time: eventForm.endTime || null,
+          timezone: eventForm.timezone,
+          zoom_link: eventForm.zoomLink || null,
+          passcode: eventForm.passcode || null
+        });
+      } else {
+        // Create new event
+        result = await DatabaseService.createScheduleEvent({
+          title: eventForm.title,
+          description: eventForm.description,
+          event_type: eventForm.eventType as 'meeting' | 'training' | 'call' | 'bom' | 'hierarchy' | 'sales',
+          day_of_week: eventForm.dayOfWeek,
+          start_time: eventForm.startTime,
+          end_time: eventForm.endTime || null,
+          timezone: eventForm.timezone,
+          zoom_link: eventForm.zoomLink || null,
+          passcode: eventForm.passcode || null,
+          is_recurring: true,
+          is_active: true
+        });
+      }
 
-      if (event) {
-        setSubmitSuccess('Event created successfully!');
+      if (result) {
+        setSubmitSuccess(editingEvent ? 'Event updated successfully!' : 'Event created successfully!');
         setEventForm({ title: '', description: '', eventType: 'meeting', dayOfWeek: 'Monday', startTime: '', endTime: '', timezone: 'CST', zoomLink: '', passcode: '' });
         setShowEventForm(false);
+        setEditingEvent(null);
         await loadAllData();
         
         setTimeout(() => setSubmitSuccess(''), 5000);
       } else {
-        alert('Error creating event');
+        alert(editingEvent ? 'Error updating event' : 'Error creating event');
       }
     } catch (error) {
       console.error('Error creating event:', error);
-      alert('Error creating event');
+      alert(`Error ${editingEvent ? 'updating' : 'creating'} event: ${error.message}`);
     }
 
     setIsSubmitting(false);
@@ -661,7 +725,10 @@ const AdminDashboard = () => {
                                 </div>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                                <button
+                                  onClick={() => handleEditAnnouncement(announcement)}
+                                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                                >
                                   <Edit className="h-4 w-4" />
                                 </button>
                                 <button
@@ -701,7 +768,10 @@ const AdminDashboard = () => {
                                 <p className="text-gray-600 text-sm mb-3">{event.description}</p>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                                <button
+                                  onClick={() => handleEditEvent(event)}
+                                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                                >
                                   <Edit className="h-4 w-4" />
                                 </button>
                                 <button
@@ -877,9 +947,15 @@ const AdminDashboard = () => {
             <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6 border-b border-gray-200">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-gray-900">Create Announcement</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {editingAnnouncement ? 'Edit Announcement' : 'Create Announcement'}
+                  </h3>
                   <button
-                    onClick={() => setShowAnnouncementForm(false)}
+                    onClick={() => {
+                      setShowAnnouncementForm(false);
+                      setEditingAnnouncement(null);
+                      setAnnouncementForm({ title: '', message: '', priority: 'medium', targetAudience: 'all', expiresAt: '' });
+                    }}
                     className="text-gray-400 hover:text-gray-600 transition-colors"
                   >
                     <X className="h-6 w-6" />
@@ -954,7 +1030,11 @@ const AdminDashboard = () => {
                 <div className="flex space-x-3 pt-4">
                   <button
                     type="button"
-                    onClick={() => setShowAnnouncementForm(false)}
+                    onClick={() => {
+                      setShowAnnouncementForm(false);
+                      setEditingAnnouncement(null);
+                      setAnnouncementForm({ title: '', message: '', priority: 'medium', targetAudience: 'all', expiresAt: '' });
+                    }}
                     className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     Cancel
@@ -964,7 +1044,10 @@ const AdminDashboard = () => {
                     disabled={isSubmitting}
                     className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg font-medium hover:from-green-600 hover:to-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? 'Creating...' : 'Create Announcement'}
+                    {isSubmitting ? 
+                      (editingAnnouncement ? 'Updating...' : 'Creating...') : 
+                      (editingAnnouncement ? 'Update Announcement' : 'Create Announcement')
+                    }
                   </button>
                 </div>
               </form>
@@ -978,9 +1061,15 @@ const AdminDashboard = () => {
             <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6 border-b border-gray-200">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-gray-900">Schedule Event</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {editingEvent ? 'Edit Schedule Event' : 'Schedule Event'}
+                  </h3>
                   <button
-                    onClick={() => setShowEventForm(false)}
+                    onClick={() => {
+                      setShowEventForm(false);
+                      setEditingEvent(null);
+                      setEventForm({ title: '', description: '', eventType: 'meeting', dayOfWeek: 'Monday', startTime: '', endTime: '', timezone: 'CST', zoomLink: '', passcode: '' });
+                    }}
                     className="text-gray-400 hover:text-gray-600 transition-colors"
                   >
                     <X className="h-6 w-6" />
@@ -1095,7 +1184,11 @@ const AdminDashboard = () => {
                 <div className="flex space-x-3 pt-4">
                   <button
                     type="button"
-                    onClick={() => setShowEventForm(false)}
+                    onClick={() => {
+                      setShowEventForm(false);
+                      setEditingEvent(null);
+                      setEventForm({ title: '', description: '', eventType: 'meeting', dayOfWeek: 'Monday', startTime: '', endTime: '', timezone: 'CST', zoomLink: '', passcode: '' });
+                    }}
                     className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     Cancel
@@ -1105,7 +1198,10 @@ const AdminDashboard = () => {
                     disabled={isSubmitting}
                     className="flex-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? 'Creating...' : 'Create Event'}
+                    {isSubmitting ? 
+                      (editingEvent ? 'Updating...' : 'Creating...') : 
+                      (editingEvent ? 'Update Event' : 'Create Event')
+                    }
                   </button>
                 </div>
               </form>
