@@ -5,12 +5,8 @@ import { supabase } from '@/lib/supabase';
 const AnimatedSignIn: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [showPassword, setShowPassword] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
   
@@ -58,86 +54,6 @@ const AnimatedSignIn: React.FC = () => {
     }
   };
 
-  const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    
-    // Validate passwords match
-    if (password !== confirmPassword) {
-      alert('Passwords do not match. Please try again.');
-      setIsLoading(false);
-      return;
-    }
-
-    // Validate password strength
-    if (password.length < 6) {
-      alert('Password must be at least 6 characters long.');
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          data: {
-            first_name: firstName,
-            last_name: lastName,
-            full_name: `${firstName} ${lastName}`.trim()
-          }
-        }
-      });
-
-      if (error) {
-        console.error('Sign up error:', error);
-        if (error.message.includes('already_registered')) {
-          alert('An account with this email already exists. Please try logging in instead.');
-        } else if (error.message.includes('over_email_send_rate_limit')) {
-          alert('Please wait a few seconds before trying to sign up again. This is a temporary security measure.');
-        } else {
-          alert(`Sign up failed: ${error.message}`);
-        }
-        setIsLoading(false);
-        return;
-      }
-
-      if (data.user) {
-        // Create agent profile after successful signup
-        try {
-          const { error: profileError } = await supabase
-            .from('agent_profiles')
-            .insert([{
-              user_id: data.user.id,
-              first_name: firstName,
-              last_name: lastName,
-              status: 'active'
-            }]);
-
-          if (profileError) {
-            console.error('Error creating agent profile:', profileError);
-          }
-
-        } catch (error) {
-          console.error('Error setting up user profile:', error);
-        }
-
-        alert('Account created successfully! You can now log in with your credentials.');
-        
-        // Switch back to sign in mode
-        setIsSignUp(false);
-        setFirstName('');
-        setLastName('');
-        setConfirmPassword('');
-        setPassword('');
-      }
-    } catch (error) {
-      console.error('Sign up error:', error);
-      alert('An error occurred during sign up. Please try again.');
-    }
-
-    setIsLoading(false);
-  };
   // Only show the component once mounted to avoid hydration issues
   if (!mounted) return null;
 
@@ -273,77 +189,16 @@ const AnimatedSignIn: React.FC = () => {
                   />
                   <div>
                     <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                      {isSignUp ? 'Create Account' : 'Agent Login'}
+                      Agent Login
                     </h1>
                   </div>
                 </div>
                 <p className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                  {isSignUp 
-                    ? 'Create your EIB Agency agent account to get started with your insurance career.'
-                    : 'Welcome to EIB Agency agent portal. Please enter your credentials to access your dashboard.'
-                  }
+                  Welcome to EIB Agency agent portal. Please enter your credentials to access your dashboard.
                 </p>
               </div>
               
-              <form onSubmit={isSignUp ? handleSignUp : handleSignIn} className="space-y-6">
-                {isSignUp && (
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label 
-                        htmlFor="firstName" 
-                        className={`block text-sm font-medium ${
-                          theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                        }`}
-                      >
-                        First Name *
-                      </label>
-                      <div className={`relative rounded-md shadow-sm transition-all duration-300`}>
-                        <input
-                          type="text"
-                          name="firstName"
-                          id="firstName"
-                          required
-                          value={firstName}
-                          onChange={(e) => setFirstName(e.target.value)}
-                          className={`block w-full rounded-md border py-3 px-4 focus:outline-none focus:ring-2 sm:text-sm ${
-                            theme === 'dark' 
-                              ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
-                              : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
-                          }`}
-                          placeholder="John"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <label 
-                        htmlFor="lastName" 
-                        className={`block text-sm font-medium ${
-                          theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                        }`}
-                      >
-                        Last Name *
-                      </label>
-                      <div className={`relative rounded-md shadow-sm transition-all duration-300`}>
-                        <input
-                          type="text"
-                          name="lastName"
-                          id="lastName"
-                          required
-                          value={lastName}
-                          onChange={(e) => setLastName(e.target.value)}
-                          className={`block w-full rounded-md border py-3 px-4 focus:outline-none focus:ring-2 sm:text-sm ${
-                            theme === 'dark' 
-                              ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
-                              : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
-                          }`}
-                          placeholder="Doe"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
-                
+              <form onSubmit={handleSignIn} className="space-y-6">
                 <div className="space-y-1">
                   <label 
                     htmlFor="email" 
@@ -351,7 +206,7 @@ const AnimatedSignIn: React.FC = () => {
                       theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                     }`}
                   >
-                    {isSignUp ? 'Email Address *' : 'Agent ID or Email'}
+                    Agent ID or Email
                   </label>
                   <div className={`relative rounded-md shadow-sm transition-all duration-300`}>
                     <input
@@ -366,7 +221,7 @@ const AnimatedSignIn: React.FC = () => {
                           ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
                           : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
                       }`}
-                      placeholder={isSignUp ? "your.email@example.com" : "agent.id@eibteam.com"}
+                      placeholder="agent.id@eibteam.com"
                     />
                   </div>
                 </div>
@@ -393,7 +248,7 @@ const AnimatedSignIn: React.FC = () => {
                           ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
                           : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
                       }`}
-                      placeholder={isSignUp ? "Minimum 6 characters" : "••••••••"}
+                      placeholder="••••••••"
                     />
                     <button
                       type="button"
@@ -411,58 +266,27 @@ const AnimatedSignIn: React.FC = () => {
                   </div>
                 </div>
                 
-                {isSignUp && (
-                  <div className="space-y-1">
-                    <label 
-                      htmlFor="confirmPassword" 
-                      className={`block text-sm font-medium ${
-                        theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                      }`}
-                    >
-                      Confirm Password *
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <input
+                      id="remember-me"
+                      name="remember-me"
+                      type="checkbox"
+                      className="h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="remember-me" className={`ml-2 block text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Remember me
                     </label>
-                    <div className={`relative rounded-md shadow-sm transition-all duration-300`}>
-                      <input
-                        type={showPassword ? 'text' : 'password'}
-                        name="confirmPassword"
-                        id="confirmPassword"
-                        required
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        className={`block w-full rounded-md border py-3 px-4 focus:outline-none focus:ring-2 sm:text-sm ${
-                          theme === 'dark' 
-                            ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
-                            : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
-                        }`}
-                        placeholder="Confirm your password"
-                      />
-                    </div>
                   </div>
-                )}
-                
-                {!isSignUp && (
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <input
-                        id="remember-me"
-                        name="remember-me"
-                        type="checkbox"
-                        className="h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="remember-me" className={`ml-2 block text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
-                        Remember me
-                      </label>
-                    </div>
-                    <a 
-                      href="#forgot-password" 
-                      className={`text-sm font-medium ${
-                        theme === 'dark' ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-500 hover:text-yellow-600'
-                      }`}
-                    >
-                      Forgot password?
-                    </a>
-                  </div>
-                )}
+                  <a 
+                    href="#forgot-password" 
+                    className={`text-sm font-medium ${
+                      theme === 'dark' ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-500 hover:text-yellow-600'
+                    }`}
+                  >
+                    Forgot password?
+                  </a>
+                </div>
                 
                 <button
                   type="submit"
@@ -487,40 +311,15 @@ const AnimatedSignIn: React.FC = () => {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         />
                       </svg>
-                      {isSignUp ? 'Creating Account...' : 'Signing in...'}
+                      Signing in...
                     </span>
                   ) : (
                     <span className="flex items-center justify-center">
-                      {isSignUp ? (
-                        <>
-                          <UserPlus className="mr-2 h-4 w-4" />
-                          Create Account
-                        </>
-                      ) : (
-                        <>
-                          <LogIn className="mr-2 h-4 w-4" />
-                          Sign In to Portal
-                        </>
-                      )}
+                      <LogIn className="mr-2 h-4 w-4" />
+                      Sign In to Portal
                     </span>
                   )}
                 </button>
-                
-                {/* Toggle between Sign In and Sign Up */}
-                <div className="text-center">
-                  <button
-                    type="button"
-                    onClick={() => setIsSignUp(!isSignUp)}
-                    className={`text-sm font-medium ${
-                      theme === 'dark' ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-600 hover:text-yellow-500'
-                    } transition-colors duration-300`}
-                  >
-                    {isSignUp 
-                      ? 'Already have an account? Sign in' 
-                      : 'Need an account? Sign up'
-                    }
-                  </button>
-                </div>
               </form>
               
               {/* Security Notice */}
@@ -532,7 +331,7 @@ const AnimatedSignIn: React.FC = () => {
                       Secure Login
                     </h4>
                     <p className={`text-xs ${theme === 'dark' ? 'text-gray-300' : 'text-yellow-700'}`}>
-                      Your credentials are encrypted and secure. Never share your login information with anyone.
+                      Your login credentials are encrypted and secure. Contact your administrator if you need account access.
                     </p>
                   </div>
                 </div>
