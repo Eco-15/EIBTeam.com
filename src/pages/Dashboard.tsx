@@ -373,6 +373,9 @@ const Dashboard = () => {
                           </a>
                         </div>
                       )}
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Learning Path Section */}
