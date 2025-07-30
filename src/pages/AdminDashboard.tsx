@@ -4,6 +4,7 @@ import DashboardSidebar from '../components/DashboardSidebar';
 import { Users, Plus, Bell, Calendar, BarChart3, Shield, CheckCircle, AlertCircle, Clock, X, Edit, Trash2 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { DatabaseService, Announcement, ScheduleEvent, UserInvitation } from '@/lib/database';
+import { AdminService } from '@/lib/adminService';
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -84,11 +85,13 @@ const AdminDashboard = () => {
 
   const loadAllData = async () => {
     try {
-      const [announcementsList, eventsList, invitationsList] = await Promise.all([
+      const [announcementsList, eventsList] = await Promise.all([
         DatabaseService.getAnnouncements(),
-        DatabaseService.getScheduleEvents(),
-        DatabaseService.getUserInvitations()
+        DatabaseService.getScheduleEvents()
       ]);
+
+      // Load invitations using admin service
+      const invitationsList = await AdminService.getUserInvitations();
 
       setAnnouncements(announcementsList);
       setEvents(eventsList);
@@ -105,32 +108,27 @@ const AdminDashboard = () => {
     setIsSubmitting(true);
 
     try {
-      // Generate temporary password if not provided
-      const tempPassword = userForm.temporaryPassword || generateTemporaryPassword();
-
-      // Create invitation record
-      const invitation = await DatabaseService.createUserInvitation({
+      const result = await AdminService.createUser({
         email: userForm.email,
-        first_name: userForm.firstName,
-        last_name: userForm.lastName,
+        firstName: userForm.firstName,
+        lastName: userForm.lastName,
         role: userForm.role as 'admin' | 'agent' | 'manager',
-        temporary_password: tempPassword,
-        invited_by: currentUser.id
+        temporaryPassword: userForm.temporaryPassword
       });
 
-      if (invitation) {
-        setSubmitSuccess('User invitation created successfully!');
+      if (result.success) {
+        setSubmitSuccess('User created successfully! They can now log in with their credentials.');
         setUserForm({ email: '', firstName: '', lastName: '', role: 'agent', temporaryPassword: '' });
         setShowUserForm(false);
         await loadAllData();
         
         setTimeout(() => setSubmitSuccess(''), 5000);
       } else {
-        alert('Error creating user invitation');
+        alert('Error creating user');
       }
     } catch (error) {
       console.error('Error creating user:', error);
-      alert('Error creating user invitation');
+      alert(`Error creating user: ${error.message}`);
     }
 
     setIsSubmitting(false);

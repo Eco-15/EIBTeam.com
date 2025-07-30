@@ -4,6 +4,7 @@ import DashboardSidebar from '../components/DashboardSidebar';
 import { Users, Plus, Mail, Shield, Calendar, Trash2, Edit, CheckCircle, Clock, X } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { DatabaseService } from '@/lib/database';
+import { AdminService } from '@/lib/adminService';
 
 interface UserInvitation {
   id: string;
@@ -71,17 +72,8 @@ const AdminUsersPage = () => {
 
   const loadInvitations = async () => {
     try {
-      const { data, error } = await supabase
-        .from('user_invitations')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Error loading invitations:', error);
-        return;
-      }
-
-      setInvitations(data || []);
+      const invitationsList = await AdminService.getUserInvitations();
+      setInvitations(invitationsList);
     } catch (error) {
       console.error('Error loading invitations:', error);
     }
@@ -103,81 +95,27 @@ const AdminUsersPage = () => {
     setIsSubmitting(true);
 
     try {
-      const tempPassword = userForm.temporaryPassword || generateTemporaryPassword();
-
-      // Create user account using Supabase auth
-      const { data, error } = await supabase.auth.admin.createUser({
+      const result = await AdminService.createUser({
         email: userForm.email,
-        password: tempPassword,
-        email_confirm: true,
-        user_metadata: {
-          first_name: userForm.firstName,
-          last_name: userForm.lastName,
-          full_name: `${userForm.firstName} ${userForm.lastName}`.trim()
-        }
+        firstName: userForm.firstName,
+        lastName: userForm.lastName,
+        role: userForm.role as 'admin' | 'agent' | 'manager',
+        temporaryPassword: userForm.temporaryPassword
       });
 
-      if (error) {
-        console.error('User creation error:', error);
-        if (error.message.includes('already_registered')) {
-          alert('An account with this email already exists.');
-        } else {
-          alert(`User creation failed: ${error.message}`);
-        }
-        setIsSubmitting(false);
-        return;
-      }
-
-      if (data.user) {
-        // Create agent profile
-        const { error: profileError } = await supabase
-          .from('agent_profiles')
-          .insert([{
-            user_id: data.user.id,
-            first_name: userForm.firstName,
-            last_name: userForm.lastName,
-            status: 'active'
-          }]);
-
-        if (profileError) {
-          console.error('Error creating agent profile:', profileError);
-        }
-
-        // Create user role
-        const { error: roleError } = await supabase
-          .from('user_roles')
-          .insert([{
-            user_id: data.user.id,
-            role: userForm.role,
-            assigned_by: currentUser.id
-          }]);
-
-        if (roleError) {
-          console.error('Error creating user role:', roleError);
-        }
-
-        // Create invitation record for tracking
-        await DatabaseService.createUserInvitation({
-          email: userForm.email,
-          first_name: userForm.firstName,
-          last_name: userForm.lastName,
-          role: userForm.role as 'admin' | 'agent' | 'manager',
-          temporary_password: tempPassword,
-          invited_by: currentUser.id,
-          accepted_at: new Date().toISOString() // Mark as accepted since account is created
-        });
-
+      if (result.success) {
         setSubmitSuccess('User created successfully! They can now log in with their credentials.');
         setUserForm({ email: '', firstName: '', lastName: '', role: 'agent', temporaryPassword: '' });
-        setShowUserForm(false);
+        setShowAddUserForm(false);
         await loadInvitations();
         
         setTimeout(() => setSubmitSuccess(''), 5000);
+      } else {
+        alert('Error creating user');
       }
-
     } catch (error) {
       console.error('Error creating user:', error);
-      alert('Error creating user account. Please try again.');
+      alert(`Error creating user: ${error.message}`);
     }
 
     setIsSubmitting(false);
