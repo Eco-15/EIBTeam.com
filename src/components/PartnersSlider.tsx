@@ -29,7 +29,7 @@ const PartnersSlider = () => {
       className="h-[120px] w-auto"
     />,
       <img
-      src="https://firstincomeadvisors.com/members/wp-content/uploads/sites/2/2019/07/nwllogo-1.jpg"
+      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnEaJC80mqSPpoJ2e6DMAi7Z5HO8rdj3ItNTRV"
       alt="National Western"
       className="h-[120px] w-auto"
     />,
