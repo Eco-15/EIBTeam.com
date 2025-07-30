@@ -4,6 +4,7 @@ import DashboardSidebar from '../components/DashboardSidebar';
 import { Users, Plus, Bell, Calendar, BarChart3, Shield, CheckCircle, AlertCircle, Clock, X, Edit, Trash2 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { DatabaseService, Announcement, ScheduleEvent, UserInvitation } from '@/lib/database';
+import { AdminService } from '@/lib/adminService';
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
