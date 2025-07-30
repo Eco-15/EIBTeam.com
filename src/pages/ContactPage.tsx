@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { DatabaseService } from '../lib/database';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, MessageSquare, Calendar, Users, UserPlus, FileText } from 'lucide-react';
 
 const ContactPage = () => {
@@ -49,59 +48,22 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    try {
-      if (formType === 'consultation') {
-        // Submit consultation request
-        const result = await DatabaseService.createConsultationRequest({
-          name: consultationForm.name,
-          email: consultationForm.email,
-          phone: consultationForm.phone,
-          city: consultationForm.city,
-          state: consultationForm.state,
-          product_interest: consultationForm.productInterest,
-          hear_about: consultationForm.hearAbout,
-          comments: consultationForm.comments,
-          status: 'pending'
-        });
-
-        if (result) {
-          setIsSubmitted(true);
-          setConsultationForm({
-            name: '', email: '', phone: '', city: '', state: '',
-            productInterest: '', hearAbout: '', comments: ''
-          });
-        } else {
-          alert('There was an error submitting your request. Please try again.');
-        }
-      } else {
-        // Submit team application
-        const result = await DatabaseService.createTeamApplication({
-          name: teamForm.name,
-          email: teamForm.email,
-          phone: teamForm.phone,
-          city: teamForm.city,
-          state: teamForm.state,
-          experience: teamForm.experience,
-          hear_about: teamForm.hearAbout,
-          description: teamForm.description,
-          status: 'pending'
-        });
-
-        if (result) {
-          setIsSubmitted(true);
-          setTeamForm({
-            name: '', email: '', phone: '', city: '', state: '',
-            experience: '', hearAbout: '', description: ''
-          });
-        } else {
-          alert('There was an error submitting your application. Please try again.');
-        }
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      alert('There was an error submitting your form. Please try again.');
-    } finally {
-      setIsSubmitting(false);
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+    
+    if (formType === 'consultation') {
+      setConsultationForm({
+        name: '', email: '', phone: '', city: '', state: '',
+        productInterest: '', hearAbout: '', comments: ''
+      });
+    } else {
+      setTeamForm({
+        name: '', email: '', phone: '', city: '', state: '',
+        experience: '', hearAbout: '', description: ''
+      });
     }
     
     // Reset success message after 5 seconds
