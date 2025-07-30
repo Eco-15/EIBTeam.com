@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import { DatabaseService, Announcement, ScheduleEvent } from '@/lib/database';
-import { Calendar, Clock, MapPin, Users, Bell, ChevronLeft, ChevronRight, MessageSquare, X, ExternalLink } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Bell, ChevronLeft, ChevronRight, MessageSquare, X, ExternalLink, Eye } from 'lucide-react';
 
 const CalendarPage = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -10,6 +10,10 @@ const CalendarPage = () => {
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [scheduleEvents, setScheduleEvents] = useState<ScheduleEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  const [selectedAnnouncement, setSelectedAnnouncement] = useState<Announcement | null>(null);
+  const [showEventModal, setShowEventModal] = useState(false);
+  const [showAnnouncementModal, setShowAnnouncementModal] = useState(false);
 
   // Load announcements and schedule events
   React.useEffect(() => {
@@ -188,7 +192,14 @@ const CalendarPage = () => {
                     <div className="p-6">
                       <div className="space-y-4">
                         {events.length > 0 ? events.slice(0, 5).map((event) => (
-                          <div key={event.id} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                          <div 
+                            key={event.id} 
+                            className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer group"
+                            onClick={() => {
+                              setSelectedEvent(event);
+                              setShowEventModal(true);
+                            }}
+                          >
                             <div className={`p-2 rounded-full ${
                               event.type === 'meeting' ? 'bg-yellow-100' :
                               event.type === 'training' ? 'bg-blue-100' :
@@ -227,6 +238,9 @@ const CalendarPage = () => {
                                   </a>
                                 )}
                               </div>
+                            </div>
+                            <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <Eye className="h-5 w-5 text-gray-400" />
                             </div>
                           </div>
                         )) : (
