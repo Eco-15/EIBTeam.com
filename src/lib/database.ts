@@ -152,6 +152,36 @@ export interface UserInvitation {
   updated_at: string;
 }
 
+export interface ConsultationRequest {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  city: string;
+  state: string;
+  product_interest?: string;
+  hear_about?: string;
+  comments?: string;
+  status?: 'pending' | 'contacted' | 'completed' | 'cancelled';
+  created_at: string;
+  updated_at: string;
+}
+
+export interface TeamApplication {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  city: string;
+  state: string;
+  experience?: string;
+  hear_about?: string;
+  description?: string;
+  status?: 'pending' | 'reviewing' | 'interviewed' | 'hired' | 'rejected';
+  created_at: string;
+  updated_at: string;
+}
+
 // Database service functions
 export class DatabaseService {
   // Agent Profile functions
@@ -663,6 +693,128 @@ export class DatabaseService {
     }
 
     return true;
+  }
+
+  // Consultation Requests functions
+  static async createConsultationRequest(request: Partial<ConsultationRequest>): Promise<ConsultationRequest | null> {
+    try {
+      const { data, error } = await supabase
+        .from('consultation_requests')
+        .insert([request])
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error creating consultation request:', error);
+        return null;
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error creating consultation request:', error);
+      return null;
+    }
+  }
+
+  static async getConsultationRequests(): Promise<ConsultationRequest[]> {
+    try {
+      const { data, error } = await supabase
+        .from('consultation_requests')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching consultation requests:', error);
+        return [];
+      }
+
+      return data || [];
+    } catch (error) {
+      console.error('Error fetching consultation requests:', error);
+      return [];
+    }
+  }
+
+  static async updateConsultationRequest(id: string, updates: Partial<ConsultationRequest>): Promise<ConsultationRequest | null> {
+    try {
+      const { data, error } = await supabase
+        .from('consultation_requests')
+        .update(updates)
+        .eq('id', id)
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error updating consultation request:', error);
+        return null;
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error updating consultation request:', error);
+      return null;
+    }
+  }
+
+  // Team Applications functions
+  static async createTeamApplication(application: Partial<TeamApplication>): Promise<TeamApplication | null> {
+    try {
+      const { data, error } = await supabase
+        .from('team_applications')
+        .insert([application])
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error creating team application:', error);
+        return null;
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error creating team application:', error);
+      return null;
+    }
+  }
+
+  static async getTeamApplications(): Promise<TeamApplication[]> {
+    try {
+      const { data, error } = await supabase
+        .from('team_applications')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching team applications:', error);
+        return [];
+      }
+
+      return data || [];
+    } catch (error) {
+      console.error('Error fetching team applications:', error);
+      return [];
+    }
+  }
+
+  static async updateTeamApplication(id: string, updates: Partial<TeamApplication>): Promise<TeamApplication | null> {
+    try {
+      const { data, error } = await supabase
+        .from('team_applications')
+        .update(updates)
+        .eq('id', id)
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error updating team application:', error);
+        return null;
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error updating team application:', error);
+      return null;
+    }
   }
 
 }
