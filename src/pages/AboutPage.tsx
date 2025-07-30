@@ -70,7 +70,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2007.jpg"
               alt="EIB founding in 2007"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -89,7 +90,8 @@ const AboutPage = () => {
             <img
               src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnBlbmYuNs1dDP4Ioh850ny67VtNg3mlwEuFpx"
               alt="EIB first headquarters in Oxnard, CA"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -108,7 +110,8 @@ const AboutPage = () => {
             <img
               src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnngnqsvftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
               alt="EIB Team joins PHP Agency"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -127,7 +130,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2013.jpg"
               alt="EIB becomes first SVP team in PHP"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -146,7 +150,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2014.jpg"
               alt="EIB opens Dallas office"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -165,7 +170,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2015-liz.jpg"
               alt="Liz Arredondo joins EIB team"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -184,7 +190,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2015-plano.jpg"
               alt="EIB headquarters in Plano, TX"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -203,7 +210,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2016.jpg"
               alt="EIB RV Tour 2016"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -222,7 +230,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2017.jpg"
               alt="Magic Johnson event in Fort Worth"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -241,7 +250,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2018-wedding.jpg"
               alt="Jason and Nataly wedding"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -260,7 +270,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2018-kevin.jpg"
               alt="Kevin Hart event in Vegas"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -279,7 +290,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2019-bowl.jpg"
               alt="First Builders Bowl event 2019"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -298,7 +310,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2019-kobe.jpg"
               alt="Kobe Bryant event 2019"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -317,7 +330,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2019-bush.jpg"
               alt="George Bush event 2019"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -336,7 +350,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2019-stadium.jpg"
               alt="Dallas Stadium event 2019"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
@@ -355,7 +370,8 @@ const AboutPage = () => {
             <img
               src="https://placeholder-image-url-2024.jpg"
               alt="EIB as industry leader in 2024"
-              className="rounded-lg object-cover h-32 md:h-48 lg:h-64 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             className="rounded-lg object-cover w-full aspect-video shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+             style={{ width: '1280px', height: '720px', maxWidth: '100%', height: 'auto' }}
             />
           </div>
         </div>
