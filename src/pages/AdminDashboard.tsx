@@ -16,20 +16,12 @@ const AdminDashboard = () => {
   const [invitations, setInvitations] = useState<UserInvitation[]>([]);
   
   // Form states
-  const [showUserForm, setShowUserForm] = useState(false);
   const [showAnnouncementForm, setShowAnnouncementForm] = useState(false);
   const [showEventForm, setShowEventForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState('');
 
   // Form data
-  const [userForm, setUserForm] = useState({
-    email: '',
-    firstName: '',
-    lastName: '',
-    role: 'agent',
-    temporaryPassword: ''
-  });
 
   const [announcementForm, setAnnouncementForm] = useState({
     title: '',
@@ -101,42 +93,6 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleCreateUser = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!currentUser || !isAdmin) return;
-
-    setIsSubmitting(true);
-
-    try {
-      const result = await AdminService.createUser({
-        email: userForm.email,
-        firstName: userForm.firstName,
-        lastName: userForm.lastName,
-        role: userForm.role as 'admin' | 'agent' | 'manager',
-        temporaryPassword: userForm.temporaryPassword
-      });
-
-      if (result.success) {
-        setSubmitSuccess('User created successfully! They can now log in with their credentials.');
-        setUserForm({ email: '', firstName: '', lastName: '', role: 'agent', temporaryPassword: '' });
-        setShowUserForm(false);
-        await loadAllData();
-        
-        setTimeout(() => setSubmitSuccess(''), 5000);
-      } else {
-        alert('Error creating user');
-      }
-    } catch (error) {
-      console.error('Error creating user:', error);
-      if (error.message === 'Database error creating new user') {
-        alert('Unable to create user at this time. Please try again later or contact support if the issue persists.');
-      } else {
-        alert(`Error creating user: ${error.message}`);
-      }
-    }
-
-    setIsSubmitting(false);
-  };
 
   const handleCreateAnnouncement = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -211,14 +167,6 @@ const AdminDashboard = () => {
     setIsSubmitting(false);
   };
 
-  const generateTemporaryPassword = () => {
-    const chars = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
-    let password = '';
-    for (let i = 0; i < 12; i++) {
-      password += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return password;
-  };
 
   const handleDeleteAnnouncement = async (id: string) => {
     if (!confirm('Are you sure you want to delete this announcement?')) return;
@@ -388,13 +336,6 @@ const AdminDashboard = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
                           <div className="space-y-3">
                             <button
-                              onClick={() => setShowUserForm(true)}
-                              className="w-full flex items-center space-x-3 p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-                            >
-                              <Users className="h-5 w-5 text-blue-600" />
-                              <span className="text-blue-700 font-medium">Create New User</span>
-                            </button>
-                            <button
                               onClick={() => setShowAnnouncementForm(true)}
                               className="w-full flex items-center space-x-3 p-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
                             >
@@ -419,13 +360,13 @@ const AdminDashboard = () => {
                     <div>
                       <div className="flex items-center justify-between mb-6">
                         <h3 className="text-lg font-semibold text-gray-900">User Management</h3>
-                        <button
-                          onClick={() => setShowUserForm(true)}
+                        <a
+                          href="/admin/users"
                           className="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-purple-700 transition-colors flex items-center space-x-2"
                         >
-                          <Plus className="h-4 w-4" />
-                          <span>Add User</span>
-                        </button>
+                          <Users className="h-4 w-4" />
+                          <span>Manage Users</span>
+                        </a>
                       </div>
 
                       <div className="overflow-x-auto">
@@ -613,109 +554,6 @@ const AdminDashboard = () => {
           </div>
         </main>
 
-        {/* Create User Modal */}
-        {showUserForm && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-6 border-b border-gray-200">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-gray-900">Create New User</h3>
-                  <button
-                    onClick={() => setShowUserForm(false)}
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    <X className="h-6 w-6" />
-                  </button>
-                </div>
-              </div>
-              
-              <form onSubmit={handleCreateUser} className="p-6 space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-                    <input
-                      type="text"
-                      required
-                      value={userForm.firstName}
-                      onChange={(e) => setUserForm({...userForm, firstName: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      placeholder="John"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-                    <input
-                      type="text"
-                      required
-                      value={userForm.lastName}
-                      onChange={(e) => setUserForm({...userForm, lastName: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      placeholder="Doe"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                  <input
-                    type="email"
-                    required
-                    value={userForm.email}
-                    onChange={(e) => setUserForm({...userForm, email: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="john.doe@example.com"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Role *</label>
-                  <select
-                    required
-                    value={userForm.role}
-                    onChange={(e) => setUserForm({...userForm, role: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  >
-                    <option value="agent">Agent</option>
-                    <option value="manager">Manager</option>
-                    <option value="admin">Admin</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Temporary Password 
-                    <span className="text-gray-500 text-xs">(leave blank to auto-generate)</span>
-                  </label>
-                  <input
-                    type="text"
-                    value={userForm.temporaryPassword}
-                    onChange={(e) => setUserForm({...userForm, temporaryPassword: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="Auto-generated if empty"
-                  />
-                </div>
-                
-                <div className="flex space-x-3 pt-4">
-                  <button
-                    type="button"
-                    onClick={() => setShowUserForm(false)}
-                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="flex-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? 'Creating...' : 'Create User'}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        )}
 
         {/* Create Announcement Modal */}
         {showAnnouncementForm && (
