@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import { DatabaseService, Announcement, ScheduleEvent } from '@/lib/database';
-import { Calendar, Clock, MapPin, Users, Bell, Plus, ChevronLeft, ChevronRight, MessageSquare, X, ExternalLink } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Bell, ChevronLeft, ChevronRight, MessageSquare, X, ExternalLink } from 'lucide-react';
 
 const CalendarPage = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
