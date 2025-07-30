@@ -425,12 +425,6 @@ export class DatabaseService {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return false;
       
-      // Check admin status by email first
-      if (user.email === 'admin@eibagency.com') {
-        console.log('User is admin by email:', user.email);
-        return true;
-      }
-      
       // Also check user_roles table
       const { data, error } = await supabase
         .from('user_roles')
@@ -441,10 +435,6 @@ export class DatabaseService {
       
       if (error) {
         console.error('Error checking admin role:', error);
-        // If email matches, still return true even if role check fails
-        if (user.email === 'Eliyahucohendallas199@gmail.com') {
-          return true;
-        }
         return false;
       }
       
@@ -452,101 +442,11 @@ export class DatabaseService {
       return data?.role === 'admin';
     } catch (error) {
       console.error('Error checking admin status:', error);
-      // Fallback to email check
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        return user?.email === 'Eliyahucohendallas199@gmail.com';
-      } catch {
-        return false;
-      }
-    }
-  }
-
-  // Create admin user using Supabase Auth signup
-  static async ensureAdminUser(email: string = 'Eliyahucohendallas199@gmail.com', password: string = 'EIBTeam123'): Promise<boolean> {
-    try {
-      // Use admin client to create user with confirmed email
-      const { data: adminData, error: adminError } = await supabase.auth.admin.createUser({
-        email: email,
-        password: password,
-        email_confirm: true,
-        user_metadata: {
-          first_name: 'Admin',
-          last_name: 'User',
-          role: 'admin'
-        }
-      });
-
-      if (adminError) {
-        console.error('Error creating admin user:', adminError);
-        // If user already exists, that's fine
-        if (adminError.message.includes('already registered') || adminError.message.includes('already exists')) {
-          console.log('Admin user already exists');
-          return true;
-        }
-        return false;
-      }
-
-      if (adminData.user) {
-        console.log('Admin user created successfully');
-        await this.ensureAdminRole(adminData.user.id);
-      }
-
-      console.log('Admin user setup completed');
-      return true;
-    } catch (error) {
-      console.error('Error in createAdminUser:', error);
       return false;
     }
   }
 
-  // Ensure admin role is properly assigned
-  static async ensureAdminRole(userId: string): Promise<void> {
-    try {
-      // Use service role to bypass RLS for admin setup
-      const { error: roleError } = await supabase
-        .from('user_roles')
-        .upsert([{
-          user_id: userId,
-          role: 'admin',
-          assigned_by: userId
-        }]);
-
-      if (roleError) {
-        console.error('Error creating user role:', roleError);
-      }
-
-      // Create or update agent profile using service role
-      const { error: profileError } = await supabase
-        .from('agent_profiles')
-        .upsert([{
-          user_id: userId,
-          first_name: 'Admin',
-          last_name: 'User',
-          status: 'active',
-          agent_id: 'ADMIN001'
-        }]);
-
-      if (profileError) {
-        console.error('Error creating agent profile:', profileError);
-      }
-
-      // Update invitation record if exists  
-      const { error: inviteError } = await supabase
-        .from('user_invitations')
-        .update({
-          accepted_at: new Date().toISOString()
-        })
-        .eq('email', 'Eliyahucohendallas199@gmail.com');
-
-      if (inviteError) {
-        console.log('No invitation record to update (this is normal)');
-      }
-
-    } catch (error) {
-      console.error('Error ensuring admin role:', error);
-    }
-  }
+  // Create admin user using Supabase Auth signup
 
   // Announcements functions
   static async createAnnouncement(announcement: Partial<Announcement>): Promise<Announcement | null> {

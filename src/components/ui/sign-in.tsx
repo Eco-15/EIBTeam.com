@@ -34,10 +34,7 @@ const AnimatedSignIn: React.FC = () => {
 
       if (error) {
         console.error('Login error:', error);
-        // For admin users, bypass email confirmation requirement
-        if (email === 'Eliyahucohendallas199@gmail.com' && (error.message.includes('email_not_confirmed') || error.message.includes('Email not confirmed'))) {
-          alert('Admin user detected. Please contact system administrator to confirm your email status in Supabase dashboard.');
-        } else if (error.message.includes('invalid_credentials') || error.message.includes('Invalid login credentials')) {
+        if (error.message.includes('invalid_credentials') || error.message.includes('Invalid login credentials')) {
           alert('Invalid email or password. Please check your credentials and try again.');
         } else {
           alert(`Login failed: ${error.message}`);

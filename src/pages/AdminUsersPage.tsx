@@ -107,92 +107,12 @@ const AdminUsersPage = () => {
       const tempPassword = userForm.temporaryPassword || generateTemporaryPassword();
 
       // Create user in Supabase Auth using Admin API
-      const { data: newUser, error: authError } = await supabase.auth.admin.createUser({
-        email: userForm.email,
-        password: tempPassword,
-        email_confirm: true,
-        user_metadata: {
-          first_name: userForm.firstName,
-          last_name: userForm.lastName,
-          role: userForm.role
-        }
-      });
-
-      if (authError) {
-        console.error('Auth error:', authError);
-        alert(`Error creating user: ${authError.message}`);
-        setIsSubmitting(false);
-        return;
-      }
-
-      if (!newUser.user) {
-        alert('Error: User creation failed');
-        setIsSubmitting(false);
-        return;
-      }
+      // Note: Admin user creation would require server-side implementation
+      alert('User creation requires server-side implementation. Please contact system administrator.');
+      setIsSubmitting(false);
+      return;
 
       // Create invitation record
-      const { error: inviteError } = await supabase
-        .from('user_invitations')
-        .insert([{
-          email: userForm.email,
-          first_name: userForm.firstName,
-          last_name: userForm.lastName,
-          role: userForm.role,
-          temporary_password: tempPassword,
-          invited_by: currentUser.id
-        }]);
-
-      if (inviteError) {
-        console.error('Invitation error:', inviteError);
-        alert(`Error creating invitation: ${inviteError.message}`);
-        setIsSubmitting(false);
-        return;
-      }
-
-      // Create user role
-      const { error: roleError } = await supabase
-        .from('user_roles')
-        .insert([{
-          user_id: newUser.user.id,
-          role: userForm.role,
-          assigned_by: currentUser.id
-        }]);
-
-      if (roleError) {
-        console.error('Role error:', roleError);
-      }
-
-      // Create agent profile if role is agent
-      if (userForm.role === 'agent') {
-        const { error: profileError } = await supabase
-          .from('agent_profiles')
-          .insert([{
-            user_id: newUser.user.id,
-            first_name: userForm.firstName,
-            last_name: userForm.lastName,
-            status: 'active'
-          }]);
-
-        if (profileError) {
-          console.error('Profile error:', profileError);
-        }
-      }
-
-      // Reload invitations
-      await loadInvitations();
-
-      setSubmitSuccess(true);
-      setShowAddUserForm(false);
-      setUserForm({
-        email: '',
-        firstName: '',
-        lastName: '',
-        role: 'agent',
-        temporaryPassword: ''
-      });
-
-      setTimeout(() => setSubmitSuccess(false), 5000);
 
     } catch (error) {
       console.error('Error creating user:', error);
