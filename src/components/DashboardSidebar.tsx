@@ -29,16 +29,16 @@ const DashboardSidebar = () => {
   // Add admin-only menu items
   if (isAdmin) {
     menuItems.push({
+      name: 'Admin Dashboard',
+      href: '/admin/dashboard',
+      icon: BarChart3,
+      current: window.location.pathname === '/admin/dashboard'
+    });
+    menuItems.push({
       name: 'Manage Users',
       href: '/admin/users',
       icon: Users,
       current: window.location.pathname === '/admin/users'
-    });
-    menuItems.push({
-      name: 'Admin Panel',
-      href: '/dashboard',
-      icon: BarChart3,
-      current: false
     });
   }
 

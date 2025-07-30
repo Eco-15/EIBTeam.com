@@ -171,17 +171,17 @@ const CalendarPage = () => {
                     <div className="p-6">
                       <div className="space-y-4">
                         {events.slice(0, 5).map((event) => (
-                          <div key={event.id} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
+                          <div key={event.id} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                             <div className={`p-2 rounded-full ${
                               event.type === 'meeting' ? 'bg-yellow-100' :
                               event.type === 'training' ? 'bg-blue-100' :
-                              event.type === 'client' ? 'bg-green-100' :
+                              event.type === 'call' ? 'bg-green-100' :
                               'bg-purple-100'
                             }`}>
                               <Calendar className={`h-5 w-5 ${
                                 event.type === 'meeting' ? 'text-yellow-600' :
                                 event.type === 'training' ? 'text-blue-600' :
-                                event.type === 'client' ? 'text-green-600' :
+                                event.type === 'call' ? 'text-green-600' :
                                 'text-purple-600'
                               }`} />
                             </div>

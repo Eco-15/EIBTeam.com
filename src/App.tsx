@@ -14,6 +14,7 @@ import ResourcesPage from './pages/ResourcesPage';
 import BooksPage from './pages/BooksPage';
 import BookDetailPage from './pages/BookDetailPage';
 import AdminUsersPage from './pages/AdminUsersPage';
+import AdminDashboard from './pages/AdminDashboard';
 import TermLifeInsurancePage from './pages/services/TermLifeInsurancePage';
 import WholeLifeInsurancePage from './pages/services/WholeLifeInsurancePage';
 import IndexedUniversalLifePage from './pages/services/IndexedUniversalLifePage';
@@ -39,6 +40,7 @@ function App() {
         <Route path="/books" element={<BooksPage />} />
         <Route path="/books/:id" element={<BookDetailPage />} />
         <Route path="/admin/users" element={<AdminUsersPage />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/services/term-life-insurance" element={<TermLifeInsurancePage />} />
         <Route path="/services/whole-life-insurance" element={<WholeLifeInsurancePage />} />
         <Route path="/services/indexed-universal-life" element={<IndexedUniversalLifePage />} />

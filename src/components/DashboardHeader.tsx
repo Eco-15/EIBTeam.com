@@ -23,7 +23,7 @@ const DashboardHeader = () => {
           setIsAdmin(adminStatus);
           
           // Check if currently on admin page
-          setIsAdminMode(window.location.pathname.startsWith('/admin'));
+          setIsAdminMode(window.location.pathname.startsWith('/admin/dashboard'));
         }
       } catch (error) {
         console.error('Error getting current user:', error);
@@ -116,9 +116,9 @@ const DashboardHeader = () => {
                 <button
                   onClick={() => {
                     if (isAdminMode) {
-                      window.location.href = '/dashboard';
+                      window.location.href = '/admin/dashboard';
                     } else {
-                      window.location.href = '/admin/users';
+                      window.location.href = '/dashboard';
                     }
                   }}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 ${
