@@ -2,37 +2,64 @@ import React, { useState } from 'react';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import { DatabaseService, Announcement, ScheduleEvent } from '@/lib/database';
-import { Calendar, Clock, MapPin, Users, Bell, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Bell, Plus, ChevronLeft, ChevronRight, MessageSquare } from 'lucide-react';
 
 const CalendarPage = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [scheduleEvents, setScheduleEvents] = useState<ScheduleEvent[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Load announcements and schedule events
   React.useEffect(() => {
     const loadData = async () => {
-      const announcementsList = await DatabaseService.getAnnouncements();
-      setAnnouncements(announcementsList);
-      
-      const scheduleList = await DatabaseService.getScheduleEvents();
-      setScheduleEvents(scheduleList);
+      try {
+        const [announcementsList, scheduleList] = await Promise.all([
+          DatabaseService.getAnnouncements(),
+          DatabaseService.getScheduleEvents()
+        ]);
+        
+        setAnnouncements(announcementsList);
+        setScheduleEvents(scheduleList);
+      } catch (error) {
+        console.error('Error loading calendar data:', error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     
     loadData();
   }, []);
 
-  // Convert schedule events to display format
-  const events = scheduleEvents.map(event => ({
-    id: event.id,
-    title: event.title,
-    date: new Date().toISOString().split('T')[0], // Today's date for demo
-    time: `${event.start_time}${event.end_time ? ` - ${event.end_time}` : ''} ${event.timezone}`,
-    location: event.zoom_link ? 'Virtual Meeting' : 'TBD',
-    type: event.event_type,
-    attendees: Math.floor(Math.random() * 20) + 5 // Random for demo
-  }));
+  // Convert schedule events to display format with proper date handling
+  const events = scheduleEvents.map(event => {
+    // Get the next occurrence of this day of the week
+    const today = new Date();
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const targetDay = dayNames.indexOf(event.day_of_week);
+    const currentDay = today.getDay();
+    
+    let daysUntilEvent = targetDay - currentDay;
+    if (daysUntilEvent < 0) {
+      daysUntilEvent += 7; // Next week
+    }
+    
+    const eventDate = new Date(today);
+    eventDate.setDate(today.getDate() + daysUntilEvent);
+    
+    return {
+      id: event.id,
+      title: event.title,
+      date: eventDate.toISOString().split('T')[0],
+      time: `${event.start_time}${event.end_time ? ` - ${event.end_time}` : ''} ${event.timezone}`,
+      location: event.zoom_link ? 'Virtual Meeting' : 'Office',
+      type: event.event_type,
+      dayOfWeek: event.day_of_week,
+      zoomLink: event.zoom_link,
+      description: event.description
+    };
+  });
 
   const getDaysInMonth = (date: Date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -170,7 +197,7 @@ const CalendarPage = () => {
                     
                     <div className="p-6">
                       <div className="space-y-4">
-                        {events.slice(0, 5).map((event) => (
+                        {events.length > 0 ? events.slice(0, 5).map((event) => (
                           <div key={event.id} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                             <div className={`p-2 rounded-full ${
                               event.type === 'meeting' ? 'bg-yellow-100' :
@@ -187,23 +214,38 @@ const CalendarPage = () => {
                             </div>
                             <div className="flex-1">
                               <h4 className="font-semibold text-gray-900">{event.title}</h4>
+                              {event.description && (
+                                <p className="text-sm text-gray-600 mt-1">{event.description}</p>
+                              )}
                               <div className="flex items-center space-x-4 mt-2 text-sm text-gray-600">
                                 <div className="flex items-center space-x-1">
                                   <Clock className="h-4 w-4" />
-                                  <span>{event.time}</span>
+                                  <span>{event.dayOfWeek} {event.time}</span>
                                 </div>
                                 <div className="flex items-center space-x-1">
                                   <MapPin className="h-4 w-4" />
                                   <span>{event.location}</span>
                                 </div>
-                                <div className="flex items-center space-x-1">
-                                  <Users className="h-4 w-4" />
-                                  <span>{event.attendees} attendees</span>
-                                </div>
+                                {event.zoomLink && (
+                                  <a
+                                    href={event.zoomLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:text-blue-800 text-xs"
+                                  >
+                                    Join Meeting
+                                  </a>
+                                )}
                               </div>
                             </div>
                           </div>
-                        ))}
+                        )) : (
+                          <div className="text-center py-8">
+                            <Calendar className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+                            <p className="text-gray-500 mb-2">No upcoming events scheduled</p>
+                            <p className="text-sm text-gray-400">Events will appear here when admins create them</p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -221,7 +263,7 @@ const CalendarPage = () => {
                     
                     <div className="p-6">
                       <div className="space-y-6">
-                        {announcements.map((announcement) => (
+                        {announcements.length > 0 ? announcements.map((announcement) => (
                           <div key={announcement.id} className="border-l-4 border-yellow-500 pl-4">
                             <div className="flex items-start justify-between">
                               <h4 className="font-semibold text-gray-900 text-sm">{announcement.title}</h4>
@@ -240,7 +282,13 @@ const CalendarPage = () => {
                               <span>{new Date(announcement.created_at).toLocaleDateString()}</span>
                             </div>
                           </div>
-                        ))}
+                        )) : (
+                          <div className="text-center py-8">
+                            <MessageSquare className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+                            <p className="text-gray-500 mb-2">No announcements yet</p>
+                            <p className="text-sm text-gray-400">Announcements will appear here when admins create them</p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

@@ -9,6 +9,7 @@ const DashboardHeader = () => {
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAdminMode, setIsAdminMode] = useState(false);
+  const [announcements, setAnnouncements] = useState<any[]>([]);
 
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -24,6 +25,10 @@ const DashboardHeader = () => {
           
           // Check if currently on admin page
           setIsAdminMode(window.location.pathname.startsWith('/admin/dashboard'));
+          
+          // Load announcements for notifications
+          const announcementsList = await DatabaseService.getAnnouncements();
+          setAnnouncements(announcementsList.slice(0, 5)); // Show only 5 most recent
         }
       } catch (error) {
         console.error('Error getting current user:', error);
@@ -38,46 +43,18 @@ const DashboardHeader = () => {
     window.location.href = '/';
   };
 
-  const notifications = [
-    {
-      id: 1,
-      type: 'success',
-      title: 'Training Completed',
-      message: 'You completed "Video 1 - Welcome" training',
-      time: '2 hours ago',
-      read: false,
-      icon: CheckCircle
-    },
-    {
-      id: 2,
-      type: 'info',
-      title: 'New Announcement',
-      message: 'Monthly team meeting scheduled for next Friday',
-      time: '1 day ago',
-      read: false,
-      icon: MessageSquare
-    },
-    {
-      id: 3,
-      type: 'warning',
-      title: 'License Renewal',
-      message: 'Your insurance license expires in 30 days',
-      time: '3 days ago',
-      read: true,
-      icon: AlertCircle
-    },
-    {
-      id: 4,
-      type: 'info',
-      title: 'Appointment Reminder',
-      message: 'Client meeting with John Smith tomorrow at 2 PM',
-      time: '1 week ago',
-      read: true,
-      icon: Calendar
-    }
-  ];
+  // Convert announcements to notification format
+  const notifications = announcements.map((announcement, index) => ({
+    id: announcement.id,
+    type: announcement.priority === 'urgent' ? 'warning' : 'info',
+    title: announcement.title,
+    message: announcement.message,
+    time: new Date(announcement.created_at).toLocaleDateString(),
+    read: index > 1, // Mark first 2 as unread for demo
+    icon: MessageSquare
+  }));
 
-  const unreadCount = notifications.filter(n => !n.read).length;
+  const unreadCount = Math.min(notifications.filter(n => !n.read).length, 2);
 
   const getNotificationColor = (type: string) => {
     switch (type) {
@@ -186,6 +163,14 @@ const DashboardHeader = () => {
                         </div>
                       </div>
                     ))}
+                    
+                    {notifications.length === 0 && (
+                      <div className="px-4 py-8 text-center">
+                        <MessageSquare className="h-8 w-8 text-gray-300 mx-auto mb-2" />
+                        <p className="text-gray-500 text-sm">No notifications yet</p>
+                        <p className="text-gray-400 text-xs">You'll see announcements here when admins create them</p>
+                      </div>
+                    )}
                   </div>
                   
                   <div className="px-4 py-2 border-t border-gray-100">

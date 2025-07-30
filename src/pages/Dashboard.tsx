@@ -3,12 +3,13 @@ import { supabase } from '@/lib/supabase';
 import { DatabaseService } from '@/lib/database';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
-import { BookOpen, Play, CheckCircle, Clock, Star, Award, FileText, ArrowRight, TrendingUp, Users, Calendar } from 'lucide-react';
+import { BookOpen, Play, CheckCircle, Clock, Star, Award, FileText, ArrowRight, TrendingUp, Users, Calendar, MessageSquare } from 'lucide-react';
 
 const Dashboard = () => {
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [agentProfile, setAgentProfile] = useState<any>(null);
   const [trainingProgress, setTrainingProgress] = useState<any[]>([]);
+  const [announcements, setAnnouncements] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -30,6 +31,9 @@ const Dashboard = () => {
         const progress = await DatabaseService.getTrainingProgress(user.id);
         setTrainingProgress(progress);
 
+        // Load recent announcements
+        const announcementsList = await DatabaseService.getAnnouncements();
+        setAnnouncements(announcementsList.slice(0, 3)); // Show only 3 most recent
       } catch (error) {
         console.error('Error loading dashboard data:', error);
       } finally {
@@ -341,15 +345,34 @@ const Dashboard = () => {
                   {/* Quick Actions */}
                   <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl p-6 text-center">
                     <h3 className="text-lg font-bold text-black mb-2">Need Help?</h3>
-                    <p className="text-black mb-4 text-sm">Contact support for assistance with training or resources.</p>
-                    <a
-                      href="mailto:admin@eibagency.com"
-                      className="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm inline-block"
-                    >
-                      Contact Support
-                    </a>
-                  </div>
-                </div>
+                    <div className="space-y-4">
+                      {announcements.length > 0 ? (
+                        announcements.map((announcement) => (
+                          <div key={announcement.id} className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <div className="flex items-start space-x-3">
+                              <MessageSquare className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                              <div className="flex-1">
+                                <h4 className="font-medium text-blue-900 text-sm">{announcement.title}</h4>
+                                <p className="text-blue-700 text-xs mt-1">{announcement.message}</p>
+                                <p className="text-blue-600 text-xs mt-2">
+                                  {new Date(announcement.created_at).toLocaleDateString()}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl p-6 text-center">
+                          <h3 className="text-lg font-bold text-black mb-2">Need Help?</h3>
+                          <p className="text-black mb-4 text-sm">Contact support for assistance with training or resources.</p>
+                          <a
+                            href="mailto:admin@eibagency.com"
+                            className="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm inline-block"
+                          >
+                            Contact Support
+                          </a>
+                        </div>
+                      )}
               </div>
 
               {/* Learning Path Section */}
