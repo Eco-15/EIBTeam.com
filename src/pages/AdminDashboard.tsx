@@ -4,7 +4,6 @@ import DashboardSidebar from '../components/DashboardSidebar';
 import { Users, Plus, Bell, Calendar, BarChart3, Shield, CheckCircle, AlertCircle, Clock, X, Edit, Trash2 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { DatabaseService, Announcement, ScheduleEvent, UserInvitation } from '@/lib/database';
-import { AdminService } from '@/lib/adminService';
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -18,10 +17,18 @@ const AdminDashboard = () => {
   // Form states
   const [showAnnouncementForm, setShowAnnouncementForm] = useState(false);
   const [showEventForm, setShowEventForm] = useState(false);
+  const [showCreateUserForm, setShowCreateUserForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState('');
 
   // Form data
+  const [userForm, setUserForm] = useState({
+    email: '',
+    firstName: '',
+    lastName: '',
+    role: 'agent',
+    password: ''
+  });
 
   const [announcementForm, setAnnouncementForm] = useState({
     title: '',
@@ -82,17 +89,123 @@ const AdminDashboard = () => {
         DatabaseService.getScheduleEvents()
       ]);
 
-      // Load invitations using admin service
-      const invitationsList = await AdminService.getUserInvitations();
+      // Load invitations
+      const { data: invitationsList, error } = await supabase
+        .from('user_invitations')
+        .select('*')
+        .eq('is_active', true)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error loading invitations:', error);
+      }
 
       setAnnouncements(announcementsList);
       setEvents(eventsList);
-      setInvitations(invitationsList);
+      setInvitations(invitationsList || []);
     } catch (error) {
       console.error('Error loading admin data:', error);
     }
   };
 
+  const generateTemporaryPassword = () => {
+    const chars = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+    let password = '';
+    for (let i = 0; i < 12; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return password;
+  };
+
+  const handleCreateUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!currentUser || !isAdmin) return;
+
+    setIsSubmitting(true);
+
+    try {
+      // Generate password if not provided
+      const password = userForm.password || generateTemporaryPassword();
+
+      // Create user using Supabase client-side SDK
+      const { data, error } = await supabase.auth.signUp({
+        email: userForm.email,
+        password: password,
+        options: {
+          data: {
+            first_name: userForm.firstName,
+            last_name: userForm.lastName,
+            full_name: `${userForm.firstName} ${userForm.lastName}`.trim()
+          }
+        }
+      });
+
+      if (error) {
+        console.error('Error creating user:', error);
+        alert(`Error creating user: ${error.message}`);
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (data.user) {
+        // Create agent profile
+        const { error: profileError } = await supabase
+          .from('agent_profiles')
+          .insert([{
+            user_id: data.user.id,
+            first_name: userForm.firstName,
+            last_name: userForm.lastName,
+            status: 'active'
+          }]);
+
+        if (profileError) {
+          console.error('Error creating agent profile:', profileError);
+        }
+
+        // Create user role
+        const { error: roleError } = await supabase
+          .from('user_roles')
+          .insert([{
+            user_id: data.user.id,
+            role: userForm.role,
+            assigned_by: currentUser.id
+          }]);
+
+        if (roleError) {
+          console.error('Error creating user role:', roleError);
+        }
+
+        // Create invitation record
+        const { error: invitationError } = await supabase
+          .from('user_invitations')
+          .insert([{
+            email: userForm.email,
+            first_name: userForm.firstName,
+            last_name: userForm.lastName,
+            role: userForm.role,
+            temporary_password: password,
+            invited_by: currentUser.id,
+            accepted_at: new Date().toISOString()
+          }]);
+
+        if (invitationError) {
+          console.error('Error creating invitation:', invitationError);
+        }
+
+        setSubmitSuccess(`User created successfully! Login credentials - Email: ${userForm.email}, Password: ${password}`);
+        setUserForm({ email: '', firstName: '', lastName: '', role: 'agent', password: '' });
+        setShowCreateUserForm(false);
+        await loadAllData();
+        
+        setTimeout(() => setSubmitSuccess(''), 10000);
+      }
+    } catch (error) {
+      console.error('Error creating user:', error);
+      alert(`Error creating user: ${error.message}`);
+    }
+
+    setIsSubmitting(false);
+  };
 
   const handleCreateAnnouncement = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -335,6 +448,13 @@ const AdminDashboard = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
                           <div className="space-y-3">
                             <button
+                              onClick={() => setShowCreateUserForm(true)}
+                              className="w-full flex items-center space-x-3 p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                            >
+                              <Users className="h-5 w-5 text-blue-600" />
+                              <span className="text-blue-700 font-medium">Create New User</span>
+                            </button>
+                            <button
                               onClick={() => setShowAnnouncementForm(true)}
                               className="w-full flex items-center space-x-3 p-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
                             >
@@ -553,6 +673,122 @@ const AdminDashboard = () => {
           </div>
         </main>
 
+        {/* Create User Modal */}
+        {showCreateUserForm && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-gray-900">Create New User</h3>
+                  <button
+                    onClick={() => setShowCreateUserForm(false)}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
+                </div>
+              </div>
+              
+              <form onSubmit={handleCreateUser} className="p-6 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={userForm.firstName}
+                      onChange={(e) => setUserForm({...userForm, firstName: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="John"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={userForm.lastName}
+                      onChange={(e) => setUserForm({...userForm, lastName: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Doe"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                  <input
+                    type="email"
+                    required
+                    value={userForm.email}
+                    onChange={(e) => setUserForm({...userForm, email: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="john.doe@example.com"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Role *</label>
+                  <select
+                    required
+                    value={userForm.role}
+                    onChange={(e) => setUserForm({...userForm, role: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="agent">Agent</option>
+                    <option value="manager">Manager</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Password 
+                    <span className="text-gray-500 text-xs">(leave blank to auto-generate)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={userForm.password}
+                    onChange={(e) => setUserForm({...userForm, password: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Auto-generated if empty"
+                  />
+                </div>
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-start space-x-3">
+                    <Users className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="text-sm font-medium text-blue-900 mb-1">User Creation Process</h4>
+                      <p className="text-xs text-blue-700">
+                        The user will be created using Supabase Auth and can immediately log in to their dashboard. 
+                        Make sure to share the login credentials securely with the new user.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex space-x-3 pt-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowCreateUserForm(false)}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:from-blue-600 hover:to-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Creating User...' : 'Create User'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
 
         {/* Create Announcement Modal */}
         {showAnnouncementForm && (
