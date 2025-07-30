@@ -524,42 +524,16 @@ const AnimatedSignIn: React.FC = () => {
                 </button>
                 
                 {/* Toggle between Sign In and Sign Up */}
-                <div className="text-center">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsSignUp(!isSignUp);
-                      setEmail('');
-                      setPassword('');
-                      setConfirmPassword('');
-                      setFirstName('');
-                      setLastName('');
-                    }}
-                    className={`text-sm font-medium ${
-                      theme === 'dark' ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-600 hover:text-yellow-500'
-                    } transition-colors duration-300`}
-                  >
-                    {isSignUp 
-                      ? 'Already have an account? Sign in here' 
-                      : 'New to EIB Agency? Create an account'
-                    }
-                  </button>
-                </div>
-              </form>
-
               {/* Security Notice */}
               <div className={`mt-8 p-4 rounded-lg ${theme === 'dark' ? 'bg-slate-700' : 'bg-yellow-50'} border ${theme === 'dark' ? 'border-slate-600' : 'border-yellow-200'}`}>
                 <div className="flex items-start space-x-3">
                   <Shield className={`h-5 w-5 mt-0.5 flex-shrink-0 ${theme === 'dark' ? 'text-yellow-400' : 'text-yellow-600'}`} />
                   <div>
                     <h4 className={`text-sm font-medium mb-1 ${theme === 'dark' ? 'text-yellow-400' : 'text-yellow-800'}`}>
-                      {isSignUp ? 'Secure Registration' : 'Secure Login'}
+                      Secure Login
                     </h4>
                     <p className={`text-xs ${theme === 'dark' ? 'text-gray-300' : 'text-yellow-700'}`}>
-                      {isSignUp 
-                        ? 'Your account information is encrypted and secure. You will be assigned the agent role by default.'
-                        : 'Your credentials are encrypted and secure. Never share your login information with anyone.'
-                      }
+                      Your credentials are encrypted and secure. Never share your login information with anyone.
                     </p>
                   </div>
                 </div>
