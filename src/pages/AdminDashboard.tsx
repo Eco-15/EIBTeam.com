@@ -18,6 +18,7 @@ const AdminDashboard = () => {
   // Form states
   const [showAnnouncementForm, setShowAnnouncementForm] = useState(false);
   const [showEventForm, setShowEventForm] = useState(false);
+  const [showCreateUserForm, setShowCreateUserForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState('');
 
@@ -41,6 +42,16 @@ const AdminDashboard = () => {
     timezone: 'CST',
     zoomLink: '',
     passcode: ''
+  });
+
+  const [createUserForm, setCreateUserForm] = useState({
+    firstName: '',
+    lastName: '',
+    dateOfBirth: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    role: 'agent'
   });
 
   useEffect(() => {
@@ -162,6 +173,59 @@ const AdminDashboard = () => {
     } catch (error) {
       console.error('Error creating event:', error);
       alert('Error creating event');
+    }
+
+    setIsSubmitting(false);
+  };
+
+  const handleCreateUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!currentUser || !isAdmin) return;
+
+    // Validate passwords match
+    if (createUserForm.password !== createUserForm.confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    // Validate password strength
+    if (createUserForm.password.length < 8) {
+      alert('Password must be at least 8 characters long');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const result = await AdminService.createUser({
+        email: createUserForm.email,
+        firstName: createUserForm.firstName,
+        lastName: createUserForm.lastName,
+        role: createUserForm.role as 'admin' | 'agent' | 'manager',
+        temporaryPassword: createUserForm.password
+      });
+
+      if (result.success) {
+        setSubmitSuccess('User created successfully! They can now log in with their credentials.');
+        setCreateUserForm({
+          firstName: '',
+          lastName: '',
+          dateOfBirth: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+          role: 'agent'
+        });
+        setShowCreateUserForm(false);
+        await loadAllData();
+        
+        setTimeout(() => setSubmitSuccess(''), 5000);
+      } else {
+        alert('Error creating user');
+      }
+    } catch (error) {
+      console.error('Error creating user:', error);
+      alert(`Error creating user: ${error.message}`);
     }
 
     setIsSubmitting(false);
@@ -348,6 +412,13 @@ const AdminDashboard = () => {
                             >
                               <Calendar className="h-5 w-5 text-purple-600" />
                               <span className="text-purple-700 font-medium">Schedule Event</span>
+                            </button>
+                            <button
+                              onClick={() => setShowCreateUserForm(true)}
+                              className="w-full flex items-center space-x-3 p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                            >
+                              <Users className="h-5 w-5 text-blue-600" />
+                              <span className="text-blue-700 font-medium">Create New User</span>
                             </button>
                           </div>
                         </div>
@@ -790,6 +861,143 @@ const AdminDashboard = () => {
                     className="flex-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Creating...' : 'Create Event'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* Create User Modal */}
+        {showCreateUserForm && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-gray-900">Create New User</h3>
+                  <button
+                    onClick={() => setShowCreateUserForm(false)}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
+                </div>
+              </div>
+              
+              <form onSubmit={handleCreateUser} className="p-6 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={createUserForm.firstName}
+                      onChange={(e) => setCreateUserForm({...createUserForm, firstName: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="John"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={createUserForm.lastName}
+                      onChange={(e) => setCreateUserForm({...createUserForm, lastName: e.target.value})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Doe"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
+                  <input
+                    type="date"
+                    value={createUserForm.dateOfBirth}
+                    onChange={(e) => setCreateUserForm({...createUserForm, dateOfBirth: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                  <input
+                    type="email"
+                    required
+                    value={createUserForm.email}
+                    onChange={(e) => setCreateUserForm({...createUserForm, email: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="john.doe@example.com"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Password *</label>
+                  <input
+                    type="password"
+                    required
+                    minLength={8}
+                    value={createUserForm.password}
+                    onChange={(e) => setCreateUserForm({...createUserForm, password: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Minimum 8 characters"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password *</label>
+                  <input
+                    type="password"
+                    required
+                    value={createUserForm.confirmPassword}
+                    onChange={(e) => setCreateUserForm({...createUserForm, confirmPassword: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Confirm password"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Role *</label>
+                  <select
+                    required
+                    value={createUserForm.role}
+                    onChange={(e) => setCreateUserForm({...createUserForm, role: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="agent">Agent</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-start space-x-3">
+                    <Users className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="text-sm font-medium text-blue-900 mb-1">User Creation</h4>
+                      <p className="text-xs text-blue-700">
+                        The user will be created immediately and can log in with the provided credentials. 
+                        Make sure to share the login information securely with the new user.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex space-x-3 pt-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowCreateUserForm(false)}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:from-blue-600 hover:to-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Creating User...' : 'Create User'}
                   </button>
                 </div>
               </form>
