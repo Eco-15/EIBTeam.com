@@ -128,7 +128,11 @@ const AdminDashboard = () => {
       }
     } catch (error) {
       console.error('Error creating user:', error);
-      alert(`Error creating user: ${error.message}`);
+      if (error.message === 'Database error creating new user') {
+        alert('Unable to create user at this time. Please try again later or contact support if the issue persists.');
+      } else {
+        alert(`Error creating user: ${error.message}`);
+      }
     }
 
     setIsSubmitting(false);
