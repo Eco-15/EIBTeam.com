@@ -46,10 +46,11 @@ const AdminDashboard = () => {
 
   const [createAccountForm, setCreateAccountForm] = useState({
     email: '',
-    password: '',
+    temporaryPassword: '',
     confirmPassword: '',
     firstName: '',
-    lastName: ''
+    lastName: '',
+    role: 'agent'
   });
 
   useEffect(() => {
@@ -181,83 +182,50 @@ const AdminDashboard = () => {
     setIsSubmitting(true);
     
     // Validate passwords match
-    if (createAccountForm.password !== createAccountForm.confirmPassword) {
+    if (createAccountForm.temporaryPassword !== createAccountForm.confirmPassword) {
       alert('Passwords do not match. Please try again.');
       setIsSubmitting(false);
       return;
     }
 
     // Validate password strength
-    if (createAccountForm.password.length < 6) {
+    if (createAccountForm.temporaryPassword.length < 6) {
       alert('Password must be at least 6 characters long.');
       setIsSubmitting(false);
       return;
     }
 
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const result = await AdminService.createUser({
         email: createAccountForm.email,
-        password: createAccountForm.password,
-        options: {
-          data: {
-            first_name: createAccountForm.firstName,
-            last_name: createAccountForm.lastName,
-            full_name: `${createAccountForm.firstName} ${createAccountForm.lastName}`.trim()
-          }
-        }
+        temporaryPassword: createAccountForm.temporaryPassword,
+        firstName: createAccountForm.firstName,
+        lastName: createAccountForm.lastName,
+        role: createAccountForm.role as 'admin' | 'agent' | 'manager'
       });
 
-      if (error) {
-        console.error('Sign up error:', error);
-        if (error.message.includes('already_registered')) {
-          alert('An account with this email already exists. Please try logging in instead.');
-        } else if (error.message.includes('over_email_send_rate_limit')) {
-          alert('Please wait a few seconds before trying to sign up again. This is a temporary security measure.');
-        } else {
-          alert(`Sign up failed: ${error.message}`);
-        }
-        setIsSubmitting(false);
-        return;
-      }
-
-      if (data.user) {
-        // Create agent profile after successful signup
-        try {
-          const { error: profileError } = await supabase
-            .from('agent_profiles')
-            .insert([{
-              user_id: data.user.id,
-              first_name: createAccountForm.firstName,
-              last_name: createAccountForm.lastName,
-              status: 'active'
-            }]);
-
-          if (profileError) {
-            console.error('Error creating agent profile:', profileError);
-          }
-
-        } catch (error) {
-          console.error('Error setting up user profile:', error);
-        }
-
+      if (result.success) {
         setSubmitSuccess('Account created successfully! The user can now log in with their credentials.');
         
         // Reset form
         setCreateAccountForm({
           email: '',
-          password: '',
+          temporaryPassword: '',
           confirmPassword: '',
           firstName: '',
-          lastName: ''
+          lastName: '',
+          role: 'agent'
         });
         setShowCreateAccountForm(false);
         await loadAllData();
         
         setTimeout(() => setSubmitSuccess(''), 5000);
+      } else {
+        alert(`Account creation failed: ${result.error}`);
       }
     } catch (error) {
-      console.error('Sign up error:', error);
-      alert('An error occurred during sign up. Please try again.');
+      console.error('Account creation error:', error);
+      alert('An error occurred during account creation. Please try again.');
     }
 
     setIsSubmitting(false);
@@ -960,10 +928,10 @@ const AdminDashboard = () => {
                   <input
                     type="password"
                     required
-                    value={createAccountForm.password}
-                    onChange={(e) => setCreateAccountForm({...createAccountForm, password: e.target.value})}
+                    value={createAccountForm.temporaryPassword}
+                    onChange={(e) => setCreateAccountForm({...createAccountForm, temporaryPassword: e.target.value})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Minimum 6 characters"
+                    placeholder="Temporary password (minimum 6 characters)"
                   />
                 </div>
                 
@@ -979,13 +947,26 @@ const AdminDashboard = () => {
                   />
                 </div>
                 
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Role *</label>
+                  <select
+                    value={createAccountForm.role}
+                    onChange={(e) => setCreateAccountForm({...createAccountForm, role: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="agent">Agent</option>
+                    <option value="manager">Manager</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+                
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <div className="flex items-start space-x-3">
                     <Shield className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                     <div>
                       <h4 className="text-sm font-medium text-blue-900 mb-1">Secure Registration</h4>
                       <p className="text-xs text-blue-700">
-                        Your account information is encrypted and secure. You will be assigned the agent role by default.
+                        Account information is encrypted and secure. The user will receive a temporary password to log in.
                       </p>
                     </div>
                   </div>
