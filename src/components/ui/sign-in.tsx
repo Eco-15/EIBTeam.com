@@ -524,6 +524,22 @@ const AnimatedSignIn: React.FC = () => {
                 </button>
                 
                 {/* Toggle between Sign In and Sign Up */}
+                <div className="text-center">
+                  <button
+                    type="button"
+                    onClick={() => setIsSignUp(!isSignUp)}
+                    className={`text-sm font-medium ${
+                      theme === 'dark' ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-600 hover:text-yellow-500'
+                    } transition-colors duration-300`}
+                  >
+                    {isSignUp 
+                      ? 'Already have an account? Sign in' 
+                      : 'Need an account? Sign up'
+                    }
+                  </button>
+                </div>
+              </form>
+              
               {/* Security Notice */}
               <div className={`mt-8 p-4 rounded-lg ${theme === 'dark' ? 'bg-slate-700' : 'bg-yellow-50'} border ${theme === 'dark' ? 'border-slate-600' : 'border-yellow-200'}`}>
                 <div className="flex items-start space-x-3">
