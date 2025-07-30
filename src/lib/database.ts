@@ -396,9 +396,6 @@ export class DatabaseService {
       return null;
     }
 
-    return data;
-  }
-
   // User Role functions
   static async getUserRole(userId: string): Promise<UserRole | null> {
     try {

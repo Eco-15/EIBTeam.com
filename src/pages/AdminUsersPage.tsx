@@ -106,13 +106,9 @@ const AdminUsersPage = () => {
       // Generate temporary password if not provided
       const tempPassword = userForm.temporaryPassword || generateTemporaryPassword();
 
-      // Create user in Supabase Auth using Admin API
-      // Note: Admin user creation would require server-side implementation
       alert('User creation requires server-side implementation. Please contact system administrator.');
       setIsSubmitting(false);
       return;
-
-      // Create invitation record
 
     } catch (error) {
       console.error('Error creating user:', error);
