@@ -118,7 +118,7 @@ const ServicesPage = () => {
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
                 Comprehensive financial solutions designed to protect what matters most. 
-                Our expert agents help you choose the right coverage for your unique situation and goals.
+                Our expert agents help you choose the right coverage for your individual or business needs.
               </p>
             </div>
             
