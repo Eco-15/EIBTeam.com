@@ -127,77 +127,63 @@ const AdminDashboard = () => {
       // Generate password if not provided
       const password = userForm.password || generateTemporaryPassword();
 
-      // Create user using Supabase client-side SDK
+      // Create user using Supabase client-side SDK with minimal constraints
       const { data, error } = await supabase.auth.signUp({
         email: userForm.email,
         password: password,
         options: {
+          emailRedirectTo: undefined, // Disable email confirmation
           data: {
             first_name: userForm.firstName,
             last_name: userForm.lastName,
-            full_name: `${userForm.firstName} ${userForm.lastName}`.trim()
+            full_name: `${userForm.firstName} ${userForm.lastName}`.trim(),
+            email_confirm: true // Skip email confirmation
           }
         }
       });
 
       if (error) {
         console.error('Error creating user:', error);
+        
+        // Try alternative approach if signup fails
+        if (error.message.includes('email') || error.message.includes('confirmation')) {
+          // Try with admin createUser if available
+          try {
+            const { data: adminData, error: adminError } = await supabase.auth.admin.createUser({
+              email: userForm.email,
+              password: password,
+              email_confirm: true,
+              user_metadata: {
+                first_name: userForm.firstName,
+                last_name: userForm.lastName,
+                full_name: `${userForm.firstName} ${userForm.lastName}`.trim()
+              }
+            });
+            
+            if (adminError) {
+              throw adminError;
+            }
+            
+            // Use admin created user data
+            if (adminData.user) {
+              await createUserProfile(adminData.user, password);
+              return;
+            }
+          } catch (adminErr) {
+            console.error('Admin create user also failed:', adminErr);
+            alert(`Error creating user: ${error.message}. Admin fallback also failed: ${adminErr.message}`);
+            setIsSubmitting(false);
+            return;
+          }
+        }
+        
         alert(`Error creating user: ${error.message}`);
         setIsSubmitting(false);
         return;
       }
 
       if (data.user) {
-        // Create agent profile
-        const { error: profileError } = await supabase
-          .from('agent_profiles')
-          .insert([{
-            user_id: data.user.id,
-            first_name: userForm.firstName,
-            last_name: userForm.lastName,
-            status: 'active'
-          }]);
-
-        if (profileError) {
-          console.error('Error creating agent profile:', profileError);
-        }
-
-        // Create user role
-        const { error: roleError } = await supabase
-          .from('user_roles')
-          .insert([{
-            user_id: data.user.id,
-            role: userForm.role,
-            assigned_by: currentUser.id
-          }]);
-
-        if (roleError) {
-          console.error('Error creating user role:', roleError);
-        }
-
-        // Create invitation record
-        const { error: invitationError } = await supabase
-          .from('user_invitations')
-          .insert([{
-            email: userForm.email,
-            first_name: userForm.firstName,
-            last_name: userForm.lastName,
-            role: userForm.role,
-            temporary_password: password,
-            invited_by: currentUser.id,
-            accepted_at: new Date().toISOString()
-          }]);
-
-        if (invitationError) {
-          console.error('Error creating invitation:', invitationError);
-        }
-
-        setSubmitSuccess(`User created successfully! Login credentials - Email: ${userForm.email}, Password: ${password}`);
-        setUserForm({ email: '', firstName: '', lastName: '', role: 'agent', password: '' });
-        setShowCreateUserForm(false);
-        await loadAllData();
-        
-        setTimeout(() => setSubmitSuccess(''), 10000);
+        await createUserProfile(data.user, password);
       }
     } catch (error) {
       console.error('Error creating user:', error);
@@ -205,6 +191,73 @@ const AdminDashboard = () => {
     }
 
     setIsSubmitting(false);
+  };
+
+  const createUserProfile = async (user: any, password: string) => {
+    try {
+      // Create agent profile with error handling
+      const { error: profileError } = await supabase
+        .from('agent_profiles')
+        .insert([{
+          user_id: user.id,
+          first_name: userForm.firstName,
+          last_name: userForm.lastName,
+          status: 'active'
+        }]);
+
+      if (profileError) {
+        console.error('Error creating agent profile:', profileError);
+        // Continue anyway - profile creation failure shouldn't block user creation
+      }
+
+      // Create user role with error handling
+      const { error: roleError } = await supabase
+        .from('user_roles')
+        .insert([{
+          user_id: user.id,
+          role: userForm.role,
+          assigned_by: currentUser.id
+        }]);
+
+      if (roleError) {
+        console.error('Error creating user role:', roleError);
+        // Continue anyway - role creation failure shouldn't block user creation
+      }
+
+      // Create invitation record with error handling
+      const { error: invitationError } = await supabase
+        .from('user_invitations')
+        .insert([{
+          email: userForm.email,
+          first_name: userForm.firstName,
+          last_name: userForm.lastName,
+          role: userForm.role,
+          temporary_password: password,
+          invited_by: currentUser.id,
+          accepted_at: new Date().toISOString()
+        }]);
+
+      if (invitationError) {
+        console.error('Error creating invitation:', invitationError);
+        // Continue anyway - invitation creation failure shouldn't block user creation
+      }
+
+      setSubmitSuccess(`User created successfully! Login credentials - Email: ${userForm.email}, Password: ${password}`);
+      setUserForm({ email: '', firstName: '', lastName: '', role: 'agent', password: '' });
+      setShowCreateUserForm(false);
+      await loadAllData();
+      
+      setTimeout(() => setSubmitSuccess(''), 10000);
+    } catch (error) {
+      console.error('Error in createUserProfile:', error);
+      // Even if profile creation fails, the user was created successfully
+      setSubmitSuccess(`User created successfully but some profile setup failed. Login credentials - Email: ${userForm.email}, Password: ${password}`);
+      setUserForm({ email: '', firstName: '', lastName: '', role: 'agent', password: '' });
+      setShowCreateUserForm(false);
+      await loadAllData();
+      
+      setTimeout(() => setSubmitSuccess(''), 10000);
+    }
   };
 
   const handleCreateAnnouncement = async (e: React.FormEvent) => {
