@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
-import { Users, Plus, Bell, Calendar, BarChart3, Shield, CheckCircle, AlertCircle, Clock, X, Edit, Trash2 } from 'lucide-react';
+import { Users, Plus, Bell, Calendar, BarChart3, Shield, CheckCircle, AlertCircle, Clock, X, Edit, Trash2, AlertTriangle } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { DatabaseService, Announcement, ScheduleEvent, UserInvitation } from '@/lib/database';
 
@@ -20,6 +20,8 @@ const AdminDashboard = () => {
   const [showCreateUserForm, setShowCreateUserForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState('');
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<{type: 'announcement' | 'event', id: string, title: string} | null>(null);
 
   // Form data
   const [userForm, setUserForm] = useState({
@@ -336,8 +338,6 @@ const AdminDashboard = () => {
   };
 
   const handleDeleteAnnouncement = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this announcement?')) return;
-
     try {
       await DatabaseService.deleteAnnouncement(id);
       await loadAllData();
@@ -348,8 +348,6 @@ const AdminDashboard = () => {
   };
 
   const handleDeleteEvent = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this event?')) return;
-
     try {
       await DatabaseService.deleteScheduleEvent(id);
       await loadAllData();
@@ -357,6 +355,24 @@ const AdminDashboard = () => {
       console.error('Error deleting event:', error);
       alert('Error deleting event');
     }
+  };
+
+  const confirmDelete = (type: 'announcement' | 'event', id: string, title: string) => {
+    setDeleteTarget({ type, id, title });
+    setShowDeleteConfirm(true);
+  };
+
+  const executeDelete = async () => {
+    if (!deleteTarget) return;
+
+    if (deleteTarget.type === 'announcement') {
+      await handleDeleteAnnouncement(deleteTarget.id);
+    } else {
+      await handleDeleteEvent(deleteTarget.id);
+    }
+
+    setShowDeleteConfirm(false);
+    setDeleteTarget(null);
   };
 
   if (isLoading) {
@@ -649,7 +665,7 @@ const AdminDashboard = () => {
                                   <Edit className="h-4 w-4" />
                                 </button>
                                 <button
-                                  onClick={() => handleDeleteAnnouncement(announcement.id)}
+                                  onClick={() => confirmDelete('announcement', announcement.id, announcement.title)}
                                   className="text-red-400 hover:text-red-600 transition-colors"
                                 >
                                   <Trash2 className="h-4 w-4" />
@@ -689,7 +705,7 @@ const AdminDashboard = () => {
                                   <Edit className="h-4 w-4" />
                                 </button>
                                 <button
-                                  onClick={() => handleDeleteEvent(event.id)}
+                                  onClick={() => confirmDelete('event', event.id, event.title)}
                                   className="text-red-400 hover:text-red-600 transition-colors"
                                 >
                                   <Trash2 className="h-4 w-4" />
@@ -1093,6 +1109,47 @@ const AdminDashboard = () => {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        )}
+
+        {/* Delete Confirmation Modal */}
+        {showDeleteConfirm && deleteTarget && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl shadow-xl max-w-md w-full">
+              <div className="p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="bg-red-100 rounded-full p-2">
+                    <AlertTriangle className="h-6 w-6 text-red-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Confirm Deletion</h3>
+                    <p className="text-sm text-gray-600">This action cannot be undone</p>
+                  </div>
+                </div>
+                
+                <p className="text-gray-700 mb-6">
+                  Are you sure you want to delete the {deleteTarget.type} "{deleteTarget.title}"?
+                </p>
+                
+                <div className="flex space-x-3">
+                  <button
+                    onClick={() => {
+                      setShowDeleteConfirm(false);
+                      setDeleteTarget(null);
+                    }}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={executeDelete}
+                    className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}

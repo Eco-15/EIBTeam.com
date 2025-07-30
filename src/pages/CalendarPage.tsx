@@ -192,7 +192,14 @@ const CalendarPage = () => {
                     <div className="p-6">
                       <div className="space-y-4">
                         {events.length > 0 ? events.slice(0, 5).map((event) => (
-                          <div key={event.id} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                          <div 
+                            key={event.id} 
+                            className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer group"
+                            onClick={() => {
+                              setSelectedEvent(event);
+                              setShowEventModal(true);
+                            }}
+                          >
                             <div className={`p-2 rounded-full ${
                               event.type === 'meeting' ? 'bg-yellow-100' :
                               event.type === 'training' ? 'bg-blue-100' :
@@ -206,10 +213,10 @@ const CalendarPage = () => {
                                 'text-purple-600'
                               }`} />
                             </div>
-                            <div className="flex-1">
+                            <div className="flex-1 min-w-0">
                               <h4 className="font-semibold text-gray-900">{event.title}</h4>
                               {event.description && (
-                                <p className="text-sm text-gray-600 mt-1">{event.description}</p>
+                                <p className="text-sm text-gray-600 mt-1 line-clamp-2">{event.description}</p>
                               )}
                               <div className="flex items-center space-x-4 mt-2 text-sm text-gray-600">
                                 <div className="flex items-center space-x-1">
@@ -220,17 +227,10 @@ const CalendarPage = () => {
                                   <MapPin className="h-4 w-4" />
                                   <span>{event.location}</span>
                                 </div>
-                                {event.zoomLink && (
-                                  <a
-                                    href={event.zoomLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-600 hover:text-blue-800 text-xs"
-                                  >
-                                    Join Meeting
-                                  </a>
-                                )}
                               </div>
+                            </div>
+                            <div className="flex-shrink-0">
+                              <Eye className="h-5 w-5 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>
                           </div>
                         )) : (
