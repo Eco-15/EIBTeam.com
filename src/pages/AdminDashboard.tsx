@@ -920,10 +920,10 @@ const AdminDashboard = () => {
                       onChange={(e) => setAnnouncementForm({...announcementForm, priority: e.target.value})}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     >
-                      <option value="low">Low</option>
-                      <option value="medium">Medium</option>
-                      <option value="high">High</option>
-                      <option value="urgent">Urgent</option>
+                      <option value="Low">Low</option>
+                      <option value="Medium">Medium</option>
+                      <option value="High">High</option>
+                      <option value="URGENTt">Urgent</option>
                     </select>
                   </div>
                   
