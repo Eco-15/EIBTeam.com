@@ -140,9 +140,17 @@ const DashboardHeader = () => {
                     {notifications.map((notification) => (
                       <div
                         key={notification.id}
-                        className={`px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 ${
+                        className={`px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 cursor-pointer group ${
                           !notification.read ? 'bg-blue-50' : ''
                         }`}
+                        onClick={() => {
+                          const announcement = announcements.find(a => a.id === notification.id);
+                          if (announcement) {
+                            setSelectedAnnouncement(announcement);
+                            setShowAnnouncementModal(true);
+                            setIsNotificationsOpen(false);
+                          }
+                        }}
                       >
                         <div className="flex items-start space-x-3">
                           <div className={`p-1 rounded-full ${getNotificationColor(notification.type)}`}>
@@ -153,11 +161,14 @@ const DashboardHeader = () => {
                               <p className={`text-sm font-medium ${!notification.read ? 'text-gray-900' : 'text-gray-700'}`}>
                                 {notification.title}
                               </p>
-                              {!notification.read && (
-                                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                              )}
+                              <div className="flex items-center space-x-2">
+                                {!notification.read && (
+                                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                )}
+                                <Eye className="h-3 w-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              </div>
                             </div>
-                            <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
+                            <p className="text-sm text-gray-600 mt-1 line-clamp-2">{notification.message}</p>
                             <p className="text-xs text-gray-400 mt-1">{notification.time}</p>
                           </div>
                         </div>
