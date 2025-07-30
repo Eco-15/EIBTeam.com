@@ -103,16 +103,81 @@ const AdminUsersPage = () => {
     setIsSubmitting(true);
 
     try {
-      // Generate temporary password if not provided
       const tempPassword = userForm.temporaryPassword || generateTemporaryPassword();
 
-      alert('User creation requires server-side implementation. Please contact system administrator.');
-      setIsSubmitting(false);
-      return;
+      // Create user account using Supabase auth
+      const { data, error } = await supabase.auth.admin.createUser({
+        email: userForm.email,
+        password: tempPassword,
+        email_confirm: true,
+        user_metadata: {
+          first_name: userForm.firstName,
+          last_name: userForm.lastName,
+          full_name: `${userForm.firstName} ${userForm.lastName}`.trim()
+        }
+      });
+
+      if (error) {
+        console.error('User creation error:', error);
+        if (error.message.includes('already_registered')) {
+          alert('An account with this email already exists.');
+        } else {
+          alert(`User creation failed: ${error.message}`);
+        }
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (data.user) {
+        // Create agent profile
+        const { error: profileError } = await supabase
+          .from('agent_profiles')
+          .insert([{
+            user_id: data.user.id,
+            first_name: userForm.firstName,
+            last_name: userForm.lastName,
+            status: 'active'
+          }]);
+
+        if (profileError) {
+          console.error('Error creating agent profile:', profileError);
+        }
+
+        // Create user role
+        const { error: roleError } = await supabase
+          .from('user_roles')
+          .insert([{
+            user_id: data.user.id,
+            role: userForm.role,
+            assigned_by: currentUser.id
+          }]);
+
+        if (roleError) {
+          console.error('Error creating user role:', roleError);
+        }
+
+        // Create invitation record for tracking
+        await DatabaseService.createUserInvitation({
+          email: userForm.email,
+          first_name: userForm.firstName,
+          last_name: userForm.lastName,
+          role: userForm.role as 'admin' | 'agent' | 'manager',
+          temporary_password: tempPassword,
+          invited_by: currentUser.id,
+          accepted_at: new Date().toISOString() // Mark as accepted since account is created
+        });
+
+        setSubmitSuccess('User created successfully! They can now log in with their credentials.');
+        setUserForm({ email: '', firstName: '', lastName: '', role: 'agent', temporaryPassword: '' });
+        setShowUserForm(false);
+        await loadInvitations();
+        
+        setTimeout(() => setSubmitSuccess(''), 5000);
+      }
 
     } catch (error) {
       console.error('Error creating user:', error);
-      alert('Error creating user. Please try again.');
+      alert('Error creating user account. Please try again.');
     }
 
     setIsSubmitting(false);
