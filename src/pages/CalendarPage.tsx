@@ -272,9 +272,9 @@ const CalendarPage = () => {
                               </div>
                               <div className="flex items-center space-x-2">
                                 <span className={`px-2 py-1 text-xs rounded-full ${
-                                  announcement.priority === 'high' ? 'bg-red-100 text-red-800' :
-                                  announcement.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-                                  announcement.priority === 'urgent' ? 'bg-red-100 text-red-800' :
+                                  announcement.priority === 'High' ? 'bg-red-100 text-red-800' :
+                                  announcement.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                                  announcement.priority === 'URGENT' ? 'bg-red-100 text-red-800' :
                                   'bg-gray-100 text-gray-800'
                                 }`}>
                                   {announcement.priority}
@@ -408,9 +408,9 @@ const CalendarPage = () => {
                         <div className="flex items-center space-x-3">
                           <h3 className="text-xl font-semibold text-gray-900">{selectedAnnouncement.title}</h3>
                           <span className={`px-2 py-1 text-xs rounded-full font-medium ${
-                            selectedAnnouncement.priority === 'high' ? 'bg-red-100 text-red-800' :
-                            selectedAnnouncement.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-                            selectedAnnouncement.priority === 'urgent' ? 'bg-red-100 text-red-800' :
+                            selectedAnnouncement.priority === 'High' ? 'bg-red-100 text-red-800' :
+                            selectedAnnouncement.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                            selectedAnnouncement.priority === 'URGENT' ? 'bg-red-100 text-red-800' :
                             'bg-gray-100 text-gray-800'
                           }`}>
                             {selectedAnnouncement.priority}
