@@ -185,16 +185,6 @@ const CalendarPage = () => {
 
                   {/* Upcoming Events */}
                   <div className="mt-8 bg-white rounded-xl shadow-sm border border-gray-200">
-                    <div className="p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-semibold text-gray-900">Upcoming Events</h3>
-                        <button className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors flex items-center space-x-2">
-                          <Plus className="h-4 w-4" />
-                          <span>Add Event</span>
-                        </button>
-                      </div>
-                    </div>
-                    
                     <div className="p-6">
                       <div className="space-y-4">
                         {events.length > 0 ? events.slice(0, 5).map((event) => (
