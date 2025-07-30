@@ -1,6 +1,6 @@
 import { supabase } from './supabase';
 
-export class AdminService {
+class AdminService {
   private static async callAdminFunction(operation: string, data: any) {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) {
@@ -76,3 +76,5 @@ export class AdminService {
     return result.invitations || [];
   }
 }
+
+export { AdminService };
