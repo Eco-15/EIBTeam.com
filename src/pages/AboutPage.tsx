@@ -474,7 +474,7 @@ const AboutPage = () => {
               {/* 2007 - Left branch */}
               <div className="relative flex items-center">
                 {/* Branch line */}
-                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-l from-yellow-500 to-yellow-400"></div>
+                <div className="absolute right-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-l from-yellow-500 to-yellow-400"></div>
                 <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
                 
                 <div className="w-1/2 pr-8 flex justify-end">
