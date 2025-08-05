@@ -30,7 +30,7 @@ const PartnersSlider = () => {
     />,
      <img
       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnfxh6gxWwS0j4D1ydoNBhk8RHX5asGlYQ39iZ"
-      alt="Silac"
+      alt="Mediators Debt Solutions"
       className="h-[120px] w-auto"
     />,
       <img
