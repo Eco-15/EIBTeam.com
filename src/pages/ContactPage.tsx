@@ -117,7 +117,7 @@ const ContactPage = () => {
     },
     {
       icon: Mail,
-      title: 'Email',
+      title: 'HQ Email',
       primary: 'admin@eibagency.com',
       secondary: 'We\'ll respond within 24 hours',
       action: 'Send Email',
