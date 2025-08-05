@@ -268,7 +268,7 @@ const ContactPage = () => {
                     }`}
                   >
                     <FileText className="h-5 w-5" />
-                    <span>Get A Free Consultation</span>
+                    <span>Get Free Consultation</span>
                   </button>
                   <button
                     onClick={() => setActiveForm('team')}
@@ -298,7 +298,7 @@ const ContactPage = () => {
                 {activeForm === 'consultation' && (
                   <form onSubmit={(e) => handleSubmit(e, 'consultation')} className="space-y-6">
                     <div className="mb-6">
-                      <h2 className="text-3xl font-bold text-black mb-2">Get a Free Consultation</h2>
+                      <h2 className="text-3xl font-bold text-black mb-2">Get A Free Consultation</h2>
                       <p className="text-gray-600">Let us help you find the right insurance solution for your needs.</p>
                     </div>
 
