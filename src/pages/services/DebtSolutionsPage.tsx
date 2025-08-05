@@ -365,7 +365,6 @@ const DebtSolutionsPage = () => {
               </p>
               
               <div className="space-y-4 mb-6">
-                <div className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-yellow-400" />
                   <span>(972) 805-1002</span>
                 </div>
