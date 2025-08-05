@@ -1,29 +1,30 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Shield, Target, Award, Users, MapPin, Phone, Mail, HelpCircle  } from 'lucide-react';
+import { Shield, Target, Award, Users, MapPin, Phone, Mail, HelpCircle, Heart, Handshake, UserCheck, Crown } from 'lucide-react';
 import { Timeline } from '../components/ui/timeline';
 
 const AboutPage = () => {
   const features = [
     {
-      icon: HelpCircle,
+      icon: Heart,
       title: 'Love',
+      description: 'We genuinely care about our clients and agents, treating everyone with compassion and putting their needs first.',
     },
     {
-      icon: Target,
-      title: 'Market Focus',
-      description: 'Deep understanding of the Texas insurance market, local regulations, and the unique needs of DFW businesses and families.',
+      icon: Handshake,
+      title: 'Respect',
+      description: 'We honor the dignity of every person we serve, valuing diverse perspectives and treating everyone with courtesy.',
     },
     {
-      icon: Award,
-      title: 'Proven Results',
-      description: 'Consistently ranked among the top PHP Agency partners in the region with exceptional client satisfaction and retention rates.',
+      icon: UserCheck,
+      title: 'Trust',
+      description: 'We build lasting relationships through transparency, reliability, and consistently delivering on our promises.',
     },
     {
-      icon: Users,
-      title: 'Team Approach',
-      description: 'Collaborative environment where experienced agents mentor newcomers using PHP Agency\'s time-tested methodologies.',
+      icon: Crown,
+      title: 'Loyalty',
+      description: 'We stand by our clients and team members through all seasons, committed to their long-term success and well-being.',
     },
   ];
 
