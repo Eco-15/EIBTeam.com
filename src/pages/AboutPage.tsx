@@ -397,12 +397,12 @@ const AboutPage = () => {
                 <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl shadow-xl p-4 max-w-xs hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                   <div className="relative rounded-lg overflow-hidden mb-4">
                     <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnd7spMIl7cmdASPKDVwuU18xgjXi5O4RQaH2I"
-                      alt="Future Vision 2025"
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOndff3IBul7cmdASPKDVwuU18xgjXi5O4RQaH2"
+                      alt="Building The Future"
                       className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
-                  <h3 className="text-sm md:text-base font-bold text-black text-center">2025 - Future Vision</h3>
+                  <h3 className="text-sm md:text-base font-bold text-black text-center">Building The Future</h3>
                   <h3 className="text-base md:text-lg font-bold text-black text-center">2024 - Industry Leader</h3>
                 </div>
               </div>
