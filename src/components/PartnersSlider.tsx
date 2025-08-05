@@ -4,7 +4,7 @@ import { InfiniteSlider } from '@/components/ui/infinite-slider';
 const PartnersSlider = () => {
   const partners = [
     <img
-      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnTJQQx9SOYKyMgiRoL2B5edw4DcX93EUupS7n"
+      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnQKvvXZtkdtnWgyXhariuKjx2YqbGcZpReB7H"
       alt="National Life Group"
       className="h-[120px] w-auto"
     />,
