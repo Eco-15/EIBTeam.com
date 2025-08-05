@@ -469,7 +469,6 @@ const ContactPage = () => {
                   <form onSubmit={(e) => handleSubmit(e, 'team')} className="space-y-6">
                     <div className="mb-6">
                       <h2 className="text-3xl font-bold text-black mb-2">Join Our Team</h2>
-                      <p className="text-gray-600">Start your career with EIB Agency and become part of our success story.</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
