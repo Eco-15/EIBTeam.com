@@ -1,17 +1,17 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Shield, Target, Award, Users, MapPin, Phone, Mail } from 'lucide-react';
+import { Shield, Target, Award, Users, MapPin, Phone, Mail, heart } from 'lucide-react';
 import { Timeline } from '../components/ui/timeline';
 
 const AboutPage = () => {
   const features = [
     {
-      icon: Shield,
+      icon: ,
       title: 'Love',
     },
     {
-      icon: Heart,
+      icon: Target,
       title: 'Market Focus',
       description: 'Deep understanding of the Texas insurance market, local regulations, and the unique needs of DFW businesses and families.',
     },
