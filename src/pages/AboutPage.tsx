@@ -459,7 +459,7 @@ const AboutPage = () => {
                 <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-6">
                   <feature.icon className="h-8 w-8 text-black" />
                 </div>
-                <h3 className="text-4xl font-bold text-black mb-4">{feature.title}</h3>
+                <h3 className="text-3xl font-bold text-black mb-4">{feature.title}</h3>
               </div>
             ))}
           </div>
