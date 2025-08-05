@@ -379,7 +379,7 @@ const AboutPage = () => {
                   <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
                     <div className="relative rounded-lg overflow-hidden mb-4">
                       <img
-                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnCiRNubykjw7PSNi0m8alYrGqn6LoI9hUxsv4"
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnkDiuRmq3fVlhMWBTEXRD5x2LS6mPGqI8Jk7Y"
                         alt="Team Expansion 2025"
                         className="w-full h-24 md:h-40 object-cover"
                       />
