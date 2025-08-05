@@ -111,7 +111,7 @@ const ServicesPage = () => {
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-gray-50 to-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid lg:grid-cols-1 gap-12 items-center mb-16">
             <div className="text-center lg:text-left">
               <h1 className="text-5xl md:text-6xl font-bold text-black mb-6">
                 Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">Services</span>
