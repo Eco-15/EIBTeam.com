@@ -121,21 +121,6 @@ const ServicesPage = () => {
                 Our expert agents help you choose the right coverage for your individual or business needs.
               </p>
             </div>
-            
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnb9GL7lDaIfgAKhYUe6Ot7ZDyi0rGF98J5TvQ"
-                  alt="Insurance consultation meeting"
-                  className="w-full h-96 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-yellow-500 to-yellow-600 p-6 rounded-xl shadow-xl">
-                <div className="text-black font-bold text-lg">Expert</div>
-                <div className="text-black font-bold text-lg">Guidance</div>
-              </div>
-            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
