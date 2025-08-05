@@ -28,32 +28,7 @@ const AboutPage = () => {
     },
   ];
 
-  const timeline = [
-    {
-      year: '2007',
-      title: 'EIB Founded',
-      description: 'Jason and Nataly Graziani founded Excellence in Building with a mission to serve people and treat them right.'
-    },
-    {
-      year: '2010',
-      title: 'PHP Partnership',
-      description: 'Established partnerships with leading insurance carriers, gaining access to proven systems and training methodologies.'
-    },
-    {
-      year: '2015',
-      title: 'Texas Expansion',
-      description: 'Expanded operations throughout Texas, establishing a strong presence in the Dallas-Fort Worth market.'
-    },
-    {
-      year: '2020',
-      title: 'Digital Innovation',
-      description: 'Implemented cutting-edge technology and remote capabilities to better serve clients and agents.'
-    },
-    {
-      year: '2024',
-      title: 'Industry Leader',
-      description: 'Recognized as one of the top insurance brokerages with over 15,000 families protected nationwide.'
-    }
+ 
   ];
 
   const timelineData = [
