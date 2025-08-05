@@ -504,7 +504,7 @@ const AboutPage = () => {
                       <img
                         src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnBlbmYuNs1dDP4Ioh850ny67VtNg3mlwEuFpx"
                         alt="First HQ 2010"
-                        className="w-full h-20 md:h-32 object-cover"
+                        className="w-full h-20 md:h-80 object-cover"
                       />
                     </div>
                     <h3 className="text-sm md:text-base font-bold text-black text-center">2010 - First HQ</h3>
