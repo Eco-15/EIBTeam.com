@@ -485,7 +485,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnFBOboBgdhktn0l9Vv7ZApYCzG1iNX84RuD3H"
                       alt="EIB Founded 2007"
-                      className="w-full h-32 object-cover"
+                     className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2007 - EIB Founded</h3>
@@ -499,7 +499,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnBlbmYuNs1dDP4Ioh850ny67VtNg3mlwEuFpx"
                       alt="First HQ 2010"
-                      className="w-full h-32 object-cover"
+                     className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2010 - First HQ</h3>
@@ -513,7 +513,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnngnqsvftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
                       alt="PHP Partnership 2011"
-                      className="w-full h-32 object-cover"
+                     className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2011 - PHP Partnership</h3>
@@ -527,7 +527,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOna5IOLfzQeWgc0JhO76uDGTAUEqB4jd8SVPZf"
                       alt="SVP Achievement 2013"
-                      className="w-full h-32 object-cover"
+                     className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2013 - SVP Achievement</h3>
@@ -541,7 +541,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnIbHZdMJEA2Fdv5GxZ0wWRTnU1CQbfzgryeKP"
                       alt="Dallas Office 2014"
-                      className="w-full h-32 object-cover"
+                     className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2014 - Dallas Office</h3>
@@ -555,7 +555,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn3dcBm4pHEmVwYtLheWFjdDMo68CiN0Bqyp7b"
                       alt="Plano HQ 2015"
-                      className="w-full h-32 object-cover"
+                     className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2015 - Plano HQ</h3>
@@ -569,7 +569,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnU6WHBiEtjKqYRZg1aCTbApezkOJIGxs48of6"
                       alt="RV Tour 2016"
-                      className="w-full h-32 object-cover"
+                     className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2016 - RV Tour</h3>
@@ -583,7 +583,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn4AtVmxsTL4f0up9I5jZJSEbw2R1dz7OsVtma"
                       alt="Magic Johnson 2017"
-                      className="w-full h-32 object-cover"
+                     className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2017 - Magic Johnson</h3>
@@ -597,7 +597,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnndi90eftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
                       alt="Wedding 2018"
-                      className="w-full h-32 object-cover"
+                     className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2018 - Wedding</h3>
@@ -611,7 +611,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4"
                       alt="Industry Leader 2024"
-                      className="w-full h-32 object-cover"
+                     className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2024 - Industry Leader</h3>
