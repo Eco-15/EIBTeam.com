@@ -28,8 +28,7 @@ const AboutPage = () => {
     },
   ];
 
- 
-  ];
+
 
   const timelineData = [
     {
