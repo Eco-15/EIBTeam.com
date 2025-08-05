@@ -399,7 +399,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOndff3IBul7cmdASPKDVwuU18xgjXi5O4RQaH2"
                       alt="Building The Future"
-                      className="w-full h-24 md:h-40 object-cover"
+                      className="w-full h-24 md:h-80 object-cover"
                     />
                   </div>
                   <h3 className="text-base md:text-lg font-bold text-black text-center">Building The Future</h3>
