@@ -221,8 +221,9 @@ const ContactPage = () => {
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
              Ready to take the next step? We'd love to hear from you!
-             Our team is standing by to answer your questions.
+
             </p>
+                         Our team is standing by to answer your questions.
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
