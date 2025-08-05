@@ -235,18 +235,6 @@ const AdminUsersPage = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Add User Button */}
-              <div className="mb-8">
-                <button
-                  onClick={() => setShowAddUserForm(true)}
-                  className="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-purple-600 hover:to-purple-700 transition-colors flex items-center space-x-2"
-                >
-                  <Plus className="h-5 w-5" />
-                  <span>Add New User</span>
-                </button>
-              </div>
-
               {/* Users Table */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                 <div className="p-6 border-b border-gray-200">
