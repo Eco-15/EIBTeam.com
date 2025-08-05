@@ -700,7 +700,7 @@ const AboutPage = () => {
               <div className="relative flex items-center justify-center">
                 {/* Special crown connection */}
                 <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full border-4 border-white shadow-lg"></div>
-                
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
                 <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl shadow-xl p-6 max-w-sm hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                   <div className="relative rounded-lg overflow-hidden mb-4">
                     <img
@@ -708,7 +708,66 @@ const AboutPage = () => {
                       alt="Industry Leader 2024"
                       className="w-full h-24 md:h-80 object-cover"
                     />
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2024 - Industry Leader</h3>
                   </div>
+                </div>
+              </div>
+
+              {/* 2025 - Right branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-r from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2"></div>
+                <div className="w-1/2 pl-8 flex justify-start">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-4">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlmOrmln8EfQTV7ApbyFLmjY5GCZhaPcN4nzo"
+                        alt="Digital Innovation 2025"
+                        className="w-full h-24 md:h-40 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2025 - Digital Innovation</h3>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2025 - Left branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute right-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-l from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2 pr-8 flex justify-end">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-4">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnCiRNubykjw7PSNi0m8alYrGqn6LoI9hUxsv4"
+                        alt="Team Expansion 2025"
+                        className="w-full h-24 md:h-40 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2025 - Team Expansion</h3>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2025 - Center (Final/Crown) */}
+              <div className="relative flex items-center justify-center">
+                {/* Special crown connection */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full border-4 border-white shadow-lg"></div>
+                
+                <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl shadow-xl p-4 max-w-xs hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                  <div className="relative rounded-lg overflow-hidden mb-4">
+                    <img
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnd7spMIl7cmdASPKDVwuU18xgjXi5O4RQaH2I"
+                      alt="Future Vision 2025"
+                      className="w-full h-24 md:h-40 object-cover"
+                    />
+                  </div>
+                  <h3 className="text-sm md:text-base font-bold text-black text-center">2025 - Future Vision</h3>
                   <h3 className="text-base md:text-lg font-bold text-black text-center">2024 - Industry Leader</h3>
                 </div>
               </div>
