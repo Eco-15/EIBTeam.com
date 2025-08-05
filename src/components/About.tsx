@@ -46,8 +46,8 @@ const About = () => {
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
               Jason and Nataly currently reside in Prosper, Texas, and raise their four children. They serve as trustees at Revolution Church in McKinney while continuing to lead.
             </p>
-            
-            
+
+          </div>
 
           <div className="order-1 lg:order-2 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
