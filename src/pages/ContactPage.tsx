@@ -141,7 +141,7 @@ const ContactPage = () => {
 
   const quickFacts = [
     { label: 'Training Program', value: 'Comprehensive' },
-    { label: 'Training Length', value: '2-4 Weeks' },
+    { label: 'Basic Training', value: '2-4 Weeks' },
     { label: 'License Required', value: 'We Help!' },
     { label: 'Remote Work', value: 'Available' }
   ];
