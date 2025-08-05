@@ -111,7 +111,7 @@ const AnnuitiesPage = () => {
                 </div>
                 <div className="bg-white p-4 rounded-xl shadow-md text-center">
                   <div className="text-2xl font-bold text-yellow-600 mb-1">100%</div>
-                  <div className="text-gray-600 text-sm">Principal Protection</div>
+                  <div className="text-gray-600 text-sm">Principle Protection</div>
                 </div>
               </div>
 

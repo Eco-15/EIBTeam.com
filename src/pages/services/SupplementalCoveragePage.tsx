@@ -88,7 +88,7 @@ const SupplementalCoveragePage = () => {
       scenarios: ['High deductible health plans', 'Limited network coverage', 'Waiting periods for new insurance']
     },
     {
-      title: 'Self-Employed Individuals',
+      title: 'Self-Employed',
       description: 'Affordable healthcare options for business owners',
       scenarios: ['Between group plans', 'Startup businesses', 'Freelancers and contractors']
     },

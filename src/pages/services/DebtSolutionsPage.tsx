@@ -278,9 +278,6 @@ const DebtSolutionsPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-black mb-6">Potential Savings Example</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how much you could save by consolidating your high-interest debt with our solutions.
-            </p>
           </div>
 
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 max-w-4xl mx-auto">
