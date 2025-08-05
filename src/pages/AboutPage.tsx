@@ -463,23 +463,11 @@ const AboutPage = () => {
             </p>
           </div>
 
-          <div className="relative">
-            {/* S-shaped path */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 1200" fill="none">
-              <path
-                d="M100 100 Q300 100 400 200 T700 300 Q500 400 400 500 T100 600 Q300 700 400 800 T700 900"
-                stroke="#fbbf24"
-                strokeWidth="4"
-                fill="none"
-                strokeDasharray="8,8"
-                className="opacity-30"
-              />
-            </svg>
-
-            {/* Timeline items */}
-            <div className="relative z-10 space-y-16">
+          <div className="relative max-w-4xl mx-auto">
+            {/* Timeline items with connecting lines */}
+            <div className="relative space-y-12">
               {/* 2007 - Left */}
-              <div className="flex justify-start">
+              <div className="flex justify-start relative">
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
                   <div className="relative rounded-xl overflow-hidden mb-4">
                     <img
@@ -490,10 +478,13 @@ const AboutPage = () => {
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2007 - EIB Founded</h3>
                 </div>
+                {/* Connecting line to next item */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
               </div>
 
               {/* 2010 - Right */}
-              <div className="flex justify-end">
+              <div className="flex justify-end relative">
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
                   <div className="relative rounded-xl overflow-hidden mb-4">
                     <img
@@ -504,10 +495,13 @@ const AboutPage = () => {
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2010 - First HQ</h3>
                 </div>
+                {/* Connecting line to next item */}
+                <div className="absolute top-full right-1/2 transform translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
+                <div className="absolute top-full right-1/2 transform translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-l from-yellow-400 to-yellow-500"></div>
               </div>
 
               {/* 2011 - Left */}
-              <div className="flex justify-start">
+              <div className="flex justify-start relative">
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
                   <div className="relative rounded-xl overflow-hidden mb-4">
                     <img
@@ -518,10 +512,13 @@ const AboutPage = () => {
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2011 - PHP Partnership</h3>
                 </div>
+                {/* Connecting line to next item */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
               </div>
 
               {/* 2013 - Right */}
-              <div className="flex justify-end">
+              <div className="flex justify-end relative">
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
                   <div className="relative rounded-xl overflow-hidden mb-4">
                     <img
@@ -532,10 +529,13 @@ const AboutPage = () => {
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2013 - SVP Achievement</h3>
                 </div>
+                {/* Connecting line to next item */}
+                <div className="absolute top-full right-1/2 transform translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
+                <div className="absolute top-full right-1/2 transform translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-l from-yellow-400 to-yellow-500"></div>
               </div>
 
               {/* 2014 - Left */}
-              <div className="flex justify-start">
+              <div className="flex justify-start relative">
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
                   <div className="relative rounded-xl overflow-hidden mb-4">
                     <img
@@ -546,10 +546,13 @@ const AboutPage = () => {
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2014 - Dallas Office</h3>
                 </div>
+                {/* Connecting line to next item */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
               </div>
 
               {/* 2015 - Right */}
-              <div className="flex justify-end">
+              <div className="flex justify-end relative">
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
                   <div className="relative rounded-xl overflow-hidden mb-4">
                     <img
@@ -560,10 +563,13 @@ const AboutPage = () => {
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2015 - Plano HQ</h3>
                 </div>
+                {/* Connecting line to next item */}
+                <div className="absolute top-full right-1/2 transform translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
+                <div className="absolute top-full right-1/2 transform translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-l from-yellow-400 to-yellow-500"></div>
               </div>
 
               {/* 2016 - Left */}
-              <div className="flex justify-start">
+              <div className="flex justify-start relative">
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
                   <div className="relative rounded-xl overflow-hidden mb-4">
                     <img
@@ -574,10 +580,13 @@ const AboutPage = () => {
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2016 - RV Tour</h3>
                 </div>
+                {/* Connecting line to next item */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
               </div>
 
               {/* 2017 - Right */}
-              <div className="flex justify-end">
+              <div className="flex justify-end relative">
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
                   <div className="relative rounded-xl overflow-hidden mb-4">
                     <img
@@ -588,10 +597,13 @@ const AboutPage = () => {
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2017 - Magic Johnson</h3>
                 </div>
+                {/* Connecting line to next item */}
+                <div className="absolute top-full right-1/2 transform translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
+                <div className="absolute top-full right-1/2 transform translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-l from-yellow-400 to-yellow-500"></div>
               </div>
 
               {/* 2018 - Left */}
-              <div className="flex justify-start">
+              <div className="flex justify-start relative">
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
                   <div className="relative rounded-xl overflow-hidden mb-4">
                     <img
@@ -602,10 +614,13 @@ const AboutPage = () => {
                   </div>
                   <h3 className="text-lg font-bold text-black text-center">2018 - Wedding</h3>
                 </div>
+                {/* Connecting line to final item */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-12 w-48 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
               </div>
 
               {/* 2024 - Center (Final) */}
-              <div className="flex justify-center">
+              <div className="flex justify-center relative">
                 <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl shadow-xl p-6 max-w-sm hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                   <div className="relative rounded-xl overflow-hidden mb-4">
                     <img
