@@ -359,12 +359,12 @@ const AboutPage = () => {
                   <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
                     <div className="relative rounded-lg overflow-hidden mb-4">
                       <img
-                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlmOrmln8EfQTV7ApbyFLmjY5GCZhaPcN4nzo"
-                        alt="Digital Innovation 2025"
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnqHThtD0f0rumkpwBXbZgQ169Mj5tITK2SiFY"
+                        alt="Make a Wish"
                         className="w-full h-24 md:h-80 object-cover"
                       />
                     </div>
-                    <h3 className="text-sm md:text-base font-bold text-black text-center">2025 - Digital Innovation</h3>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2020 - Make A Wish</h3>
                   </div>
                 </div>
               </div>
