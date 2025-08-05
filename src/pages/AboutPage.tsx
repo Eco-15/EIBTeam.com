@@ -402,8 +402,7 @@ const AboutPage = () => {
                       className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
-                  <h3 className="text-sm md:text-base font-bold text-black text-center">Building The Future</h3>
-                  <h3 className="text-base md:text-lg font-bold text-black text-center">2024 - Industry Leader</h3>
+                  <h3 className="text-base md:text-lg font-bold text-black text-center">Building The Future</h3>
                 </div>
               </div>
             </div>
