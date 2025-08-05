@@ -360,7 +360,7 @@ const AboutPage = () => {
                     <div className="relative rounded-lg overflow-hidden mb-4">
                       <img
                         src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnqHThtD0f0rumkpwBXbZgQ169Mj5tITK2SiFY"
-                        alt="Make a Wish"
+                        alt="Make A Wish"
                         className="w-full h-24 md:h-80 object-cover"
                       />
                     </div>
