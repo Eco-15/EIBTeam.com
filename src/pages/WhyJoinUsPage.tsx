@@ -49,23 +49,23 @@ const WhyJoinUsPage = () => {
   const supportServices = [
     {
       icon: Shield,
-      title: 'Complete Training System',
-      description: 'PHP Agency\'s proven training methodology with local support and mentorship.'
+      title: 'Training System',
+      description: 'Weekly live training at local offices.'
     },
     {
       icon: Target,
-      title: 'Lead Generation',
-      description: 'Qualified leads and marketing support to help you build your client base quickly.'
+      title: 'Marketing System',
+      description: 'Marketing support through our matchup system.'
     },
     {
       icon: Briefcase,
       title: 'Business Tools',
-      description: 'CRM system, marketing materials, and technology to run your business efficiently.'
+      description: 'Advanced technology to run your business efficiently.'
     },
     {
       icon: Star,
-      title: 'Recognition Programs',
-      description: 'Awards, incentives, and recognition for top performers and team builders.'
+      title: 'Recognition Program',
+      description: 'Awards, incentives, and recognition for top performers.'
     }
   ];
 
@@ -133,8 +133,8 @@ const WhyJoinUsPage = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="text-3xl font-bold text-yellow-600 mb-2">2-4</div>
-              <div className="text-gray-700">Weeks Training</div>
+              <div className="text-3xl font-bold text-yellow-600 mb-2">1</div>
+              <div className="text-gray-700">Week to Get Licensed</div>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
               <div className="text-3xl font-bold text-yellow-600 mb-2">50+</div>
@@ -156,9 +156,7 @@ const WhyJoinUsPage = () => {
             <div>
               <h2 className="text-4xl font-bold text-black mb-6">Comprehensive Support System</h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                We provide everything you need to succeed, from initial training to ongoing business support.
-                Our proven systems combined with local mentorship creates the perfect environment
-                for building a thriving insurance career.
+                We provide everything you need to succeed, from initial training to ongoing business support from local mentorship.
               </p>
               
               <div className="grid grid-cols-2 gap-6">
@@ -211,7 +209,7 @@ const WhyJoinUsPage = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-black mb-6">Success Stories</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hear from our successful agents about their journey with EIB Team.
+              Hear from our successful agents about their journey with EIB Agency.
             </p>
           </div>
 
@@ -243,8 +241,7 @@ const WhyJoinUsPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">Ready to Transform Your Career?</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Join a team that's committed to your success. We provide the tools, training, 
-            and support you need to build a thriving insurance career.
+            We provide the tools, training, and support you need to be successful in the insurance industry.
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
