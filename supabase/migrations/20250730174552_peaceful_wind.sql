@@ -24,7 +24,7 @@ BEGIN
   ) THEN
     ALTER TABLE user_roles DROP CONSTRAINT IF EXISTS user_roles_role_check;
     ALTER TABLE user_roles ADD CONSTRAINT user_roles_role_check 
-    CHECK (role = ANY (ARRAY['admin'::text, 'agent'::text, 'manager'::text]));
+    CHECK (role = ANY (ARRAY['admin'::text, 'agent'::text]));
   END IF;
 END $$;
 
