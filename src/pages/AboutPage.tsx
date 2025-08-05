@@ -647,7 +647,7 @@ const AboutPage = () => {
                       <img
                         src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnndi90eftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
                         alt="Wedding 2018"
-                        className="w-full h-20 md:h-32 object-cover"
+                        className="w-full h-20 md:h-80 object-cover"
                       />
                     </div>
                     <h3 className="text-sm md:text-base font-bold text-black text-center">2018 - Wedding</h3>
