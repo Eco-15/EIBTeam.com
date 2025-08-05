@@ -30,7 +30,7 @@ const DebtSolutionsPage = () => {
   const debtTypes = [
     {
       type: 'Credit Card Debt',
-      description: 'High-interest revolving debt that compounds quickly',
+      description: 'High-interest revolving debt',
       averageRate: '18-29%',
       solution: 'Debt consolidation loan or balance transfer'
     },
