@@ -678,21 +678,6 @@ const ContactPage = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Emergency Contact */}
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-                <h3 className="text-xl font-bold text-black mb-4">Need Immediate Help?</h3>
-                <p className="text-gray-600 mb-4">
-                  For urgent matters or immediate assistance, call our direct line.
-                </p>
-                <a
-                  href="tel:(972)805-1002"
-                  className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-6 py-3 rounded-lg font-bold hover:from-yellow-600 hover:to-yellow-700 transition-colors duration-300 inline-flex items-center space-x-2"
-                >
-                  <Phone className="h-5 w-5" />
-                  <span>Call Now</span>
-                </a>
-              </div>
             </div>
           </div>
         </div>
