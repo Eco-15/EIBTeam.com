@@ -403,7 +403,11 @@ const AboutPage = () => {
             <div>
               <h2 className="text-4xl font-bold text-black mb-6">Our Story</h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                Excellence in Building (EIB) started in 2007 with a simple mission: To Serve People & Treat Them Right. Founded by Jason and Nataly Graziani, EIB was created to provide families with financial solutions and to develop leaders in the financial services industry.
+                Excellence in Building (EIB) started in 2007 with a simple mission: To Serve People & Treat Them Right. Founded by Jason and Nataly Graziani, EIB was created to provide families with financial solutions and to develop the next wave of leaders.
+
+Over the years, EIB has proudly helped protect thousands of families across the U.S. while also mentoring the next wave of leaders in our industry. For us, success isn't just about policies—it's about people, purpose, and impact.
+
+
               </p>
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
                 Over the years, EIB has proudly helped protect thousands of families across the U.S. while also mentoring the next wave of leaders in our industry. For us, success isn't just about policies—it's about people, purpose, and impact.
