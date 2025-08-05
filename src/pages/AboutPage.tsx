@@ -483,7 +483,7 @@ const AboutPage = () => {
                       <img
                         src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnFBOboBgdhktn0l9Vv7ZApYCzG1iNX84RuD3H"
                         alt="EIB Founded 2007"
-                        className="w-full h-20 md:h-32 object-cover"
+                        className="w-full h-20 md:h-80 object-cover"
                       />
                     </div>
                     <h3 className="text-sm md:text-base font-bold text-black text-center">2007 - EIB Founded</h3>
