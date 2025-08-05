@@ -63,20 +63,6 @@ const DebtSolutionsPage = () => {
       cons: ['Requires good credit', 'Origination fees possible']
     },
     {
-      title: 'Balance Transfer Cards',
-      description: 'Transfer high-interest debt to a card with promotional 0% APR',
-      features: ['0% introductory APR', '12-21 month promotional periods', 'No interest during promo', 'Online management'],
-      pros: ['No interest during promo', 'Potential savings', 'Credit building'],
-      cons: ['High rates after promo', 'Transfer fees', 'Credit requirements']
-    },
-    {
-      title: 'Home Equity Solutions',
-      description: 'Use your home equity to pay off high-interest debt',
-      features: ['Lower interest rates', 'Tax-deductible interest', 'Large loan amounts', 'Fixed or variable rates'],
-      pros: ['Lowest rates available', 'Tax benefits', 'Large amounts'],
-      cons: ['Home as collateral', 'Closing costs', 'Risk of foreclosure']
-    },
-    {
       title: 'Debt Management Plans',
       description: 'Work with creditors to reduce rates and create payment plans',
       features: ['Negotiated lower rates', 'Waived fees', 'Professional guidance', 'Credit counseling'],
