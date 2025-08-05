@@ -99,7 +99,7 @@ const AdminUsersPage = () => {
         email: userForm.email,
         firstName: userForm.firstName,
         lastName: userForm.lastName,
-        role: userForm.role as 'admin' | 'agent' | 'manager',
+        role: userForm.role as 'admin' | 'agent',
         temporaryPassword: userForm.temporaryPassword
       });
 
