@@ -381,7 +381,7 @@ const AboutPage = () => {
                       <img
                         src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnkDiuRmq3fVlhMWBTEXRD5x2LS6mPGqI8Jk7Y"
                         alt="Joe Jordan"
-                        className="w-full h-24 md:h-40 object-cover"
+                        className="w-full h-24 md:h-80 object-cover"
                       />
                     </div>
                     <h3 className="text-sm md:text-base font-bold text-black text-center">2022 - Joe Jordan</h3>
