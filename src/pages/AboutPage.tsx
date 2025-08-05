@@ -688,7 +688,7 @@ const AboutPage = () => {
                       <img
                         src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn6VSygNIBMaOvXJICw4x96QTRt3gVWPrHlEsU"
                         alt="Kobe Bryant 2019"
-                        className="w-full h-20 md:h-32 object-cover"
+                        className="w-full h-20 md:h-80 object-cover"
                       />
                     </div>
                     <h3 className="text-sm md:text-base font-bold text-black text-center">2019 - Kobe Bryant</h3>
