@@ -64,7 +64,7 @@ const AboutPage = () => {
           <h4 className="text-xl font-bold text-black mb-4">EIB is Founded</h4>
           <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-8">
             Jason and Nataly Graziani founded Excellence in Building with a mission to serve people and treat them right. 
-            Starting with a vision to provide families with financial solutions and develop the next wave of leaders.
+            Starting with a vision to provide families with financial solutions and to develop leaders in the financial services industry.
           </p>
           <div className="w-full">
             <img
