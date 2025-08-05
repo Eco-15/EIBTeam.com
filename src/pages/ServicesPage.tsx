@@ -146,8 +146,7 @@ const ServicesPage = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-black mb-6">Complete Financial Protection</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From life insurance to retirement planning, we offer comprehensive solutions 
-              to secure your financial future and protect your loved ones.
+            From life insurance to retirement planning, we offer strategies to secure your financial future and protect your loved ones.
             </p>
           </div>
 
