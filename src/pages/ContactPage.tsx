@@ -223,7 +223,11 @@ const ContactPage = () => {
              Ready to take the next step? We'd love to hear from you!
 
             </p>
-                         Our team is standing by to answer your questions.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Our team is standing by to answer your questions.
+
+            </p>
+                        
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
