@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Shield, Target, Award, Users, MapPin, Phone, Mail, heart } from 'lucide-react';
+import { Shield, Target, Award, Users, MapPin, Phone, Mail, HelpCircle  } from 'lucide-react';
 import { Timeline } from '../components/ui/timeline';
 
 const AboutPage = () => {
   const features = [
     {
-      icon: ,
+      icon: HelpCircle,
       title: 'Love',
     },
     {
