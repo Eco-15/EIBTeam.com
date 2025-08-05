@@ -455,7 +455,171 @@ const AboutPage = () => {
 
       {/* Timeline Section */}
       <section className="py-20 bg-white">
-        <Timeline data={timelineData} />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-black mb-6">Our Journey</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              From our founding in 2007 to becoming a leading insurance brokerage
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* S-shaped path */}
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 1200" fill="none">
+              <path
+                d="M100 100 Q300 100 400 200 T700 300 Q500 400 400 500 T100 600 Q300 700 400 800 T700 900"
+                stroke="#fbbf24"
+                strokeWidth="4"
+                fill="none"
+                strokeDasharray="8,8"
+                className="opacity-30"
+              />
+            </svg>
+
+            {/* Timeline items */}
+            <div className="relative z-10 space-y-16">
+              {/* 2007 - Left */}
+              <div className="flex justify-start">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
+                  <div className="relative rounded-xl overflow-hidden mb-4">
+                    <img
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnFBOboBgdhktn0l9Vv7ZApYCzG1iNX84RuD3H"
+                      alt="EIB Founded 2007"
+                      className="w-full h-32 object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-black text-center">2007 - EIB Founded</h3>
+                </div>
+              </div>
+
+              {/* 2010 - Right */}
+              <div className="flex justify-end">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
+                  <div className="relative rounded-xl overflow-hidden mb-4">
+                    <img
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnBlbmYuNs1dDP4Ioh850ny67VtNg3mlwEuFpx"
+                      alt="First HQ 2010"
+                      className="w-full h-32 object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-black text-center">2010 - First HQ</h3>
+                </div>
+              </div>
+
+              {/* 2011 - Left */}
+              <div className="flex justify-start">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
+                  <div className="relative rounded-xl overflow-hidden mb-4">
+                    <img
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnngnqsvftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
+                      alt="PHP Partnership 2011"
+                      className="w-full h-32 object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-black text-center">2011 - PHP Partnership</h3>
+                </div>
+              </div>
+
+              {/* 2013 - Right */}
+              <div className="flex justify-end">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
+                  <div className="relative rounded-xl overflow-hidden mb-4">
+                    <img
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOna5IOLfzQeWgc0JhO76uDGTAUEqB4jd8SVPZf"
+                      alt="SVP Achievement 2013"
+                      className="w-full h-32 object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-black text-center">2013 - SVP Achievement</h3>
+                </div>
+              </div>
+
+              {/* 2014 - Left */}
+              <div className="flex justify-start">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
+                  <div className="relative rounded-xl overflow-hidden mb-4">
+                    <img
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnIbHZdMJEA2Fdv5GxZ0wWRTnU1CQbfzgryeKP"
+                      alt="Dallas Office 2014"
+                      className="w-full h-32 object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-black text-center">2014 - Dallas Office</h3>
+                </div>
+              </div>
+
+              {/* 2015 - Right */}
+              <div className="flex justify-end">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
+                  <div className="relative rounded-xl overflow-hidden mb-4">
+                    <img
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn3dcBm4pHEmVwYtLheWFjdDMo68CiN0Bqyp7b"
+                      alt="Plano HQ 2015"
+                      className="w-full h-32 object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-black text-center">2015 - Plano HQ</h3>
+                </div>
+              </div>
+
+              {/* 2016 - Left */}
+              <div className="flex justify-start">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
+                  <div className="relative rounded-xl overflow-hidden mb-4">
+                    <img
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnU6WHBiEtjKqYRZg1aCTbApezkOJIGxs48of6"
+                      alt="RV Tour 2016"
+                      className="w-full h-32 object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-black text-center">2016 - RV Tour</h3>
+                </div>
+              </div>
+
+              {/* 2017 - Right */}
+              <div className="flex justify-end">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
+                  <div className="relative rounded-xl overflow-hidden mb-4">
+                    <img
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn4AtVmxsTL4f0up9I5jZJSEbw2R1dz7OsVtma"
+                      alt="Magic Johnson 2017"
+                      className="w-full h-32 object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-black text-center">2017 - Magic Johnson</h3>
+                </div>
+              </div>
+
+              {/* 2018 - Left */}
+              <div className="flex justify-start">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
+                  <div className="relative rounded-xl overflow-hidden mb-4">
+                    <img
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnndi90eftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
+                      alt="Wedding 2018"
+                      className="w-full h-32 object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-black text-center">2018 - Wedding</h3>
+                </div>
+              </div>
+
+              {/* 2024 - Center (Final) */}
+              <div className="flex justify-center">
+                <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl shadow-xl p-6 max-w-sm hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                  <div className="relative rounded-xl overflow-hidden mb-4">
+                    <img
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4"
+                      alt="Industry Leader 2024"
+                      className="w-full h-32 object-cover"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-black text-center">2024 - Industry Leader</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Meet Our Founders Section */}
