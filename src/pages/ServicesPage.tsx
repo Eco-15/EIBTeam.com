@@ -9,7 +9,7 @@ const ServicesPage = () => {
       icon: Clock,
       title: 'Term Life Insurance',
       slug: 'term-life-insurance',
-      description: 'Affordable protection for a specific period, perfect for young families and mortgage protection.',
+      description: 'Affordable protection for a specific period with fixed premiums.',
       features: ['Affordable premiums', 'Flexible terms (10-30 years)', 'Convertible options', 'Living benefits available'],
       idealFor: 'Young families, mortgage protection, income replacement',
     },

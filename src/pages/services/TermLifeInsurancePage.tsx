@@ -30,22 +30,22 @@ const TermLifeInsurancePage = () => {
   const termOptions = [
     {
       term: '10-Year Term',
-      description: 'Short-term coverage for temporary needs',
+      description: 'Short-term coverage',
       idealFor: 'Covering short-term debts, young children'
     },
     {
       term: '15-Year Term',
-      description: 'Medium-term protection for growing families',
+      description: 'Medium-term coverage',
       idealFor: 'Mortgage protection, education funding'
     },
     {
       term: '20-Year Term',
-      description: 'Popular choice for most families',
+      description: 'Average-term coverage',
       idealFor: 'Income replacement, family protection'
     },
     {
       term: '30-Year Term',
-      description: 'Long-term coverage for maximum protection',
+      description: 'Long-term coverage',
       idealFor: 'Young families, long-term financial planning'
     }
   ];
@@ -151,7 +151,7 @@ const TermLifeInsurancePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-black mb-6">Choose Your Term Length</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
               Select the term length that best matches your financial obligations and protection needs.
             </p>
           </div>

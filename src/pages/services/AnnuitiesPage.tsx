@@ -6,9 +6,14 @@ import { DollarSign, CheckCircle, ArrowRight, Shield, TrendingUp, Users, Calenda
 const AnnuitiesPage = () => {
   const benefits = [
     {
+      icon: Users,
+      title: 'Avoids Probate',
+      description: 'Death benefits pass directly to beneficiaries, avoiding the costly and time-consuming probate process.'
+    },
+    {
       icon: Shield,
-      title: 'Principal Protection',
-      description: 'Your initial investment is protected from market losses, ensuring you never lose your principal.'
+      title: 'Principle Protection',
+      description: 'Your initial investment is protected from market losses, ensuring you never lose your principle.'
     },
     {
       icon: DollarSign,
@@ -19,11 +24,6 @@ const AnnuitiesPage = () => {
       icon: TrendingUp,
       title: 'Tax-Deferred Growth',
       description: 'Your money grows tax-deferred until withdrawal, maximizing your accumulation potential.'
-    },
-    {
-      icon: Users,
-      title: 'Avoids Probate',
-      description: 'Death benefits pass directly to beneficiaries, avoiding the costly and time-consuming probate process.'
     }
   ];
 
@@ -32,6 +32,7 @@ const AnnuitiesPage = () => {
       type: 'Fixed Annuities',
       description: 'Guaranteed interest rates and predictable growth',
       features: ['Guaranteed minimum interest rate', 'Predictable returns', 'Principal protection', 'Simple and straightforward'],
+      features: ['Guaranteed minimum interest rate', 'Predictable returns', 'Principle protection', 'Simple and straightforward'],
       idealFor: 'Conservative investors seeking guaranteed growth'
     },
     {
@@ -39,18 +40,6 @@ const AnnuitiesPage = () => {
       description: 'Growth potential linked to market indices with downside protection',
       features: ['Market-linked growth potential', 'Downside protection', 'Multiple index options', 'Bonus features available'],
       idealFor: 'Moderate investors wanting growth with protection'
-    },
-    {
-      type: 'Variable Annuities',
-      description: 'Investment options with potential for higher returns',
-      features: ['Multiple investment options', 'Professional management', 'Growth potential', 'Living benefit riders'],
-      idealFor: 'Aggressive investors comfortable with market risk'
-    },
-    {
-      type: 'Immediate Annuities',
-      description: 'Start receiving income payments immediately',
-      features: ['Immediate income stream', 'Lifetime payment options', 'No accumulation phase', 'Highest payout rates'],
-      idealFor: 'Retirees needing immediate income'
     }
   ];
 
