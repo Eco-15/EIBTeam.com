@@ -11,7 +11,7 @@ interface UserInvitation {
   email: string;
   first_name?: string;
   last_name?: string;
-  role: 'admin' | 'agent' | 'manager';
+  role: 'admin' | 'agent' ;
   temporary_password: string;
   invited_by: string;
   invited_at: string;
