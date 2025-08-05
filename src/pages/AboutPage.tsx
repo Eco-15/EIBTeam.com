@@ -8,8 +8,7 @@ const AboutPage = () => {
   const features = [
     {
       icon: Shield,
-      title: 'PHP Agency Partner',
-      description: 'As a leading insurance brokerage, we leverage proven systems, training, and support to help our agents achieve extraordinary success.',
+      title: 'Trust',
     },
     {
       icon: Target,
