@@ -347,24 +347,7 @@ const AboutPage = () => {
                 </div>
               </div>
 
-              {/* 2024 - Center (Crown/Final) */}
-              <div className="relative flex items-center justify-center">
-                {/* Special crown connection */}
-                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full border-4 border-white shadow-lg"></div>
-                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl shadow-xl p-6 max-w-sm hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                  <div className="relative rounded-lg overflow-hidden mb-4">
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4"
-                      alt="Industry Leader 2024"
-                      className="w-full h-24 md:h-80 object-cover"
-                    />
-                    <h3 className="text-sm md:text-base font-bold text-black text-center">2024 - Industry Leader</h3>
-                  </div>
-                </div>
-              </div>
-              </div>
-
+             
               {/* 2025 - Right branch */}
               <div className="relative flex items-center">
                 {/* Branch line */}
