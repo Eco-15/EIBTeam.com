@@ -706,7 +706,7 @@ const AboutPage = () => {
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4"
                       alt="Industry Leader 2024"
-                      className="w-full h-24 md:h-40 object-cover"
+                      className="w-full h-24 md:h-80 object-cover"
                     />
                   </div>
                   <h3 className="text-base md:text-lg font-bold text-black text-center">2024 - Industry Leader</h3>
