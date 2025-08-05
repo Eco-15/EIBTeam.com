@@ -109,7 +109,7 @@ const ContactPage = () => {
   const contactMethods = [
     {
       icon: Phone,
-      title: 'Phone',
+      title: 'HQ Phone',
       primary: '(972) 805-1002',
       secondary: 'Mon-Fri 8:00 AM - 6:00 PM',
       action: 'Call Now',
