@@ -19,7 +19,7 @@ const PartnersSlider = () => {
       className="h-[120px] w-auto"
     />,
     <img
-      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnrXzr1q9IxL6na5HN8Cmj2VAkDRBdih9JyY4u"
+      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnfYr9ooWwS0j4D1ydoNBhk8RHX5asGlYQ39iZ"
       alt="North American Company"
       className="h-[120px] w-auto"
     />,
