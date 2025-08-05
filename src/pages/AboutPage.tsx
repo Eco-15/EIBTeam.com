@@ -447,10 +447,9 @@ const AboutPage = () => {
       <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black mb-6">What Sets Us Apart</h2>
+            <h2 className="text-4xl font-bold text-black mb-6">Commitment to Excellence</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our commitment to excellence and partnership with PHP Agency makes us uniquely positioned 
-              to help both our clients and agents succeed.
+              EIB's "4 Pillars" is the foundation ingrained in our culture that make us uniquely positioned to help both our clients and agents succeed.
             </p>
           </div>
 
