@@ -524,7 +524,7 @@ const AboutPage = () => {
                       <img
                         src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnngnqsvftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
                         alt="PHP Partnership 2011"
-                        className="w-full h-20 md:h-32 object-cover"
+                        className="w-full h-20 md:h-80 object-cover"
                       />
                     </div>
                     <h3 className="text-sm md:text-base font-bold text-black text-center">2011 - PHP Partnership</h3>
