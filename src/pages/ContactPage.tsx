@@ -268,7 +268,7 @@ const ContactPage = () => {
                     }`}
                   >
                     <FileText className="h-5 w-5" />
-                    <span>Get Free Consultation</span>
+                    <span>Get A Free Consultation</span>
                   </button>
                   <button
                     onClick={() => setActiveForm('team')}
