@@ -712,6 +712,7 @@ const AboutPage = () => {
                   </div>
                 </div>
               </div>
+              </div>
 
               {/* 2025 - Right branch */}
               <div className="relative flex items-center">
