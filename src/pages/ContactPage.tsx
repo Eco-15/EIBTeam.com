@@ -125,7 +125,7 @@ const ContactPage = () => {
     },
     {
       icon: MapPin,
-      title: 'Office',
+      title: 'HQ Office',
       primary: '6200 Tennyson Parkway',
       secondary: 'Plano Tx 75024',
       action: 'Get Directions',
