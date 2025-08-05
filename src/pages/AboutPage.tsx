@@ -463,173 +463,253 @@ const AboutPage = () => {
             </p>
           </div>
 
-          <div className="relative max-w-4xl mx-auto">
-            {/* Timeline items with connecting lines */}
-            <div className="relative space-y-12">
-              {/* 2007 - Left */}
-              <div className="flex justify-start relative">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
-                  <div className="relative rounded-xl overflow-hidden mb-4">
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnFBOboBgdhktn0l9Vv7ZApYCzG1iNX84RuD3H"
-                      alt="EIB Founded 2007"
-                     className="w-full h-24 md:h-40 object-cover"
-                    />
+          {/* Timeline Tree */}
+          <div className="relative max-w-5xl mx-auto">
+            {/* Central trunk line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-yellow-400 via-yellow-500 to-yellow-600 rounded-full" 
+                 style={{ height: 'calc(100% - 100px)', top: '50px' }}></div>
+            
+            {/* Timeline items */}
+            <div className="space-y-16">
+              {/* 2007 - Left branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-l from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2 pr-8 flex justify-end">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnFBOboBgdhktn0l9Vv7ZApYCzG1iNX84RuD3H"
+                        alt="EIB Founded 2007"
+                        className="w-full h-20 md:h-32 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2007 - EIB Founded</h3>
                   </div>
-                  <h3 className="text-lg font-bold text-black text-center">2007 - EIB Founded</h3>
                 </div>
-                {/* Connecting line to next item */}
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
               </div>
 
-              {/* 2010 - Right */}
-              <div className="flex justify-end relative">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
-                  <div className="relative rounded-xl overflow-hidden mb-4">
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnBlbmYuNs1dDP4Ioh850ny67VtNg3mlwEuFpx"
-                      alt="First HQ 2010"
-                     className="w-full h-24 md:h-40 object-cover"
-                    />
+              {/* 2010 - Right branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-r from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2"></div>
+                <div className="w-1/2 pl-8 flex justify-start">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnBlbmYuNs1dDP4Ioh850ny67VtNg3mlwEuFpx"
+                        alt="First HQ 2010"
+                        className="w-full h-20 md:h-32 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2010 - First HQ</h3>
                   </div>
-                  <h3 className="text-lg font-bold text-black text-center">2010 - First HQ</h3>
                 </div>
-                {/* Connecting line to next item */}
-                <div className="absolute top-full right-1/2 transform translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
-                <div className="absolute top-full right-1/2 transform translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-l from-yellow-400 to-yellow-500"></div>
               </div>
 
-              {/* 2011 - Left */}
-              <div className="flex justify-start relative">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
-                  <div className="relative rounded-xl overflow-hidden mb-4">
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnngnqsvftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
-                      alt="PHP Partnership 2011"
-                     className="w-full h-24 md:h-40 object-cover"
-                    />
+              {/* 2011 - Left branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-l from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2 pr-8 flex justify-end">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnngnqsvftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
+                        alt="PHP Partnership 2011"
+                        className="w-full h-20 md:h-32 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2011 - PHP Partnership</h3>
                   </div>
-                  <h3 className="text-lg font-bold text-black text-center">2011 - PHP Partnership</h3>
                 </div>
-                {/* Connecting line to next item */}
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
               </div>
 
-              {/* 2013 - Right */}
-              <div className="flex justify-end relative">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
-                  <div className="relative rounded-xl overflow-hidden mb-4">
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOna5IOLfzQeWgc0JhO76uDGTAUEqB4jd8SVPZf"
-                      alt="SVP Achievement 2013"
-                     className="w-full h-24 md:h-40 object-cover"
-                    />
+              {/* 2013 - Right branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-r from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2"></div>
+                <div className="w-1/2 pl-8 flex justify-start">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOna5IOLfzQeWgc0JhO76uDGTAUEqB4jd8SVPZf"
+                        alt="SVP Achievement 2013"
+                        className="w-full h-20 md:h-32 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2013 - SVP Achievement</h3>
                   </div>
-                  <h3 className="text-lg font-bold text-black text-center">2013 - SVP Achievement</h3>
                 </div>
-                {/* Connecting line to next item */}
-                <div className="absolute top-full right-1/2 transform translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
-                <div className="absolute top-full right-1/2 transform translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-l from-yellow-400 to-yellow-500"></div>
               </div>
 
-              {/* 2014 - Left */}
-              <div className="flex justify-start relative">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
-                  <div className="relative rounded-xl overflow-hidden mb-4">
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnIbHZdMJEA2Fdv5GxZ0wWRTnU1CQbfzgryeKP"
-                      alt="Dallas Office 2014"
-                     className="w-full h-24 md:h-40 object-cover"
-                    />
+              {/* 2014 - Left branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-l from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2 pr-8 flex justify-end">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnIbHZdMJEA2Fdv5GxZ0wWRTnU1CQbfzgryeKP"
+                        alt="Dallas Office 2014"
+                        className="w-full h-20 md:h-32 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2014 - Dallas Office</h3>
                   </div>
-                  <h3 className="text-lg font-bold text-black text-center">2014 - Dallas Office</h3>
                 </div>
-                {/* Connecting line to next item */}
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
               </div>
 
-              {/* 2015 - Right */}
-              <div className="flex justify-end relative">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
-                  <div className="relative rounded-xl overflow-hidden mb-4">
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn3dcBm4pHEmVwYtLheWFjdDMo68CiN0Bqyp7b"
-                      alt="Plano HQ 2015"
-                     className="w-full h-24 md:h-40 object-cover"
-                    />
+              {/* 2015 - Right branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-r from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2"></div>
+                <div className="w-1/2 pl-8 flex justify-start">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn3dcBm4pHEmVwYtLheWFjdDMo68CiN0Bqyp7b"
+                        alt="Plano HQ 2015"
+                        className="w-full h-20 md:h-32 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2015 - Plano HQ</h3>
                   </div>
-                  <h3 className="text-lg font-bold text-black text-center">2015 - Plano HQ</h3>
                 </div>
-                {/* Connecting line to next item */}
-                <div className="absolute top-full right-1/2 transform translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
-                <div className="absolute top-full right-1/2 transform translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-l from-yellow-400 to-yellow-500"></div>
               </div>
 
-              {/* 2016 - Left */}
-              <div className="flex justify-start relative">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
-                  <div className="relative rounded-xl overflow-hidden mb-4">
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnU6WHBiEtjKqYRZg1aCTbApezkOJIGxs48of6"
-                      alt="RV Tour 2016"
-                     className="w-full h-24 md:h-40 object-cover"
-                    />
+              {/* 2016 - Left branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-l from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2 pr-8 flex justify-end">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnU6WHBiEtjKqYRZg1aCTbApezkOJIGxs48of6"
+                        alt="RV Tour 2016"
+                        className="w-full h-20 md:h-32 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2016 - RV Tour</h3>
                   </div>
-                  <h3 className="text-lg font-bold text-black text-center">2016 - RV Tour</h3>
                 </div>
-                {/* Connecting line to next item */}
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
               </div>
 
-              {/* 2017 - Right */}
-              <div className="flex justify-end relative">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
-                  <div className="relative rounded-xl overflow-hidden mb-4">
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn4AtVmxsTL4f0up9I5jZJSEbw2R1dz7OsVtma"
-                      alt="Magic Johnson 2017"
-                     className="w-full h-24 md:h-40 object-cover"
-                    />
+              {/* 2017 - Right branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-r from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2"></div>
+                <div className="w-1/2 pl-8 flex justify-start">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn4AtVmxsTL4f0up9I5jZJSEbw2R1dz7OsVtma"
+                        alt="Magic Johnson 2017"
+                        className="w-full h-20 md:h-32 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2017 - Magic Johnson</h3>
                   </div>
-                  <h3 className="text-lg font-bold text-black text-center">2017 - Magic Johnson</h3>
                 </div>
-                {/* Connecting line to next item */}
-                <div className="absolute top-full right-1/2 transform translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
-                <div className="absolute top-full right-1/2 transform translate-x-1/2 translate-y-12 w-96 h-0.5 bg-gradient-to-l from-yellow-400 to-yellow-500"></div>
               </div>
 
-              {/* 2018 - Left */}
-              <div className="flex justify-start relative">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 max-w-sm hover:shadow-xl transition-all duration-300">
-                  <div className="relative rounded-xl overflow-hidden mb-4">
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnndi90eftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
-                      alt="Wedding 2018"
-                     className="w-full h-24 md:h-40 object-cover"
-                    />
+              {/* 2018 - Left branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-l from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2 pr-8 flex justify-end">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnndi90eftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
+                        alt="Wedding 2018"
+                        className="w-full h-20 md:h-32 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2018 - Wedding</h3>
                   </div>
-                  <h3 className="text-lg font-bold text-black text-center">2018 - Wedding</h3>
                 </div>
-                {/* Connecting line to final item */}
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-yellow-400 to-yellow-500"></div>
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-12 w-48 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
               </div>
 
-              {/* 2024 - Center (Final) */}
-              <div className="flex justify-center relative">
-                <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl shadow-xl p-6 max-w-sm hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                  <div className="relative rounded-xl overflow-hidden mb-4">
+              {/* 2019 - Right branch (Builders Bowl) */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-r from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2"></div>
+                <div className="w-1/2 pl-8 flex justify-start">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOncG6JNkXABiZ5cudwgVeLkIK6oqazNlQhtEn2"
+                        alt="Builders Bowl 2019"
+                        className="w-full h-20 md:h-32 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2019 - Builders Bowl</h3>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2019 - Left branch (Kobe) */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-l from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2 pr-8 flex justify-end">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn6VSygNIBMaOvXJICw4x96QTRt3gVWPrHlEsU"
+                        alt="Kobe Bryant 2019"
+                        className="w-full h-20 md:h-32 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2019 - Kobe Bryant</h3>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2024 - Center (Crown/Final) */}
+              <div className="relative flex items-center justify-center">
+                {/* Special crown connection */}
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full border-4 border-white shadow-lg"></div>
+                
+                <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl shadow-xl p-6 max-w-sm hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                  <div className="relative rounded-lg overflow-hidden mb-4">
                     <img
                       src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4"
                       alt="Industry Leader 2024"
-                     className="w-full h-24 md:h-40 object-cover"
+                      className="w-full h-24 md:h-40 object-cover"
                     />
                   </div>
-                  <h3 className="text-lg font-bold text-black text-center">2024 - Industry Leader</h3>
+                  <h3 className="text-base md:text-lg font-bold text-black text-center">2024 - Industry Leader</h3>
                 </div>
               </div>
             </div>
