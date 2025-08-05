@@ -402,7 +402,7 @@ const AboutPage = () => {
                       className="w-full h-80 md:h-80 object-cover"
                     />
                   </div>
-                  <h3 className="text-base md:text-lg font-bold text-black text-center">Building The Future</h3>
+                  <h3 className="text-base md:text-2xl font-bold text-black text-center">Building The Future</h3>
                 </div>
               </div>
             </div>
