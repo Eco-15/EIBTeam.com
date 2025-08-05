@@ -8,10 +8,10 @@ const AboutPage = () => {
   const features = [
     {
       icon: Shield,
-      title: 'Trust',
+      title: 'Love',
     },
     {
-      icon: Target,
+      icon: Heart,
       title: 'Market Focus',
       description: 'Deep understanding of the Texas insurance market, local regulations, and the unique needs of DFW businesses and families.',
     },
