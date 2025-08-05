@@ -409,20 +409,7 @@ const AboutPage = () => {
                 Over the years, EIB has proudly helped protect thousands of families across the U.S. while also mentoring the next wave of leaders in our industry. For us, success isn't just about policies—it's about people, purpose, and impact.
               </p>
               
-              <div className="grid grid-cols-3 gap-6">
-                <div className="text-center p-4 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl">
-                  <div className="text-3xl font-bold text-black mb-1">20+</div>
-                  <div className="text-gray-600 font-medium">Years Experience</div>
-                </div>
-                <div className="text-center p-4 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl">
-                  <div className="text-3xl font-bold text-black mb-1">15k+</div>
-                  <div className="text-gray-600 font-medium">Families Helped</div>
-                </div>
-                <div className="text-center p-4 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl">
-                  <div className="text-3xl font-bold text-black mb-1">3k+</div>
-                  <div className="text-gray-600 font-medium">Agents</div>
-                </div>
-              </div>
+              
             </div>
 
             <div className="relative">
