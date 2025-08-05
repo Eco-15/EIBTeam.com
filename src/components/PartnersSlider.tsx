@@ -34,7 +34,7 @@ const PartnersSlider = () => {
       className="h-[120px] w-auto"
     />,
       <img
-      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnEaJC80mqSPpoJ2e6DMAi7Z5HO8rdj3ItNTRV"
+      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnDsitkEP3lgPtQaYepo9UIAxckSyhTrmqdRjn"
       alt="National Western"
       className="h-[120px] w-auto"
     />,
