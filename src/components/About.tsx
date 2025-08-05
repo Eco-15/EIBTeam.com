@@ -95,7 +95,7 @@ const About = () => {
                 <p>
                   Jason founded Excellence in Building (EIB) in 2007 with a vision to serve people and treat them right. 
                   With over 20+ years of experience in the financial services industry, Jason has built EIB into one of the 
-                  most most respected organizations in the industry.
+                  most respected organizations in the industry.
                 </p>
               </div>
             </div>
