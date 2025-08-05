@@ -86,7 +86,7 @@ const Footer = () => {
             <div className="bg-white/10 rounded-xl p-6 mb-6">
               <h5 className="font-bold text-yellow-400 mb-2">Ready to Join?</h5>
               <p className="text-gray-300 text-sm mb-4">
-                Start your insurance career today with a leading PHP Agency partner in DFW.
+               Start your journey today with one of our EIB teammates.
               </p>
               <a
                 href="#contact"
