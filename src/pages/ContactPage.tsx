@@ -636,7 +636,8 @@ const ContactPage = () => {
 
                 <div className="mt-6 p-4 bg-gray-50 rounded-lg">
                   <p className="text-sm text-gray-600 text-center">
-                    By submitting this form, you agree to be contacted by EIB Agency regarding your inquiry. 
+                    By submitting this form, you agree to be contacted by EIB Agency regarding your inquiry.
+                    <br />
                     We respect your privacy and will never share your information with third parties.
                   </p>
                 </div>
