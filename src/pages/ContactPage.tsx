@@ -220,7 +220,7 @@ const ContactPage = () => {
               Let's Start <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">Your Journey</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Ready to take the next step in your insurance career or get the protection you need? 
+             Ready to take the next step? We'd love to hear from you!
               We'd love to hear from you. Our team is standing by to answer your questions.
             </p>
           </div>
