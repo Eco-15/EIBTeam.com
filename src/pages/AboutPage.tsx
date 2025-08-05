@@ -361,7 +361,7 @@ const AboutPage = () => {
                       <img
                         src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlmOrmln8EfQTV7ApbyFLmjY5GCZhaPcN4nzo"
                         alt="Digital Innovation 2025"
-                        className="w-full h-24 md:h-40 object-cover"
+                        className="w-full h-24 md:h-120 object-cover"
                       />
                     </div>
                     <h3 className="text-sm md:text-base font-bold text-black text-center">2025 - Digital Innovation</h3>
@@ -369,7 +369,7 @@ const AboutPage = () => {
                 </div>
               </div>
 
-              {/* 2025 - Left branch */}
+              {/* 2020 - Left branch */}
               <div className="relative flex items-center">
                 {/* Branch line */}
                 <div className="absolute right-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-l from-yellow-500 to-yellow-400"></div>
