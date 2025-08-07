@@ -261,7 +261,7 @@ const AboutPage = () => {
                         className="w-full h-20 md:h-80 object-cover"
                       />
                     </div>
-                    <h3 className="text-sm md:text-base font-bold text-black text-center">2015 - Plano HQ</h3>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">EIB's Backbone</h3>
                   </div>
                 </div>
               </div>
