@@ -31,7 +31,7 @@ const AnnuitiesPage = () => {
     {
       type: 'Fixed Annuities',
       description: 'Guaranteed interest rates and predictable growth',
-      features: ['Guaranteed minimum interest rate', 'Predictable returns', 'Principal protection', 'Simple and straightforward'],
+      features: ['Guaranteed minimum interest rate', 'Predictable returns', 'principle protection', 'Simple and straightforward'],
       features: ['Guaranteed minimum interest rate', 'Predictable returns', 'Principle protection', 'Simple and straightforward'],
       idealFor: 'Conservative investors seeking guaranteed growth'
     },
@@ -73,7 +73,7 @@ const AnnuitiesPage = () => {
   const whoNeedsIt = [
     'Individuals approaching or in retirement',
     'Those seeking guaranteed lifetime income',
-    'Conservative investors wanting principal protection',
+    'Conservative investors wanting principle protection',
     'People with maxed-out 401(k) and IRA contributions',
     'Individuals concerned about outliving their money',
     'Those wanting to leave a legacy to beneficiaries'
@@ -99,7 +99,7 @@ const AnnuitiesPage = () => {
               </div>
               
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Annuities provide guaranteed lifetime income and principal protection, making them 
+                Annuities provide guaranteed lifetime income and principle protection, making them 
                 an essential component of retirement planning. Secure your financial future with 
                 tax-deferred growth and income you cannot outlive.
               </p>
@@ -239,7 +239,7 @@ const AnnuitiesPage = () => {
             <div>
               <h2 className="text-4xl font-bold text-black mb-6">Who Should Consider Annuities?</h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Annuities are ideal for individuals seeking guaranteed retirement income, principal 
+                Annuities are ideal for individuals seeking guaranteed retirement income, principle 
                 protection, and tax-deferred growth as part of their comprehensive retirement strategy.
               </p>
 
