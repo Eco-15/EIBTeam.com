@@ -327,6 +327,27 @@ const AboutPage = () => {
                 </div>
               </div>
 
+               {/* 2018 - Left branch */}
+              <div className="relative flex items-center">
+                {/* Branch line */}
+                <div className="absolute right-1/2 top-1/2 transform -translate-y-1/2 w-32 h-0.5 bg-gradient-to-l from-yellow-500 to-yellow-400"></div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white shadow-md"></div>
+                
+                <div className="w-1/2 pr-8 flex justify-end">
+                  <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
+                      <img
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnndi90eftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
+                        alt="Wedding 2018"
+                        className="w-full h-20 md:h-80 object-cover"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">2018 - Wedding</h3>
+                  </div>
+                </div>
+              </div>
+
+
               {/* 2019 - Right branch (Builders Bowl) */}
               <div className="relative flex items-center">
                 {/* Branch line */}
