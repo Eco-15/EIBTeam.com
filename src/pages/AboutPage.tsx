@@ -338,11 +338,11 @@ const AboutPage = () => {
                     <div className="relative rounded-lg overflow-hidden mb-3">
                       <img
                         src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnNzwqCnT0huLKCxeR79b6tVql3jXPfoFcZDUd"
-                        alt="Wedding 2018"
+                        alt="Kevin Hart"
                         className="w-full h-20 md:h-80 object-cover"
                       />
                     </div>
-                    <h3 className="text-sm md:text-base font-bold text-black text-center">2018 - Wedding</h3>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">Kevin Hart in Las Vegas</h3>
                   </div>
                 </div>
               </div>
