@@ -127,8 +127,9 @@ const WhyJoinUsPage = () => {
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               We provide the tools, training, and support you 
-            <p>
-            need to be successful in the insurance industry.
+            </p>
+                        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              need to be successful in the insurance industry. 
             </p>
           </div>
 
