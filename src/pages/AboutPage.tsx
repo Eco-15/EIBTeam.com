@@ -525,14 +525,7 @@ const AboutPage = () => {
               
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Jason co-founded Excellence in Building (EIB) in 2007 with a vision to serve people and treat them right. 
-                  With over 15 years of experience in the financial services industry, Jason has built EIB into one of the 
-                  most successful PHP Agency partners in Texas.
-                </p>
-                <p>
-                  His leadership philosophy centers on developing people and creating opportunities for growth. 
-                  Jason currently resides in Prosper, Texas, with his wife Nataly and their four children, 
-                  and serves as a trustee at Revolution Church in McKinney.
+                  Jason founded Excellence in Building (EIB) in 2007 with a vision to serve people and treat them right. With over 20+ years of experience in the financial services industry, Jason has built EIB into one of the most respected organizations in the industry.
                 </p>
               </div>
             </div>
