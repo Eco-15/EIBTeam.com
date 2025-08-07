@@ -136,6 +136,7 @@ const ServicesPage = () => {
               <div className="text-gray-700">Customer Support</div>
             </div>
           </div>
+          </div>
         </div>
       </section>
 
