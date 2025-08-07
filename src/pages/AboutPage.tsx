@@ -359,7 +359,7 @@ const AboutPage = () => {
                   <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
                     <div className="relative rounded-lg overflow-hidden mb-3">
                       <img
-                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOncG6JNkXABiZ5cudwgVeLkIK6oqazNlQhtEn2"
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnq9RCcI0f0rumkpwBXbZgQ169Mj5tITK2SiFY"
                         alt="Builders Bowl 2019"
                         className="w-full h-20 md:h-80 object-cover"
                       />
