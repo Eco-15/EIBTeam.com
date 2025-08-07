@@ -126,7 +126,9 @@ const WhyJoinUsPage = () => {
               Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">EIB Agency?</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              We provide the tools, training, and support you need to be successful in the insurance industry.
+              We provide the tools, training, and support you 
+            </p>
+            need to be successful in the insurance industry.
             </p>
           </div>
 
