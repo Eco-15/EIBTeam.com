@@ -38,13 +38,13 @@ const About = () => {
           <div className="order-2 lg:order-1">
             <h3 className="text-3xl font-bold text-black mb-6">Our Story</h3>
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              Excellence in Building (EIB) started in 2007 with a simple mission: To Serve People & Treat Them Right. Founded by Jason and Nataly Graziani, EIB was created to provide families with financial solutions and to develop the next wave of leaders.
+              Excellence in Building (EIB) started in 2007 with a simple mission: To Serve People & Treat Them Right. Founded by Jason and Nataly Graziani, EIB was created to provide families with financial solutions and to develop leaders in the financial services industry.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
               Over the years, EIB has proudly helped protect thousands of families across the U.S. while also mentoring the next wave of leaders in our industry. For us, success isn't just about policies—it's about people, purpose, and impact.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              Jason and Nataly currently reside in Prosper, Texas, and raise their four children. They serve as trustees at Revolution Church in McKinney while continuing to lead.
+              Jason and Nataly currently reside in Prosper, Texas, and raise their four children. They serve as trustees at Revolution Church in McKinney while continuing to lead their organization.
             </p>
 
           </div>
