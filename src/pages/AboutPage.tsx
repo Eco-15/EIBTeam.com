@@ -339,7 +339,7 @@ const AboutPage = () => {
                       <img
                         src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnNzwqCnT0huLKCxeR79b6tVql3jXPfoFcZDUd"
                         alt="Kevin Hart"
-                        className="w-full h-20 md:h-60 object-cover"
+                        className="w-full h-20 md:h-70 object-cover"
                       />
                     </div>
                     <h3 className="text-sm md:text-base font-bold text-black text-center">Kevin Hart in Las Vegas</h3>
