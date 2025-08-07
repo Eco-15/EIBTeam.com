@@ -329,7 +329,7 @@ const DebtSolutionsPage = () => {
             <div>
               <h2 className="text-4xl font-bold text-black mb-6">Who Can Benefit from Debt Solutions?</h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Our debt solutions are designed for anyone struggling with high-interest debt 
+                Debt solutions are designed for anyone struggling with high-interest debt 
                 who wants to regain control of their finances and build a stronger financial future.
               </p>
 
