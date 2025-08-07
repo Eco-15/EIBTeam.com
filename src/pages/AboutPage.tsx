@@ -337,7 +337,7 @@ const AboutPage = () => {
                   <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
                     <div className="relative rounded-lg overflow-hidden mb-3">
                       <img
-                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnndi90eftEwlRJSPX6gNfrmvuq2WM4xeFGATH"
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnNzwqCnT0huLKCxeR79b6tVql3jXPfoFcZDUd"
                         alt="Wedding 2018"
                         className="w-full h-20 md:h-80 object-cover"
                       />
