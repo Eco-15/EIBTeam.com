@@ -256,8 +256,8 @@ const AboutPage = () => {
                   <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
                     <div className="relative rounded-lg overflow-hidden mb-3">
                       <img
-                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn3dcBm4pHEmVwYtLheWFjdDMo68CiN0Bqyp7b"
-                        alt="Plano HQ 2015"
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnf05rrVWwS0j4D1ydoNBhk8RHX5asGlYQ39iZ"
+                        alt="EIB's Backbone"
                         className="w-full h-20 md:h-80 object-cover"
                       />
                     </div>
