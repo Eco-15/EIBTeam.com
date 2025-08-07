@@ -113,7 +113,7 @@ const IndexedUniversalLifePage = () => {
                   <div className="text-gray-600 text-sm">Downside Protection</div>
                 </div>
                 <div className="bg-white p-4 rounded-xl shadow-md text-center">
-                  <div className="text-2xl font-bold text-yellow-600 mb-1">12%+ Cap</div>
+                  <div className="text-2xl font-bold text-yellow-600 mb-1">Market Cap</div>
                   <div className="text-gray-600 text-sm">Growth Potential</div>
                 </div>
               </div>

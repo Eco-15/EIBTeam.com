@@ -126,7 +126,7 @@ const ContactPage = () => {
     {
       icon: MapPin,
       title: 'HQ Office',
-      primary: '6200 Tennyson Parkway - Suite 175',
+      primary: '6200 Tennyson Parkway Suite 175',
       secondary: 'Plano TX 75024',
       action: 'Get Directions',
       href: 'https://share.google/fJd4R3i6QGS450T7g'

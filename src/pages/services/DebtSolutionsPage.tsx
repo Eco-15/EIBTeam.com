@@ -161,7 +161,7 @@ const DebtSolutionsPage = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-black mb-6">Benefits of Debt Consolidation</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our debt solutions provide immediate relief and long-term financial benefits 
+              Debt solutions provide immediate relief and long-term financial benefits 
               to help you regain control of your finances.
             </p>
           </div>

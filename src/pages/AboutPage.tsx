@@ -503,7 +503,7 @@ const AboutPage = () => {
               </div>
               <div className="flex items-center justify-center space-x-3">
                 <MapPin className="h-6 w-6 text-yellow-400" />
-                <span>6200 Tennyson Parkway Plano Tx 75024</span>
+                <span>6200 Tennyson Parkway Suite 175 Plano, TX 75024</span>
               </div>
             </div>
             
