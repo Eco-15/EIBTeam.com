@@ -419,12 +419,12 @@ const AboutPage = () => {
                   <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 max-w-xs hover:shadow-xl transition-all duration-300 hover:scale-105">
                     <div className="relative rounded-lg overflow-hidden mb-3">
                       <img
-                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn6VSygNIBMaOvXJICw4x96QTRt3gVWPrHlEsU"
+                        src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjwZQT6kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4"
                         alt="Kobe Bryant 2019"
                         className="w-full h-20 md:h-80 object-cover"
                       />
                     </div>
-                    <h3 className="text-sm md:text-base font-bold text-black text-center">2019 - Kobe Bryant</h3>
+                    <h3 className="text-sm md:text-base font-bold text-black text-center">Dallas Cowboys Stadium</h3>
                   </div>
                 </div>
               </div>
