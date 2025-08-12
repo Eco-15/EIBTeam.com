@@ -15,8 +15,9 @@ const Dashboard = () => {
   useEffect(() => {
     const loadDashboardData = async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) {
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        if (!user || authError) {
+          await supabase.auth.signOut();
           window.location.href = '/agent-login';
           return;
         }
@@ -36,6 +37,8 @@ const Dashboard = () => {
         setAnnouncements(announcementsList.slice(0, 3)); // Show only 3 most recent
       } catch (error) {
         console.error('Error loading dashboard data:', error);
+        await supabase.auth.signOut();
+        window.location.href = '/agent-login';
       } finally {
         setIsLoading(false);
       }

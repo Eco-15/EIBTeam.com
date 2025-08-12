@@ -39,8 +39,9 @@ const AdminUsersPage = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) {
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        if (!user || authError) {
+          await supabase.auth.signOut();
           window.location.href = '/agent-login';
           return;
         }
@@ -62,6 +63,8 @@ const AdminUsersPage = () => {
         await loadInvitations();
       } catch (error) {
         console.error('Error loading admin users data:', error);
+        await supabase.auth.signOut();
+        window.location.href = '/agent-login';
       } finally {
         setIsLoading(false);
       }
