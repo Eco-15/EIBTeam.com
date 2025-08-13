@@ -34,7 +34,6 @@ const PrivacyPolicyPage = () => {
             {/* Information We Collect */}
             <div className="mb-12">
               <div className="flex items-center space-x-3 mb-6">
-                <Eye className="h-6 w-6 text-yellow-600" />
                 <h2 className="text-2xl font-bold text-black">1. Information We Collect</h2>
               </div>
               <div className="bg-gray-50 p-6 rounded-xl">
