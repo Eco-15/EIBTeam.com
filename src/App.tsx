@@ -21,6 +21,10 @@ import IndexedUniversalLifePage from './pages/services/IndexedUniversalLifePage'
 import AnnuitiesPage from './pages/services/AnnuitiesPage';
 import DebtSolutionsPage from './pages/services/DebtSolutionsPage';
 import SupplementalCoveragePage from './pages/services/SupplementalCoveragePage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
+import LicenseInformationPage from './pages/LicenseInformationPage';
+import CompliancePage from './pages/CompliancePage';
 
 function App() {
   return (
@@ -47,6 +51,10 @@ function App() {
         <Route path="/services/annuities" element={<AnnuitiesPage />} />
         <Route path="/services/debt-solutions" element={<DebtSolutionsPage />} />
         <Route path="/services/supplemental-coverage" element={<SupplementalCoveragePage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+        <Route path="/license-information" element={<LicenseInformationPage />} />
+        <Route path="/compliance" element={<CompliancePage />} />
       </Routes>
     </Router>
   );
