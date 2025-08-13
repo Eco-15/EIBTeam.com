@@ -186,7 +186,7 @@ const CompliancePage = () => {
               <h3 className="text-xl font-bold text-black mb-4">Texas Department of Insurance</h3>
               <div className="space-y-3 text-gray-600">
                 <p>Primary regulatory authority for insurance activities in Texas</p>
-                <p><strong>Website:</strong> <a href="https://www.tdi.texas.gov" className=\"text-yellow-600 hover:text-yellow-700">www.tdi.texas.gov</a></p>
+                <p><strong>Website:</strong> <a href="https://www.tdi.texas.gov" className="text-yellow-600 hover:text-yellow-700">www.tdi.texas.gov</a></p>
                 <p><strong>Consumer Helpline:</strong> 1-800-252-3439</p>
                 <p><strong>Address:</strong> 333 Guadalupe, Austin, TX 78701</p>
               </div>
