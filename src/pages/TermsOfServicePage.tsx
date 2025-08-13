@@ -19,9 +19,9 @@ const TermsOfServicePage = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-black">Terms of Service</h1>
             </div>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              These terms govern your use of our website and services. Please read them carefully.
+              Welcome to EIB Agency. By accessing or using our website, you agree to comply with and be bound by these Terms of Service.
             </p>
-            <p className="text-sm text-gray-500 mt-4">Last updated: January 1, 2025</p>
+            <p className="text-sm text-gray-500 mt-4">Effective Date: [Insert Date]</p>
           </div>
         </div>
       </section>
@@ -31,124 +31,118 @@ const TermsOfServicePage = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg max-w-none">
             
-            {/* Acceptance of Terms */}
+            <div className="space-y-4 text-gray-600 mb-12">
+              <p>
+                Welcome to EIB Agency ("we," "our," or "us"). By accessing or using our website, you agree to comply with and be bound by these Terms of Service. If you do not agree to these terms, please do not use our website.
+              </p>
+            </div>
+
+            {/* Use of the Website */}
             <div className="mb-12">
               <div className="flex items-center space-x-3 mb-6">
                 <Scale className="h-6 w-6 text-yellow-600" />
-                <h2 className="text-2xl font-bold text-black">Acceptance of Terms</h2>
+                <h2 className="text-2xl font-bold text-black">1. Use of the Website</h2>
               </div>
               <div className="space-y-4 text-gray-600">
-                <p>
-                  By accessing and using the EIB Agency website and services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
-                </p>
-                <p>
-                  These Terms of Service may be updated from time to time. We will notify you of any material changes by posting the new Terms of Service on this page.
-                </p>
-              </div>
-            </div>
-
-            {/* Use of Services */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-black mb-6">Use of Services</h2>
-              <div className="bg-gray-50 p-6 rounded-xl">
-                <h3 className="text-lg font-semibold text-black mb-4">Permitted Uses</h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Requesting insurance quotes and information</li>
-                  <li>• Submitting applications for insurance products</li>
-                  <li>• Accessing educational resources and materials</li>
-                  <li>• Communicating with our agents and staff</li>
-                </ul>
-              </div>
-              
-              <div className="bg-red-50 p-6 rounded-xl mt-6">
-                <h3 className="text-lg font-semibold text-red-800 mb-4">Prohibited Uses</h3>
-                <ul className="space-y-2 text-red-700">
-                  <li>• Providing false or misleading information</li>
-                  <li>• Attempting to access unauthorized areas</li>
-                  <li>• Using the service for illegal activities</li>
-                  <li>• Interfering with the operation of our systems</li>
-                  <li>• Violating any applicable laws or regulations</li>
+                <p>You agree to use this website for lawful purposes only. You may not use our site to:</p>
+                <ul className="space-y-2 ml-6">
+                  <li>• Submit false or misleading information</li>
+                  <li>• Attempt to gain unauthorized access to secure areas</li>
+                  <li>• Interfere with the website's operation or security</li>
+                  <li>• Violate any applicable laws or regulations</li>
                 </ul>
               </div>
             </div>
 
-            {/* Insurance Services */}
+            {/* Eligibility */}
             <div className="mb-12">
-              <div className="flex items-center space-x-3 mb-6">
-                <Users className="h-6 w-6 text-yellow-600" />
-                <h2 className="text-2xl font-bold text-black">Insurance Services</h2>
-              </div>
+              <h2 className="text-2xl font-bold text-black mb-6">2. Eligibility</h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  EIB Agency acts as an insurance brokerage, representing multiple insurance carriers. We are licensed to sell insurance products in the state of Texas and other jurisdictions where properly licensed.
-                </p>
-                <p>
-                  All insurance applications are subject to underwriting approval by the respective insurance carriers. Coverage is not guaranteed and may be declined based on underwriting guidelines.
-                </p>
-                <p>
-                  Premium rates and policy terms are determined by the insurance carriers and may change based on various factors including age, health, and market conditions.
+                  Our services are intended for individuals located in the United States and Puerto Rico who are at least 18 years old or the age of majority in their jurisdiction. By using the site, you confirm that you meet these requirements.
                 </p>
               </div>
             </div>
 
-            {/* Disclaimers */}
+            {/* No Guarantee of Services */}
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-black mb-6">3. No Guarantee of Services</h2>
+              <div className="space-y-4 text-gray-600">
+                <p>
+                  Submitting a contact form does not guarantee services, offers, or employment. All inquiries are subject to review and eligibility.
+                </p>
+              </div>
+            </div>
+
+            {/* Intellectual Property */}
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-black mb-6">4. Intellectual Property</h2>
+              <div className="space-y-4 text-gray-600">
+                <p>
+                  All content on this website, including text, graphics, logos, images, and layout, is the property of EIB Agency and is protected by copyright and other intellectual property laws. You may not reproduce, distribute, or modify any content without our prior written permission.
+                </p>
+              </div>
+            </div>
+
+            {/* User Submissions */}
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-black mb-6">5. User Submissions</h2>
+              <div className="space-y-4 text-gray-600">
+                <p>
+                  Any information you submit through the website (e.g., via contact forms) must be accurate and truthful. We reserve the right to reject or remove any submissions that violate these Terms or that we deem inappropriate.
+                </p>
+              </div>
+            </div>
+
+            {/* Third-Party Links */}
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-black mb-6">6. Third-Party Links</h2>
+              <div className="space-y-4 text-gray-600">
+                <p>
+                  Our website may contain links to third-party websites. We are not responsible for the content, policies, or practices of any linked third-party sites. Visiting those sites is at your own risk. Links are provided for informational purposes only and should not be viewed as an endorsement, sponsorship, solicitation, or other affiliation with respect to any third parties or their content. When you link to any of the web sites provided here, you are leaving this website. We make no representation as to the completeness or accuracy of information provided at these web sites. Nor is the company liable for any direct or indirect technical or system issues or any consequences arising out of your access to, or your use of third-party technologies, websites, information, and programs made available through this web site. When you access one of these websites, you are leaving our web site and assume total responsibility and risk for your use of the web sites you are linking to.
+                </p>
+              </div>
+            </div>
+
+            {/* Disclaimer */}
             <div className="mb-12">
               <div className="flex items-center space-x-3 mb-6">
                 <AlertTriangle className="h-6 w-6 text-yellow-600" />
-                <h2 className="text-2xl font-bold text-black">Disclaimers</h2>
+                <h2 className="text-2xl font-bold text-black">7. Disclaimer</h2>
               </div>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  <strong>No Warranty:</strong> Our website and services are provided "as is" without any warranties, express or implied. We do not guarantee the accuracy, completeness, or timeliness of information provided.
-                </p>
-                <p>
-                  <strong>Investment Advice:</strong> Information provided on our website is for educational purposes only and should not be considered as investment advice. Please consult with qualified financial professionals for personalized advice.
-                </p>
-                <p>
-                  <strong>Insurance Coverage:</strong> Insurance products have limitations and exclusions. Please review policy documents carefully before making decisions.
+                  The content on our website is provided for general informational purposes only. Nothing on this site constitutes legal, financial, or insurance advice. You should consult with a licensed professional for any such services. EIB Agency and their representatives do not offer tax or legal advice. For advice concerning your own situation, please consult with your appropriate professional advisor.
                 </p>
               </div>
             </div>
 
             {/* Limitation of Liability */}
             <div className="mb-12">
-              <h2 className="text-2xl font-bold text-black mb-6">Limitation of Liability</h2>
+              <h2 className="text-2xl font-bold text-black mb-6">8. Limitation of Liability</h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  EIB Agency shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from the use or inability to use our services, even if we have been advised of the possibility of such damages.
-                </p>
-                <p>
-                  Our total liability to you for any claims arising from your use of our services shall not exceed the amount you paid for such services.
+                  To the fullest extent permitted by law, EIB Agency will not be liable for any indirect, incidental, or consequential damages arising out of your use of the website.
                 </p>
               </div>
             </div>
 
-            {/* Governing Law */}
+            {/* Changes to These Terms */}
             <div className="mb-12">
-              <h2 className="text-2xl font-bold text-black mb-6">Governing Law</h2>
+              <h2 className="text-2xl font-bold text-black mb-6">9. Changes to These Terms</h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  These Terms of Service shall be governed by and construed in accordance with the laws of the State of Texas, without regard to its conflict of law provisions.
-                </p>
-                <p>
-                  Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts located in Collin County, Texas.
+                  We reserve the right to update or modify these Terms at any time. Changes will be effective upon posting on this page. Your continued use of the site after changes are made constitutes your acceptance of the revised Terms.
                 </p>
               </div>
             </div>
 
             {/* Contact Information */}
             <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 p-8 rounded-xl">
-              <h2 className="text-2xl font-bold text-black mb-4">Questions About These Terms?</h2>
-              <p className="text-gray-600 mb-4">
-                If you have any questions about these Terms of Service, please contact us:
+              <h2 className="text-2xl font-bold text-black mb-4">10. Contact Information</h2>
+              <p className="text-gray-600">
+                If you have any questions about these Terms, please contact us at admin@eibagency.com.
               </p>
-              <div className="space-y-2 text-gray-700">
-                <p><strong>EIB Agency</strong></p>
-                <p>6200 Tennyson Parkway Suite 175</p>
-                <p>Plano, TX 75024</p>
-                <p>Phone: (972) 805-1002</p>
-                <p>Email: admin@eibagency.com</p>
-              </div>
             </div>
           </div>
         </div>
