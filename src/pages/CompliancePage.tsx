@@ -21,6 +21,7 @@ const CompliancePage = () => {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Legal Disclosure/Compliance Statement
             </p>
+            <p className="text-sm text-gray-500 mt-4">Effective Date: 8-13-2025</p>
           </div>
         </div>
       </section>
