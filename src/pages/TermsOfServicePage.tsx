@@ -107,7 +107,6 @@ const TermsOfServicePage = () => {
             {/* Disclaimer */}
             <div className="mb-12">
               <div className="flex items-center space-x-3 mb-6">
-                <AlertTriangle className="h-6 w-6 text-yellow-600" />
                 <h2 className="text-2xl font-bold text-black">7. Disclaimer</h2>
               </div>
               <div className="space-y-4 text-gray-600">
