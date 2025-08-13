@@ -21,7 +21,7 @@ const PrivacyPolicyPage = () => {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               EIB Agency is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect your personal information when you interact with our website.
             </p>
-            <p className="text-sm text-gray-500 mt-4">Effective Date: [Insert Date]</p>
+            <p className="text-sm text-gray-500 mt-4">Effective Date: 8/13/2025</p>
           </div>
         </div>
       </section>
