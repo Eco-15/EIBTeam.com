@@ -147,7 +147,7 @@ const LicenseInformationPage = () => {
                   EIB Agency is regulated by the Texas Department of Insurance (TDI), which oversees insurance companies, agents, and brokers operating in Texas.
                 </p>
                 <p>
-                  <strong>TDI Website:</strong> <a href="https://www.tdi.texas.gov" className="text-yellow-600 hover:text-yellow-700">www.tdi.texas.gov</a>
+                  <strong>TDI Website:</strong> <a href="https://www.tdi.texas.gov" className=\"text-yellow-600 hover:text-yellow-700">www.tdi.texas.gov</a>
                 </p>
                 <p>
                   <strong>Consumer Helpline:</strong> 1-800-252-3439
