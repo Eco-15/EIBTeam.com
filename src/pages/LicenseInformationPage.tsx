@@ -19,7 +19,7 @@ const LicenseInformationPage = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-black">License Information</h1>
             </div>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              EIB Agency is a licensed insurance agency operating in the United States and Puerto Rico.
+              EIB Agency is a licensed insurance agency operating in the
             </p>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
              United States and Puerto Rico.
