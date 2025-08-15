@@ -129,7 +129,6 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
       </div>
       </div>
     </>
-    </div>
   );
 };
 
