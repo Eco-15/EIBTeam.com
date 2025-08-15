@@ -171,7 +171,7 @@ const ResourcesPage = () => {
       description: 'Follow our women\'s empowerment and leadership development account.',
       category: 'support',
       type: 'Social Media',
-     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" />,
+     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
       link: 'https://www.instagram.com/iconic.women._?igsh=eGxzenJpYmFoYWJv',
       featured: false
     },
@@ -421,7 +421,6 @@ const ResourcesPage = () => {
                                   </div>
                                 </div>
                                 <div className="flex items-center space-x-2 ml-4">
-                                  {/* Completion Toggle */}
                                   <div className="flex items-center space-x-2 mr-4">
                                     <span className="text-sm font-medium text-gray-700">Completed:</span>
                                     <button
@@ -457,6 +456,7 @@ const ResourcesPage = () => {
                                ) : (
                                  <resource.icon className="h-6 w-6 text-gray-600" />
                                )}
+                                  </>
                               </div>
                             </div>
                           </div>
