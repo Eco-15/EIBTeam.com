@@ -451,9 +451,7 @@ const ResourcesPage = () => {
                                     <span>Access</span>
                                     <ExternalLink className="h-4 w-4" />
                                   </a>
-                               {typeof resource.icon === 'function' ? (
-                               ) : (
-                                  </>
+                                </div>
                               </div>
                             </div>
                           </div>
