@@ -3,7 +3,15 @@ import { Bell, User, LogOut, Menu, X, CheckCircle, AlertCircle, Calendar, Messag
 import { supabase } from '@/lib/supabase';
 import { DatabaseService } from '@/lib/database';
 
-const DashboardHeader = () => {
+interface DashboardHeaderProps {
+  onMobileMenuToggle?: () => void;
+  isMobileMenuOpen?: boolean;
+}
+
+const DashboardHeader: React.FC<DashboardHeaderProps> = ({ 
+  onMobileMenuToggle, 
+  isMobileMenuOpen = false 
+}) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<any>(null);
@@ -71,14 +79,28 @@ const DashboardHeader = () => {
     <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={onMobileMenuToggle}
+              className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 md:flex-1">
             <img 
               src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnfYSbXDWwS0j4D1ydoNBhk8RHX5asGlYQ39iZ" 
               alt="EIB Team Logo" 
               className="h-10 w-10 rounded-full object-cover"
             />
-            <div>
+            <div className="hidden sm:block">
               <h1 className="text-xl font-bold text-black">EIB Agency Portal</h1>
               <p className="text-sm text-gray-600">
                 {isAdminMode ? 'Admin Dashboard' : 'Agent Dashboard'}

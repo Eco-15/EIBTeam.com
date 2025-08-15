@@ -10,6 +10,7 @@ const ResourcesPage = () => {
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [completedResources, setCompletedResources] = useState<Set<number>>(new Set());
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   React.useEffect(() => {
     const loadUserData = async () => {
@@ -270,8 +271,14 @@ const ResourcesPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <DashboardHeader />
-      <DashboardSidebar />
+      <DashboardHeader 
+        onMobileMenuToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        isMobileMenuOpen={isMobileMenuOpen}
+      />
+      <DashboardSidebar 
+        isMobileMenuOpen={isMobileMenuOpen}
+        onMobileMenuClose={() => setIsMobileMenuOpen(false)}
+      />
       
       <div className="md:pl-64 flex flex-col flex-1">
         <main className="flex-1">
