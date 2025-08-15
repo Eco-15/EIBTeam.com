@@ -62,7 +62,7 @@ const ResourcesPage = () => {
       category: 'licensing',
       type: 'External Link',
       icon: BookOpen,
-      link: 'https://www.examfx.com',
+      link: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjX8fYrkELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       featured: true
     },
     {
