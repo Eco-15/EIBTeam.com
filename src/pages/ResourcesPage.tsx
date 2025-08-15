@@ -52,7 +52,7 @@ const ResourcesPage = () => {
       category: 'licensing',
       type: 'Document',
       icon: Shield,
-      link: '#',
+      link: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnfMylrxaWwS0j4D1ydoNBhk8RHX5asGlYQ39i',
       featured: true
     },
     {
