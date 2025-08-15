@@ -141,12 +141,15 @@ const ResourcesPage = () => {
       description: 'Follow our main team account for updates and company news.',
       category: 'support',
       type: 'Social Media',
-     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
-      link: 'https://www.instagram.com/eibteam?igsh=MTk4OWVjN3BqZWswZA==',
-      featured: false
-    },
-    {
-      id: 11,
+                            {typeof resource.icon === 'function' ? (
+                              <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center">
+                                <resource.icon />
+                              </div>
+                            ) : (
+                              <div className="bg-gray-100 p-3 rounded-lg">
+                                <resource.icon className="h-6 w-6 text-gray-600" />
+                              </div>
+                            )}
       title: 'Jason Graziani Instagram',
       description: 'Follow our founder Jason Graziani for leadership insights and motivation.',
       category: 'support',
@@ -451,7 +454,9 @@ const ResourcesPage = () => {
                                     <span>Access</span>
                                     <ExternalLink className="h-4 w-4" />
                                   </a>
-                                </div>
+                               {typeof resource.icon === 'function' ? (
+                               ) : (
+                                  </>
                               </div>
                             </div>
                           </div>
