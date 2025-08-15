@@ -120,7 +120,7 @@ const ResourcesPage = () => {
       description: 'Join our team communication platform for instant messaging and updates.',
       category: 'support',
       type: 'Communication',
-      icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBE1f1N4XkzTZq6n0mcauCyHvYApfhoDKMU8Fr" alt="Message" className="h-6 w-6" />,
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=MSG" alt="Message" className="h-6 w-6" />,
       link: 'https://groupme.com/join_group/59856202/7Hc1ACOc',
       featured: false
     },
@@ -140,7 +140,7 @@ const ResourcesPage = () => {
       description: 'Follow our main team account for updates and company news.',
       category: 'support',
       type: 'Social Media',
-                                <resource.icon />
+      icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBE1f1N4XkzTZq6n0mcauCyHvYApfhoDKMU8Fr" alt="GroupMe" className="h-6 w-6" />,
       icon: MessageSquare,
       category: 'support',
       type: 'Social Media',
