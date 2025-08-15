@@ -112,7 +112,7 @@ const ResourcesPage = () => {
       category: 'training',
       type: 'Training',
       icon: TrendingUp,
-      link: '#',
+      link: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOndcCqXyl7cmdASPKDVwuU18xgjXi5O4RQaH2I',
       featured: true
     },
     {
