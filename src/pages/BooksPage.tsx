@@ -6,7 +6,6 @@ import { BookOpen, Star, Clock, CheckCircle, Search, Filter, ExternalLink } from
 const BooksPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const books = [
     {
@@ -343,14 +342,8 @@ const BooksPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <DashboardHeader 
-        onMobileMenuToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        isMobileMenuOpen={isMobileMenuOpen}
-      />
-      <DashboardSidebar 
-        isMobileMenuOpen={isMobileMenuOpen}
-        onMobileMenuClose={() => setIsMobileMenuOpen(false)}
-      />
+      <DashboardHeader />
+      <DashboardSidebar />
       
       <div className="md:pl-64 flex flex-col flex-1">
         <main className="flex-1">

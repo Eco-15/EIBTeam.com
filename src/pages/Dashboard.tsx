@@ -11,7 +11,6 @@ const Dashboard = () => {
   const [trainingProgress, setTrainingProgress] = useState<any[]>([]);
   const [announcements, setAnnouncements] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const loadDashboardData = async () => {
@@ -153,14 +152,8 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <DashboardHeader 
-        onMobileMenuToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        isMobileMenuOpen={isMobileMenuOpen}
-      />
-      <DashboardSidebar 
-        isMobileMenuOpen={isMobileMenuOpen}
-        onMobileMenuClose={() => setIsMobileMenuOpen(false)}
-      />
+      <DashboardHeader />
+      <DashboardSidebar />
       
       <div className="md:pl-64 flex flex-col flex-1">
         <main className="flex-1">

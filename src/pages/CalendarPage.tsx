@@ -14,7 +14,6 @@ const CalendarPage = () => {
   const [selectedAnnouncement, setSelectedAnnouncement] = useState<Announcement | null>(null);
   const [showEventModal, setShowEventModal] = useState(false);
   const [showAnnouncementModal, setShowAnnouncementModal] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Load announcements and schedule events
   React.useEffect(() => {
@@ -136,14 +135,8 @@ const CalendarPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <DashboardHeader 
-        onMobileMenuToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        isMobileMenuOpen={isMobileMenuOpen}
-      />
-      <DashboardSidebar 
-        isMobileMenuOpen={isMobileMenuOpen}
-        onMobileMenuClose={() => setIsMobileMenuOpen(false)}
-      />
+      <DashboardHeader />
+      <DashboardSidebar />
       
       <div className="md:pl-64 flex flex-col flex-1">
         <main className="flex-1">
