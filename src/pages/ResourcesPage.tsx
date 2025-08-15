@@ -120,7 +120,7 @@ const ResourcesPage = () => {
       description: 'Join our team communication platform for instant messaging and updates.',
       category: 'support',
       type: 'Communication',
-      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=MSG" alt="Message" className="h-6 w-6" />,
+      icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBE1f1N4XkzTZq6n0mcauCyHvYApfhoDKMU8Fr" alt="Message" className="h-6 w-6" />,
       link: 'https://groupme.com/join_group/59856202/7Hc1ACOc',
       featured: false
     },
@@ -140,7 +140,11 @@ const ResourcesPage = () => {
       description: 'Follow our main team account for updates and company news.',
       category: 'support',
       type: 'Social Media',
-      icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
+      icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBE1f1N4XkzTZq6n0mcauCyHvYApfhoDKMU8Fr" alt="GroupMe" className="h-6 w-6" />,
+      icon: MessageSquare,
+      category: 'support',
+      type: 'Social Media',
+     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
       link: 'https://www.instagram.com/jason.graziani?igsh=MTZobTlvcDQwdTA0NA==',
       featured: false
     },
@@ -150,7 +154,7 @@ const ResourcesPage = () => {
       description: 'Follow our co-founder Nataly Graziani for business development tips.',
       category: 'support',
       type: 'Social Media',
-      icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
+     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
       link: 'https://www.instagram.com/nataly.graziani?igsh=MTh0cTYybHBpcGx2NQ==',
       featured: false
     },
@@ -160,7 +164,7 @@ const ResourcesPage = () => {
       description: 'Follow our women\'s empowerment and leadership development account.',
       category: 'support',
       type: 'Social Media',
-      icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
+     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
       link: 'https://www.instagram.com/iconic.women._?igsh=eGxzenJpYmFoYWJv',
       featured: false
     },
@@ -393,10 +397,6 @@ const ResourcesPage = () => {
                           <div className="flex items-start space-x-4">
                             <div className="bg-gray-100 p-3 rounded-lg">
                               <resource.icon />
-                            </div>
-                            <div className="flex-1">
-                              <div className="flex items-start justify-between">
-                                <div className="flex-1">
                                   <h4 className="text-lg font-semibold text-gray-900 mb-1">
                                     {resource.title}
                                   </h4>
@@ -439,8 +439,8 @@ const ResourcesPage = () => {
                                   >
                                     <span>Access</span>
                                     <ExternalLink className="h-4 w-4" />
-                                  </a>
-                                </div>
+                               {typeof resource.icon === 'function' ? (
+                                  </>
                               </div>
                             </div>
                           </div>
