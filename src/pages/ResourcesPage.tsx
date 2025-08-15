@@ -121,7 +121,7 @@ const ResourcesPage = () => {
       description: 'Join our team communication platform for instant messaging and updates.',
       category: 'support',
       type: 'Communication',
-     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBE1f1N4XkzTZq6n0mcauCyHvYApfhoDKMU8Fr" alt="Instagram" className="h-6 w-6" />,
+     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBE1f1N4XkzTZq6n0mcauCyHvYApfhoDKMU8Fr" alt="GroupMe" className="h-6 w-6" />,
       link: 'https://groupme.com/join_group/59856202/7Hc1ACOc',
       featured: false
     },
