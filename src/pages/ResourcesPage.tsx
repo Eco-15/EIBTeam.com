@@ -48,11 +48,10 @@ const ResourcesPage = () => {
     {
       id: 1,
       title: 'State Specific Licensing Sheet',
-      description: 'Comprehensive overview of licensing requirements for all states where EIB Team operates.',
       category: 'licensing',
       type: 'Document',
-      icon: Shield,
-      link: '#',
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=📄" alt="Document" className="h-6 w-6" />,
+      link: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnfMylrxaWwS0j4D1ydoNBhk8RHX5asGlYQ39i',
       featured: true
     },
     {
@@ -61,7 +60,7 @@ const ResourcesPage = () => {
       description: 'Sign up for comprehensive study materials to prepare for your insurance licensing exam.',
       category: 'licensing',
       type: 'External Link',
-      icon: BookOpen,
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=📚" alt="Study" className="h-6 w-6" />,
       link: 'https://www.examfx.com',
       featured: true
     },
@@ -71,7 +70,7 @@ const ResourcesPage = () => {
       description: 'Schedule your insurance licensing exam through Pearson VUE testing centers.',
       category: 'licensing',
       type: 'External Link',
-      icon: FileText,
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=📝" alt="Exam" className="h-6 w-6" />,
       link: 'https://www.pearsonvue.com',
       featured: true
     },
@@ -81,7 +80,7 @@ const ResourcesPage = () => {
       description: 'Complete your state license application through the SIRCON system.',
       category: 'licensing',
       type: 'External Link',
-      icon: Shield,
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=🛡️" alt="License" className="h-6 w-6" />,
       link: 'https://www.sircon.com',
       featured: false
     },
@@ -91,7 +90,7 @@ const ResourcesPage = () => {
       description: 'Sign up for continuing education courses required to maintain your license.',
       category: 'licensing',
       type: 'External Link',
-      icon: BookOpen,
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=EDU" alt="Education" className="h-6 w-6" />,
       link: 'https://reged.com/phpagency',
       featured: false
     },
@@ -101,7 +100,7 @@ const ResourcesPage = () => {
       description: 'Step-by-step guide on filling out contracting paperwork with insurance carriers.',
       category: 'licensing',
       type: 'Guide',
-      icon: FileText,
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=GUIDE" alt="Guide" className="h-6 w-6" />,
       link: '#',
       featured: false
     },
@@ -111,7 +110,7 @@ const ResourcesPage = () => {
       description: 'Access annuity PSTs (Product Specific Training) resources and certification materials.',
       category: 'training',
       type: 'Training',
-      icon: TrendingUp,
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=TRAIN" alt="Training" className="h-6 w-6" />,
       link: '#',
       featured: true
     },
@@ -121,7 +120,7 @@ const ResourcesPage = () => {
       description: 'Join our team communication platform for instant messaging and updates.',
       category: 'support',
       type: 'Communication',
-      icon: MessageSquare,
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=MSG" alt="Message" className="h-6 w-6" />,
       link: 'https://groupme.com/join_group/59856202/7Hc1ACOc',
       featured: false
     },
@@ -131,7 +130,7 @@ const ResourcesPage = () => {
       description: 'Guidelines and best practices for field underwriting and case preparation.',
       category: 'training',
       type: 'Guide',
-      icon: FileText,
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=UW" alt="Underwriting" className="h-6 w-6" />,
       link: '#',
       featured: false
     },
@@ -141,14 +140,8 @@ const ResourcesPage = () => {
       description: 'Follow our main team account for updates and company news.',
       category: 'support',
       type: 'Social Media',
-     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
-      link: 'https://www.instagram.com/eibteam?igsh=MTk4OWVjN3BqZWswZA==',
-      featured: false
-    },
-    {
-      id: 11,
-      title: 'Jason Graziani Instagram',
-      description: 'Follow our founder Jason Graziani for leadership insights and motivation.',
+      icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBE1f1N4XkzTZq6n0mcauCyHvYApfhoDKMU8Fr" alt="GroupMe" className="h-6 w-6" />,
+      icon: MessageSquare,
       category: 'support',
       type: 'Social Media',
      icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
@@ -181,7 +174,7 @@ const ResourcesPage = () => {
       description: 'HR system for payroll, benefits, time tracking, and employee information.',
       category: 'tools',
       type: 'System',
-      icon: User,
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=HR" alt="HR System" className="h-6 w-6" />,
       link: 'https://app.phpbamboo.com/agent/signin',
       featured: false
     },
@@ -191,7 +184,7 @@ const ResourcesPage = () => {
       description: 'Find EIB Agency office locations and contact information across all markets.',
       category: 'support',
       type: 'Directory',
-      icon: MapPin,
+      icon: () => <img src="https://via.placeholder.com/24x24/6B7280/FFFFFF?text=MAP" alt="Map" className="h-6 w-6" />,
       link: '/office-locations',
       featured: false
     }
@@ -403,11 +396,7 @@ const ResourcesPage = () => {
                         <div key={resource.id} className="p-6 hover:bg-gray-50 transition-colors">
                           <div className="flex items-start space-x-4">
                             <div className="bg-gray-100 p-3 rounded-lg">
-                              <resource.icon className="h-6 w-6 text-gray-600" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-start justify-between">
-                                <div className="flex-1">
+                              <resource.icon />
                                   <h4 className="text-lg font-semibold text-gray-900 mb-1">
                                     {resource.title}
                                   </h4>
@@ -450,8 +439,8 @@ const ResourcesPage = () => {
                                   >
                                     <span>Access</span>
                                     <ExternalLink className="h-4 w-4" />
-                                  </a>
-                                </div>
+                               {typeof resource.icon === 'function' ? (
+                                  </>
                               </div>
                             </div>
                           </div>
