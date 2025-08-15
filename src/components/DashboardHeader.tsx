@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, User, LogOut, Menu, X, CheckCircle, AlertCircle, Calendar, MessageSquare } from 'lucide-react';
+import { Bell, User, LogOut, Menu, X, CheckCircle, AlertCircle, Calendar, MessageSquare, Home, FileText, Library, BookOpen } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { DatabaseService } from '@/lib/database';
 
 const DashboardHeader = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAdminMode, setIsAdminMode] = useState(false);
@@ -58,6 +59,30 @@ const DashboardHeader = () => {
 
   const unreadCount = Math.min(notifications.filter(n => !n.read).length, 2);
 
+  const menuItems = [
+    { name: 'Dashboard', href: '/dashboard', icon: Home, current: window.location.pathname === '/dashboard' },
+    { name: 'Calendar & Announcements', href: '/calendar', icon: Calendar, current: window.location.pathname === '/calendar' },
+    { name: 'Trainings', href: '/trainings', icon: BookOpen, current: window.location.pathname === '/trainings' },
+    { name: 'Resources', href: '/resources', icon: FileText, current: window.location.pathname === '/resources' },
+    { name: 'Books to Read', href: '/books', icon: Library, current: window.location.pathname === '/books' },
+  ];
+
+  // Add admin-only menu items
+  if (isAdmin) {
+    menuItems.push({
+      name: 'Admin Dashboard',
+      href: '/admin/dashboard',
+      icon: User,
+      current: window.location.pathname === '/admin/dashboard'
+    });
+    menuItems.push({
+      name: 'Manage Users',
+      href: '/admin/users',
+      icon: User,
+      current: window.location.pathname === '/admin/users'
+    });
+  }
+
   const getNotificationColor = (type: string) => {
     switch (type) {
       case 'success': return 'text-green-600';
@@ -72,7 +97,7 @@ const DashboardHeader = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 flex-1 md:flex-none">
             <img 
               src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnfYSbXDWwS0j4D1ydoNBhk8RHX5asGlYQ39iZ" 
               alt="EIB Team Logo" 
@@ -88,6 +113,18 @@ const DashboardHeader = () => {
 
           {/* Right side */}
           <div className="flex items-center space-x-4">
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+
             {/* Admin Toggle */}
             {isAdmin && (
               <div className="flex items-center space-x-2">
@@ -222,6 +259,35 @@ const DashboardHeader = () => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
+          <div className="px-4 py-2">
+            <nav className="space-y-1">
+              {menuItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                    item.current
+                      ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-black'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  }`}
+                >
+                  <item.icon
+                    className={`mr-3 flex-shrink-0 h-5 w-5 ${
+                      item.current ? 'text-black' : 'text-gray-400 group-hover:text-gray-500'
+                    }`}
+                  />
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+      )}
 
       {/* Announcement Detail Modal */}
       {showAnnouncementModal && selectedAnnouncement && (
