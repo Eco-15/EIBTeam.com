@@ -121,7 +121,7 @@ const ResourcesPage = () => {
       description: 'Join our team communication platform for instant messaging and updates.',
       category: 'support',
       type: 'Communication',
-      icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBE1f1N4XkzTZq6n0mcauCyHvYApfhoDKMU8Fr" alt="GroupMe" className="h-6 w-6" />,
+      icon: MessageSquare,
       link: 'https://groupme.com/join_group/59856202/7Hc1ACOc',
       featured: false
     },
@@ -141,6 +141,14 @@ const ResourcesPage = () => {
       description: 'Follow our main team account for updates and company news.',
       category: 'support',
       type: 'Social Media',
+                              <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center">
+                                <resource.icon />
+                              </div>
+                            ) : (
+                              <div className="bg-gray-100 p-3 rounded-lg">
+                                <resource.icon className="h-6 w-6 text-gray-600" />
+                              </div>
+                            )}
       title: 'Jason Graziani Instagram',
       description: 'Follow our founder Jason Graziani for leadership insights and motivation.',
       category: 'support',
@@ -444,9 +452,7 @@ const ResourcesPage = () => {
                                   >
                                     <span>Access</span>
                                     <ExternalLink className="h-4 w-4" />
-                                  </a>
                                {typeof resource.icon === 'function' ? (
-                               ) : (
                                   </>
                               </div>
                             </div>
