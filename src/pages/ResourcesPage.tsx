@@ -171,7 +171,7 @@ const ResourcesPage = () => {
       description: 'Follow our women\'s empowerment and leadership development account.',
       category: 'support',
       type: 'Social Media',
-     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-12 w-12" />,
+     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-10 w-10" />,
       link: 'https://www.instagram.com/iconic.women._?igsh=eGxzenJpYmFoYWJv',
       featured: false
     },
