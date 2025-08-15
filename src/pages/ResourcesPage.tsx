@@ -141,7 +141,7 @@ const ResourcesPage = () => {
       description: 'Follow our main team account for updates and company news.',
       category: 'support',
       type: 'Social Media',
-     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
+      icon: Users,
       link: 'https://www.instagram.com/eibteam?igsh=MTk4OWVjN3BqZWswZA==',
       featured: false
     },
@@ -151,7 +151,7 @@ const ResourcesPage = () => {
       description: 'Follow our founder Jason Graziani for leadership insights and motivation.',
       category: 'support',
       type: 'Social Media',
-     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
+      icon: User,
       link: 'https://www.instagram.com/jason.graziani?igsh=MTZobTlvcDQwdTA0NA==',
       featured: false
     },
@@ -161,7 +161,7 @@ const ResourcesPage = () => {
       description: 'Follow our co-founder Nataly Graziani for business development tips.',
       category: 'support',
       type: 'Social Media',
-     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" className="h-6 w-6" />,
+      icon: User,
       link: 'https://www.instagram.com/nataly.graziani?igsh=MTh0cTYybHBpcGx2NQ==',
       featured: false
     },
@@ -171,7 +171,7 @@ const ResourcesPage = () => {
       description: 'Follow our women\'s empowerment and leadership development account.',
       category: 'support',
       type: 'Social Media',
-     icon: () => <img src="https://a479266c5n.ufs.sh/f/shgffwCK3PoBRWlGICOgVTcCQpk6nHjugZ8JUy5LYNeKEvhB" alt="Instagram" />,
+      icon: Users,
       link: 'https://www.instagram.com/iconic.women._?igsh=eGxzenJpYmFoYWJv',
       featured: false
     },
@@ -452,11 +452,7 @@ const ResourcesPage = () => {
                                     <span>Access</span>
                                     <ExternalLink className="h-4 w-4" />
                                   </a>
-                               {typeof resource.icon === 'function' ? (
-                                 <resource.icon />
-                               ) : (
-                                 <resource.icon className="h-6 w-6 text-gray-600" />
-                               )}
+                                </div>
                               </div>
                             </div>
                           </div>
