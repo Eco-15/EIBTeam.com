@@ -92,7 +92,7 @@ const ResourcesPage = () => {
       category: 'licensing',
       type: 'External Link',
       icon: BookOpen,
-      link: '#',
+      link: 'https://reged.com/phpagency',
       featured: false
     },
     {
@@ -122,7 +122,7 @@ const ResourcesPage = () => {
       category: 'support',
       type: 'Communication',
       icon: MessageSquare,
-      link: '#',
+      link: 'https://groupme.com/join_group/59856202/7Hc1ACOc',
       featured: false
     },
     {
@@ -137,64 +137,62 @@ const ResourcesPage = () => {
     },
     {
       id: 10,
-      title: 'Social Media Links',
-      description: 'Access all official EIB Team social media accounts and approved content.',
-      description: 'Access all official EIB Agency social media accounts and approved content.',
+      title: 'EIB Team Instagram',
+      description: 'Follow our main team account for updates and company news.',
       category: 'support',
-      type: 'Links',
+      type: 'Social Media',
       icon: Users,
-      link: '#',
+      link: 'https://www.instagram.com/eibteam?igsh=MTk4OWVjN3BqZWswZA==',
       featured: false
     },
     {
       id: 11,
-      title: 'Office Locator',
-      description: 'Find EIB Team office locations and contact information across all markets.',
-      description: 'Find EIB Agency office locations and contact information across all markets.',
+      title: 'Jason Graziani Instagram',
+      description: 'Follow our founder Jason Graziani for leadership insights and motivation.',
       category: 'support',
-      type: 'Directory',
-      icon: MapPin,
-      link: '#',
+      type: 'Social Media',
+      icon: User,
+      link: 'https://www.instagram.com/jason.graziani?igsh=MTZobTlvcDQwdTA0NA==',
       featured: false
     },
     {
       id: 12,
-      title: 'FAQ',
-      description: 'Frequently asked questions about licensing, contracting, and operations.',
+      title: 'Nataly Graziani Instagram',
+      description: 'Follow our co-founder Nataly Graziani for business development tips.',
       category: 'support',
-      type: 'Help',
-      icon: HelpCircle,
-      link: '#',
+      type: 'Social Media',
+      icon: User,
+      link: 'https://www.instagram.com/nataly.graziani?igsh=MTh0cTYybHBpcGx2NQ==',
       featured: false
     },
     {
       id: 13,
+      title: 'Iconic Women Instagram',
+      description: 'Follow our women\'s empowerment and leadership development account.',
+      category: 'support',
+      type: 'Social Media',
+      icon: Users,
+      link: 'https://www.instagram.com/iconic.women._?igsh=eGxzenJpYmFoYWJv',
+      featured: false
+    },
+    {
+      id: 14,
       title: 'Bamboo',
       description: 'HR system for payroll, benefits, time tracking, and employee information.',
       category: 'tools',
       type: 'System',
       icon: User,
-      link: '#',
+      link: 'https://app.phpbamboo.com/agent/signin',
       featured: false
     },
     {
-      id: 14,
-      title: 'Client Flow',
-      description: 'CRM system for managing client relationships, leads, and sales pipeline.',
-      category: 'tools',
-      type: 'CRM',
-      icon: Users,
-      link: '#',
-      featured: true
-    },
-    {
       id: 15,
-      title: 'Recruits Flow',
-      description: 'Recruitment management system for tracking prospects and team building.',
-      category: 'tools',
-      type: 'Recruitment',
-      icon: TrendingUp,
-      link: '#',
+      title: 'Office Locator',
+      description: 'Find EIB Agency office locations and contact information across all markets.',
+      category: 'support',
+      type: 'Directory',
+      icon: MapPin,
+      link: '/office-locations',
       featured: false
     }
   ];
