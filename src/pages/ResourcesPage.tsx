@@ -62,7 +62,7 @@ const ResourcesPage = () => {
       category: 'licensing',
       type: 'External Link',
       icon: BookOpen,
-      link: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjX8fYrkELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      link: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnIkbPL3JEA2Fdv5GxZ0wWRTnU1CQbfzgryeKP',
       featured: true
     },
     {
