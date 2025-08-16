@@ -54,7 +54,7 @@ const TrainingsPage = () => {
       id: 4,
       title: 'Video 4 – 6 Steps (PCA/Schedule)',
       description: 'Master the 6-step process for client acquisition and appointment scheduling.',
-      duration: '3- hour',
+      duration: '30 minutes',
       difficulty: 'Intermediate',
       rating: 4.6,
       instructor: 'Nataly Graziani',
