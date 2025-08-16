@@ -20,7 +20,7 @@ const TrainingsPage = () => {
       fullDescription: 'Welcome to EIB Agency! This comprehensive introduction training will walk you through our company mission, core values, and what you can expect as you begin your journey with us. You\'ll learn about our history, our commitment to excellence, and how we support our agents in achieving their goals. This training covers the foundational knowledge every EIB Agency member needs to succeed.',
       duration: '30 minutes',
       difficulty: 'Beginner',
-      rating: 4.8,
+      rating: 5.0,
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       learningObjectives: [
@@ -36,7 +36,7 @@ const TrainingsPage = () => {
       description: 'Develop the entrepreneurial mindset needed to build a successful insurance business.',
       duration: '20 minutes',
       difficulty: 'Beginner',
-      rating: 4.9,
+      rating: 5.0,
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
@@ -46,7 +46,7 @@ const TrainingsPage = () => {
       description: 'Build resilience and mental strength to overcome challenges in the insurance industry.',
       duration: '15 minutes',
       difficulty: 'Beginner',
-      rating: 4.7,
+      rating: 5.0,
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
     },
@@ -56,7 +56,7 @@ const TrainingsPage = () => {
       description: 'Master the 6-step process for client acquisition and appointment scheduling.',
       duration: '30 minutes',
       difficulty: 'Intermediate',
-      rating: 4.6,
+      rating: 5.0,
       instructor: 'Nataly Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
@@ -66,7 +66,7 @@ const TrainingsPage = () => {
       description: 'Learn the referral interview process to expand your client base through warm referrals.',
       duration: '50 minutes',
       difficulty: 'Intermediate',
-      rating: 4.5,
+      rating: 5.0,
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
     },
@@ -76,7 +76,7 @@ const TrainingsPage = () => {
       description: 'Understand your clients deeply to provide personalized financial solutions.',
       duration: '45 minutes',
       difficulty: 'Intermediate',
-      rating: 4.8,
+      rating: 5.0,
       instructor: 'Nataly Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
@@ -86,7 +86,7 @@ const TrainingsPage = () => {
       description: 'Conduct comprehensive financial surveys to identify client needs and opportunities.',
       duration: '1 hour',
       difficulty: 'Intermediate',
-      rating: 4.7,
+      rating: 5.0,
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
     },
@@ -96,7 +96,7 @@ const TrainingsPage = () => {
       description: 'Create actionable goals and develop a comprehensive business plan for success.',
       duration: '1.5 hours',
       difficulty: 'Intermediate',
-      rating: 4.9,
+      rating: 5.0,
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
@@ -106,7 +106,7 @@ const TrainingsPage = () => {
       description: 'Understand our products, services, and how to communicate our value proposition.',
       duration: '1 hour',
       difficulty: 'Beginner',
-      rating: 4.6,
+      rating: 5.0,
       instructor: 'Nataly Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
     },
@@ -116,7 +116,7 @@ const TrainingsPage = () => {
       description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
       duration: '45 minutes',
       difficulty: 'Advanced',
-      rating: 4.8,
+      rating: 5.0,
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     }
