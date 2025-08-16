@@ -23,6 +23,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Beginner',
       rating: 4.8,
       instructor: 'Jason Graziani',
+      Video: '',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       objectives: [
         'Understand EIB Team\'s mission and values',
@@ -47,6 +48,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Beginner',
       rating: 4.9,
       instructor: 'Jason Graziani',
+      Video: '',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       objectives: [
         'Develop entrepreneurial thinking',
@@ -69,6 +71,7 @@ const TrainingDetailPage = () => {
       duration: '40 minutes',
       difficulty: 'Beginner',
       rating: 4.7,
+      Video: '',
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       objectives: [
@@ -93,6 +96,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 4.6,
       instructor: 'Nataly Graziani',
+      Video: '',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       objectives: [
         'Master the 6-step acquisition process',
@@ -116,6 +120,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 4.5,
       instructor: 'Jason Graziani',
+      Video: '',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       objectives: [
         'Master referral interview techniques',
@@ -139,6 +144,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 4.8,
       instructor: 'Nataly Graziani',
+      Video: '',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       objectives: [
         'Develop active listening skills',
@@ -162,6 +168,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 4.7,
       instructor: 'Jason Graziani',
+      Video: '',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       objectives: [
         'Master financial survey techniques',
@@ -185,6 +192,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 4.9,
       instructor: 'Jason Graziani',
+      Video: '',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       objectives: [
         'Create SMART goals',
@@ -208,6 +216,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Beginner',
       rating: 4.6,
       instructor: 'Nataly Graziani',
+      Video: '',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       objectives: [
         'Learn all product offerings',
@@ -231,6 +240,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Advanced',
       rating: 4.8,
       instructor: 'Jason Graziani',
+      Video: '',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       objectives: [
         'Understand career pathways',
@@ -349,7 +359,7 @@ const TrainingDetailPage = () => {
                         className="w-full h-64 object-cover"
                         poster={training.thumbnail}
                       >
-                        <source src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnwlRDPoMy1pgcSeV6YWjXk7P5qlCr3doJtfQF" type="video/mp4" />
+                        <source src= {training.video} type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
                     </div>
