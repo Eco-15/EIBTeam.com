@@ -72,10 +72,6 @@ const AboutPage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-yellow-500 to-yellow-600 p-6 rounded-xl shadow-xl">
-                <div className="text-black font-bold text-lg">Insurance</div>
-                <div className="text-black font-bold text-lg">Leaders</div>
-              </div>
             </div>
           </div>
         </div>
