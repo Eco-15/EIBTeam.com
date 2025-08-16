@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { supabase } from './lib/supabase';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
@@ -30,6 +32,27 @@ import StartContractingPage from './pages/StartContractingPage';
 import FieldUnderwritingPage from './pages/FieldUnderwritingPage';
 
 function App() {
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (event === 'SIGNED_OUT' || (event === 'TOKEN_REFRESHED' && !session)) {
+          // Clear any stored session data and redirect to login
+          await supabase.auth.signOut();
+          if (window.location.pathname.startsWith('/dashboard') || 
+              window.location.pathname.startsWith('/admin') ||
+              window.location.pathname.startsWith('/calendar') ||
+              window.location.pathname.startsWith('/trainings') ||
+              window.location.pathname.startsWith('/resources') ||
+              window.location.pathname.startsWith('/books')) {
+            window.location.href = '/agent-login';
+          }
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
+
   return (
     <Router>
       <Routes>
