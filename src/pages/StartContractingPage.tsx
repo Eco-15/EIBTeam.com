@@ -116,26 +116,6 @@ const StartContractingPage = () => {
                   </div>
                 ))}
               </div>
-
-              {/* Process Overview */}
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Contracting Process Overview</h2>
-                <div className="grid md:grid-cols-5 gap-6">
-                  {contractingSteps.map((step, index) => (
-                    <div key={index} className="text-center">
-                      <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span className="text-black font-bold text-sm">{step.step}</span>
-                      </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
-                      <p className="text-gray-600 text-sm mb-2">{step.description}</p>
-                      <div className="bg-gray-100 px-2 py-1 rounded-full">
-                        <span className="text-xs text-gray-600">{step.timeframe}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
               {/* Resources */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-200">
                 <div className="p-6 border-b border-gray-200">
