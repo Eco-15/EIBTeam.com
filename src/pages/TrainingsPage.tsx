@@ -44,7 +44,7 @@ const TrainingsPage = () => {
       id: 3,
       title: 'Video 3 – Mental Toughness',
       description: 'Build resilience and mental strength to overcome challenges in the insurance industry.',
-      duration: '40 minutes',
+      duration: '15 minutes',
       difficulty: 'Beginner',
       rating: 4.7,
       instructor: 'Jason Graziani',
