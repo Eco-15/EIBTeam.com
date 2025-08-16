@@ -182,7 +182,7 @@ const TrainingsPage = () => {
       parseFloat(t.duration) : 
       parseFloat(t.duration) / 60;
     return acc + duration;
-  }, 0);
+  }, 0).toFixed(2);
 
   if (isLoading) {
     return (
@@ -234,7 +234,7 @@ const TrainingsPage = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Total Hours</p>
-                      <p className="text-3xl font-bold text-blue-600">{totalHours}</p>
+                      <p className="text-3xl font-bold text-blue-600">{parseFloat(totalHours)}</p>
                     </div>
                     <BookOpen className="h-8 w-8 text-blue-600" />
                   </div>
