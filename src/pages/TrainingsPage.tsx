@@ -34,7 +34,7 @@ const TrainingsPage = () => {
       id: 2,
       title: 'Video 2 – Builder\'s Mindset',
       description: 'Develop the entrepreneurial mindset needed to build a successful insurance business.',
-      duration: '45 minutes',
+      duration: '20 minutes',
       difficulty: 'Beginner',
       rating: 4.9,
       instructor: 'Jason Graziani',
