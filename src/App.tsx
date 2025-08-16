@@ -26,6 +26,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import LicenseInformationPage from './pages/LicenseInformationPage';
 import CompliancePage from './pages/CompliancePage';
+import StartContractingPage from './pages/StartContractingPage';
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
         <Route path="/terms-of-service" element={<TermsOfServicePage />} />
         <Route path="/license-information" element={<LicenseInformationPage />} />
         <Route path="/compliance" element={<CompliancePage />} />
+        <Route path="/start-contracting" element={<StartContractingPage />} />
       </Routes>
     </Router>
   );

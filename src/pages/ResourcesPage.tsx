@@ -98,11 +98,11 @@ const ResourcesPage = () => {
     {
       id: 6,
       title: 'Start Contracting',
-      description: 'Step-by-step guide on filling out contracting paperwork with insurance carriers.',
+      description: 'Complete guide to licensing and contracting with insurance carriers.',
       category: 'licensing',
       type: 'Guide',
       icon: FileText,
-      link: '#',
+      link: '/start-contracting',
       featured: false
     },
     {
