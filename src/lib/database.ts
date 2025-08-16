@@ -177,6 +177,7 @@ export interface TeamApplication {
   experience?: string;
   hear_about?: string;
   description?: string;
+  referred_by?: string;
   status?: 'pending' | 'reviewing' | 'interviewed' | 'hired' | 'rejected';
   created_at: string;
   updated_at: string;

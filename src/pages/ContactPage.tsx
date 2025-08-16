@@ -24,7 +24,8 @@ const ContactPage = () => {
     state: '',
     experience: '',
     hearAbout: '',
-    description: ''
+    description: '',
+    referredBy: ''
   });
 
   const [activeForm, setActiveForm] = useState('consultation');
@@ -80,14 +81,15 @@ const ContactPage = () => {
           state: teamForm.state,
           experience: teamForm.experience,
           hear_about: teamForm.hearAbout,
-          description: teamForm.description
+          description: teamForm.description,
+          referred_by: teamForm.referredBy
         });
 
         if (result) {
           setIsSubmitted(true);
           setTeamForm({
             name: '', email: '', phone: '', city: '', state: '',
-            experience: '', hearAbout: '', description: ''
+            experience: '', hearAbout: '', description: '', referredBy: ''
           });
         } else {
           alert('Error submitting team application. Please try again.');
@@ -591,6 +593,21 @@ const ContactPage = () => {
                           ))}
                         </select>
                       </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="team-referred" className="block text-sm font-medium text-gray-700 mb-2">
+                        Person That Recommended You
+                      </label>
+                      <input
+                        type="text"
+                        id="team-referred"
+                        name="referredBy"
+                        value={teamForm.referredBy}
+                        onChange={handleTeamChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-colors"
+                        placeholder="Name of the person who referred you (optional)"
+                      />
                     </div>
 
                     <div>
