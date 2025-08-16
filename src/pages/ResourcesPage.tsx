@@ -128,11 +128,11 @@ const ResourcesPage = () => {
     {
       id: 9,
       title: 'Field Underwriting',
-      description: 'Guidelines and best practices for field underwriting and case preparation.',
+      description: 'Carrier-specific underwriting guidelines and best practices for successful case submission.',
       category: 'training',
-      type: 'Guide',
+      type: 'Underwriting Guides',
       icon: FileText,
-      link: '#',
+      link: '/field-underwriting',
       featured: false
     },
     {

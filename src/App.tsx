@@ -27,6 +27,7 @@ import TermsOfServicePage from './pages/TermsOfServicePage';
 import LicenseInformationPage from './pages/LicenseInformationPage';
 import CompliancePage from './pages/CompliancePage';
 import StartContractingPage from './pages/StartContractingPage';
+import FieldUnderwritingPage from './pages/FieldUnderwritingPage';
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
         <Route path="/license-information" element={<LicenseInformationPage />} />
         <Route path="/compliance" element={<CompliancePage />} />
         <Route path="/start-contracting" element={<StartContractingPage />} />
+        <Route path="/field-underwriting" element={<FieldUnderwritingPage />} />
       </Routes>
     </Router>
   );
