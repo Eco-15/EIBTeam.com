@@ -43,7 +43,7 @@ const TrainingDetailPage = () => {
       title: 'Video 2 – Builder\'s Mindset',
       description: 'Develop the entrepreneurial mindset needed to build a successful insurance business.',
       fullDescription: 'Building a successful insurance business requires more than just product knowledge - it requires an entrepreneurial mindset. This training will help you develop the mental framework needed to think like a business owner, take calculated risks, and build long-term success. You\'ll learn about goal setting, persistence, and the importance of continuous learning and adaptation.',
-      duration: '45 minutes',
+      duration: '20 minutes',
       difficulty: 'Beginner',
       rating: 4.9,
       instructor: 'Jason Graziani',
