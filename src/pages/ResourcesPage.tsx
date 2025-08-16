@@ -40,8 +40,8 @@ const ResourcesPage = () => {
     { id: 'all', name: 'All Resources', count: 0 },
     { id: 'licensing', name: 'Licensing', count: 0 },
     { id: 'training', name: 'Training', count: 0 },
-    { id: 'tools', name: 'Tools & Systems', count: 0 },
-    { id: 'support', name: 'Support', count: 0 },
+    { id: 'tools', name: 'Systems', count: 0 },
+    { id: 'support', name: 'Social Media', count: 0 },
   ];
 
   const resources = [
@@ -116,16 +116,6 @@ const ResourcesPage = () => {
       featured: true
     },
     {
-      id: 8,
-      title: 'GroupMe',
-      description: 'Join our team communication platform for instant messaging and updates.',
-      category: 'support',
-      type: 'Communication',
-      icon: MessageSquare,
-      link: 'https://groupme.com/join_group/59856202/7Hc1ACOc',
-      featured: false
-    },
-    {
       id: 9,
       title: 'Field Underwriting',
       description: 'Carrier-specific underwriting guidelines and best practices for successful case submission.',
@@ -133,6 +123,16 @@ const ResourcesPage = () => {
       type: 'Underwriting Guides',
       icon: FileText,
       link: '/field-underwriting',
+      featured: false
+    },
+    {
+      id: 8,
+      title: 'GroupMe',
+      description: 'Join our team communication platform for instant messaging and updates.',
+      category: 'support',
+      type: 'Communication',
+      icon: MessageSquare,
+      link: 'https://groupme.com/join_group/59856202/7Hc1ACOc',
       featured: false
     },
     {
@@ -218,29 +218,29 @@ const ResourcesPage = () => {
     ).length;
   };
 
-  const licensingResourcesCompleted = getCompletedCountByCategory('licensing');
-  const trainingResourcesCompleted = getCompletedCountByCategory('training');
-  const toolsResourcesCompleted = getCompletedCountByCategory('tools');
-  const supportResourcesCompleted = getCompletedCountByCategory('support');
+  const licensingResourcesCount = resources.filter(r => r.category === 'licensing').length;
+  const trainingResourcesCount = resources.filter(r => r.category === 'training').length;
+  const toolsResourcesCount = resources.filter(r => r.category === 'tools').length;
+  const supportResourcesCount = resources.filter(r => r.category === 'support').length;
 
   // Update categories with dynamic counts
   const updatedCategories = categories.map(category => {
     let count = 0;
     switch (category.id) {
       case 'all':
-        count = completedResources.size;
+        count = resources.length;
         break;
       case 'licensing':
-        count = licensingResourcesCompleted;
+        count = licensingResourcesCount;
         break;
       case 'training':
-        count = trainingResourcesCompleted;
+        count = trainingResourcesCount;
         break;
       case 'tools':
-        count = toolsResourcesCompleted;
+        count = toolsResourcesCount;
         break;
       case 'support':
-        count = supportResourcesCompleted;
+        count = supportResourcesCount;
         break;
     }
     return { ...category, count };
@@ -286,8 +286,8 @@ const ResourcesPage = () => {
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Licensing Resources</p>
-                      <p className="text-3xl font-bold text-blue-600">{licensingResourcesCompleted}</p>
+                      <p className="text-sm font-medium text-gray-600">Licensing</p>
+                      <p className="text-3xl font-bold text-blue-600">{licensingResourcesCount}</p>
                     </div>
                     <Shield className="h-8 w-8 text-blue-600" />
                   </div>
@@ -295,8 +295,8 @@ const ResourcesPage = () => {
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Training Materials</p>
-                      <p className="text-3xl font-bold text-green-600">{trainingResourcesCompleted}</p>
+                      <p className="text-sm font-medium text-gray-600">Training</p>
+                      <p className="text-3xl font-bold text-green-600">{trainingResourcesCount}</p>
                     </div>
                     <BookOpen className="h-8 w-8 text-green-600" />
                   </div>
@@ -304,8 +304,8 @@ const ResourcesPage = () => {
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Tools & Systems</p>
-                      <p className="text-3xl font-bold text-purple-600">{toolsResourcesCompleted}</p>
+                      <p className="text-sm font-medium text-gray-600">Systems</p>
+                      <p className="text-3xl font-bold text-purple-600">{toolsResourcesCount}</p>
                     </div>
                     <Building className="h-8 w-8 text-purple-600" />
                   </div>
@@ -313,10 +313,10 @@ const ResourcesPage = () => {
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Completed</p>
-                      <p className="text-3xl font-bold text-yellow-600">{completedCount}</p>
+                      <p className="text-sm font-medium text-gray-600">Social Media</p>
+                      <p className="text-3xl font-bold text-yellow-600">{supportResourcesCount}</p>
                     </div>
-                    <FileText className="h-8 w-8 text-yellow-600" />
+                    <Users className="h-8 w-8 text-yellow-600" />
                   </div>
                 </div>
               </div>
