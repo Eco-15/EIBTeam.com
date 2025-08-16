@@ -92,7 +92,7 @@ const ResourcesPage = () => {
       category: 'licensing',
       type: 'External Link',
       icon: BookOpen,
-      link: 'https://reged.com/phpagency',
+      link: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn0gLPogr5gzZCeyA0VUlJbYmG8fF1jk7p9OrS',
       featured: false
     },
     {
