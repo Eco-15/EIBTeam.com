@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from './lib/supabase';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -32,18 +32,41 @@ import StartContractingPage from './pages/StartContractingPage';
 import FieldUnderwritingPage from './pages/FieldUnderwritingPage';
 
 function App() {
+  const [isInitialized, setIsInitialized] = useState(false);
+
   useEffect(() => {
+    // Handle initial session check and cleanup invalid tokens
+    const initializeAuth = async () => {
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (error) {
+          console.warn('Session error detected, clearing auth state:', error.message);
+          await supabase.auth.signOut();
+        }
+      } catch (error) {
+        console.warn('Auth initialization error, clearing auth state:', error);
+        await supabase.auth.signOut();
+      } finally {
+        setIsInitialized(true);
+      }
+    };
+
+    initializeAuth();
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        if (event === 'SIGNED_OUT' || (event === 'TOKEN_REFRESHED' && !session)) {
+        if (event === 'SIGNED_OUT' || 
+            (event === 'TOKEN_REFRESHED' && !session) ||
+            event === 'SIGNED_IN_WITH_PASSWORD') {
           // Clear any stored session data and redirect to login
-          await supabase.auth.signOut();
-          if (window.location.pathname.startsWith('/dashboard') || 
+          if ((event === 'SIGNED_OUT' || (event === 'TOKEN_REFRESHED' && !session)) &&
+              (window.location.pathname.startsWith('/dashboard') || 
               window.location.pathname.startsWith('/admin') ||
               window.location.pathname.startsWith('/calendar') ||
               window.location.pathname.startsWith('/trainings') ||
               window.location.pathname.startsWith('/resources') ||
-              window.location.pathname.startsWith('/books')) {
+              window.location.pathname.startsWith('/books'))) {
+            await supabase.auth.signOut();
             window.location.href = '/agent-login';
           }
         }
@@ -52,6 +75,18 @@ function App() {
 
     return () => subscription.unsubscribe();
   }, []);
+
+  // Show loading state while initializing auth
+  if (!isInitialized) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-2 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Router>
