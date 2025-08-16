@@ -342,16 +342,31 @@ const TrainingDetailPage = () => {
               {/* Training Header */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
                 <div className="relative">
-                  <img
-                    src={training.thumbnail}
-                    alt={training.title}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                    <button className="bg-white bg-opacity-90 rounded-full p-4 hover:bg-opacity-100 transition-all">
-                      <Play className="h-8 w-8 text-gray-900 ml-1" />
-                    </button>
-                  </div>
+                  {training.id === 2 ? (
+                    <div className="relative">
+                      <video
+                        controls
+                        className="w-full h-64 object-cover"
+                        poster={training.thumbnail}
+                      >
+                        <source src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnwlRDPoMy1pgcSeV6YWjXk7P5qlCr3doJtfQF" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  ) : (
+                    <>
+                      <img
+                        src={training.thumbnail}
+                        alt={training.title}
+                        className="w-full h-64 object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <button className="bg-white bg-opacity-90 rounded-full p-4 hover:bg-opacity-100 transition-all">
+                          <Play className="h-8 w-8 text-gray-900 ml-1" />
+                        </button>
+                      </div>
+                    </>
+                  )}
                   {isCompleted && (
                     <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
                       <CheckCircle className="h-4 w-4" />
