@@ -167,7 +167,6 @@ const SupplementalCoveragePage = () => {
                 >
                   <source src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOndH9yyal7cmdASPKDVwuU18xgjXi5O4RQaH2I" type="video/mp4" />
                   Your browser does not support the video tag.
-                </source>
                 </video>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-yellow-500 to-yellow-600 p-6 rounded-xl shadow-xl">
