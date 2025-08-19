@@ -506,28 +506,14 @@ const AboutPage = () => {
             <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
               <div className="text-center mb-6">
                 <div className="relative rounded-2xl overflow-hidden shadow-lg mb-6">
-                  <a
-                    href="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnc7pHddXABiZ5cudwgVeLkIK6oqazNlQhtEn2"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block relative group"
+                  <video
+                    controls
+                    className="w-full aspect-video object-cover rounded-2xl"
+                    poster="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4"
                   >
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4"
-                      alt="Jason Graziani"
-                      className="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300">
-                      <div className="text-center">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 mb-2 group-hover:scale-110 transition-transform duration-300">
-                          <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
-                        </div>
-                        <p className="text-white font-medium text-lg">Watch Jason's Bio Video</p>
-                      </div>
-                    </div>
-                  </a>
+                    <source src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnc7pHddXABiZ5cudwgVeLkIK6oqazNlQhtEn2" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-2">Jason Graziani</h3>
                 <p className="text-yellow-600 font-semibold mb-4">Co-Founder & CEO</p>
@@ -544,28 +530,14 @@ const AboutPage = () => {
             <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
               <div className="text-center mb-6">
                 <div className="relative rounded-2xl overflow-hidden shadow-lg mb-6">
-                  <a
-                    href="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn64xzyL8IBMaOvXJICw4x96QTRt3gVWPrHlEs"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block relative group"
+                  <video
+                    controls
+                    className="w-full aspect-video object-cover rounded-2xl"
+                    poster="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz"
                   >
-                    <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz"
-                      alt="Nataly Graziani"
-                      className="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300">
-                      <div className="text-center">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 mb-2 group-hover:scale-110 transition-transform duration-300">
-                          <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
-                        </div>
-                        <p className="text-white font-medium text-lg">Watch Nataly's Bio Video</p>
-                      </div>
-                    </div>
-                  </a>
+                    <source src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn64xzyL8IBMaOvXJICw4x96QTRt3gVWPrHlEs" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-2">Nataly Graziani</h3>
                 <p className="text-yellow-600 font-semibold mb-4">Co-Founder & COO</p>
