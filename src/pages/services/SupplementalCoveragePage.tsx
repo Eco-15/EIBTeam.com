@@ -169,10 +169,6 @@ const SupplementalCoveragePage = () => {
                   Your browser does not support the video tag.
                 </video>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-yellow-500 to-yellow-600 p-6 rounded-xl shadow-xl">
-                <div className="text-black font-bold text-lg">Extra</div>
-                <div className="text-black font-bold text-lg">Protection</div>
-              </div>
             </div>
           </div>
         </div>
