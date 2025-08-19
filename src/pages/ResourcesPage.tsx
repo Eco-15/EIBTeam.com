@@ -82,7 +82,7 @@ const ResourcesPage = () => {
       category: 'licensing',
       type: 'External Link',
       icon: Shield,
-      link: 'https://www.sircon.com',
+      link: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnq4jD1d0f0rumkpwBXbZgQ169Mj5tITK2SiFY',
       featured: false
     },
     {
