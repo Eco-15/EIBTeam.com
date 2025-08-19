@@ -176,7 +176,7 @@ const WhyJoinUsPage = () => {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnyuBgIoHLBxJ6Wp3uhtwUIodn1FZi50b7MyEL"
+                  src="Comprehensive"
                   alt="Team collaboration and support"
                   className="w-full h-96 object-cover"
                 />
