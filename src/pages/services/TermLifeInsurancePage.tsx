@@ -105,12 +105,14 @@ const TermLifeInsurancePage = () => {
 
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src="https://images.pexels.com/photos/1128318/pexels-photo-1128318.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Happy family protected by term life insurance"
+                <video
+                  controls
                   className="w-full h-96 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                  poster="https://images.pexels.com/photos/1128318/pexels-photo-1128318.jpeg?auto=compress&cs=tinysrgb&w=800"
+                >
+                  <source src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnrAZ1Yn9IxL6na5HN8Cmj2VAkDRBdih9JyY4u" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-yellow-500 to-yellow-600 p-6 rounded-xl shadow-xl">
                 <div className="text-black font-bold text-lg">Family</div>
