@@ -507,7 +507,7 @@ const AboutPage = () => {
               <div className="text-center mb-6">
                 <div className="relative rounded-2xl overflow-hidden shadow-lg mb-6">
                   <a
-                    href="https://www.capcut.com/presentation/?workspaceId=7354879167374065670&utm_source=share&utm_medium=product"
+                    href="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnc7pHddXABiZ5cudwgVeLkIK6oqazNlQhtEn2"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block relative group"
@@ -545,14 +545,14 @@ const AboutPage = () => {
               <div className="text-center mb-6">
                 <div className="relative rounded-2xl overflow-hidden shadow-lg mb-6">
                   <a
-                    href="https://www.capcut.com/presentation/?workspaceId=7354879167374065670&utm_source=share&utm_medium=product"
+                    href="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn64xzyL8IBMaOvXJICw4x96QTRt3gVWPrHlEs"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block relative group"
                   >
                     <img
-                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4"
-                      alt="Jason Graziani"
+                      src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz"
+                      alt="Nataly Graziani"
                       className="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300">
@@ -562,7 +562,7 @@ const AboutPage = () => {
                             <path d="M8 5v14l11-7z"/>
                           </svg>
                         </div>
-                        <p className="text-white font-medium text-lg">Watch Jason's Bio Video</p>
+                        <p className="text-white font-medium text-lg">Watch Nataly's Bio Video</p>
                       </div>
                     </div>
                   </a>
