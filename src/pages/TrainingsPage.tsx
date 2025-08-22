@@ -321,10 +321,6 @@ const TrainingsPage = () => {
                       <div className="p-6">
                         <div className="flex items-start justify-between mb-3">
                           <h3 className="text-lg font-semibold text-gray-900">{training.title}</h3>
-                          <div className="flex items-center space-x-1">
-                            <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                            <span className="text-sm text-gray-600">{training.rating}</span>
-                          </div>
                         </div>
                         
                         <p className="text-gray-600 text-sm mb-4">{training.description}</p>
