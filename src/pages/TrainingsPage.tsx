@@ -76,7 +76,7 @@ const TrainingsPage = () => {
     },
     {
       id: 6,
-      title: 'Video 7 – How to Get Promoted',
+      title: 'Video 6 – How to Get Promoted',
       description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
       duration: '45 minutes',
       difficulty: 'Advanced',
