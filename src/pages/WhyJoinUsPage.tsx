@@ -238,12 +238,6 @@ const WhyJoinUsPage = () => {
                     <p className="text-yellow-600 font-semibold">Founder & CEO</p>
                   </div>
                 </div>
-                
-                <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
-                  "At EIB Agency, we're not just building an insurance business - we're building leaders, 
-                  creating opportunities, and changing lives. Join us and discover what it means to be part 
-                  of something truly special."
-                </p>
               </div>
             </div>
           </div>
