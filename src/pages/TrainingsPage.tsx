@@ -50,7 +50,7 @@ const TrainingsPage = () => {
       difficulty: 'Beginner',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnDv5aHVP3lgPtQaYepo9UIAxckSyhTrmqdRjn'
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnWyr2rmwDoEgx6u7dLy8etIN1pvK3aPWcf5AR'
     },
     {
       id: 4,
