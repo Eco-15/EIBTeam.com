@@ -326,7 +326,6 @@ const TrainingsPage = () => {
                         <p className="text-gray-600 text-sm mb-4">{training.description}</p>
                         
                         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                          <span>{training.duration}</span>
                           <span className={`px-2 py-1 rounded-full text-xs ${
                             training.difficulty === 'Beginner' ? 'bg-green-100 text-green-800' :
                             training.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' :
