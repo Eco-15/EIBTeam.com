@@ -61,7 +61,7 @@ const TrainingsPage = () => {
       rating: 5.0,
       instructor: 'Jason Graziani',
      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnKzAH3dacAFKG9eElgqCBYdjR8u1wULtHy6cQ',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
     {
       id: 5,
@@ -83,7 +83,7 @@ const TrainingsPage = () => {
       rating: 5.0,
       instructor: 'Jason Graziani',
       video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOncjwWJYXABiZ5cudwgVeLkIK6oqazNlQhtEn2',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnJ59D8g4sjgKf5MHd3EyecOPSWChvliwxr1Gk'
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
     }
   ];
 
