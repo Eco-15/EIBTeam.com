@@ -137,30 +137,6 @@ const TrainingDetailPage = () => {
     },
     {
       id: 6,
-      title: 'Video 6 – What we do / (HTCW)',
-      description: 'Understand our products, services, and how to communicate our value proposition.',
-      fullDescription: 'To be successful, you need to thoroughly understand all the products and services we offer. This training provides a comprehensive overview of our product portfolio, including life insurance, annuities, and other financial products. You\'ll learn the features and benefits of each product, who they\'re best suited for, and how to communicate our value proposition effectively.',
-      duration: '1 hour',
-      difficulty: 'Beginner',
-      rating: 4.6,
-      instructor: 'Jason Graziani',
-      video: '',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
-      objectives: [
-        'Learn all product offerings',
-        'Understand features and benefits',
-        'Identify target markets',
-        'Communicate value effectively'
-      ],
-      topics: [
-        'Product Portfolio',
-        'Features & Benefits',
-        'Target Markets',
-        'Value Proposition'
-      ]
-    },
-    {
-      id: 7,
       title: 'Video 7 – How to Get Promoted',
       description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
       fullDescription: 'EIB Agency offers numerous opportunities for career advancement and leadership development. This training outlines the various career paths available, from senior agent roles to management and leadership positions. You\'ll learn about the requirements for advancement, the skills needed for leadership, and how to position yourself for growth within the organization.',

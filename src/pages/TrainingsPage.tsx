@@ -76,17 +76,6 @@ const TrainingsPage = () => {
     },
     {
       id: 6,
-      title: 'Video 6 – What we do / (HTCW)',
-      description: 'Understand our products, services, and how to communicate our value proposition.',
-      duration: '1 hour',
-      difficulty: 'Beginner',
-      rating: 5.0,
-      instructor: 'Jason Graziani',
-     video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnryYBWL9IxL6na5HN8Cmj2VAkDRBdih9JyY4u',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
-    },
-    {
-      id: 7,
       title: 'Video 7 – How to Get Promoted',
       description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
       duration: '45 minutes',
@@ -101,7 +90,7 @@ const TrainingsPage = () => {
   const comingSoonTrainings = [
     {
       id: 101,
-      title: 'Video 8 – RI (Coming Soon)',
+      title: 'Video 7 – RI (Coming Soon)',
       description: 'Learn the referral interview process to expand your client base through warm referrals.',
       duration: '50 minutes',
       difficulty: 'Intermediate',
@@ -112,7 +101,7 @@ const TrainingsPage = () => {
     },
     {
       id: 102,
-      title: 'Video 9 – KTP (Coming Soon)',
+      title: 'Video 8 – KTP (Coming Soon)',
       description: 'Understand your clients deeply to provide personalized financial solutions.',
       duration: '45 minutes',
       difficulty: 'Intermediate',
@@ -123,10 +112,21 @@ const TrainingsPage = () => {
     },
     {
       id: 103,
-      title: 'Video 10 – FS (Coming Soon)',
+      title: 'Video 9 – FS (Coming Soon)',
       description: 'Conduct comprehensive financial surveys to identify client needs and opportunities.',
       duration: '1 hour',
       difficulty: 'Intermediate',
+      rating: 5.0,
+      instructor: 'Jason Graziani',
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      comingSoon: true
+    },
+    {
+      id: 104,
+      title: 'Video 10 – What we do / (HTCW) (Coming Soon)',
+      description: 'Understand our products, services, and how to communicate our value proposition.',
+      duration: '1 hour',
+      difficulty: 'Beginner',
       rating: 5.0,
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
