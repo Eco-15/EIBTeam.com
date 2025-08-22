@@ -56,7 +56,7 @@ const Dashboard = () => {
       duration: '30 minutes',
       difficulty: 'Beginner',
       instructor: 'Jason Graziani',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlmOrmln8EfQTV7ApbyFLmjY5GCZhaPcN4nzo'
     },
     {
       id: 2,
