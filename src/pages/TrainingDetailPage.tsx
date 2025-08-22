@@ -137,7 +137,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 6,
-      title: 'Video 7 – How to Get Promoted',
+      title: 'Video 6 – How to Get Promoted',
       description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
       fullDescription: 'EIB Agency offers numerous opportunities for career advancement and leadership development. This training outlines the various career paths available, from senior agent roles to management and leadership positions. You\'ll learn about the requirements for advancement, the skills needed for leadership, and how to position yourself for growth within the organization.',
       duration: '45 minutes',
