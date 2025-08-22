@@ -44,7 +44,7 @@ const TrainingsPage = () => {
     },
     {
       id: 3,
-      title: 'Video 3 – Mental Toughness',
+      title: 'Video 3 – Mental Toughness', 
       description: 'Build resilience and mental strength to overcome challenges in the insurance industry.',
       duration: '15 minutes',
       difficulty: 'Beginner',
@@ -59,43 +59,13 @@ const TrainingsPage = () => {
       duration: '30 minutes',
       difficulty: 'Intermediate',
       rating: 5.0,
-      instructor: 'Nataly Graziani',
+      instructor: 'Jason Graziani',
      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnKzAH3dacAFKG9eElgqCBYdjR8u1wULtHy6cQ',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
     {
       id: 5,
-      title: 'Video 5 – RI',
-      description: 'Learn the referral interview process to expand your client base through warm referrals.',
-      duration: '50 minutes',
-      difficulty: 'Intermediate',
-      rating: 5.0,
-      instructor: 'Jason Graziani',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
-    },
-    {
-      id: 6,
-      title: 'Video 6 – KTP',
-      description: 'Understand your clients deeply to provide personalized financial solutions.',
-      duration: '45 minutes',
-      difficulty: 'Intermediate',
-      rating: 5.0,
-      instructor: 'Nataly Graziani',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
-    },
-    {
-      id: 7,
-      title: 'Video 7 – FS',
-      description: 'Conduct comprehensive financial surveys to identify client needs and opportunities.',
-      duration: '1 hour',
-      difficulty: 'Intermediate',
-      rating: 5.0,
-      instructor: 'Jason Graziani',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
-    },
-    {
-      id: 8,
-      title: 'Video 8 – Goal Setting / Business Plan',
+      title: 'Video 5 – Goal Setting / Business Plan',
       description: 'Create actionable goals and develop a comprehensive business plan for success.',
       duration: '1.5 hours',
       difficulty: 'Intermediate',
@@ -105,25 +75,62 @@ const TrainingsPage = () => {
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
     {
-      id: 9,
-      title: 'Video 9 – What we do / (HTCW)',
+      id: 6,
+      title: 'Video 6 – What we do / (HTCW)',
       description: 'Understand our products, services, and how to communicate our value proposition.',
       duration: '1 hour',
       difficulty: 'Beginner',
       rating: 5.0,
-      instructor: 'Nataly Graziani',
+      instructor: 'Jason Graziani',
      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnryYBWL9IxL6na5HN8Cmj2VAkDRBdih9JyY4u',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
     },
     {
-      id: 10,
-      title: 'Video 10 – How to Get Promoted',
+      id: 7,
+      title: 'Video 7 – How to Get Promoted',
       description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
       duration: '45 minutes',
       difficulty: 'Advanced',
       rating: 5.0,
       instructor: 'Jason Graziani',
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnyJlP6ULBxJ6Wp3uhtwUIodn1FZi50b7MyELA',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
+    }
+  ];
+
+  const comingSoonTrainings = [
+    {
+      id: 101,
+      title: 'Video 8 – RI (Coming Soon)',
+      description: 'Learn the referral interview process to expand your client base through warm referrals.',
+      duration: '50 minutes',
+      difficulty: 'Intermediate',
+      rating: 5.0,
+      instructor: 'Jason Graziani',
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      comingSoon: true
+    },
+    {
+      id: 102,
+      title: 'Video 9 – KTP (Coming Soon)',
+      description: 'Understand your clients deeply to provide personalized financial solutions.',
+      duration: '45 minutes',
+      difficulty: 'Intermediate',
+      rating: 5.0,
+      instructor: 'Jason Graziani',
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
+      comingSoon: true
+    },
+    {
+      id: 103,
+      title: 'Video 10 – FS (Coming Soon)',
+      description: 'Conduct comprehensive financial surveys to identify client needs and opportunities.',
+      duration: '1 hour',
+      difficulty: 'Intermediate',
+      rating: 5.0,
+      instructor: 'Jason Graziani',
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      comingSoon: true
     }
   ];
 
@@ -182,7 +189,7 @@ const TrainingsPage = () => {
   });
 
   const completedCount = trainingProgress.filter(t => t.completed).length || 0;
-  const totalHours = trainings.reduce((acc, t) => {
+  const totalHours = [...trainings, ...comingSoonTrainings].reduce((acc, t) => {
     const duration = t.duration.includes('hour') ? 
       parseFloat(t.duration) : 
       parseFloat(t.duration) / 60;
@@ -230,7 +237,7 @@ const TrainingsPage = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Remaining</p>
-                      <p className="text-3xl font-bold text-yellow-600">{trainings.length - completedCount}</p>
+                      <p className="text-3xl font-bold text-yellow-600">{trainings.length + comingSoonTrainings.length - completedCount}</p>
                     </div>
                     <Clock className="h-8 w-8 text-yellow-600" />
                   </div>
@@ -285,6 +292,8 @@ const TrainingsPage = () => {
               </div>
 
               {/* Training Gallery */}
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Available Trainings</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredTrainings.map((training) => {
                   const completed = isTrainingCompleted(training.id);
@@ -347,6 +356,63 @@ const TrainingsPage = () => {
                     </div>
                   );
                 })}
+              </div>
+              </div>
+
+              {/* Coming Soon Section */}
+              <div className="mt-12">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Trainings Coming Soon</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {comingSoonTrainings.map((training) => (
+                    <div key={training.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden opacity-75">
+                      <div className="relative">
+                        <img
+                          src={training.thumbnail}
+                          alt={training.title}
+                          className="w-full h-48 object-cover grayscale"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                          <div className="text-center">
+                            <Clock className="h-8 w-8 text-white mx-auto mb-2" />
+                            <span className="text-white font-medium">Coming Soon</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="p-6">
+                        <div className="flex items-start justify-between mb-3">
+                          <h3 className="text-lg font-semibold text-gray-700">{training.title}</h3>
+                          <div className="flex items-center space-x-1">
+                            <Star className="h-4 w-4 text-gray-400" />
+                            <span className="text-sm text-gray-400">{training.rating}</span>
+                          </div>
+                        </div>
+                        
+                        <p className="text-gray-500 text-sm mb-4">{training.description}</p>
+                        
+                        <div className="flex items-center justify-between text-sm text-gray-400 mb-4">
+                          <span>{training.duration}</span>
+                          <span className="px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-500">
+                            {training.difficulty}
+                          </span>
+                        </div>
+                        
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-sm text-gray-400">By {training.instructor}</span>
+                        </div>
+
+                        <div className="flex items-center justify-center">
+                          <button
+                            disabled
+                            className="bg-gray-300 text-gray-500 px-4 py-2 rounded-lg font-medium text-sm cursor-not-allowed"
+                          >
+                            Coming Soon
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

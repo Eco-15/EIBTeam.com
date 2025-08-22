@@ -95,7 +95,7 @@ const TrainingDetailPage = () => {
       duration: '1 hour',
       difficulty: 'Intermediate',
       rating: 4.6,
-      instructor: 'Nataly Graziani',
+      instructor: 'Jason Graziani',
      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnKzAH3dacAFKG9eElgqCBYdjR8u1wULtHy6cQ',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       objectives: [
@@ -113,79 +113,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 5,
-      title: 'Video 5 – RI',
-      description: 'Learn the referral interview process to expand your client base through warm referrals.',
-      fullDescription: 'Referrals are one of the most effective ways to grow your business. This training teaches you how to conduct referral interviews that naturally lead to warm introductions to new prospects. You\'ll learn when and how to ask for referrals, how to make the process comfortable for your clients, and strategies for following up on referral opportunities.',
-      duration: '50 minutes',
-      difficulty: 'Intermediate',
-      rating: 4.5,
-      instructor: 'Jason Graziani',
-      video: '',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
-      objectives: [
-        'Master referral interview techniques',
-        'Learn timing for referral requests',
-        'Develop comfort with asking',
-        'Create referral systems'
-      ],
-      topics: [
-        'Referral Psychology',
-        'Interview Techniques',
-        'Timing Strategies',
-        'Follow-up Systems'
-      ]
-    },
-    {
-      id: 6,
-      title: 'Video 6 – KTP',
-      description: 'Understand your clients deeply to provide personalized financial solutions.',
-      fullDescription: 'Every client is unique, with different needs, goals, and financial situations. This training teaches you how to truly understand your clients through active listening, asking the right questions, and identifying both spoken and unspoken needs. You\'ll learn how to build rapport, gather comprehensive information, and use that understanding to provide truly personalized solutions.',
-      duration: '45 minutes',
-      difficulty: 'Intermediate',
-      rating: 4.8,
-      instructor: 'Nataly Graziani',
-      video: '',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
-      objectives: [
-        'Develop active listening skills',
-        'Learn effective questioning techniques',
-        'Identify client needs and goals',
-        'Build stronger client relationships'
-      ],
-      topics: [
-        'Active Listening',
-        'Questioning Techniques',
-        'Needs Analysis',
-        'Relationship Building'
-      ]
-    },
-    {
-      id: 7,
-      title: 'Video 7 – FS',
-      description: 'Conduct comprehensive financial surveys to identify client needs and opportunities.',
-      fullDescription: 'A thorough financial survey is the foundation of excellent client service. This training covers how to conduct comprehensive financial surveys that uncover all aspects of your client\'s financial situation. You\'ll learn what questions to ask, how to organize the information, and how to identify opportunities for additional products and services.',
-      duration: '1 hour',
-      difficulty: 'Intermediate',
-      rating: 4.7,
-      instructor: 'Jason Graziani',
-      video: '',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
-      objectives: [
-        'Master financial survey techniques',
-        'Learn comprehensive questioning',
-        'Identify cross-selling opportunities',
-        'Organize client information effectively'
-      ],
-      topics: [
-        'Survey Structure',
-        'Financial Analysis',
-        'Opportunity Identification',
-        'Data Organization'
-      ]
-    },
-    {
-      id: 8,
-      title: 'Video 8 – Goal Setting / Business Plan',
+      title: 'Video 5 – Goal Setting / Business Plan',
       description: 'Create actionable goals and develop a comprehensive business plan for success.',
       fullDescription: 'Success in the insurance industry requires clear goals and a solid business plan. This comprehensive training will guide you through creating SMART goals, developing action plans, and building a business plan that will drive your success. You\'ll learn about different types of goals, how to break them down into actionable steps, and how to track your progress.',
       duration: '1.5 hours',
@@ -208,14 +136,14 @@ const TrainingDetailPage = () => {
       ]
     },
     {
-      id: 9,
-      title: 'Video 9 – What we do / (HTCW)',
+      id: 6,
+      title: 'Video 6 – What we do / (HTCW)',
       description: 'Understand our products, services, and how to communicate our value proposition.',
       fullDescription: 'To be successful, you need to thoroughly understand all the products and services we offer. This training provides a comprehensive overview of our product portfolio, including life insurance, annuities, and other financial products. You\'ll learn the features and benefits of each product, who they\'re best suited for, and how to communicate our value proposition effectively.',
       duration: '1 hour',
       difficulty: 'Beginner',
       rating: 4.6,
-      instructor: 'Nataly Graziani',
+      instructor: 'Jason Graziani',
       video: '',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       objectives: [
@@ -232,15 +160,15 @@ const TrainingDetailPage = () => {
       ]
     },
     {
-      id: 10,
-      title: 'Video 10 – How to Get Promoted',
+      id: 7,
+      title: 'Video 7 – How to Get Promoted',
       description: 'Learn the pathway to advancement and leadership opportunities within EIB Team.',
       fullDescription: 'EIB Agency offers numerous opportunities for career advancement and leadership development. This training outlines the various career paths available, from senior agent roles to management and leadership positions. You\'ll learn about the requirements for advancement, the skills needed for leadership, and how to position yourself for growth within the organization.',
       duration: '45 minutes',
       difficulty: 'Advanced',
       rating: 4.8,
       instructor: 'Jason Graziani',
-      video: '',
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnyJlP6ULBxJ6Wp3uhtwUIodn1FZi50b7MyELA',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       objectives: [
         'Understand career pathways',
