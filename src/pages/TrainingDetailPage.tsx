@@ -381,10 +381,6 @@ const TrainingDetailPage = () => {
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Training Details</h3>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Duration:</span>
-                        <span className="font-medium text-gray-900">{training.duration}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
                         <span className="text-gray-600">Difficulty:</span>
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                           training.difficulty === 'Beginner' ? 'bg-green-100 text-green-800' :
