@@ -100,18 +100,7 @@ const TrainingsPage = () => {
 
   const comingSoonTrainings = [
     {
-      id: 106,
-      title: 'Video 6 – What We Do (Coming Soon)',
-      description: 'Understand our products, services, and how to communicate our value proposition.',
-      duration: '1 hour',
-      difficulty: 'Beginner',
-      rating: 5.0,
-      instructor: 'Jason Graziani',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
-      comingSoon: true
-    },
-    {
-      id: 108,
+      id: 101,
       title: 'Video 8 – RI (Coming Soon)',
       description: 'Learn the referral interview process to expand your client base through warm referrals.',
       duration: '50 minutes',
@@ -122,7 +111,7 @@ const TrainingsPage = () => {
       comingSoon: true
     },
     {
-      id: 109,
+      id: 102,
       title: 'Video 9 – KTP (Coming Soon)',
       description: 'Understand your clients deeply to provide personalized financial solutions.',
       duration: '45 minutes',
@@ -133,7 +122,7 @@ const TrainingsPage = () => {
       comingSoon: true
     },
     {
-      id: 110,
+      id: 103,
       title: 'Video 10 – FS (Coming Soon)',
       description: 'Conduct comprehensive financial surveys to identify client needs and opportunities.',
       duration: '1 hour',
