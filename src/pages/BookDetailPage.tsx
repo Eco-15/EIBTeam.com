@@ -2047,22 +2047,6 @@ For insurance professionals, Wooden's leadership principles provide a framework 
                           </a>
                         </div>
                       </div>
-
-                      {/* Progress Bar (if reading) */}
-                      {book.progress > 0 && book.status !== 'completed' && (
-                        <div className="mt-6">
-                          <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-                            <span>Reading Progress</span>
-                            <span>{book.progress}%</span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-3">
-                            <div
-                              className="bg-gradient-to-r from-yellow-500 to-yellow-600 h-3 rounded-full transition-all duration-300"
-                              style={{ width: `${book.progress}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>
