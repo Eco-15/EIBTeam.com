@@ -96,7 +96,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 4.6,
       instructor: 'Nataly Graziani',
-      video: '',
+     video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnKzAH3dacAFKG9eElgqCBYdjR8u1wULtHy6cQ',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       objectives: [
         'Master the 6-step acquisition process',
@@ -192,7 +192,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 4.9,
       instructor: 'Jason Graziani',
-      video: '',
+     video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnPNglm3EAdscr0bGLESYikhm9wWV6MUX84gjF',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       objectives: [
         'Create SMART goals',

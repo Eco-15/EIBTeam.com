@@ -58,6 +58,7 @@ const TrainingsPage = () => {
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Nataly Graziani',
+     video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnKzAH3dacAFKG9eElgqCBYdjR8u1wULtHy6cQ',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
     {
@@ -98,6 +99,7 @@ const TrainingsPage = () => {
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Jason Graziani',
+     video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnPNglm3EAdscr0bGLESYikhm9wWV6MUX84gjF',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
     {
