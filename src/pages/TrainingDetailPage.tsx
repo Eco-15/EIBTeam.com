@@ -23,7 +23,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Beginner',
       rating: 4.8,
       instructor: 'Jason Graziani',
-      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnyJlP6ULBxJ6Wp3uhtwUIodn1FZi50b7MyELA',
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOncjwWJYXABiZ5cudwgVeLkIK6oqazNlQhtEn2',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       objectives: [
         'Understand EIB Team\'s mission and values',
