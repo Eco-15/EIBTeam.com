@@ -391,13 +391,6 @@ const TrainingDetailPage = () => {
                         </span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Rating:</span>
-                        <div className="flex items-center space-x-1">
-                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                          <span className="font-medium text-gray-900">{training.rating}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
                         <span className="text-gray-600">Instructor:</span>
                         <span className="font-medium text-gray-900">{training.instructor}</span>
                       </div>
