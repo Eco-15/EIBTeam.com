@@ -96,7 +96,7 @@ const TrainingsPage = () => {
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      thumbnail: '',
       comingSoon: true
     },
     {
@@ -107,7 +107,7 @@ const TrainingsPage = () => {
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
+      thumbnail: '',
       comingSoon: true
     },
     {
@@ -118,7 +118,7 @@ const TrainingsPage = () => {
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      thumbnail: '',
       comingSoon: true
     },
     {
@@ -129,7 +129,7 @@ const TrainingsPage = () => {
       difficulty: 'Beginner',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
+      thumbnail: '',
       comingSoon: true
     }
   ];
