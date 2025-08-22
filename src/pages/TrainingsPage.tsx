@@ -61,7 +61,7 @@ const TrainingsPage = () => {
       rating: 5.0,
       instructor: 'Jason Graziani',
      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnKzAH3dacAFKG9eElgqCBYdjR8u1wULtHy6cQ',
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnmFXYj6KBzouqJLWiGQnfpy1elkbVU4xY56S9'
     },
     {
       id: 5,
