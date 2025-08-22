@@ -53,7 +53,6 @@ const Dashboard = () => {
       id: 1,
       title: 'Video 1 - Welcome To EIB',
       description: 'Introduction to EIB Team, our mission, values, and what to expect.',
-      duration: '30 minutes',
       difficulty: 'Beginner',
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlmOrmln8EfQTV7ApbyFLmjY5GCZhaPcN4nzo'
@@ -62,16 +61,14 @@ const Dashboard = () => {
       id: 2,
       title: 'Video 2 – Builder\'s Mindset',
       description: 'Develop the entrepreneurial mindset needed for success.',
-      duration: '45 minutes',
       difficulty: 'Beginner',
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnWA9m6kwDoEgx6u7dLy8etIN1pvK3aPWcf5AR'
     },
     {
-      id: 8,
-      title: 'Video 8 – Goal Setting / Business Plan',
+      id: 3,
+      title: 'Video 3 – Mental Toughness',
       description: 'Create actionable goals and develop a comprehensive business plan.',
-      duration: '1.5 hours',
       difficulty: 'Intermediate',
       instructor: 'Jason Graziani',
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
