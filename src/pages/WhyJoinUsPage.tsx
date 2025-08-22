@@ -209,31 +209,43 @@ const WhyJoinUsPage = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black mb-6">Success Stories</h2>
+            <h2 className="text-4xl font-bold text-black mb-6">Why Join <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">EIB Agency?</span></h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hear from our successful agents about their journey with EIB Agency.
+              Hear directly from our founder Jason Graziani about what makes EIB Agency special and why you should join our team.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
-                <div className="relative rounded-2xl overflow-hidden shadow-lg mb-6">
-                  <img
-                    src={testimonial.image}
-                    alt={`${testimonial.name} testimonial video`}
-                    className="w-full aspect-video object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <p className="text-white font-medium text-lg">Testimonial Video Coming Soon</p>
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+              <div className="relative">
+                <video
+                  controls
+                  className="w-full aspect-video object-cover"
+                  poster="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4"
+                >
+                  <source src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnryYBWL9IxL6na5HN8Cmj2VAkDRBdih9JyY4u" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              
+              <div className="p-8 text-center">
+                <div className="flex items-center justify-center space-x-3 mb-4">
+                  <div className="h-12 w-12 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center">
+                    <span className="text-black font-bold text-lg">JG</span>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-black">Jason Graziani</h3>
+                    <p className="text-yellow-600 font-semibold">Founder & CEO</p>
                   </div>
                 </div>
-                <div className="text-center">
-                  <h4 className="font-bold text-black text-lg mb-1">{testimonial.name}</h4>
-                  <p className="text-yellow-600 font-medium">{testimonial.position}</p>
-                </div>
+                
+                <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
+                  "At EIB Agency, we're not just building an insurance business - we're building leaders, 
+                  creating opportunities, and changing lives. Join us and discover what it means to be part 
+                  of something truly special."
+                </p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
