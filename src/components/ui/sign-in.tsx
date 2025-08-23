@@ -721,7 +721,7 @@ const AnimatedSignIn: React.FC = () => {
                            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
                              <p className="text-yellow-800 text-xs">
                                <strong>Important:</strong> Some email providers scan links for security, which can invalidate the reset token. 
-                               If you get an "expired" error immediately, try using a different email address or contact support.
+                               If you get an "expired\" error immediately, try using a different email address or contact support.
                              </p>
                            </div>
                            
