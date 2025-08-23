@@ -496,7 +496,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 20,
-      title: '7 SMART STATEMENTS',
+      title: '7 Smart Statements',
       description: 'Master the 7 smart statements for effective client communication.',
       fullDescription: 'Effective communication is key to successful sales. Learn the 7 smart statements that help you connect with clients, build trust, and guide them toward making informed decisions about their insurance needs.',
       duration: '30 minutes',
