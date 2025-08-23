@@ -221,7 +221,7 @@ const WhyJoinUsPage = () => {
                 <video
                   controls
                   className="w-full aspect-video object-cover"
-                  poster="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4"
+                  poster="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnBfTbyGNs1dDP4Ioh850ny67VtNg3mlwEuFpx"
                 >
                   <source src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnryYBWL9IxL6na5HN8Cmj2VAkDRBdih9JyY4u" type="video/mp4" />
                   Your browser does not support the video tag.
