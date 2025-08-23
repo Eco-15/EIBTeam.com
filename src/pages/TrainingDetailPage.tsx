@@ -224,7 +224,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Advanced',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnFwLNwdgdhktn0l9Vv7ZApYCzG1iNX84RuD3H', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnWyr2rmwDoEgx6u7dLy8etIN1pvK3aPWcf5AR',
       objectives: [
         'Develop leadership skills',
