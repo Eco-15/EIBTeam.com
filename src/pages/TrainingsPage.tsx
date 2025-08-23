@@ -163,7 +163,7 @@ const TrainingsPage = () => {
   const serviceAndSalesTrainings = [
     {
       id: 14,
-      title: 'TYPES OF LIFE INSURANCE',
+      title: 'Types of Life Insurance',
       description: 'Comprehensive overview of all life insurance products and their applications.',
       duration: '45 minutes',
       difficulty: 'Beginner',
