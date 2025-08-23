@@ -7,108 +7,29 @@ const AnimatedSignIn: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
-  const [showPasswordReset, setShowPasswordReset] = useState(false);
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
-  const [isResettingPassword, setIsResettingPassword] = useState(false);
-  const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
-  const [resetEmailSent, setResetEmailSent] = useState(false);
+  
+  // OTP-based password reset states
+  const [otpSent, setOtpSent] = useState(false);
+  const [otp, setOtp] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isSendingOtp, setIsSendingOtp] = useState(false);
+  const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [otpError, setOtpError] = useState('');
   const [passwordResetSuccess, setPasswordResetSuccess] = useState(false);
+  
   const [mounted, setMounted] = useState(false);
-  const [resetError, setResetError] = useState('');
   
   // Animation states
   const [formVisible, setFormVisible] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setTimeout(() => setFormVisible(true), 300);
     
-    // Check if this is a password reset flow
-    const checkPasswordReset = () => {
-      console.log('Checking for password reset tokens...');
-      console.log('Current URL:', window.location.href);
-      console.log('Hash:', window.location.hash);
-      console.log('Pathname:', window.location.pathname);
-      console.log('Search:', window.location.search);
-      
-      // Supabase places tokens in the URL hash for security
-      const hash = window.location.hash.substring(1);
-      const hashParams = new URLSearchParams(hash);
-      
-      console.log('All hash parameters:', Object.fromEntries(hashParams.entries()));
-      
-      // Check for errors first
-      const error = hashParams.get('error');
-      const errorCode = hashParams.get('error_code');
-      const errorDescription = hashParams.get('error_description');
-      
-      if (error) {
-        console.log('Password reset error detected:', { error, errorCode, errorDescription });
-        
-        let userFriendlyMessage = '';
-        if (errorCode === 'otp_expired') {
-          userFriendlyMessage = 'The password reset link has expired or was already used. Please request a new password reset link.';
-        } else if (error === 'access_denied') {
-          userFriendlyMessage = 'The password reset link is invalid, has expired, or has already been used. Please request a new password reset link.';
-        } else {
-          userFriendlyMessage = `Password reset failed: ${errorDescription || error}`;
-        }
-        
-        setResetError(userFriendlyMessage);
-        
-        // Clean up the URL hash
-        window.history.replaceState({}, document.title, window.location.pathname);
-        return;
-      }
-      
-      // Get tokens from hash (Supabase standard)
-      const accessToken = hashParams.get('access_token');
-      const refreshToken = hashParams.get('refresh_token');
-      const type = hashParams.get('type');
-      
-      console.log('Password reset check:', { 
-        accessToken: !!accessToken, 
-        refreshToken: !!refreshToken, 
-        type
-      });
-      
-      if (type === 'recovery' && accessToken && refreshToken) {
-        console.log('Password reset detected, setting session...');
-        
-        // Clear the URL hash immediately to prevent reprocessing
-        window.history.replaceState({}, document.title, window.location.pathname);
-        
-        // Set the session with the tokens from the URL
-        supabase.auth.setSession({
-          access_token: accessToken,
-          refresh_token: refreshToken
-        }).then(({ data, error }) => {
-          if (error) {
-            console.error('Error setting session for password reset:', error);
-            setResetError('The password reset link is invalid or has expired. Please request a new password reset link.');
-            return;
-          }
-          
-          console.log('Session set successfully for password reset, showing form');
-          console.log('Session data:', data);
-          setShowPasswordReset(true);
-        }).catch((error) => {
-          console.error('Error setting session for password reset:', error);
-          setResetError('The password reset link is invalid or has expired. Please request a new password reset link.');
-        });
-      } else if (accessToken || refreshToken || type) {
-        console.log('Incomplete password reset tokens detected:', { accessToken: !!accessToken, refreshToken: !!refreshToken, type });
-        setResetError('The password reset link appears to be incomplete or corrupted. Please request a new password reset link.');
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
-    };
-    
-    // Run the check immediately
-    checkPasswordReset();
+    // Clean up any URL hash parameters from previous attempts
+    if (window.location.hash) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   }, []);
 
   const toggleTheme = () => {
@@ -149,41 +70,38 @@ const AnimatedSignIn: React.FC = () => {
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsResettingPassword(true);
-    setResetError('');
+    setIsSendingOtp(true);
+    setOtpError('');
     
     try {
-      // Use the exact current URL without any modifications
-      const redirectUrl = window.location.origin + window.location.pathname;
-      console.log('Sending password reset with redirect URL:', redirectUrl);
-     console.log('Reset request timestamp:', new Date().toISOString());
+      console.log('Sending OTP to email:', forgotPasswordEmail);
       
-      const { error } = await supabase.auth.resetPasswordForEmail(forgotPasswordEmail, {
-       redirectTo: redirectUrl,
-       // Add additional options to help with token validity
-       options: {
-         emailRedirectTo: redirectUrl
-       }
+      // Use signInWithOtp for recovery instead of resetPasswordForEmail
+      const { error } = await supabase.auth.signInWithOtp({
+        email: forgotPasswordEmail,
+        options: {
+          shouldCreateUser: false
+        }
       });
 
       if (error) {
-        console.error('Password reset error:', error);
-        setResetError(`Password reset failed: ${error.message}`);
-        setIsResettingPassword(false);
+        console.error('OTP send error:', error);
+        setOtpError(`Failed to send OTP: ${error.message}`);
+        setIsSendingOtp(false);
         return;
       }
 
-      console.log('Password reset email sent successfully');
-      setResetEmailSent(true);
-      setIsResettingPassword(false);
+      console.log('OTP sent successfully to:', forgotPasswordEmail);
+      setOtpSent(true);
+      setIsSendingOtp(false);
     } catch (error) {
-      console.error('Password reset error:', error);
-      setResetError('An error occurred during password reset. Please try again.');
-      setIsResettingPassword(false);
+      console.error('OTP send error:', error);
+      setOtpError('An error occurred while sending the OTP. Please try again.');
+      setIsSendingOtp(false);
     }
   };
 
-  const handlePasswordUpdate = async (e: React.FormEvent) => {
+  const handleOtpVerificationAndPasswordUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (newPassword !== confirmPassword) {
@@ -196,31 +114,57 @@ const AnimatedSignIn: React.FC = () => {
       return;
     }
     
-    setIsUpdatingPassword(true);
+    if (!otp || otp.length !== 6) {
+      setOtpError('Please enter the 6-digit code from your email.');
+      return;
+    }
+    
+    setIsVerifyingOtp(true);
+    setOtpError('');
     
     try {
-      const { error } = await supabase.auth.updateUser({
-        password: newPassword
+      console.log('Verifying OTP:', otp.substring(0, 2) + '****');
+      
+      // First verify the OTP
+      const { data, error: otpError } = await supabase.auth.verifyOtp({
+        email: forgotPasswordEmail,
+        token: otp,
+        type: 'email'
       });
 
-      if (error) {
-        console.error('Password update error:', error);
-        setResetError(`Password update failed: ${error.message}`);
-        setIsUpdatingPassword(false);
+      if (otpError) {
+        console.error('OTP verification error:', otpError);
+        setOtpError(`Invalid or expired code: ${otpError.message}`);
+        setIsVerifyingOtp(false);
         return;
       }
 
+      console.log('OTP verified successfully, updating password...');
+      
+      // Now update the password
+      const { error: passwordError } = await supabase.auth.updateUser({
+        password: newPassword
+      });
+
+      if (passwordError) {
+        console.error('Password update error:', passwordError);
+        setOtpError(`Password update failed: ${passwordError.message}`);
+        setIsVerifyingOtp(false);
+        return;
+      }
+
+      console.log('Password updated successfully');
       setPasswordResetSuccess(true);
-      setIsUpdatingPassword(false);
+      setIsVerifyingOtp(false);
       
       // Redirect to dashboard after successful password reset
       setTimeout(() => {
         window.location.href = '/dashboard';
       }, 2000);
     } catch (error) {
-      console.error('Password update error:', error);
-      setResetError('An error occurred during password update. Please try again.');
-      setIsUpdatingPassword(false);
+      console.error('OTP verification and password update error:', error);
+      setOtpError('An error occurred during the process. Please try again.');
+      setIsVerifyingOtp(false);
     }
   };
 
@@ -389,49 +333,6 @@ const AnimatedSignIn: React.FC = () => {
                 </div>
               )}
 
-              {/* Reset Error */}
-              {resetError && (
-                <div className="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded">
-                  <div className="flex items-start">
-                    <X className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1">
-                      <p className="text-red-700 font-medium">Password Reset Error</p>
-                      <p className="text-red-600 text-sm mt-1">{resetError}</p>
-                     <div className="mt-3 space-y-2">
-                       <button
-                         onClick={() => {
-                           setResetError('');
-                           setShowForgotPassword(true);
-                           setForgotPasswordEmail(email);
-                         }}
-                         className="block text-sm text-red-600 hover:text-red-800 font-medium underline"
-                       >
-                         Request new password reset
-                       </button>
-                       <div className="text-xs text-red-500 mt-2">
-                         <p><strong>Troubleshooting tips:</strong></p>
-                         <ul className="list-disc list-inside mt-1 space-y-1">
-                           <li>Try using a different email provider (Gmail, Outlook)</li>
-                           <li>Check if your email provider has security scanning enabled</li>
-                           <li>Contact support if the issue persists</li>
-                         </ul>
-                       </div>
-                     </div>
-                      <button
-                        onClick={() => {
-                          setResetError('');
-                          setShowForgotPassword(true);
-                          setForgotPasswordEmail(email);
-                        }}
-                        className="mt-2 text-sm text-red-600 hover:text-red-800 font-medium underline"
-                      >
-                        Request new password reset
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
               <div className="mb-8">
                 <div className="flex items-center space-x-3 mb-4">
                   <img 
@@ -441,15 +342,12 @@ const AnimatedSignIn: React.FC = () => {
                   />
                   <div>
                     <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                      {showPasswordReset ? 'Reset Password' : 'Agent Login'}
+                      Agent Login
                     </h1>
                   </div>
                 </div>
                 <p className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                  {showPasswordReset 
-                    ? 'Please enter your new password to complete the reset process.'
-                    : 'Welcome to EIB Agency agent portal. Please enter your credentials to access your dashboard.'
-                  }
+                  Welcome to EIB Agency agent portal. Please enter your credentials to access your dashboard.
                 </p>
               </div>
               
