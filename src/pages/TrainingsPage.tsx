@@ -251,7 +251,7 @@ const TrainingsPage = () => {
     },
     {
       id: 22,
-      title: 'X-CURVE',
+      title: 'X-Curve',
       description: 'Understand the X-Curve methodology for client presentations and sales.',
       duration: '45 minutes',
       difficulty: 'Advanced',
