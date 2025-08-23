@@ -66,12 +66,6 @@ const Benefits = () => {
               href="/contact"
               className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-8 py-4 rounded-xl font-bold text-lg hover:from-yellow-600 hover:to-yellow-700 transition-colors duration-300 shadow-xl"
             >
-              Apply Today
-            </a>
-            <a
-              href="/contact"
-              className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-black transition-all duration-300"
-            >
               Get Started Today
             </a>
           </div>
