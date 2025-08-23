@@ -7,11 +7,16 @@ const AnimatedSignIn: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [showPasswordReset, setShowPasswordReset] = useState(false);
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
   const [isResettingPassword, setIsResettingPassword] = useState(false);
+  const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
   const [resetEmailSent, setResetEmailSent] = useState(false);
+  const [passwordResetSuccess, setPasswordResetSuccess] = useState(false);
   const [mounted, setMounted] = useState(false);
   
   // Animation states
@@ -20,6 +25,27 @@ const AnimatedSignIn: React.FC = () => {
   useEffect(() => {
     setMounted(true);
     setTimeout(() => setFormVisible(true), 300);
+    
+    // Check if this is a password reset flow
+    const urlParams = new URLSearchParams(window.location.search);
+    const accessToken = urlParams.get('access_token');
+    const refreshToken = urlParams.get('refresh_token');
+    const type = urlParams.get('type');
+    
+    if (type === 'recovery' && accessToken && refreshToken) {
+      // Set the session with the tokens from the URL
+      supabase.auth.setSession({
+        access_token: accessToken,
+        refresh_token: refreshToken
+      }).then(() => {
+        setShowPasswordReset(true);
+        // Clean up the URL
+        window.history.replaceState({}, document.title, '/agent-login');
+      }).catch((error) => {
+        console.error('Error setting session for password reset:', error);
+        alert('Invalid or expired reset link. Please request a new password reset.');
+      });
+    }
   }, []);
 
   const toggleTheme = () => {
@@ -64,7 +90,7 @@ const AnimatedSignIn: React.FC = () => {
     
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(forgotPasswordEmail, {
-        redirectTo: `${window.location.origin}/agent-login?reset=true`,
+        redirectTo: `https://eibagency.com/agent-login`,
       });
 
       if (error) {
@@ -83,6 +109,32 @@ const AnimatedSignIn: React.FC = () => {
     }
   };
 
+  const handlePasswordUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (newPassword !== confirmPassword) {
+      alert('Passwords do not match. Please try again.');
+      return;
+    }
+    
+    if (newPassword.length < 6) {
+      alert('Password must be at least 6 characters long.');
+      return;
+    }
+    
+    setIsUpdatingPassword(true);
+    
+    try {
+      const { error } = await supabase.auth.updateUser({
+        password: newPassword
+      });
+
+      if (error) {
+        console.error('Password update error:', error);
+        alert(`Password update failed: ${error.message}`);
+        setIsUpdatingPassword(false);
+        return;
+      }
   // Only show the component once mounted to avoid hydration issues
   if (!mounted) return null;
 
@@ -112,6 +164,19 @@ const AnimatedSignIn: React.FC = () => {
 
                 */}
 
+      setPasswordResetSuccess(true);
+      setIsUpdatingPassword(false);
+      
+      // Redirect to dashboard after successful password reset
+      setTimeout(() => {
+        window.location.href = '/dashboard';
+      }, 2000);
+    } catch (error) {
+      console.error('Password update error:', error);
+      alert('An error occurred during password update. Please try again.');
+      setIsUpdatingPassword(false);
+    }
+  };
 
                 
                 {/* Top right - Orange stat */}
@@ -236,6 +301,18 @@ const AnimatedSignIn: React.FC = () => {
                 </p>
               </div>
 
+              {/* Password Reset Success */}
+              {passwordResetSuccess && (
+                <div className="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                  <div className="flex items-center">
+                    <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+                    <div>
+                      <p className="text-green-700 font-medium">Password updated successfully!</p>
+                      <p className="text-green-600 text-sm">Redirecting to dashboard...</p>
+                    </div>
+                  </div>
+                </div>
+              )}
               <div className="mb-8">
                 <div className="flex items-center space-x-3 mb-4">
                   <img 
@@ -245,16 +322,89 @@ const AnimatedSignIn: React.FC = () => {
                   />
                   <div>
                     <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                      Agent Login
+                      {showPasswordReset ? 'Reset Password' : 'Agent Login'}
                     </h1>
                   </div>
                 </div>
                 <p className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Welcome to EIB Agency agent portal. Please enter your credentials to access your dashboard.
+                  {showPasswordReset 
+                    ? 'Please enter your new password to complete the reset process.'
+                    : 'Welcome to EIB Agency agent portal. Please enter your credentials to access your dashboard.'
+                  }
                 </p>
               </div>
               
-              <form onSubmit={handleSignIn} className="space-y-6">
+              {/* Password Reset Form */}
+              {showPasswordReset ? (
+                <form onSubmit={handlePasswordUpdate} className="space-y-6">
+                  <div className="space-y-1">
+                    <label 
+                      htmlFor="new-password" 
+                      className={`block text-sm font-medium ${
+                        theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
+                      }`}
+                    >
+                      New Password *
+                    </label>
+                    <div className={`relative rounded-md shadow-sm transition-all duration-300`}>
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        name="new-password"
+                        id="new-password"
+                        required
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        className={`block w-full rounded-md border py-3 px-4 pr-10 focus:outline-none focus:ring-2 sm:text-sm ${
+                          theme === 'dark' 
+                            ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
+                            : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
+                        }`}
+                        placeholder="Enter new password"
+                        minLength={6}
+                      />
+                      <button
+                        type="button"
+                        className={`absolute inset-y-0 right-0 flex items-center pr-3 ${
+                          theme === 'dark' ? 'text-gray-300' : 'text-gray-500'
+                        }`}
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <EyeOff size={18} className="hover:text-gray-700 transition-colors" />
+                        ) : (
+                          <Eye size={18} className="hover:text-gray-700 transition-colors" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label 
+                      htmlFor="confirm-password" 
+                      className={`block text-sm font-medium ${
+                        theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
+                      }`}
+                    >
+                      Confirm New Password *
+                    </label>
+                    <div className={`relative rounded-md shadow-sm transition-all duration-300`}>
+                      <input
+                        type="password"
+                        name="confirm-password"
+                        id="confirm-password"
+                        required
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className={`block w-full rounded-md border py-3 px-4 focus:outline-none focus:ring-2 sm:text-sm ${
+                          theme === 'dark' 
+                            ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
+                            : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
+                        }`}
+                        placeholder="Confirm new password"
+                        minLength={6}
+                      />
+                    </div>
+                  </div>
                 <div className="space-y-1">
                   <label 
                     htmlFor="email" 
@@ -420,6 +570,7 @@ const AnimatedSignIn: React.FC = () => {
                           <X className="h-6 w-6" />
                         </button>
                       </div>
+              )}
                     </div>
                     
                     <div className="p-6">
@@ -507,4 +658,42 @@ const AnimatedSignIn: React.FC = () => {
   );
 };
 
+                  <button
+                    type="submit"
+                    disabled={isUpdatingPassword || passwordResetSuccess}
+                    className={`flex w-full justify-center rounded-md py-3 px-4 text-sm font-semibold text-black shadow-sm transition-all duration-300 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500 ${isUpdatingPassword || passwordResetSuccess ? 'cursor-not-allowed opacity-70' : ''}`}
+                  >
+                    {isUpdatingPassword ? (
+                      <span className="flex items-center">
+                        <svg className="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                            fill="none"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          />
+                        </svg>
+                        Updating Password...
+                      </span>
+                    ) : passwordResetSuccess ? (
+                      <span className="flex items-center">
+                        <CheckCircle className="mr-2 h-4 w-4" />
+                        Password Updated!
+                      </span>
+                    ) : (
+                      <span>Update Password</span>
+                    )}
+                  </button>
+                </form>
+              ) : (
+                /* Regular Sign In Form */
+                <form onSubmit={handleSignIn} className="space-y-6">
 export { AnimatedSignIn };
