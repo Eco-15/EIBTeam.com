@@ -621,7 +621,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 25,
-      title: 'How TO Earn $100k',
+      title: 'How To Earn $100k',
       description: 'Strategies and techniques to reach the $100,000 annual income milestone.',
       fullDescription: 'Earning $100,000 annually is a significant milestone that requires specific strategies and consistent execution. This training reveals the exact steps and mindset needed to reach and exceed this income level.',
       duration: '50 minutes',
@@ -671,7 +671,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 27,
-      title: 'BEST ANSWERS For Closers',
+      title: 'Best Answers For Closers',
       description: 'Master the best responses and closing techniques for successful sales.',
       fullDescription: 'Closing is where sales are won or lost. This advanced training provides you with the best answers and closing techniques used by top performers, helping you convert more prospects into clients.',
       duration: '40 minutes',
