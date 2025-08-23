@@ -18,6 +18,7 @@ const AnimatedSignIn: React.FC = () => {
   const [resetEmailSent, setResetEmailSent] = useState(false);
   const [passwordResetSuccess, setPasswordResetSuccess] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [resetError, setResetError] = useState('');
   
   // Animation states
   const [formVisible, setFormVisible] = useState(false);
@@ -31,13 +32,36 @@ const AnimatedSignIn: React.FC = () => {
       console.log('Checking for password reset tokens...');
       console.log('Current URL:', window.location.href);
       console.log('Hash:', window.location.hash);
-      console.log('Search:', window.location.search);
       
       // Supabase places tokens in the URL hash for security
       const hash = window.location.hash.substring(1);
       const hashParams = new URLSearchParams(hash);
       
-      // Get tokens from hash only (Supabase standard)
+      // Check for errors first
+      const error = hashParams.get('error');
+      const errorCode = hashParams.get('error_code');
+      const errorDescription = hashParams.get('error_description');
+      
+      if (error) {
+        console.log('Password reset error detected:', { error, errorCode, errorDescription });
+        
+        let userFriendlyMessage = '';
+        if (errorCode === 'otp_expired') {
+          userFriendlyMessage = 'The password reset link has expired. Please request a new password reset.';
+        } else if (error === 'access_denied') {
+          userFriendlyMessage = 'The password reset link is invalid or has already been used. Please request a new password reset.';
+        } else {
+          userFriendlyMessage = `Password reset failed: ${errorDescription || error}`;
+        }
+        
+        setResetError(userFriendlyMessage);
+        
+        // Clean up the URL hash
+        window.history.replaceState({}, document.title, window.location.pathname);
+        return;
+      }
+      
+      // Get tokens from hash (Supabase standard)
       const accessToken = hashParams.get('access_token');
       const refreshToken = hashParams.get('refresh_token');
       const type = hashParams.get('type');
@@ -58,7 +82,7 @@ const AnimatedSignIn: React.FC = () => {
         }).then(({ data, error }) => {
           if (error) {
             console.error('Error setting session for password reset:', error);
-            alert('Invalid or expired reset link. Please request a new password reset.');
+            setResetError('Invalid or expired reset link. Please request a new password reset.');
             return;
           }
           
@@ -69,17 +93,13 @@ const AnimatedSignIn: React.FC = () => {
           window.history.replaceState({}, document.title, window.location.pathname);
         }).catch((error) => {
           console.error('Error setting session for password reset:', error);
-          alert('Invalid or expired reset link. Please request a new password reset.');
+          setResetError('Invalid or expired reset link. Please request a new password reset.');
         });
-      } else if (accessToken || refreshToken || type) {
-        console.log('Partial tokens detected:', { accessToken: !!accessToken, refreshToken: !!refreshToken, type });
-        console.log('This might be an incomplete or invalid reset link');
       }
     };
     
     // Run the check immediately
     checkPasswordReset();
-    setTimeout(checkPasswordReset, 100);
   }, []);
 
   const toggleTheme = () => {
@@ -120,6 +140,8 @@ const AnimatedSignIn: React.FC = () => {
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsResettingPassword(true);
+    setResetError('');
     
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(forgotPasswordEmail, {
@@ -128,7 +150,7 @@ const AnimatedSignIn: React.FC = () => {
 
       if (error) {
         console.error('Password reset error:', error);
-        alert(`Password reset failed: ${error.message}`);
+        setResetError(`Password reset failed: ${error.message}`);
         setIsResettingPassword(false);
         return;
       }
@@ -137,7 +159,7 @@ const AnimatedSignIn: React.FC = () => {
       setIsResettingPassword(false);
     } catch (error) {
       console.error('Password reset error:', error);
-      alert('An error occurred during password reset. Please try again.');
+      setResetError('An error occurred during password reset. Please try again.');
       setIsResettingPassword(false);
     }
   };
@@ -164,7 +186,7 @@ const AnimatedSignIn: React.FC = () => {
 
       if (error) {
         console.error('Password update error:', error);
-        alert(`Password update failed: ${error.message}`);
+        setResetError(`Password update failed: ${error.message}`);
         setIsUpdatingPassword(false);
         return;
       }
@@ -178,7 +200,7 @@ const AnimatedSignIn: React.FC = () => {
       }, 2000);
     } catch (error) {
       console.error('Password update error:', error);
-      alert('An error occurred during password update. Please try again.');
+      setResetError('An error occurred during password update. Please try again.');
       setIsUpdatingPassword(false);
     }
   };
@@ -347,6 +369,30 @@ const AnimatedSignIn: React.FC = () => {
                   </div>
                 </div>
               )}
+
+              {/* Reset Error */}
+              {resetError && (
+                <div className="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                  <div className="flex items-start">
+                    <X className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1">
+                      <p className="text-red-700 font-medium">Password Reset Error</p>
+                      <p className="text-red-600 text-sm mt-1">{resetError}</p>
+                      <button
+                        onClick={() => {
+                          setResetError('');
+                          setShowForgotPassword(true);
+                          setForgotPasswordEmail(email);
+                        }}
+                        className="mt-2 text-sm text-red-600 hover:text-red-800 font-medium underline"
+                      >
+                        Request new password reset
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className="mb-8">
                 <div className="flex items-center space-x-3 mb-4">
                   <img 
@@ -649,6 +695,12 @@ const AnimatedSignIn: React.FC = () => {
                     <div className="p-6">
                       {!resetEmailSent ? (
                         <form onSubmit={handleForgotPassword} className="space-y-4">
+                          {resetError && (
+                            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                              <p className="text-red-700 text-sm">{resetError}</p>
+                            </div>
+                          )}
+                          
                           <div>
                             <p className={`text-sm mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
                               Enter your email address and we'll send you a link to reset your password.
@@ -677,6 +729,7 @@ const AnimatedSignIn: React.FC = () => {
                                 setShowForgotPassword(false);
                                 setResetEmailSent(false);
                                 setForgotPasswordEmail('');
+                                setResetError('');
                               }}
                               className={`flex-1 px-4 py-2 border rounded-lg transition-colors ${
                                 theme === 'dark' 
@@ -712,6 +765,7 @@ const AnimatedSignIn: React.FC = () => {
                               setShowForgotPassword(false);
                               setResetEmailSent(false);
                               setForgotPasswordEmail('');
+                              setResetError('');
                             }}
                             className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-6 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors"
                           >
