@@ -99,7 +99,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnPNglm3EAdscr0bGLESYikhm9wWV6MUX84gjF', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnd7spMIl7cmdASPKDVwuU18xgjXi5O4RQaH2I',
       objectives: [
         'Create SMART goals',
@@ -124,7 +124,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnKzAH3dacAFKG9eElgqCBYdjR8u1wULtHy6cQ', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       objectives: [
         'Master the 6-step acquisition process',
