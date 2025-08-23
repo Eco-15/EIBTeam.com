@@ -503,7 +503,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnEvvuAQmqSPpoJ2e6DMAi7Z5HO8rdj3ItNTRV', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnWA9m6kwDoEgx6u7dLy8etIN1pvK3aPWcf5AR',
       objectives: [
         'Master the 7 smart statements',
