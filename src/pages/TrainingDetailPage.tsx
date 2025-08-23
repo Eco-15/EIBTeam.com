@@ -292,14 +292,14 @@ const TrainingDetailPage = () => {
     },
     {
       id: 12,
-      title: 'HANDLING OFFICE DRAMA',
+      title: 'Handeling Office Drama',
       description: 'Learn how to handle office politics and maintain a positive work environment.',
       fullDescription: 'Office dynamics can impact productivity and team morale. This training teaches you how to navigate office politics, resolve conflicts, and maintain a positive, productive work environment for everyone.',
       duration: '30 minutes',
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnkyFQ27q3fVlhMWBTEXRD5x2LS6mPGqI8Jk7Y', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       objectives: [
         'Navigate office politics',
