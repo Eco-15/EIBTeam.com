@@ -130,7 +130,7 @@ const AnimatedSignIn: React.FC = () => {
     
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(forgotPasswordEmail, {
-        redirectTo: `${window.location.origin}/agent-login?reset=true`,
+        redirectTo: `${window.location.origin}/agent-login`,
       });
 
       if (error) {
