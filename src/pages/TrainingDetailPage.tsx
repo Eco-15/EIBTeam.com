@@ -521,7 +521,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 21,
-      title: 'CLIENT QUESTIONS',
+      title: 'Client Questions',
       description: 'Learn how to handle common client questions and objections effectively.',
       fullDescription: 'Clients will have questions and objections throughout the sales process. This training prepares you to handle the most common questions with confidence, providing clear, helpful answers that move the conversation forward.',
       duration: '40 minutes',
