@@ -54,7 +54,7 @@ const About = () => {
               <video
                 controls
                 className="w-full h-96 object-cover"
-                poster="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnrZnFpW9IxL6na5HN8Cmj2VAkDRBdih9JyY4u"
+                poster="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnBfTbyGNs1dDP4Ioh850ny67VtNg3mlwEuFpx"
               >
                 <source src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnk3rtjiq3fVlhMWBTEXRD5x2LS6mPGqI8Jk7Y" type="video/mp4" />
                 Your browser does not support the video tag.
