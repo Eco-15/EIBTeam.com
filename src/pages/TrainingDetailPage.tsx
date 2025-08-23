@@ -26,7 +26,7 @@ const TrainingDetailPage = () => {
       rating: 5.0,
       instructor: 'Jason Graziani',
       video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOncjwWJYXABiZ5cudwgVeLkIK6oqazNlQhtEn2', // To be integrated
-      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlmOrmln8EfQTV7ApbyFLmjY5GCZhaPcN4nzo',
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnBfTbyGNs1dDP4Ioh850ny67VtNg3mlwEuFpx',
       section: 'Recruiting and Building',
       objectives: [
         'Understand EIB Agency\'s mission and values',
