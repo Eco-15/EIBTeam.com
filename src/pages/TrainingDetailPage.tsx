@@ -242,7 +242,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 10,
-      title: 'HOW TO HIT MD',
+      title: 'How To Hit MD',
       description: 'Learn the strategies and techniques to achieve Managing Director status.',
       fullDescription: 'Managing Director is the pinnacle of achievement in our organization. This training reveals the strategies, mindset, and techniques required to reach MD status and lead at the highest level.',
       duration: '50 minutes',
