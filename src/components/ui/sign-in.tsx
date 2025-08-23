@@ -667,19 +667,21 @@ const AnimatedSignIn: React.FC = () => {
                   </div>
 
                   <div className={`text-center text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                    <p>Didn't receive the code?</p>
+                    <p>Didn't receive the code? Check your spam folder or</p>
                     <button
                       type="button"
                       onClick={() => {
                         setResetStep('request');
                         setOtp('');
                         setResetError('');
+                        setNewPassword('');
+                        setConfirmPassword('');
                       }}
                       className={`font-medium ${
                         theme === 'dark' ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-600 hover:text-yellow-700'
                       } transition-colors`}
                     >
-                      Send new code
+                      try a different email
                     </button>
                   </div>
                 </form>
