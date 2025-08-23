@@ -6,7 +6,7 @@ const About = () => {
     {
       icon: Shield,
       title: 'Industry Leadership',
-      description: 'As a leading insurance brokerage, we leverage proven systems, training, and support to help our agents achieve extraordinary success.',
+      description: 'As a leading insurance agency, we leverage proven systems, training, and support to help our agents achieve extraordinary success.',
     },
     {
       icon: Target,
