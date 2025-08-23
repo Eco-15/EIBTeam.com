@@ -396,14 +396,14 @@ const TrainingDetailPage = () => {
     },
     {
       id: 16,
-      title: 'LIVING BENEFITS',
+      title: 'Living Benefits',
       description: 'Understand living benefits and how they add value to life insurance policies.',
       fullDescription: 'Living benefits are a powerful feature that allows policyholders to access their death benefit while living in cases of terminal, chronic, or critical illness. Learn how to present and position these valuable benefits.',
       duration: '25 minutes',
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn8zkswteMt1fO6Cr2lmLKBjQ5kHTuwEXx7Nz8', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnd7spMIl7cmdASPKDVwuU18xgjXi5O4RQaH2I',
       objectives: [
         'Understand living benefits',
