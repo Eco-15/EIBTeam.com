@@ -196,7 +196,7 @@ const TrainingsPage = () => {
     },
     {
       id: 17,
-      title: 'ANNUITIES',
+      title: 'Annuities',
       description: 'Master annuity products and retirement planning strategies.',
       duration: '50 minutes',
       difficulty: 'Intermediate',
