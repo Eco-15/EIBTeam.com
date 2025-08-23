@@ -678,7 +678,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Advanced',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOn9zURKsdw8BLNmEj5K2AuZsbDRnPWfGtXiJQS', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnWyr2rmwDoEgx6u7dLy8etIN1pvK3aPWcf5AR',
       objectives: [
         'Master closing techniques',
