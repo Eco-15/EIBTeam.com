@@ -27,31 +27,51 @@ const AnimatedSignIn: React.FC = () => {
     setTimeout(() => setFormVisible(true), 300);
     
     // Check if this is a password reset flow
-    // Supabase sends tokens in URL hash, not query string
-    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    const checkPasswordReset = () => {
+      // Check URL hash first (Supabase typically uses hash)
+      const hash = window.location.hash.substring(1);
+      const hashParams = new URLSearchParams(hash);
+      
+      // Also check query string as fallback
+      const search = window.location.search.substring(1);
+      const urlParams = new URLSearchParams(search);
+      
+      // Get tokens from hash or query params
+      const accessToken = hashParams.get('access_token') || urlParams.get('access_token');
+      const refreshToken = hashParams.get('refresh_token') || urlParams.get('refresh_token');
+      const type = hashParams.get('type') || urlParams.get('type');
+      
+      console.log('Password reset check:', { accessToken: !!accessToken, refreshToken: !!refreshToken, type });
+      
+      if (type === 'recovery' && accessToken && refreshToken) {
+        console.log('Password reset detected, setting session...');
+        
+        // Set the session with the tokens from the URL
+        supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken
+        }).then(({ data, error }) => {
+          if (error) {
+            console.error('Error setting session for password reset:', error);
+            alert('Invalid or expired reset link. Please request a new password reset.');
+            return;
+          }
+          
+          console.log('Session set successfully, showing password reset form');
+          setShowPasswordReset(true);
+          
+          // Clean up the URL
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }).catch((error) => {
+          console.error('Error setting session for password reset:', error);
+          alert('Invalid or expired reset link. Please request a new password reset.');
+        });
+      }
+    };
     
-    // Also check query string as fallback
-    const urlParams = new URLSearchParams(window.location.search);
-    
-    // Use hash params if available, otherwise fall back to query params
-    const finalAccessToken = hashParams.get('access_token') || urlParams.get('access_token');
-    const finalRefreshToken = hashParams.get('refresh_token') || urlParams.get('refresh_token');
-    const finalType = hashParams.get('type') || urlParams.get('type');
-    
-    if (finalType === 'recovery' && finalAccessToken && finalRefreshToken) {
-      // Set the session with the tokens from the URL
-      supabase.auth.setSession({
-        access_token: finalAccessToken,
-        refresh_token: finalRefreshToken
-      }).then(() => {
-        setShowPasswordReset(true);
-        // Clean up the URL hash and query params
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }).catch((error) => {
-        console.error('Error setting session for password reset:', error);
-        alert('Invalid or expired reset link. Please request a new password reset.');
-      });
-    }
+    // Run the check immediately and also after a short delay
+    checkPasswordReset();
+    setTimeout(checkPasswordReset, 100);
   }, []);
 
   const toggleTheme = () => {
