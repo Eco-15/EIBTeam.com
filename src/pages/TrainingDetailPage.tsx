@@ -274,7 +274,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Advanced',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnVbAryUFumedf7Z4SH0px32L1FhVGaYwBtXkD', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz',
       objectives: [
         'Master public speaking',
