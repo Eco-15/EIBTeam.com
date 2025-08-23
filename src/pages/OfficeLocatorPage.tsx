@@ -54,18 +54,6 @@ const OfficeLocatorPage = () => {
       region: 'Florida'
     },
     {
-      id: 5,
-      name: 'Bonita Springs Office',
-      address: '3181 North Bay Village Court Suite 200',
-      city: 'Bonita Springs',
-      state: 'FL',
-      zipCode: '34145',
-      phone: '(972) 805-1002',
-      email: 'admin@eibagency.com',
-      isHeadquarters: false,
-      region: 'Florida'
-    },
-    {
       id: 6,
       name: 'Oxnard Office',
       address: '1000 Town Center Dr. Suite 520',
