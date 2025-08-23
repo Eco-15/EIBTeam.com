@@ -267,7 +267,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 11,
-      title: 'HOW TO SPEAK FROM STAGE',
+      title: 'How To Speak on Stage',
       description: 'Master public speaking and presentation skills for leadership and training.',
       fullDescription: 'Public speaking is a crucial skill for leaders in our industry. This training teaches you how to speak confidently from stage, deliver compelling presentations, and inspire audiences through effective communication.',
       duration: '40 minutes',
