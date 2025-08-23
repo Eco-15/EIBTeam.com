@@ -38,7 +38,7 @@ const Footer = () => {
               />
               <div>
                 <h3 className="text-2xl font-bold text-white">EIB Agency</h3>
-                <p className="text-sm text-gray-300">Insurance Brokerage</p>
+                <p className="text-sm text-gray-300">Insurance Agency</p>
               </div>
             </div>
             
