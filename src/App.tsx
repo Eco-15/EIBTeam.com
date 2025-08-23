@@ -59,15 +59,27 @@ function App() {
             (event === 'TOKEN_REFRESHED' && !session) ||
             event === 'SIGNED_IN_WITH_PASSWORD') {
           // Clear any stored session data and redirect to login
-          if ((event === 'SIGNED_OUT' || (event === 'TOKEN_REFRESHED' && !session)) &&
-              (window.location.pathname.startsWith('/dashboard') || 
-              window.location.pathname.startsWith('/admin') ||
-              window.location.pathname.startsWith('/calendar') ||
-              window.location.pathname.startsWith('/trainings') ||
-              window.location.pathname.startsWith('/resources') ||
-              window.location.pathname.startsWith('/books'))) {
-            await supabase.auth.signOut();
-            window.location.href = '/agent-login';
+          if (event === 'SIGNED_OUT') {
+            // Only redirect to home page on explicit sign out
+            if (window.location.pathname.startsWith('/dashboard') || 
+                window.location.pathname.startsWith('/admin') ||
+                window.location.pathname.startsWith('/calendar') ||
+                window.location.pathname.startsWith('/trainings') ||
+                window.location.pathname.startsWith('/resources') ||
+                window.location.pathname.startsWith('/books')) {
+              window.location.href = '/';
+            }
+          } else if ((event === 'TOKEN_REFRESHED' && !session)) {
+            // Redirect to login for token refresh failures
+            if (window.location.pathname.startsWith('/dashboard') || 
+                window.location.pathname.startsWith('/admin') ||
+                window.location.pathname.startsWith('/calendar') ||
+                window.location.pathname.startsWith('/trainings') ||
+                window.location.pathname.startsWith('/resources') ||
+                window.location.pathname.startsWith('/books')) {
+              await supabase.auth.signOut();
+              window.location.href = '/agent-login';
+            }
           }
         }
       }
