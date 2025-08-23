@@ -185,7 +185,7 @@ const TrainingsPage = () => {
     },
     {
       id: 16,
-      title: 'LIVING BENEFITS',
+      title: 'Living Benefits',
       description: 'Understand living benefits and how they add value to life insurance policies.',
       duration: '25 minutes',
       difficulty: 'Intermediate',
