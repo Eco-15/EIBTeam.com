@@ -97,7 +97,10 @@ const AnimatedSignIn: React.FC = () => {
             {/* Left side - Statistics and Images Collage */}
             <div className="hidden md:block w-full md:w-3/5 bg-gray-100 p-6 animate-fade-in">
               <div className="grid grid-cols-2 grid-rows-3 gap-4 h-full overflow-hidden">
+
+                 
                 {/* Top left - Person working */}
+                {/*
                 <div className="overflow-hidden rounded-xl">
                   <img 
                     src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnxTwVznj8nPdEtGfq7DY61RclV3ZMWb9pQgo2" 
@@ -106,8 +109,14 @@ const AnimatedSignIn: React.FC = () => {
                     style={{ opacity: 0.9 }}
                   />
                 </div>
+
+                */}
+
+
                 
                 {/* Top right - Orange stat */}
+
+                {/*
                 <div 
                   className={`rounded-xl flex flex-col justify-center items-center p-6 text-white ${
                     theme === 'dark' ? 'bg-white-600' : 'bg-white-500'
@@ -122,8 +131,12 @@ const AnimatedSignIn: React.FC = () => {
                   <h2 className="text-5xl font-bold mb-2 text-black">24/7</h2>
                   <p className="text-center text-sm text-black">Support available for all EIB Agency members.</p>
                 </div>
+
+                */}
                 
                 {/* Middle left - Person at computer */}
+
+                {/*
                 <div className="overflow-hidden rounded-xl">
                   <img 
                     src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnd7spMIl7cmdASPKDVwuU18xgjXi5O4RQaH2I" 
@@ -132,6 +145,8 @@ const AnimatedSignIn: React.FC = () => {
                     style={{ opacity: 0.9 }}
                   />
                 </div>
+
+                */}
                 
                 {/* Middle right - Office space */}
              
