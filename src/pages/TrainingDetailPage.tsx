@@ -546,7 +546,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 22,
-      title: 'X-CURVE',
+      title: 'X-Curve',
       description: 'Understand the X-Curve methodology for client presentations and sales.',
       fullDescription: 'The X-Curve is a powerful presentation methodology that helps you structure client meetings for maximum impact. Learn how to use this proven system to improve your closing rates and client satisfaction.',
       duration: '45 minutes',
