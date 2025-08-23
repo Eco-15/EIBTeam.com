@@ -89,7 +89,7 @@ const Footer = () => {
                Start your journey today with one of our EIB teammates.
               </p>
               <a
-                href="#contact"
+                href="/contact"
                 className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-bold text-sm hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 inline-block"
               >
                 Apply Now
