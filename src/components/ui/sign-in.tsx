@@ -80,12 +80,9 @@ const AnimatedSignIn: React.FC = () => {
     try {
       console.log('Sending OTP to email:', forgotPasswordEmail);
       
-      // Use signInWithOtp for recovery instead of resetPasswordForEmail
-      const { error } = await supabase.auth.signInWithOtp({
-        email: forgotPasswordEmail,
-        options: {
-          shouldCreateUser: false
-        }
+      // Use resetPasswordForEmail to send OTP for password reset
+      const { error } = await supabase.auth.resetPasswordForEmail(forgotPasswordEmail, {
+        redirectTo: undefined // This prevents magic link and forces OTP
       });
 
       if (error) {
