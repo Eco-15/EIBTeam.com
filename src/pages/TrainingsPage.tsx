@@ -93,7 +93,7 @@ const TrainingsPage = () => {
     },
     {
       id: 8,
-      title: 'EXCHANGE PRince',
+      title: 'Exchange Principles',
       description: 'Master the exchange process and become a prince of exchanges.',
       duration: '30 minutes',
       difficulty: 'Advanced',
@@ -104,7 +104,7 @@ const TrainingsPage = () => {
     },
     {
       id: 9,
-      title: 'Being A LEADER ...',
+      title: 'Being a Leader ...',
       description: 'Develop leadership skills and learn how to inspire and motivate your team.',
       duration: '45 minutes',
       difficulty: 'Advanced',
@@ -115,7 +115,7 @@ const TrainingsPage = () => {
     },
     {
       id: 10,
-      title: 'HOW TO HIT MD',
+      title: 'How to Hit MD',
       description: 'Learn the strategies and techniques to achieve Managing Director status.',
       duration: '50 minutes',
       difficulty: 'Advanced',
@@ -126,7 +126,7 @@ const TrainingsPage = () => {
     },
     {
       id: 11,
-      title: 'HOW TO SPEAK FROM stage',
+      title: 'How To Speak From Stage',
       description: 'Master public speaking and presentation skills for leadership and training.',
       duration: '40 minutes',
       difficulty: 'Advanced',
@@ -137,7 +137,7 @@ const TrainingsPage = () => {
     },
     {
       id: 12,
-      title: 'HANDLING OFPICE DRAMA',
+      title: 'Handeling Office Drama',
       description: 'Learn how to handle office politics and maintain a positive work environment.',
       duration: '30 minutes',
       difficulty: 'Intermediate',
@@ -148,7 +148,7 @@ const TrainingsPage = () => {
     },
     {
       id: 13,
-      title: 'MONEY',
+      title: 'Money Priorities',
       description: 'Understand money management, compensation structures, and financial planning.',
       duration: '35 minutes',
       difficulty: 'Intermediate',
