@@ -18,6 +18,7 @@ const AnimatedSignIn: React.FC = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [resetError, setResetError] = useState('');
   const [resetSuccess, setResetSuccess] = useState(false);
+  const [rateLimitSeconds, setRateLimitSeconds] = useState(0);
   
   const [mounted, setMounted] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
@@ -31,6 +32,25 @@ const AnimatedSignIn: React.FC = () => {
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
+
+  // Rate limit countdown effect
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (rateLimitSeconds > 0) {
+      interval = setInterval(() => {
+        setRateLimitSeconds(prev => {
+          if (prev <= 1) {
+            setResetError('');
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [rateLimitSeconds]);
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -82,7 +102,14 @@ const AnimatedSignIn: React.FC = () => {
 
       if (error) {
         console.error('Password reset request error:', error);
-        setResetError(`Failed to send reset code: ${error.message}`);
+        
+        // Handle rate limit specifically
+        if (error.message.includes('rate_limit') || error.message.includes('40 seconds')) {
+          setRateLimitSeconds(40);
+          setResetError('Please wait 40 seconds before requesting another reset code.');
+        } else {
+          setResetError(`Failed to send reset code: ${error.message}`);
+        }
         setIsProcessing(false);
         return;
       }
@@ -476,8 +503,11 @@ const AnimatedSignIn: React.FC = () => {
 
                   <div className={`p-4 rounded-lg ${theme === 'dark' ? 'bg-slate-700' : 'bg-blue-50'} border ${theme === 'dark' ? 'border-slate-600' : 'border-blue-200'}`}>
                     <p className={`text-sm ${theme === 'dark' ? 'text-blue-300' : 'text-blue-700'}`}>
-                      We'll send a 6-digit verification code to your email address. 
-                      This code will be valid for 1 hour.
+                      {rateLimitSeconds > 0 ? (
+                        <>Please wait {rateLimitSeconds} seconds before requesting another code for security purposes.</>
+                      ) : (
+                        <>We'll send a 6-digit verification code to your email address. This code will be valid for 1 hour.</>
+                      )}
                     </p>
                   </div>
                   
@@ -495,10 +525,12 @@ const AnimatedSignIn: React.FC = () => {
                     </button>
                     <button
                       type="submit"
-                      disabled={isProcessing}
+                      disabled={isProcessing || rateLimitSeconds > 0}
                       className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {isProcessing ? 'Sending...' : 'Send Reset Code'}
+                      {isProcessing ? 'Sending...' : 
+                       rateLimitSeconds > 0 ? `Wait ${rateLimitSeconds}s` : 
+                       'Send Reset Code'}
                     </button>
                   </div>
                 </form>
