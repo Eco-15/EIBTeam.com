@@ -621,7 +621,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 25,
-      title: 'How TO EARN $100k',
+      title: 'How TO Earn $100k',
       description: 'Strategies and techniques to reach the $100,000 annual income milestone.',
       fullDescription: 'Earning $100,000 annually is a significant milestone that requires specific strategies and consistent execution. This training reveals the exact steps and mindset needed to reach and exceed this income level.',
       duration: '50 minutes',
