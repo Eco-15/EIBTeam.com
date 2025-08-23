@@ -216,16 +216,6 @@ const OfficeLocatorPage = () => {
                         </div>
                         
                         <div className="flex items-center space-x-3">
-                          <Phone className="h-5 w-5 text-gray-400 flex-shrink-0" />
-                          <a 
-                            href={`tel:${office.phone}`}
-                            className="text-gray-600 hover:text-yellow-600 transition-colors"
-                          >
-                            {office.phone}
-                          </a>
-                        </div>
-                        
-                        <div className="flex items-center space-x-3">
                           <Mail className="h-5 w-5 text-gray-400 flex-shrink-0" />
                           <a 
                             href={`mailto:${office.email}`}
