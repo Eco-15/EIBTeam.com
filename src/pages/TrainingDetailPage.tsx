@@ -446,7 +446,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 18,
-      title: 'TAX Circles',
+      title: 'Tax Circles',
       description: 'Learn about tax implications and strategies for insurance and financial products.',
       fullDescription: 'Understanding tax implications is crucial for effective financial planning. This training covers tax strategies, implications of different insurance products, and how to help clients minimize their tax burden while maximizing benefits.',
       duration: '40 minutes',
