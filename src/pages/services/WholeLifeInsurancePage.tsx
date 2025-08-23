@@ -129,7 +129,7 @@ const WholeLifeInsurancePage = () => {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnXywWQhzfLN6JShn8GERoTUArHPOi9YaVIlBK"
+                  src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnXCZqOKazfLN6JShn8GERoTUArHPOi9YaVIlB"
                   alt="Successful family with whole life insurance protection"
                   className="w-full h-96 object-cover"
                 />
