@@ -25,17 +25,10 @@ const AnimatedSignIn: React.FC = () => {
   
   // Animation states
   const [formVisible, setFormVisible] = useState(false);
-  
-  // Additional missing state variables
-  const [showPasswordReset, setShowPasswordReset] = useState(false);
-  const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
-  const [resetError, setResetError] = useState('');
-  const [resetEmailSent, setResetEmailSent] = useState(false);
-  const [isResettingPassword, setIsResettingPassword] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    setFormVisible(true);
+    setTimeout(() => setFormVisible(true), 100);
     
     // Clean up any URL hash parameters from previous attempts
     if (window.location.hash) {
@@ -112,7 +105,7 @@ const AnimatedSignIn: React.FC = () => {
     }
   };
 
-  const handlePasswordUpdate = async (e: React.FormEvent) => {
+  const handleOtpVerificationAndPasswordUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (newPassword !== confirmPassword) {
@@ -125,31 +118,57 @@ const AnimatedSignIn: React.FC = () => {
       return;
     }
     
-    setIsUpdatingPassword(true);
+    if (!otp || otp.length !== 6) {
+      setOtpError('Please enter the 6-digit code from your email.');
+      return;
+    }
+    
+    setIsVerifyingOtp(true);
+    setOtpError('');
     
     try {
-      const { error } = await supabase.auth.updateUser({
-        password: newPassword
+      console.log('Verifying OTP:', otp.substring(0, 2) + '****');
+      
+      // First verify the OTP
+      const { data, error: otpError } = await supabase.auth.verifyOtp({
+        email: forgotPasswordEmail,
+        token: otp,
+        type: 'email'
       });
 
-      if (error) {
-        console.error('Password update error:', error);
-        setResetError(`Password update failed: ${error.message}`);
-        setIsUpdatingPassword(false);
+      if (otpError) {
+        console.error('OTP verification error:', otpError);
+        setOtpError(`Invalid or expired code: ${otpError.message}`);
+        setIsVerifyingOtp(false);
         return;
       }
 
+      console.log('OTP verified successfully, updating password...');
+      
+      // Now update the password
+      const { error: passwordError } = await supabase.auth.updateUser({
+        password: newPassword
+      });
+
+      if (passwordError) {
+        console.error('Password update error:', passwordError);
+        setOtpError(`Password update failed: ${passwordError.message}`);
+        setIsVerifyingOtp(false);
+        return;
+      }
+
+      console.log('Password updated successfully');
       setPasswordResetSuccess(true);
-      setIsUpdatingPassword(false);
+      setIsVerifyingOtp(false);
       
       // Redirect to dashboard after successful password reset
       setTimeout(() => {
         window.location.href = '/dashboard';
       }, 2000);
     } catch (error) {
-      console.error('Password update error:', error);
-      setResetError('An error occurred during password update. Please try again.');
-      setIsUpdatingPassword(false);
+      console.error('OTP verification and password update error:', error);
+      setOtpError('An error occurred during the process. Please try again.');
+      setIsVerifyingOtp(false);
     }
   };
 
@@ -319,17 +338,17 @@ const AnimatedSignIn: React.FC = () => {
               )}
 
               {/* Reset Error */}
-              {resetError && (
+              {otpError && (
                 <div className="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded">
                   <div className="flex items-start">
                     <X className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
                     <div className="flex-1">
                       <p className="text-red-700 font-medium">Password Reset Error</p>
-                      <p className="text-red-600 text-sm mt-1">{resetError}</p>
+                      <p className="text-red-600 text-sm mt-1">{otpError}</p>
                      <div className="mt-3 space-y-2">
                        <button
                          onClick={() => {
-                           setResetError('');
+                           setOtpError('');
                            setShowForgotPassword(true);
                            setForgotPasswordEmail(email);
                          }}
@@ -348,7 +367,7 @@ const AnimatedSignIn: React.FC = () => {
                      </div>
                       <button
                         onClick={() => {
-                          setResetError('');
+                          setOtpError('');
                           setShowForgotPassword(true);
                           setForgotPasswordEmail(email);
                         }}
@@ -370,12 +389,12 @@ const AnimatedSignIn: React.FC = () => {
                   />
                   <div>
                     <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                      {showPasswordReset ? 'Reset Password' : 'Agent Login'}
+                      {otpSent ? 'Reset Password' : 'Agent Login'}
                     </h1>
                   </div>
                 </div>
                 <p className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                  {showPasswordReset 
+                  {otpSent 
                     ? 'Please enter your new password to complete the reset process.'
                     : 'Welcome to EIB Agency agent portal. Please enter your credentials to access your dashboard.'
                   }
@@ -383,8 +402,36 @@ const AnimatedSignIn: React.FC = () => {
               </div>
               
               {/* Password Reset Form */}
-              {showPasswordReset ? (
-                <form onSubmit={handlePasswordUpdate} className="space-y-6">
+              {otpSent ? (
+                <form onSubmit={handleOtpVerificationAndPasswordUpdate} className="space-y-6">
+                  <div className="space-y-1">
+                    <label 
+                      htmlFor="otp" 
+                      className={`block text-sm font-medium ${
+                        theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
+                      }`}
+                    >
+                      Verification Code *
+                    </label>
+                    <div className={`relative rounded-md shadow-sm transition-all duration-300`}>
+                      <input
+                        type="text"
+                        name="otp"
+                        id="otp"
+                        required
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        className={`block w-full rounded-md border py-3 px-4 focus:outline-none focus:ring-2 sm:text-sm ${
+                          theme === 'dark' 
+                            ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
+                            : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
+                        }`}
+                        placeholder="Enter 6-digit code"
+                        maxLength={6}
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-1">
                     <label 
                       htmlFor="new-password" 
@@ -456,10 +503,10 @@ const AnimatedSignIn: React.FC = () => {
 
                   <button
                     type="submit"
-                    disabled={isUpdatingPassword || passwordResetSuccess}
-                    className={`flex w-full justify-center rounded-md py-3 px-4 text-sm font-semibold text-black shadow-sm transition-all duration-300 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500 ${isUpdatingPassword || passwordResetSuccess ? 'cursor-not-allowed opacity-70' : ''}`}
+                    disabled={isVerifyingOtp || passwordResetSuccess}
+                    className={`flex w-full justify-center rounded-md py-3 px-4 text-sm font-semibold text-black shadow-sm transition-all duration-300 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500 ${isVerifyingOtp || passwordResetSuccess ? 'cursor-not-allowed opacity-70' : ''}`}
                   >
-                    {isUpdatingPassword ? (
+                    {isVerifyingOtp ? (
                       <span className="flex items-center">
                         <svg className="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
                           <circle
@@ -650,7 +697,7 @@ const AnimatedSignIn: React.FC = () => {
                         <button
                           onClick={() => {
                             setShowForgotPassword(false);
-                            setResetEmailSent(false);
+                            setOtpSent(false);
                             setForgotPasswordEmail('');
                           }}
                           className={`${theme === 'dark' ? 'text-gray-400 hover:text-gray-300' : 'text-gray-400 hover:text-gray-600'} transition-colors`}
@@ -661,11 +708,11 @@ const AnimatedSignIn: React.FC = () => {
                     </div>
                     
                     <div className="p-6">
-                      {!resetEmailSent ? (
+                      {!otpSent ? (
                         <form onSubmit={handleForgotPassword} className="space-y-4">
-                          {resetError && (
+                          {otpError && (
                             <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                              <p className="text-red-700 text-sm">{resetError}</p>
+                              <p className="text-red-700 text-sm">{otpError}</p>
                             </div>
                           )}
                           
@@ -703,9 +750,9 @@ const AnimatedSignIn: React.FC = () => {
                               type="button"
                               onClick={() => {
                                 setShowForgotPassword(false);
-                                setResetEmailSent(false);
+                                setOtpSent(false);
                                 setForgotPasswordEmail('');
-                                setResetError('');
+                                setOtpError('');
                               }}
                               className={`flex-1 px-4 py-2 border rounded-lg transition-colors ${
                                 theme === 'dark' 
@@ -717,10 +764,10 @@ const AnimatedSignIn: React.FC = () => {
                             </button>
                             <button
                               type="submit"
-                              disabled={isResettingPassword}
+                              disabled={isSendingOtp}
                               className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                              {isResettingPassword ? 'Sending...' : 'Send Reset Link'}
+                              {isSendingOtp ? 'Sending...' : 'Send Reset Link'}
                             </button>
                           </div>
                         </form>
@@ -739,9 +786,9 @@ const AnimatedSignIn: React.FC = () => {
                           <button
                             onClick={() => {
                               setShowForgotPassword(false);
-                              setResetEmailSent(false);
+                              setOtpSent(false);
                               setForgotPasswordEmail('');
-                              setResetError('');
+                              setOtpError('');
                             }}
                             className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-6 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors"
                           >
