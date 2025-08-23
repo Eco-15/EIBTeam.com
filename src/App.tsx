@@ -65,8 +65,12 @@ function App() {
         
         // Handle successful email confirmation
         if (event === 'SIGNED_IN' && session?.user?.email_confirmed_at) {
-          console.log('User email confirmed, redirecting to dashboard');
-          window.location.href = '/dashboard';
+          // If the user is on the agent login page after confirming email, redirect to dashboard
+          if (window.location.pathname === '/agent-login') {
+            console.log('User email confirmed and signed in on agent-login, redirecting to dashboard');
+            window.location.href = '/dashboard';
+          }
+          // If they are already on dashboard or another authenticated page, do nothing
           return;
         }
         

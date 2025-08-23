@@ -10,8 +10,10 @@ interface CreateUserRequest {
   email: string;
   firstName: string;
   lastName: string;
+  dateOfBirth?: string;
   role: 'admin' | 'agent';
   temporaryPassword?: string;
+  emailRedirectTo?: string;
 }
 
 interface CreateInvitationRequest {
@@ -94,7 +96,7 @@ Deno.serve(async (req) => {
 
       switch (operation) {
         case 'create-user': {
-          const { email, firstName, lastName, role, temporaryPassword }: CreateUserRequest = body
+          const { email, firstName, lastName, dateOfBirth, role, temporaryPassword, emailRedirectTo }: CreateUserRequest = body
 
           // Generate password if not provided
           const password = temporaryPassword || generateTemporaryPassword()
@@ -103,12 +105,13 @@ Deno.serve(async (req) => {
           const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
             email,
             password,
-            email_confirm: true,
+            email_confirm: false,
             user_metadata: {
               first_name: firstName,
               last_name: lastName,
               full_name: `${firstName} ${lastName}`.trim()
-            }
+            },
+            ...(emailRedirectTo && { email_redirect_to: emailRedirectTo })
           })
 
           if (createError) {
@@ -129,6 +132,7 @@ Deno.serve(async (req) => {
                 user_id: newUser.user.id,
                 first_name: firstName,
                 last_name: lastName,
+                date_of_birth: dateOfBirth || null,
                 date_of_birth: dateOfBirth || null,
                 status: 'active'
               }])

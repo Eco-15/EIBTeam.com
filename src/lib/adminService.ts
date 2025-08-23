@@ -33,10 +33,13 @@ class AdminService {
     firstName: string;
     lastName: string;
     dateOfBirth?: string;
+    dateOfBirth?: string;
     role: 'admin' | 'agent';
     temporaryPassword?: string;
   }) {
-    return this.callAdminFunction('create-user', userData);
+    const emailRedirectTo = `https://eibagency.com/agent-login`; // Hardcoded domain for consistency
+
+    return this.callAdminFunction('create-user', { ...userData, emailRedirectTo });
   }
 
   static async createUserInvitation(invitationData: {
