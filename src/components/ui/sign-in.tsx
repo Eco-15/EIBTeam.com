@@ -96,7 +96,7 @@ const AnimatedSignIn: React.FC = () => {
         email: resetEmail,
         options: {
           shouldCreateUser: false,
-          emailRedirectTo: undefined
+          emailRedirectTo: `${window.location.origin}/agent-login`
         }
       });
 
