@@ -118,7 +118,7 @@ const Footer = () => {
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-300 text-sm">
-              © {currentYear} EIB Agency Insurance Agency. All rights reserved.
+              © {currentYear} EIB Agency. All rights reserved.
             </div>
             
             <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
