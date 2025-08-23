@@ -646,14 +646,14 @@ const TrainingDetailPage = () => {
     },
     {
       id: 26,
-      title: 'How TO BE A strong, CFT',
+      title: 'How To Be A strong, CFT',
       description: 'Learn how to become a strong and effective CFT (Certified Financial Trainer).',
       fullDescription: 'Becoming a Certified Financial Trainer (CFT) is a significant achievement that opens new opportunities. Learn the skills, knowledge, and mindset required to become a strong CFT and train others effectively.',
       duration: '45 minutes',
       difficulty: 'Advanced',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnCoSm7aQykjw7PSNi0m8alYrGqn6LoI9hUxsv', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnWA9m6kwDoEgx6u7dLy8etIN1pvK3aPWcf5AR',
       objectives: [
         'Understand CFT requirements',
