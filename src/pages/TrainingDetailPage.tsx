@@ -317,7 +317,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 13,
-      title: 'MONEY',
+      title: 'Money',
       description: 'Understand money management, compensation structures, and financial planning.',
       fullDescription: 'Understanding money and compensation is crucial for your success. This training covers compensation structures, money management principles, and financial planning strategies to help you maximize your earnings and build wealth.',
       duration: '35 minutes',
