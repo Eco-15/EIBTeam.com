@@ -38,7 +38,7 @@ const TrainingsPage = () => {
     },
     {
       id: 3,
-      title: '8 Expectations',
+      title: 'Builders Mindset',
       description: 'Learn the 8 key expectations for success in the insurance industry.',
       duration: '25 minutes',
       difficulty: 'Beginner',
@@ -49,6 +49,17 @@ const TrainingsPage = () => {
     },
     {
       id: 4,
+      title: '8 Expectations',
+      description: 'Learn the 8 key expectations for success in the insurance industry.',
+      duration: '25 minutes',
+      difficulty: 'Beginner',
+      rating: 5.0,
+      instructor: 'Jason Graziani',
+      video: '', // To be integrated
+      thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnWyr2rmwDoEgx6u7dLy8etIN1pvK3aPWcf5AR'
+    },
+    {
+      id: 5,
       title: 'Goal Settings',
       description: 'Create actionable goals and develop a comprehensive business plan for success.',
       duration: '1.5 hours',
@@ -59,7 +70,7 @@ const TrainingsPage = () => {
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnd7spMIl7cmdASPKDVwuU18xgjXi5O4RQaH2I'
     },
     {
-      id: 5,
+      id: 6,
       title: '6 Steps of our Business',
       description: 'Master the 6-step process for client acquisition and appointment scheduling.',
       duration: '30 minutes',
@@ -70,7 +81,7 @@ const TrainingsPage = () => {
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
     {
-      id: 6,
+      id: 7,
       title: 'How a Part Timer',
       description: 'Learn how to succeed as a part-time agent and maximize your earning potential.',
       duration: '35 minutes',
@@ -81,7 +92,7 @@ const TrainingsPage = () => {
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
     },
     {
-      id: 7,
+      id: 8,
       title: 'Captain System',
       description: 'Understand the captain system and how to lead and manage your team effectively.',
       duration: '40 minutes',
@@ -92,7 +103,7 @@ const TrainingsPage = () => {
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlmOrmln8EfQTV7ApbyFLmjY5GCZhaPcN4nzo'
     },
     {
-      id: 8,
+      id: 9,
       title: 'EXCHANGE Prince',
       description: 'Master the exchange process and become a prince of exchanges.',
       duration: '30 minutes',
@@ -103,7 +114,7 @@ const TrainingsPage = () => {
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnWA9m6kwDoEgx6u7dLy8etIN1pvK3aPWcf5AR'
     },
     {
-      id: 9,
+      id: 10,
       title: 'Being A LEADER',
       description: 'Develop leadership skills and learn how to inspire and motivate your team.',
       duration: '45 minutes',
@@ -114,7 +125,7 @@ const TrainingsPage = () => {
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnWyr2rmwDoEgx6u7dLy8etIN1pvK3aPWcf5AR'
     },
     {
-      id: 10,
+      id: 11,
       title: 'HOW TO HIT MD',
       description: 'Learn the strategies and techniques to achieve Managing Director status.',
       duration: '50 minutes',
@@ -125,7 +136,7 @@ const TrainingsPage = () => {
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnd7spMIl7cmdASPKDVwuU18xgjXi5O4RQaH2I'
     },
     {
-      id: 11,
+      id: 12,
       title: 'HOW TO SPEAK FROM STAGE',
       description: 'Master public speaking and presentation skills for leadership and training.',
       duration: '40 minutes',
@@ -136,7 +147,7 @@ const TrainingsPage = () => {
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlWKBy9zn8EfQTV7ApbyFLmjY5GCZhaPcN4nz'
     },
     {
-      id: 12,
+      id: 13,
       title: 'HANDLING OFFICE DRAMA',
       description: 'Learn how to handle office politics and maintain a positive work environment.',
       duration: '30 minutes',
@@ -147,7 +158,7 @@ const TrainingsPage = () => {
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4'
     },
     {
-      id: 13,
+      id: 14,
       title: 'MONEY',
       description: 'Understand money management, compensation structures, and financial planning.',
       duration: '35 minutes',
