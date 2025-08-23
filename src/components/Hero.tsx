@@ -70,7 +70,7 @@ const Hero = () => {
                 <Star className="h-8 w-8 text-yellow-600" />
               </div>
               <div className="text-3xl font-bold text-black mb-1">3k+</div>
-              <div className="text-gray-700 font-medium">Expert Agents</div>
+              <div className="text-gray-700 font-medium">Licensed Agents</div>
             </div>
           </div>
 
