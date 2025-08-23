@@ -149,7 +149,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnpJhWUMF6DARSxfOkQHXiIBqK1FClcrjMG02u', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnjCbRX4kELmIuFY2xWfjP3dbMtw8TZ1SDK7p4',
       objectives: [
         'Learn part-time success strategies',
