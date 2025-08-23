@@ -28,32 +28,27 @@ const AnimatedSignIn: React.FC = () => {
     
     // Check if this is a password reset flow
     const checkPasswordReset = () => {
-      // Check for reset parameter in URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const isResetFlow = urlParams.get('reset') === 'true';
+      console.log('Checking for password reset tokens...');
+      console.log('Current URL:', window.location.href);
+      console.log('Hash:', window.location.hash);
+      console.log('Search:', window.location.search);
       
-      // Check URL hash first (Supabase typically uses hash)
+      // Supabase places tokens in the URL hash for security
       const hash = window.location.hash.substring(1);
       const hashParams = new URLSearchParams(hash);
       
-      // Also check query string for tokens
-      const queryParams = new URLSearchParams(window.location.search);
-      
-      // Get tokens from hash or query params
-      const accessToken = hashParams.get('access_token') || queryParams.get('access_token');
-      const refreshToken = hashParams.get('refresh_token') || queryParams.get('refresh_token');
-      const type = hashParams.get('type') || queryParams.get('type');
+      // Get tokens from hash only (Supabase standard)
+      const accessToken = hashParams.get('access_token');
+      const refreshToken = hashParams.get('refresh_token');
+      const type = hashParams.get('type');
       
       console.log('Password reset check:', { 
-        isResetFlow, 
         accessToken: !!accessToken, 
         refreshToken: !!refreshToken, 
-        type,
-        hash: window.location.hash,
-        search: window.location.search 
+        type
       });
       
-      if ((type === 'recovery' || isResetFlow) && accessToken && refreshToken) {
+      if (type === 'recovery' && accessToken && refreshToken) {
         console.log('Password reset detected, setting session...');
         
         // Set the session with the tokens from the URL
@@ -70,20 +65,19 @@ const AnimatedSignIn: React.FC = () => {
           console.log('Session set successfully, showing password reset form');
           setShowPasswordReset(true);
           
-          // Clean up the URL
+          // Clean up the URL hash immediately
           window.history.replaceState({}, document.title, window.location.pathname);
         }).catch((error) => {
           console.error('Error setting session for password reset:', error);
           alert('Invalid or expired reset link. Please request a new password reset.');
         });
-      } else if (isResetFlow) {
-        console.log('Reset parameter detected but missing tokens, waiting for redirect...');
-        // Sometimes there's a delay, so wait a bit and check again
-        setTimeout(checkPasswordReset, 1000);
+      } else if (accessToken || refreshToken || type) {
+        console.log('Partial tokens detected:', { accessToken: !!accessToken, refreshToken: !!refreshToken, type });
+        console.log('This might be an incomplete or invalid reset link');
       }
     };
     
-    // Run the check immediately and also after a short delay
+    // Run the check immediately
     checkPasswordReset();
     setTimeout(checkPasswordReset, 100);
   }, []);
@@ -126,11 +120,10 @@ const AnimatedSignIn: React.FC = () => {
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsResettingPassword(true);
     
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(forgotPasswordEmail, {
-        redirectTo: `${window.location.origin}/agent-login`,
+        redirectTo: `${window.location.origin}/agent-login`
       });
 
       if (error) {
