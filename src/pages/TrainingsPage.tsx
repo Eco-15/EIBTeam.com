@@ -273,7 +273,7 @@ const TrainingsPage = () => {
     },
     {
       id: 24,
-      title: 'Financial GOAL Setting',
+      title: 'Financial Goal Setting',
       description: 'Help clients set and achieve their financial goals through proper planning.',
       duration: '40 minutes',
       difficulty: 'Intermediate',
