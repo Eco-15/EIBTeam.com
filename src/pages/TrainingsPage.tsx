@@ -240,7 +240,7 @@ const TrainingsPage = () => {
     },
     {
       id: 21,
-      title: 'CLIENT QUESTIONS',
+      title: 'Client Questions',
       description: 'Learn how to handle common client questions and objections effectively.',
       duration: '40 minutes',
       difficulty: 'Intermediate',
