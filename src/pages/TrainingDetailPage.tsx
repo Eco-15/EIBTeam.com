@@ -296,14 +296,6 @@ const TrainingDetailPage = () => {
                       
                       <div className="flex items-center space-x-6 text-sm text-gray-500 mb-4">
                         <div className="flex items-center space-x-1">
-                          <Clock className="h-4 w-4" />
-                          <span>{training.duration}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                          <span>{training.rating}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
                           <User className="h-4 w-4" />
                           <span>{training.instructor}</span>
                         </div>
