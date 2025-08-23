@@ -229,7 +229,7 @@ const TrainingsPage = () => {
     },
     {
       id: 20,
-      title: '7 SMART STATEMENTS',
+      title: '7 Smart Statements',
       description: 'Master the 7 smart statements for effective client communication.',
       duration: '30 minutes',
       difficulty: 'Intermediate',
