@@ -134,14 +134,7 @@ const AnimatedSignIn: React.FC = () => {
                 </div>
                 
                 {/* Middle right - Office space */}
-                <div className="overflow-hidden rounded-xl">
-                  <img 
-                    src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnCiRNubykjw7PSNi0m8alYrGqn6LoI9hUxsv4" 
-                    alt="Jason Talking" 
-                    className="w-full h-full object-cover"
-                    style={{ opacity: 0.9 }}
-                  />
-                </div>
+
                 
                 {/* Bottom left - Green stat */}
                 <div 
