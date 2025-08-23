@@ -29,15 +29,9 @@ const AnimatedSignIn: React.FC = () => {
     // Check if this is a password reset flow
     // Supabase sends tokens in URL hash, not query string
     const hashParams = new URLSearchParams(window.location.hash.substring(1));
-    const accessToken = hashParams.get('access_token');
-    const refreshToken = hashParams.get('refresh_token');
-    const type = hashParams.get('type');
     
     // Also check query string as fallback
     const urlParams = new URLSearchParams(window.location.search);
-    const accessToken = urlParams.get('access_token');
-    const refreshToken = urlParams.get('refresh_token');
-    const type = urlParams.get('type');
     
     // Use hash params if available, otherwise fall back to query params
     const finalAccessToken = hashParams.get('access_token') || urlParams.get('access_token');
