@@ -104,7 +104,7 @@ const TrainingsPage = () => {
     },
     {
       id: 9,
-      title: 'Being a Leader ...',
+      title: 'Being a Leader...',
       description: 'Develop leadership skills and learn how to inspire and motivate your team.',
       duration: '45 minutes',
       difficulty: 'Advanced',
