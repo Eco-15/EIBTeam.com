@@ -135,6 +135,21 @@ const AnimatedSignIn: React.FC = () => {
         setIsUpdatingPassword(false);
         return;
       }
+
+      setPasswordResetSuccess(true);
+      setIsUpdatingPassword(false);
+      
+      // Redirect to dashboard after successful password reset
+      setTimeout(() => {
+        window.location.href = '/dashboard';
+      }, 2000);
+    } catch (error) {
+      console.error('Password update error:', error);
+      alert('An error occurred during password update. Please try again.');
+      setIsUpdatingPassword(false);
+    }
+  };
+
   // Only show the component once mounted to avoid hydration issues
   if (!mounted) return null;
 
@@ -163,20 +178,6 @@ const AnimatedSignIn: React.FC = () => {
                 </div>
 
                 */}
-
-      setPasswordResetSuccess(true);
-      setIsUpdatingPassword(false);
-      
-      // Redirect to dashboard after successful password reset
-      setTimeout(() => {
-        window.location.href = '/dashboard';
-      }, 2000);
-    } catch (error) {
-      console.error('Password update error:', error);
-      alert('An error occurred during password update. Please try again.');
-      setIsUpdatingPassword(false);
-    }
-  };
 
                 
                 {/* Top right - Orange stat */}
@@ -405,133 +406,173 @@ const AnimatedSignIn: React.FC = () => {
                       />
                     </div>
                   </div>
-                <div className="space-y-1">
-                  <label 
-                    htmlFor="email" 
-                    className={`block text-sm font-medium ${
-                      theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                    }`}
+
+                  <button
+                    type="submit"
+                    disabled={isUpdatingPassword || passwordResetSuccess}
+                    className={`flex w-full justify-center rounded-md py-3 px-4 text-sm font-semibold text-black shadow-sm transition-all duration-300 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500 ${isUpdatingPassword || passwordResetSuccess ? 'cursor-not-allowed opacity-70' : ''}`}
                   >
-                    Agent ID or Email
-                  </label>
-                  <div className={`relative rounded-md shadow-sm transition-all duration-300`}>
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className={`block w-full rounded-md border py-3 px-4 focus:outline-none focus:ring-2 sm:text-sm ${
-                        theme === 'dark' 
-                          ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
-                          : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
+                    {isUpdatingPassword ? (
+                      <span className="flex items-center">
+                        <svg className="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                            fill="none"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          />
+                        </svg>
+                        Updating Password...
+                      </span>
+                    ) : passwordResetSuccess ? (
+                      <span className="flex items-center">
+                        <CheckCircle className="mr-2 h-4 w-4" />
+                        Password Updated!
+                      </span>
+                    ) : (
+                      <span>Update Password</span>
+                    )}
+                  </button>
+                </form>
+              ) : (
+                /* Regular Sign In Form */
+                <form onSubmit={handleSignIn} className="space-y-6">
+                  <div className="space-y-1">
+                    <label 
+                      htmlFor="email" 
+                      className={`block text-sm font-medium ${
+                        theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                       }`}
-                      placeholder="agent.id@eibteam.com"
-                    />
-                  </div>
-                </div>
-                
-                <div className="space-y-1">
-                  <label 
-                    htmlFor="password" 
-                    className={`block text-sm font-medium ${
-                      theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                    }`}
-                  >
-                    Password *
-                  </label>
-                  <div className={`relative rounded-md shadow-sm transition-all duration-300`}>
-                    <input
-                      type={showPassword ? 'text' : 'password'}
-                      name="password"
-                      id="password"
-                      required
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className={`block w-full rounded-md border py-3 px-4 pr-10 focus:outline-none focus:ring-2 sm:text-sm ${
-                        theme === 'dark' 
-                          ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
-                          : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
-                      }`}
-                      placeholder="••••••••"
-                    />
-                    <button
-                      type="button"
-                      className={`absolute inset-y-0 right-0 flex items-center pr-3 ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-500'
-                      }`}
-                      onClick={() => setShowPassword(!showPassword)}
                     >
-                      {showPassword ? (
-                        <EyeOff size={18} className="hover:text-gray-700 transition-colors" />
-                      ) : (
-                        <Eye size={18} className="hover:text-gray-700 transition-colors" />
-                      )}
-                    </button>
-                  </div>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <input
-                      id="remember-me"
-                      name="remember-me"
-                      type="checkbox"
-                      className="h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-gray-300 rounded"
-                    />
-                    <label htmlFor="remember-me" className={`ml-2 block text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
-                      Remember me
+                      Agent ID or Email
                     </label>
+                    <div className={`relative rounded-md shadow-sm transition-all duration-300`}>
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className={`block w-full rounded-md border py-3 px-4 focus:outline-none focus:ring-2 sm:text-sm ${
+                          theme === 'dark' 
+                            ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
+                            : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
+                        }`}
+                        placeholder="agent.id@eibteam.com"
+                      />
+                    </div>
                   </div>
-                  <a 
-                    href="#forgot-password"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowForgotPassword(true);
-                      setForgotPasswordEmail(email);
-                    }}
-                    className={`text-sm font-medium ${
-                      theme === 'dark' ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-500 hover:text-yellow-600'
-                    }`}
+                  
+                  <div className="space-y-1">
+                    <label 
+                      htmlFor="password" 
+                      className={`block text-sm font-medium ${
+                        theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
+                      }`}
+                    >
+                      Password *
+                    </label>
+                    <div className={`relative rounded-md shadow-sm transition-all duration-300`}>
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        name="password"
+                        id="password"
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className={`block w-full rounded-md border py-3 px-4 pr-10 focus:outline-none focus:ring-2 sm:text-sm ${
+                          theme === 'dark' 
+                            ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:ring-yellow-500' 
+                            : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-yellow-500'
+                        }`}
+                        placeholder="••••••••"
+                      />
+                      <button
+                        type="button"
+                        className={`absolute inset-y-0 right-0 flex items-center pr-3 ${
+                          theme === 'dark' ? 'text-gray-300' : 'text-gray-500'
+                        }`}
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <EyeOff size={18} className="hover:text-gray-700 transition-colors" />
+                        ) : (
+                          <Eye size={18} className="hover:text-gray-700 transition-colors" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <input
+                        id="remember-me"
+                        name="remember-me"
+                        type="checkbox"
+                        className="h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-gray-300 rounded"
+                      />
+                      <label htmlFor="remember-me" className={`ml-2 block text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                        Remember me
+                      </label>
+                    </div>
+                    <a 
+                      href="#forgot-password"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShowForgotPassword(true);
+                        setForgotPasswordEmail(email);
+                      }}
+                      className={`text-sm font-medium ${
+                        theme === 'dark' ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-500 hover:text-yellow-600'
+                      }`}
+                    >
+                      Forgot password?
+                    </a>
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className={`flex w-full justify-center rounded-md py-3 px-4 text-sm font-semibold text-black shadow-sm transition-all duration-300 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500 ${isLoading ? 'cursor-not-allowed opacity-70' : ''}`}
                   >
-                    Forgot password?
-                  </a>
-                </div>
-                
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className={`flex w-full justify-center rounded-md py-3 px-4 text-sm font-semibold text-black shadow-sm transition-all duration-300 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500 ${isLoading ? 'cursor-not-allowed opacity-70' : ''}`}
-                >
-                  {isLoading ? (
-                    <span className="flex items-center">
-                      <svg className="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                          fill="none"
-                        />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        />
-                      </svg>
-                      Signing in...
-                    </span>
-                  ) : (
-                    <span className="flex items-center justify-center">
-                      <LogIn className="mr-2 h-4 w-4" />
-                      Sign In to Portal
-                    </span>
-                  )}
-                </button>
-              </form>
+                    {isLoading ? (
+                      <span className="flex items-center">
+                        <svg className="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                            fill="none"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          />
+                        </svg>
+                        Signing in...
+                      </span>
+                    ) : (
+                      <span className="flex items-center justify-center">
+                        <LogIn className="mr-2 h-4 w-4" />
+                        Sign In to Portal
+                      </span>
+                    )}
+                  </button>
+                </form>
+              )}
               
               {/* Security Notice */}
               <div className={`mt-8 p-4 rounded-lg ${theme === 'dark' ? 'bg-slate-700' : 'bg-yellow-50'} border ${theme === 'dark' ? 'border-slate-600' : 'border-yellow-200'}`}>
@@ -570,7 +611,6 @@ const AnimatedSignIn: React.FC = () => {
                           <X className="h-6 w-6" />
                         </button>
                       </div>
-              )}
                     </div>
                     
                     <div className="p-6">
@@ -658,42 +698,4 @@ const AnimatedSignIn: React.FC = () => {
   );
 };
 
-                  <button
-                    type="submit"
-                    disabled={isUpdatingPassword || passwordResetSuccess}
-                    className={`flex w-full justify-center rounded-md py-3 px-4 text-sm font-semibold text-black shadow-sm transition-all duration-300 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500 ${isUpdatingPassword || passwordResetSuccess ? 'cursor-not-allowed opacity-70' : ''}`}
-                  >
-                    {isUpdatingPassword ? (
-                      <span className="flex items-center">
-                        <svg className="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
-                          <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                            fill="none"
-                          />
-                          <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                          />
-                        </svg>
-                        Updating Password...
-                      </span>
-                    ) : passwordResetSuccess ? (
-                      <span className="flex items-center">
-                        <CheckCircle className="mr-2 h-4 w-4" />
-                        Password Updated!
-                      </span>
-                    ) : (
-                      <span>Update Password</span>
-                    )}
-                  </button>
-                </form>
-              ) : (
-                /* Regular Sign In Form */
-                <form onSubmit={handleSignIn} className="space-y-6">
 export { AnimatedSignIn };
