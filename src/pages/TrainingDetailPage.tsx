@@ -596,7 +596,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 24,
-      title: 'Financial GOAL Setting',
+      title: 'Financial Goal Setting',
       description: 'Help clients set and achieve their financial goals through proper planning.',
       fullDescription: 'Helping clients set and achieve financial goals is at the heart of what we do. Learn how to conduct effective financial goal-setting sessions and create actionable plans that lead to client success.',
       duration: '40 minutes',
