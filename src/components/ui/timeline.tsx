@@ -42,7 +42,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           Our Journey
         </h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          From our founding in 2007 to becoming a leading insurance brokerage, 
+          From our founding in 2007 to becoming a leading insurance agency, 
           here's how we've grown and evolved to better serve our community.
         </p>
       </div>
