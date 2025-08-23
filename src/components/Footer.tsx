@@ -139,7 +139,7 @@ const Footer = () => {
           
           <div className="mt-6 text-center">
             <p className="text-gray-400 text-xs">
-              EIB Agency is licensed in Texas. Insurance products are offered through licensed agents. 
+              Insurance products are offered through licensed agents. 
               Not all products available in all states.
             </p>
           </div>
