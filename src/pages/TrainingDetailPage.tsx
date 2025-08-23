@@ -217,7 +217,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 9,
-      title: 'Being A LEADER',
+      title: 'Being A Leader',
       description: 'Develop leadership skills and learn how to inspire and motivate your team.',
       fullDescription: 'Leadership is essential for long-term success in the insurance industry. This training focuses on developing the leadership skills needed to inspire, motivate, and guide your team to achieve extraordinary results.',
       duration: '45 minutes',
