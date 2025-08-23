@@ -571,7 +571,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 23,
-      title: 'OFFENSE/ DEFENSE',
+      title: 'Offense/Defense',
       description: 'Learn offensive and defensive strategies for sales and client retention.',
       fullDescription: 'Success in sales requires both offensive strategies for acquiring new clients and defensive strategies for retaining existing ones. Learn how to balance both approaches for sustainable business growth.',
       duration: '35 minutes',
