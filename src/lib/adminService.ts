@@ -37,7 +37,7 @@ class AdminService {
     role: 'admin' | 'agent';
     temporaryPassword?: string;
   }) {
-    const emailRedirectTo = `https://eibagency.com/agent-login`; // Hardcoded domain for consistency
+    const emailRedirectTo = `https://eibagency.com/agent-login`;
 
     return this.callAdminFunction('create-user', { ...userData, emailRedirectTo });
   }

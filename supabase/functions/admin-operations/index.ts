@@ -111,7 +111,7 @@ Deno.serve(async (req) => {
               last_name: lastName,
               full_name: `${firstName} ${lastName}`.trim()
             },
-            ...(emailRedirectTo && { email_redirect_to: emailRedirectTo })
+            email_redirect_to: emailRedirectTo
           })
 
           if (createError) {
