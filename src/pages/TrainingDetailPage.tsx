@@ -249,7 +249,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Advanced',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnyJlP6ULBxJ6Wp3uhtwUIodn1FZi50b7MyELA', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnd7spMIl7cmdASPKDVwuU18xgjXi5O4RQaH2I',
       objectives: [
         'Understand MD requirements',
