@@ -71,8 +71,13 @@ const AnimatedSignIn: React.FC = () => {
     try {
       console.log('Requesting password reset for:', resetEmail);
       
-      const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
-        redirectTo: undefined // Force OTP instead of magic link
+      // Use signInWithOtp for password reset to ensure OTP delivery
+      const { error } = await supabase.auth.signInWithOtp({
+        email: resetEmail,
+        options: {
+          shouldCreateUser: false,
+          emailRedirectTo: undefined
+        }
       });
 
       if (error) {
@@ -82,7 +87,7 @@ const AnimatedSignIn: React.FC = () => {
         return;
       }
 
-      console.log('Password reset OTP sent successfully');
+      console.log('OTP sent successfully');
       setResetStep('verify');
       setIsProcessing(false);
     } catch (error) {
@@ -117,16 +122,25 @@ const AnimatedSignIn: React.FC = () => {
     try {
       console.log('Verifying OTP and updating password...');
       
-      // Verify OTP
-      const { data, error: otpError } = await supabase.auth.verifyOtp({
+      // Verify OTP and sign in
+      const { data: { user, session }, error: otpError } = await supabase.auth.verifyOtp({
         email: resetEmail,
         token: otp,
-        type: 'email'
+        type: 'email',
+        options: {
+          redirectTo: undefined
+        }
       });
 
       if (otpError) {
         console.error('OTP verification error:', otpError);
         setResetError(`Invalid or expired code: ${otpError.message}`);
+        setIsProcessing(false);
+        return;
+      }
+
+      if (!user || !session) {
+        setResetError('Failed to verify code. Please try again.');
         setIsProcessing(false);
         return;
       }
