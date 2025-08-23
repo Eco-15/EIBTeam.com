@@ -421,7 +421,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 17,
-      title: 'ANNUITIES',
+      title: 'Annuities',
       description: 'Master annuity products and retirement planning strategies.',
       fullDescription: 'Annuities are essential retirement planning tools that provide guaranteed income and principal protection. This comprehensive training covers fixed and indexed annuities, helping you serve clients\' retirement needs effectively.',
       duration: '50 minutes',
