@@ -62,17 +62,19 @@ const AboutPage = () => {
               
               
             </div>
-
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnrZnFpW9IxL6na5HN8Cmj2VAkDRBdih9JyY4u"
-                  alt="EIB Team Office"
-                  className="w-full h-96 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
+             <div className="order-1 lg:order-2 relative">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <video
+                controls
+                className="w-full h-96 object-cover"
+                poster="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnBfTbyGNs1dDP4Ioh850ny67VtNg3mlwEuFpx"
+              >
+                <source src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnk3rtjiq3fVlhMWBTEXRD5x2LS6mPGqI8Jk7Y" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
             </div>
+          </div>
           </div>
         </div>
       </section>
