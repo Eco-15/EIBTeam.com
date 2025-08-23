@@ -284,7 +284,7 @@ const TrainingsPage = () => {
     },
     {
       id: 25,
-      title: 'How TO EARN $100k',
+      title: 'How To Earn $100k',
       description: 'Strategies and techniques to reach the $100,000 annual income milestone.',
       duration: '50 minutes',
       difficulty: 'Advanced',
@@ -295,7 +295,7 @@ const TrainingsPage = () => {
     },
     {
       id: 26,
-      title: 'How TO BE A strong, CFT',
+      title: 'How To Be A Strong, CFT',
       description: 'Learn how to become a strong and effective CFT (Certified Financial Trainer).',
       duration: '45 minutes',
       difficulty: 'Advanced',
@@ -306,7 +306,7 @@ const TrainingsPage = () => {
     },
     {
       id: 27,
-      title: 'BEST ANSWERS For Closers',
+      title: 'Best Answers For Closers',
       description: 'Master the best responses and closing techniques for successful sales.',
       duration: '40 minutes',
       difficulty: 'Advanced',
