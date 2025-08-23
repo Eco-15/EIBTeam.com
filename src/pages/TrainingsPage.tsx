@@ -207,7 +207,7 @@ const TrainingsPage = () => {
     },
     {
       id: 18,
-      title: 'TAX Circles',
+      title: 'Tax Circles',
       description: 'Learn about tax implications and strategies for insurance and financial products.',
       duration: '40 minutes',
       difficulty: 'Intermediate',
