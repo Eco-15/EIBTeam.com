@@ -112,7 +112,7 @@ const WholeLifeInsurancePage = () => {
                   <div className="text-gray-600 text-sm">Coverage Guarantee</div>
                 </div>
                 <div className="bg-white p-4 rounded-xl shadow-md text-center">
-                  <div className="text-2xl font-bold text-yellow-600 mb-1">Tax-Free</div>
+                  <div className="text-2xl font-bold text-yellow-600 mb-1">Permenant Insuance</div>
                   <div className="text-gray-600 text-sm">Death Benefit</div>
                 </div>
               </div>
