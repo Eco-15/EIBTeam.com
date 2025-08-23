@@ -293,7 +293,6 @@ const TrainingDetailPage = () => {
                   <div className="flex items-start justify-between mb-6">
                     <div className="flex-1">
                       <h1 className="text-3xl font-bold text-gray-900 mb-2">{training.title}</h1>
-                      <p className="text-lg text-gray-600 mb-4">{training.description}</p>
                       
                       <div className="flex items-center space-x-6 text-sm text-gray-500 mb-4">
                         <div className="flex items-center space-x-1">
