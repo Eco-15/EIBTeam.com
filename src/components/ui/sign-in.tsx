@@ -162,6 +162,8 @@ const AnimatedSignIn: React.FC = () => {
                 */}
                 
                 {/* Bottom left - Green stat */}
+
+                {/*
                 <div 
                   className={`rounded-xl flex flex-col justify-center items-center p-6 text-black ${
                     theme === 'dark' ? 'bg-black-600' : 'bg-white-500'
@@ -176,8 +178,12 @@ const AnimatedSignIn: React.FC = () => {
                   <h2 className="text-5xl font-bold mb-2">15K+</h2>
                   <p className="text-center text-sm">Families protected by EIB Team agents nationwide.</p>
                 </div>
+
+                */}
                 
                 {/* Bottom right - Library */}
+
+                {/*
                 <div className="overflow-hidden rounded-xl">
                   <img 
                     src="https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlmOrmln8EfQTV7ApbyFLmjY5GCZhaPcN4nzo" 
@@ -186,6 +192,9 @@ const AnimatedSignIn: React.FC = () => {
                     style={{ opacity: 0.9 }}
                   />
                 </div>
+                */}
+
+                
               </div>
             </div>
             
