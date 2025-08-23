@@ -353,7 +353,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Beginner',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnwWv04GMy1pgcSeV6YWjXk7P5qlCr3doJtfQF', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnWA9m6kwDoEgx6u7dLy8etIN1pvK3aPWcf5AR',
       objectives: [
         'Understand all life insurance types',
