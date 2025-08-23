@@ -41,7 +41,7 @@ const AboutPage = () => {
             Serve <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-600">People & Treat </span><span className="text-5xl md:text-6xl font-bold text-black mb-6"> Them Right</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              We're more than just an insurance brokerage—we're a family dedicated to protecting what matters most.
+              We're more than just an insurance agency — we're a family dedicated to protecting what matters most.
             </p>
           </div>
         </div>
@@ -106,7 +106,7 @@ const AboutPage = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-black mb-6">Our Journey</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From our founding in 2007 to becoming a leading insurance brokerage
+              From our founding in 2007 to becoming a leading insurance agency
             </p>
           </div>
 
