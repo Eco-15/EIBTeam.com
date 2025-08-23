@@ -553,7 +553,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Advanced',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnpQX3nb6DARSxfOkQHXiIBqK1FClcrjMG02uP', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnd7spMIl7cmdASPKDVwuU18xgjXi5O4RQaH2I',
       objectives: [
         'Master X-Curve methodology',
