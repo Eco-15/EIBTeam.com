@@ -192,7 +192,7 @@ const TrainingDetailPage = () => {
     },
     {
       id: 8,
-      title: 'EXCHANGE Prince',
+      title: 'Exchange Principles',
       description: 'Master the exchange process and become a prince of exchanges.',
       fullDescription: 'The exchange process is a critical skill for advanced agents. Learn how to identify exchange opportunities, navigate the process, and become a master of insurance exchanges to better serve your clients.',
       duration: '30 minutes',
