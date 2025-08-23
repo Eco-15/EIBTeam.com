@@ -346,7 +346,7 @@ const TrainingDetailPage = () => {
   const serviceAndSalesTrainings = [
     {
       id: 14,
-      title: 'TYPES OF LIFE INSURANCE',
+      title: 'Types of Life Insurance',
       description: 'Comprehensive overview of all life insurance products and their applications.',
       fullDescription: 'Understanding the different types of life insurance is fundamental to serving your clients effectively. This comprehensive training covers term, whole life, universal life, and indexed universal life insurance, helping you match the right product to each client\'s needs.',
       duration: '45 minutes',
