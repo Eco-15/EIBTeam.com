@@ -156,9 +156,14 @@ const AnimatedSignIn: React.FC = () => {
       // Use the exact current URL without any modifications
       const redirectUrl = window.location.origin + window.location.pathname;
       console.log('Sending password reset with redirect URL:', redirectUrl);
+     console.log('Reset request timestamp:', new Date().toISOString());
       
       const { error } = await supabase.auth.resetPasswordForEmail(forgotPasswordEmail, {
-        redirectTo: redirectUrl
+       redirectTo: redirectUrl,
+       // Add additional options to help with token validity
+       options: {
+         emailRedirectTo: redirectUrl
+       }
       });
 
       if (error) {
@@ -392,6 +397,26 @@ const AnimatedSignIn: React.FC = () => {
                     <div className="flex-1">
                       <p className="text-red-700 font-medium">Password Reset Error</p>
                       <p className="text-red-600 text-sm mt-1">{resetError}</p>
+                     <div className="mt-3 space-y-2">
+                       <button
+                         onClick={() => {
+                           setResetError('');
+                           setShowForgotPassword(true);
+                           setForgotPasswordEmail(email);
+                         }}
+                         className="block text-sm text-red-600 hover:text-red-800 font-medium underline"
+                       >
+                         Request new password reset
+                       </button>
+                       <div className="text-xs text-red-500 mt-2">
+                         <p><strong>Troubleshooting tips:</strong></p>
+                         <ul className="list-disc list-inside mt-1 space-y-1">
+                           <li>Try using a different email provider (Gmail, Outlook)</li>
+                           <li>Check if your email provider has security scanning enabled</li>
+                           <li>Contact support if the issue persists</li>
+                         </ul>
+                       </div>
+                     </div>
                       <button
                         onClick={() => {
                           setResetError('');
@@ -717,8 +742,16 @@ const AnimatedSignIn: React.FC = () => {
                           
                           <div>
                             <p className={`text-sm mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                              Enter your email address and we'll send you a link to reset your password.
+                             Enter your email address and we'll send you a link to reset your password. The link will be valid for 1 hour.
                             </p>
+                           
+                           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+                             <p className="text-yellow-800 text-xs">
+                               <strong>Important:</strong> Some email providers scan links for security, which can invalidate the reset token. 
+                               If you get an "expired" error immediately, try using a different email address or contact support.
+                             </p>
+                           </div>
+                           
                             <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
                               Email Address
                             </label>
