@@ -25,6 +25,10 @@ const AnimatedSignIn: React.FC = () => {
   
   // Animation states
   const [formVisible, setFormVisible] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setFormVisible(true);
     
     // Clean up any URL hash parameters from previous attempts
     if (window.location.hash) {
@@ -351,6 +355,199 @@ const AnimatedSignIn: React.FC = () => {
                 </p>
               </div>
               
+              {/* Forgot Password Modal */}
+              {showForgotPassword && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                  <div className={`rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto ${
+                    theme === 'dark' ? 'bg-slate-800' : 'bg-white'
+                  }`}>
+                    <div className={`p-6 border-b ${theme === 'dark' ? 'border-slate-600' : 'border-gray-200'}`}>
+                      <div className="flex items-center justify-between">
+                        <h3 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                          Reset Password
+                        </h3>
+                        <button
+                          onClick={() => {
+                            setShowForgotPassword(false);
+                            setOtpSent(false);
+                            setForgotPasswordEmail('');
+                            setOtp('');
+                            setNewPassword('');
+                            setConfirmPassword('');
+                            setOtpError('');
+                          }}
+                          className={`${theme === 'dark' ? 'text-gray-400 hover:text-gray-300' : 'text-gray-400 hover:text-gray-600'} transition-colors`}
+                        >
+                          <X className="h-6 w-6" />
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div className="p-6">
+                      {!otpSent ? (
+                        <form onSubmit={handleForgotPassword} className="space-y-4">
+                          {otpError && (
+                            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                              <p className="text-red-700 text-sm">{otpError}</p>
+                            </div>
+                          )}
+                          
+                          <div>
+                            <p className={`text-sm mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                              Enter your email address and we'll send you a 6-digit code to reset your password.
+                            </p>
+                            
+                            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
+                              Email Address
+                            </label>
+                            <input
+                              type="email"
+                              required
+                              value={forgotPasswordEmail}
+                              onChange={(e) => setForgotPasswordEmail(e.target.value)}
+                              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent ${
+                                theme === 'dark' 
+                                  ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400' 
+                                  : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400'
+                              }`}
+                              placeholder="your.email@example.com"
+                            />
+                          </div>
+                          
+                          <div className="flex space-x-3 pt-4">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setShowForgotPassword(false);
+                                setOtpSent(false);
+                                setForgotPasswordEmail('');
+                                setOtp('');
+                                setNewPassword('');
+                                setConfirmPassword('');
+                                setOtpError('');
+                              }}
+                              className={`flex-1 px-4 py-2 border rounded-lg transition-colors ${
+                                theme === 'dark' 
+                                  ? 'border-slate-600 text-gray-300 hover:bg-slate-700' 
+                                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                              }`}
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              type="submit"
+                              disabled={isSendingOtp}
+                              className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                              {isSendingOtp ? 'Sending...' : 'Send Code'}
+                            </button>
+                          </div>
+                        </form>
+                      ) : (
+                        <form onSubmit={handleOtpVerificationAndPasswordUpdate} className="space-y-4">
+                          {otpError && (
+                            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                              <p className="text-red-700 text-sm">{otpError}</p>
+                            </div>
+                          )}
+                          
+                          <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
+                            <p className="text-green-700 text-sm">
+                              We've sent a 6-digit code to <strong>{forgotPasswordEmail}</strong>. 
+                              Enter the code below along with your new password.
+                            </p>
+                          </div>
+                          
+                          <div>
+                            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
+                              6-Digit Code
+                            </label>
+                            <input
+                              type="text"
+                              required
+                              maxLength={6}
+                              value={otp}
+                              onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
+                              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-center text-lg tracking-widest ${
+                                theme === 'dark' 
+                                  ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400' 
+                                  : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400'
+                              }`}
+                              placeholder="000000"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
+                              New Password
+                            </label>
+                            <input
+                              type="password"
+                              required
+                              minLength={6}
+                              value={newPassword}
+                              onChange={(e) => setNewPassword(e.target.value)}
+                              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent ${
+                                theme === 'dark' 
+                                  ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400' 
+                                  : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400'
+                              }`}
+                              placeholder="Enter new password"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
+                              Confirm New Password
+                            </label>
+                            <input
+                              type="password"
+                              required
+                              minLength={6}
+                              value={confirmPassword}
+                              onChange={(e) => setConfirmPassword(e.target.value)}
+                              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent ${
+                                theme === 'dark' 
+                                  ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400' 
+                                  : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400'
+                              }`}
+                              placeholder="Confirm new password"
+                            />
+                          </div>
+                          
+                          <div className="flex space-x-3 pt-4">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setOtpSent(false);
+                                setOtp('');
+                                setNewPassword('');
+                                setConfirmPassword('');
+                                setOtpError('');
+                              }}
+                              className={`flex-1 px-4 py-2 border rounded-lg transition-colors ${
+                                theme === 'dark' 
+                                  ? 'border-slate-600 text-gray-300 hover:bg-slate-700' 
+                                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                              }`}
+                            >
+                              Back
+                            </button>
+                            <button
+                              type="submit"
+                              disabled={isVerifyingOtp}
+                              className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                              {isVerifyingOtp ? 'Updating...' : 'Update Password'}
+                            </button>
+                          </div>
+                        </form>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+              
               {/* Regular Sign In Form */}
               <form onSubmit={handleSignIn} className="space-y-6">
                 <div className="space-y-1">
@@ -495,248 +692,6 @@ const AnimatedSignIn: React.FC = () => {
                   </div>
                 </div>
               </div>
-              
-              {/* OTP-based Password Reset Modal */}
-              {showForgotPassword && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                  <div className={`rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto ${
-                    theme === 'dark' ? 'bg-slate-800' : 'bg-white'
-                  }`}>
-                    <div className={`p-6 border-b ${theme === 'dark' ? 'border-slate-600' : 'border-gray-200'}`}>
-                      <div className="flex items-center justify-between">
-                        <h3 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                          Reset Password
-                        </h3>
-                        <button
-                          onClick={() => {
-                            setShowForgotPassword(false);
-                            setOtpSent(false);
-                            setForgotPasswordEmail('');
-                            setOtp('');
-                            setNewPassword('');
-                            setConfirmPassword('');
-                            setOtpError('');
-                          }}
-                          className={`${theme === 'dark' ? 'text-gray-400 hover:text-gray-300' : 'text-gray-400 hover:text-gray-600'} transition-colors`}
-                        >
-                          <X className="h-6 w-6" />
-                        </button>
-                      </div>
-                    </div>
-                    
-                    <div className="p-6">
-                      {!otpSent ? (
-                        /* Step 1: Request OTP */
-                        <form onSubmit={handleForgotPassword} className="space-y-4">
-                          {otpError && (
-                            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                              <p className="text-red-700 text-sm">{otpError}</p>
-                            </div>
-                          )}
-                          
-                          <div>
-                            <p className={`text-sm mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                              Enter your email address and we'll send you a 6-digit verification code to reset your password.
-                            </p>
-                            
-                            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
-                              Email Address
-                            </label>
-                            <input
-                              type="email"
-                              required
-                              value={forgotPasswordEmail}
-                              onChange={(e) => setForgotPasswordEmail(e.target.value)}
-                              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent ${
-                                theme === 'dark' 
-                                  ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400' 
-                                  : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400'
-                              }`}
-                              placeholder="your.email@example.com"
-                            />
-                          </div>
-                          
-                          <div className="flex space-x-3 pt-4">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setShowForgotPassword(false);
-                                setOtpSent(false);
-                                setForgotPasswordEmail('');
-                                setOtpError('');
-                              }}
-                              className={`flex-1 px-4 py-2 border rounded-lg transition-colors ${
-                                theme === 'dark' 
-                                  ? 'border-slate-600 text-gray-300 hover:bg-slate-700' 
-                                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-                              }`}
-                            >
-                              Cancel
-                            </button>
-                            <button
-                              type="submit"
-                              disabled={isSendingOtp}
-                              className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                              {isSendingOtp ? 'Sending Code...' : 'Send Verification Code'}
-                            </button>
-                          </div>
-                        </form>
-                      ) : (
-                        /* Step 2: Enter OTP and New Password */
-                        <form onSubmit={handleOtpVerificationAndPasswordUpdate} className="space-y-4">
-                          {otpError && (
-                            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                              <p className="text-red-700 text-sm">{otpError}</p>
-                            </div>
-                          )}
-                          
-                          <div className="text-center mb-4">
-                            <div className="bg-green-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                              <CheckCircle className="h-8 w-8 text-green-600" />
-                            </div>
-                            <h4 className={`text-lg font-semibold mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                              Verification Code Sent!
-                            </h4>
-                            <p className={`text-sm mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                              We've sent a 6-digit verification code to <strong>{forgotPasswordEmail}</strong>. 
-                              Enter the code below along with your new password.
-                            </p>
-                          </div>
-
-                          <div>
-                            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
-                              Verification Code *
-                            </label>
-                            <input
-                              type="text"
-                              required
-                              value={otp}
-                              onChange={(e) => {
-                                // Only allow numbers and limit to 6 digits
-                                const value = e.target.value.replace(/\D/g, '').slice(0, 6);
-                                setOtp(value);
-                              }}
-                              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-center text-lg font-mono tracking-widest ${
-                                theme === 'dark' 
-                                  ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400' 
-                                  : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400'
-                              }`}
-                              placeholder="123456"
-                              maxLength={6}
-                            />
-                            <p className={`text-xs mt-1 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
-                              Enter the 6-digit code from your email
-                            </p>
-                          </div>
-
-                          <div>
-                            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
-                              New Password *
-                            </label>
-                            <div className="relative">
-                              <input
-                                type={showPassword ? 'text' : 'password'}
-                                required
-                                value={newPassword}
-                                onChange={(e) => setNewPassword(e.target.value)}
-                                className={`w-full px-3 py-2 pr-10 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent ${
-                                  theme === 'dark' 
-                                    ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400' 
-                                    : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400'
-                                }`}
-                                placeholder="Enter new password"
-                                minLength={6}
-                              />
-                              <button
-                                type="button"
-                                className={`absolute inset-y-0 right-0 flex items-center pr-3 ${
-                                  theme === 'dark' ? 'text-gray-300' : 'text-gray-500'
-                                }`}
-                                onClick={() => setShowPassword(!showPassword)}
-                              >
-                                {showPassword ? (
-                                  <EyeOff size={16} className="hover:text-gray-700 transition-colors" />
-                                ) : (
-                                  <Eye size={16} className="hover:text-gray-700 transition-colors" />
-                                )}
-                              </button>
-                            </div>
-                          </div>
-
-                          <div>
-                            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
-                              Confirm New Password *
-                            </label>
-                            <input
-                              type="password"
-                              required
-                              value={confirmPassword}
-                              onChange={(e) => setConfirmPassword(e.target.value)}
-                              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent ${
-                                theme === 'dark' 
-                                  ? 'bg-slate-700 border-slate-600 text-white placeholder:text-gray-400' 
-                                  : 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400'
-                              }`}
-                              placeholder="Confirm new password"
-                              minLength={6}
-                            />
-                          </div>
-                          
-                          <div className="flex space-x-3 pt-4">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setOtpSent(false);
-                                setOtp('');
-                                setNewPassword('');
-                                setConfirmPassword('');
-                                setOtpError('');
-                              }}
-                              className={`flex-1 px-4 py-2 border rounded-lg transition-colors ${
-                                theme === 'dark' 
-                                  ? 'border-slate-600 text-gray-300 hover:bg-slate-700' 
-                                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-                              }`}
-                            >
-                              Back
-                            </button>
-                            <button
-                              type="submit"
-                              disabled={isVerifyingOtp || passwordResetSuccess}
-                              className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg font-medium hover:from-yellow-600 hover:to-yellow-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                              {isVerifyingOtp ? 'Updating Password...' : 'Reset Password'}
-                            </button>
-                          </div>
-                        </form>
-                      )}
-                      
-                      {/* Resend OTP option */}
-                      {otpSent && !passwordResetSuccess && (
-                        <div className="text-center">
-                          <p className={`text-xs mt-4 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
-                            Didn't receive the code? 
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setOtpSent(false);
-                                setOtp('');
-                                setOtpError('');
-                              }}
-                              className={`ml-1 font-medium underline ${
-                                theme === 'dark' ? 'text-yellow-400 hover:text-yellow-300' : 'text-yellow-600 hover:text-yellow-500'
-                              }`}
-                            >
-                              Send again
-                            </button>
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>
