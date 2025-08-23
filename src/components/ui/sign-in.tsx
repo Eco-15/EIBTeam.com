@@ -32,10 +32,14 @@ const AnimatedSignIn: React.FC = () => {
       console.log('Checking for password reset tokens...');
       console.log('Current URL:', window.location.href);
       console.log('Hash:', window.location.hash);
+      console.log('Pathname:', window.location.pathname);
+      console.log('Search:', window.location.search);
       
       // Supabase places tokens in the URL hash for security
       const hash = window.location.hash.substring(1);
       const hashParams = new URLSearchParams(hash);
+      
+      console.log('All hash parameters:', Object.fromEntries(hashParams.entries()));
       
       // Check for errors first
       const error = hashParams.get('error');
@@ -47,9 +51,9 @@ const AnimatedSignIn: React.FC = () => {
         
         let userFriendlyMessage = '';
         if (errorCode === 'otp_expired') {
-          userFriendlyMessage = 'The password reset link has expired. Please request a new password reset.';
+          userFriendlyMessage = 'The password reset link has expired or was already used. Please request a new password reset link.';
         } else if (error === 'access_denied') {
-          userFriendlyMessage = 'The password reset link is invalid or has already been used. Please request a new password reset.';
+          userFriendlyMessage = 'The password reset link is invalid, has expired, or has already been used. Please request a new password reset link.';
         } else {
           userFriendlyMessage = `Password reset failed: ${errorDescription || error}`;
         }
@@ -75,6 +79,9 @@ const AnimatedSignIn: React.FC = () => {
       if (type === 'recovery' && accessToken && refreshToken) {
         console.log('Password reset detected, setting session...');
         
+        // Clear the URL hash immediately to prevent reprocessing
+        window.history.replaceState({}, document.title, window.location.pathname);
+        
         // Set the session with the tokens from the URL
         supabase.auth.setSession({
           access_token: accessToken,
@@ -82,19 +89,21 @@ const AnimatedSignIn: React.FC = () => {
         }).then(({ data, error }) => {
           if (error) {
             console.error('Error setting session for password reset:', error);
-            setResetError('Invalid or expired reset link. Please request a new password reset.');
+            setResetError('The password reset link is invalid or has expired. Please request a new password reset link.');
             return;
           }
           
-          console.log('Session set successfully, showing password reset form');
+          console.log('Session set successfully for password reset, showing form');
+          console.log('Session data:', data);
           setShowPasswordReset(true);
-          
-          // Clean up the URL hash immediately
-          window.history.replaceState({}, document.title, window.location.pathname);
         }).catch((error) => {
           console.error('Error setting session for password reset:', error);
-          setResetError('Invalid or expired reset link. Please request a new password reset.');
+          setResetError('The password reset link is invalid or has expired. Please request a new password reset link.');
         });
+      } else if (accessToken || refreshToken || type) {
+        console.log('Incomplete password reset tokens detected:', { accessToken: !!accessToken, refreshToken: !!refreshToken, type });
+        setResetError('The password reset link appears to be incomplete or corrupted. Please request a new password reset link.');
+        window.history.replaceState({}, document.title, window.location.pathname);
       }
     };
     
@@ -144,8 +153,12 @@ const AnimatedSignIn: React.FC = () => {
     setResetError('');
     
     try {
+      // Use the exact current URL without any modifications
+      const redirectUrl = window.location.origin + window.location.pathname;
+      console.log('Sending password reset with redirect URL:', redirectUrl);
+      
       const { error } = await supabase.auth.resetPasswordForEmail(forgotPasswordEmail, {
-        redirectTo: `${window.location.origin}/agent-login`
+        redirectTo: redirectUrl
       });
 
       if (error) {
@@ -155,6 +168,7 @@ const AnimatedSignIn: React.FC = () => {
         return;
       }
 
+      console.log('Password reset email sent successfully');
       setResetEmailSent(true);
       setIsResettingPassword(false);
     } catch (error) {
