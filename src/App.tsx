@@ -55,6 +55,21 @@ function App() {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        console.log('Auth state change:', event, session?.user?.email);
+        
+        // Handle email confirmation
+        if (event === 'SIGNED_IN' && session?.user && !session.user.email_confirmed_at) {
+          console.log('User signed in but email not confirmed yet');
+          return;
+        }
+        
+        // Handle successful email confirmation
+        if (event === 'SIGNED_IN' && session?.user?.email_confirmed_at) {
+          console.log('User email confirmed, redirecting to dashboard');
+          window.location.href = '/dashboard';
+          return;
+        }
+        
         if (event === 'SIGNED_OUT' || 
             (event === 'TOKEN_REFRESHED' && !session) ||
             event === 'SIGNED_IN_WITH_PASSWORD') {
