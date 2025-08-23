@@ -324,7 +324,7 @@ const TrainingDetailPage = () => {
       difficulty: 'Intermediate',
       rating: 5.0,
       instructor: 'Jason Graziani',
-      video: '', // To be integrated
+      video: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnx9Cwq9j8nPdEtGfq7DY61RclV3ZMWb9pQgo2', // To be integrated
       thumbnail: 'https://lyz5cvfr0h.ufs.sh/f/tLx4hl5ikmOnlmOrmln8EfQTV7ApbyFLmjY5GCZhaPcN4nzo',
       objectives: [
         'Understand compensation structures',
