@@ -50,7 +50,7 @@ Deno.serve(async (req) => {
         if (error) {
           console.error('Error creating consultation request:', error)
           return new Response(
-            JSON.stringify({ success: false, error: error.message }),
+            JSON.stringify({ success: false, error: error.message || 'Failed to create consultation request' }),
             { 
               status: 400, 
               headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -87,7 +87,7 @@ Deno.serve(async (req) => {
         if (error) {
           console.error('Error creating team application:', error)
           return new Response(
-            JSON.stringify({ success: false, error: error.message }),
+            JSON.stringify({ success: false, error: error.message || 'Failed to create team application' }),
             { 
               status: 400, 
               headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -104,7 +104,7 @@ Deno.serve(async (req) => {
         )
       } else {
         return new Response(
-          JSON.stringify({ success: false, error: 'Invalid form type' }),
+          JSON.stringify({ success: false, error: 'Invalid form type. Please specify either "consultation" or "team".' }),
           { 
             status: 400, 
             headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -124,7 +124,7 @@ Deno.serve(async (req) => {
   } catch (error) {
     console.error('Edge function error:', error)
     return new Response(
-      JSON.stringify({ success: false, error: 'Internal server error' }),
+      JSON.stringify({ success: false, error: error.message || 'An unexpected error occurred while processing your request' }),
       { 
         status: 500, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
