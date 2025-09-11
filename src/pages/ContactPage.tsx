@@ -51,49 +51,59 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     try {
+      // Use edge function to submit form data
+      const formData = formType === 'consultation' ? {
+        formType: 'consultation',
+        name: consultationForm.name,
+        email: consultationForm.email,
+        phone: consultationForm.phone,
+        city: consultationForm.city,
+        state: consultationForm.state,
+        productInterest: consultationForm.productInterest,
+        hearAbout: consultationForm.hearAbout,
+        comments: consultationForm.comments
+      } : {
+        formType: 'team',
+        name: teamForm.name,
+        email: teamForm.email,
+        phone: teamForm.phone,
+        city: teamForm.city,
+        state: teamForm.state,
+        experience: teamForm.experience,
+        hearAbout: teamForm.hearAbout,
+        description: teamForm.description,
+        referredBy: teamForm.referredBy
+      };
+
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/contact-form`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Failed to submit form');
+      }
+
+      // Success - reset form and show success message
+      setIsSubmitted(true);
       if (formType === 'consultation') {
-        const success = await DatabaseService.createConsultationRequest({
-          name: consultationForm.name,
-          email: consultationForm.email,
-          phone: consultationForm.phone,
-          city: consultationForm.city,
-          state: consultationForm.state,
-          product_interest: consultationForm.productInterest,
-          hear_about: consultationForm.hearAbout,
-          comments: consultationForm.comments
+        setConsultationForm({
+          name: '', email: '', phone: '', city: '', state: '',
+          productInterest: '', hearAbout: '', comments: ''
         });
-
-        if (success) {
-          setIsSubmitted(true);
-          setConsultationForm({
-            name: '', email: '', phone: '', city: '', state: '',
-            productInterest: '', hearAbout: '', comments: ''
-          });
-        } else {
-          alert('Error submitting consultation request. Please try again.');
-        }
       } else {
-        const success = await DatabaseService.createTeamApplication({
-          name: teamForm.name,
-          email: teamForm.email,
-          phone: teamForm.phone,
-          city: teamForm.city,
-          state: teamForm.state,
-          experience: teamForm.experience,
-          hear_about: teamForm.hearAbout,
-          description: teamForm.description,
-          referred_by: teamForm.referredBy
+        setTeamForm({
+          name: '', email: '', phone: '', city: '', state: '',
+          experience: '', hearAbout: '', description: '', referredBy: ''
         });
-
-        if (success) {
-          setIsSubmitted(true);
-          setTeamForm({
-            name: '', email: '', phone: '', city: '', state: '',
-            experience: '', hearAbout: '', description: '', referredBy: ''
-          });
-        } else {
-          alert('Error submitting team application. Please try again.');
-        }
       }
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -103,9 +113,7 @@ const ContactPage = () => {
     setIsSubmitting(false);
     
     // Reset success message after 5 seconds
-    if (isSubmitted) {
-      setTimeout(() => setIsSubmitted(false), 5000);
-    }
+    setTimeout(() => setIsSubmitted(false), 5000);
   };
 
   const contactMethods = [
