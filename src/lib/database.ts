@@ -699,6 +699,7 @@ export class DatabaseService {
   // Consultation Requests functions
   static async createConsultationRequest(request: Partial<ConsultationRequest>): Promise<ConsultationRequest | null> {
     try {
+      // Use anon key for public consultation requests
       const { data, error } = await supabase
         .from('consultation_requests')
         .insert([request])
@@ -713,6 +714,27 @@ export class DatabaseService {
       return data;
     } catch (error) {
       console.error('Error creating consultation request:', error);
+      return null;
+    }
+  }
+
+  static async createTeamApplication(application: Partial<TeamApplication>): Promise<TeamApplication | null> {
+    try {
+      // Use anon key for public team applications
+      const { data, error } = await supabase
+        .from('team_applications')
+        .insert([application])
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error creating team application:', error);
+        return null;
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error creating team application:', error);
       return null;
     }
   }
