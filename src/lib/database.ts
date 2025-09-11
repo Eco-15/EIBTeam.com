@@ -697,45 +697,89 @@ export class DatabaseService {
   }
 
   // Consultation Requests functions
-  static async createConsultationRequest(request: Partial<ConsultationRequest>): Promise<ConsultationRequest | null> {
+  static async createConsultationRequest(consultationData: {
+    name: string;
+    email: string;
+    phone: string;
+    city: string;
+    state: string;
+    product_interest?: string;
+    hear_about?: string;
+    comments?: string;
+  }): Promise<boolean> {
     try {
-      // Use anon key for public consultation requests
+      console.log('Creating consultation request with data:', consultationData);
+      
       const { data, error } = await supabase
         .from('consultation_requests')
-        .insert([request])
+        .insert([{
+          name: consultationData.name,
+          email: consultationData.email,
+          phone: consultationData.phone,
+          city: consultationData.city,
+          state: consultationData.state,
+          product_interest: consultationData.product_interest || null,
+          hear_about: consultationData.hear_about || null,
+          comments: consultationData.comments || null,
+          status: 'pending'
+        }])
         .select()
         .single();
 
       if (error) {
-        console.error('Error creating consultation request:', error);
-        return null;
+        console.error('Supabase error creating consultation request:', error);
+        throw new Error(error.message);
       }
 
-      return data;
+      console.log('Consultation request created successfully:', data);
+      return true;
     } catch (error) {
       console.error('Error creating consultation request:', error);
-      return null;
+      throw error;
     }
   }
 
-  static async createTeamApplication(application: Partial<TeamApplication>): Promise<TeamApplication | null> {
+  static async createTeamApplication(applicationData: {
+    name: string;
+    email: string;
+    phone: string;
+    city: string;
+    state: string;
+    experience?: string;
+    hear_about?: string;
+    description?: string;
+    referred_by?: string;
+  }): Promise<boolean> {
     try {
-      // Use anon key for public team applications
+      console.log('Creating team application with data:', applicationData);
+      
       const { data, error } = await supabase
         .from('team_applications')
-        .insert([application])
+        .insert([{
+          name: applicationData.name,
+          email: applicationData.email,
+          phone: applicationData.phone,
+          city: applicationData.city,
+          state: applicationData.state,
+          experience: applicationData.experience || null,
+          hear_about: applicationData.hear_about || null,
+          description: applicationData.description || null,
+          referred_by: applicationData.referred_by || null,
+          status: 'pending'
+        }])
         .select()
         .single();
 
       if (error) {
-        console.error('Error creating team application:', error);
-        return null;
+        console.error('Supabase error creating team application:', error);
+        throw new Error(error.message);
       }
 
-      return data;
+      console.log('Team application created successfully:', data);
+      return true;
     } catch (error) {
       console.error('Error creating team application:', error);
-      return null;
+      throw error;
     }
   }
 
@@ -779,26 +823,6 @@ export class DatabaseService {
     }
   }
 
-  // Team Applications functions
-  static async createTeamApplication(application: Partial<TeamApplication>): Promise<TeamApplication | null> {
-    try {
-      const { data, error } = await supabase
-        .from('team_applications')
-        .insert([application])
-        .select()
-        .single();
-
-      if (error) {
-        console.error('Error creating team application:', error);
-        return null;
-      }
-
-      return data;
-    } catch (error) {
-      console.error('Error creating team application:', error);
-      return null;
-    }
-  }
 
   static async getTeamApplications(): Promise<TeamApplication[]> {
     try {

@@ -52,7 +52,7 @@ const ContactPage = () => {
     
     try {
       if (formType === 'consultation') {
-        const result = await DatabaseService.createConsultationRequest({
+        const success = await DatabaseService.createConsultationRequest({
           name: consultationForm.name,
           email: consultationForm.email,
           phone: consultationForm.phone,
@@ -63,7 +63,7 @@ const ContactPage = () => {
           comments: consultationForm.comments
         });
 
-        if (result) {
+        if (success) {
           setIsSubmitted(true);
           setConsultationForm({
             name: '', email: '', phone: '', city: '', state: '',
@@ -73,7 +73,7 @@ const ContactPage = () => {
           alert('Error submitting consultation request. Please try again.');
         }
       } else {
-        const result = await DatabaseService.createTeamApplication({
+        const success = await DatabaseService.createTeamApplication({
           name: teamForm.name,
           email: teamForm.email,
           phone: teamForm.phone,
@@ -85,7 +85,7 @@ const ContactPage = () => {
           referred_by: teamForm.referredBy
         });
 
-        if (result) {
+        if (success) {
           setIsSubmitted(true);
           setTeamForm({
             name: '', email: '', phone: '', city: '', state: '',
@@ -97,7 +97,7 @@ const ContactPage = () => {
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Error submitting form. Please try again.');
+      alert(`Error submitting form: ${error.message || 'Please try again.'}`);
     }
     
     setIsSubmitting(false);
