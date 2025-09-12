@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Bell, User, LogOut, Menu, X, CheckCircle, AlertCircle, Calendar, MessageSquare, Home, FileText, Library, BookOpen } from 'lucide-react';
-import { useAuth } from '@/lib/authContext';
+import { supabase } from '@/lib/supabase';
 import { DatabaseService } from '@/lib/database';
 
 const DashboardHeader = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user: currentUser, signOut } = useAuth();
+  const [currentUser, setCurrentUser] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [announcements, setAnnouncements] = useState<any[]>([]);
@@ -15,30 +15,34 @@ const DashboardHeader = () => {
   const [selectedAnnouncement, setSelectedAnnouncement] = useState<any>(null);
 
   useEffect(() => {
-    const loadUserData = async () => {
-      if (!currentUser) return;
-      
+    const getCurrentUser = async () => {
       try {
-        const adminStatus = await DatabaseService.isAdmin(currentUser.id);
-        console.log('Admin status for user:', currentUser.email, adminStatus);
-        setIsAdmin(adminStatus);
+        const { data: { user } } = await supabase.auth.getUser();
+        console.log('Current user in header:', user?.email);
+        setCurrentUser(user);
         
-        // Check if currently on admin page
-        setIsAdminMode(window.location.pathname.startsWith('/admin/dashboard'));
-        
-        // Load announcements for notifications
-        const announcementsList = await DatabaseService.getAnnouncements();
-        setAnnouncements(announcementsList.slice(0, 5)); // Show only 5 most recent
+        if (user) {
+          const adminStatus = await DatabaseService.isAdmin(user.id);
+          console.log('Admin status for user:', user.email, adminStatus);
+          setIsAdmin(adminStatus);
+          
+          // Check if currently on admin page
+          setIsAdminMode(window.location.pathname.startsWith('/admin/dashboard'));
+          
+          // Load announcements for notifications
+          const announcementsList = await DatabaseService.getAnnouncements();
+          setAnnouncements(announcementsList.slice(0, 5)); // Show only 5 most recent
+        }
       } catch (error) {
-        console.error('Error loading user data:', error);
+        console.error('Error getting current user:', error);
       }
     };
 
-    loadUserData();
-  }, [currentUser]);
+    getCurrentUser();
+  }, []);
 
   const handleLogout = async () => {
-    signOut();
+    await supabase.auth.signOut();
     window.location.href = '/';
   };
 

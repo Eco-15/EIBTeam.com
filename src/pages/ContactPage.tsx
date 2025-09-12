@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, MessageSquare, Calendar, Users, UserPlus, FileText } from 'lucide-react';
-import { ApiService } from '../lib/api';
+import { DatabaseService } from '../lib/database';
 
 const ContactPage = () => {
   const [consultationForm, setConsultationForm] = useState({
@@ -51,7 +51,7 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     try {
-      // Use API service to submit form data
+      // Use edge function to submit form data
       const formData = formType === 'consultation' ? {
         formType: 'consultation',
         name: consultationForm.name,
@@ -75,9 +75,20 @@ const ContactPage = () => {
         referredBy: teamForm.referredBy
       };
 
-      const result = await ApiService.submitContactForm(formData);
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/contact-form`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-      if (!result.success) {
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
         throw new Error(result.error || 'Failed to submit form');
       }
 

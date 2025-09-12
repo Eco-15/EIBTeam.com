@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Eye, EyeOff, LogIn, ArrowLeft, Shield, CheckCircle, X, Mail, Lock } from 'lucide-react';
-import { useAuth } from '@/lib/authContext';
+import { supabase } from '@/lib/supabase';
 
 const AnimatedSignIn: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -8,7 +8,6 @@ const AnimatedSignIn: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { signIn, updatePassword } = useAuth();
   
   // Password reset states
   const [resetStep, setResetStep] = useState<'login' | 'request' | 'verify'>('login');
@@ -58,11 +57,28 @@ const AnimatedSignIn: React.FC = () => {
     setIsLoading(true);
     
     try {
-      await signIn(email, password);
-      window.location.href = '/dashboard';
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      if (error) {
+        console.error('Login error:', error);
+        if (error.message.includes('invalid_credentials') || error.message.includes('Invalid login credentials')) {
+          alert('Invalid email or password. Please check your credentials and try again.');
+        } else {
+          alert(`Login failed: ${error.message}`);
+        }
+        setIsLoading(false);
+        return;
+      }
+
+      if (data.user) {
+        window.location.href = '/dashboard';
+      }
     } catch (error) {
       console.error('Login error:', error);
-      alert(`Login failed: ${error.message || 'Please check your credentials and try again.'}`);
+      alert('An error occurred during login. Please try again.');
       setIsLoading(false);
     }
   };
@@ -75,9 +91,30 @@ const AnimatedSignIn: React.FC = () => {
     try {
       console.log('Requesting password reset for:', resetEmail);
       
-      // TODO: Implement password reset with new auth system
-      // For now, show a message to contact admin
-      setResetError('Password reset is currently unavailable. Please contact admin@eibagency.com for assistance.');
+      // Use signInWithOtp for password reset to ensure OTP delivery
+      const { error } = await supabase.auth.signInWithOtp({
+        email: resetEmail,
+        options: {
+          shouldCreateUser: false,
+          emailRedirectTo: `https://eibagency.com/agent-login`
+        }
+      });
+
+      if (error) {
+        console.error('Password reset request error:', error);
+        
+        // Handle rate limit specifically
+        if (error.message.includes('rate_limit') || error.message.includes('40 seconds')) {
+          setRateLimitSeconds(40);
+          setResetError('Please wait 40 seconds before requesting another reset code.');
+        } else {
+          setResetError(`Failed to send reset code: ${error.message}`);
+        }
+        setIsProcessing(false);
+        return;
+      }
+
+      console.log('OTP sent successfully');
       setResetStep('verify');
       setIsProcessing(false);
     } catch (error) {
@@ -112,9 +149,44 @@ const AnimatedSignIn: React.FC = () => {
     try {
       console.log('Verifying OTP and updating password...');
       
-      // TODO: Implement OTP verification and password update with new auth system
-      // For now, show a message to contact admin
-      setResetError('Password reset is currently unavailable. Please contact admin@eibagency.com for assistance.');
+      // Verify OTP and sign in
+      const { data: { user, session }, error: otpError } = await supabase.auth.verifyOtp({
+        email: resetEmail,
+        token: otp,
+        type: 'email',
+        options: {
+          redirectTo: undefined
+        }
+      });
+
+      if (otpError) {
+        console.error('OTP verification error:', otpError);
+        setResetError(`Invalid or expired code: ${otpError.message}`);
+        setIsProcessing(false);
+        return;
+      }
+
+      if (!user || !session) {
+        setResetError('Failed to verify code. Please try again.');
+        setIsProcessing(false);
+        return;
+      }
+
+      console.log('OTP verified, updating password...');
+      
+      // Update password
+      const { error: passwordError } = await supabase.auth.updateUser({
+        password: newPassword
+      });
+
+      if (passwordError) {
+        console.error('Password update error:', passwordError);
+        setResetError(`Password update failed: ${passwordError.message}`);
+        setIsProcessing(false);
+        return;
+      }
+
+      console.log('Password updated successfully');
       setResetSuccess(true);
       setIsProcessing(false);
       

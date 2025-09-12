@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '@/lib/authContext';
+import { supabase } from '@/lib/supabase';
 import { DatabaseService } from '@/lib/database';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import { BookOpen, Play, CheckCircle, Clock, Star, Award, FileText, ArrowRight, TrendingUp, Users, Calendar, MessageSquare } from 'lucide-react';
 
 const Dashboard = () => {
-  const { user: currentUser, isLoading: authLoading } = useAuth();
+  const [currentUser, setCurrentUser] = useState<any>(null);
   const [agentProfile, setAgentProfile] = useState<any>(null);
   const [trainingProgress, setTrainingProgress] = useState<any[]>([]);
   const [announcements, setAnnouncements] = useState<any[]>([]);
@@ -14,20 +14,22 @@ const Dashboard = () => {
 
   useEffect(() => {
     const loadDashboardData = async () => {
-      if (authLoading) return;
-      
-      if (!currentUser) {
-        window.location.href = '/agent-login';
-        return;
-      }
-
       try {
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        if (!user || authError) {
+          await supabase.auth.signOut();
+          window.location.href = '/agent-login';
+          return;
+        }
+
+        setCurrentUser(user);
+
         // Load agent profile
-        const profile = await DatabaseService.getAgentProfile(currentUser.id);
+        const profile = await DatabaseService.getAgentProfile(user.id);
         setAgentProfile(profile);
 
         // Load training progress
-        const progress = await DatabaseService.getTrainingProgress(currentUser.id);
+        const progress = await DatabaseService.getTrainingProgress(user.id);
         setTrainingProgress(progress);
 
         // Load recent announcements
@@ -35,13 +37,15 @@ const Dashboard = () => {
         setAnnouncements(announcementsList.slice(0, 3)); // Show only 3 most recent
       } catch (error) {
         console.error('Error loading dashboard data:', error);
+        await supabase.auth.signOut();
+        window.location.href = '/agent-login';
       } finally {
         setIsLoading(false);
       }
     };
 
     loadDashboardData();
-  }, [currentUser, authLoading]);
+  }, []);
 
   // Sample training data
   const featuredTrainings = [
@@ -132,7 +136,7 @@ const Dashboard = () => {
   const completedTrainings = trainingProgress.filter(t => t.completed).length || 0;
   const totalTrainings = 10; // Total number of trainings available
 
-  if (authLoading || isLoading) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
@@ -155,7 +159,7 @@ const Dashboard = () => {
               {/* Welcome Header */}
               <div className="mb-8">
                 <h1 className="text-3xl font-bold text-gray-900">
-                  Welcome back, {agentProfile?.firstName || currentUser?.email?.split('@')[0] || 'Agent'}!
+                  Welcome back, {agentProfile?.first_name || currentUser?.email?.split('@')[0] || 'Agent'}!
                 </h1>
                 <p className="mt-2 text-gray-600">Continue your learning journey and access your resources.</p>
               </div>
