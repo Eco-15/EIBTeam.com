@@ -1,14 +1,14 @@
 import React from 'react';
 import { Calendar, BookOpen, FileText, Library, Home, BarChart3, Users } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/lib/authContext';
 import { DatabaseService } from '@/lib/database';
 
 const DashboardSidebar = () => {
+  const { user } = useAuth();
   const [isAdmin, setIsAdmin] = React.useState(false);
 
   React.useEffect(() => {
     const checkAdminStatus = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         const adminStatus = await DatabaseService.isAdmin(user.id);
         setIsAdmin(adminStatus);
@@ -16,7 +16,7 @@ const DashboardSidebar = () => {
     };
 
     checkAdminStatus();
-  }, []);
+  }, [user]);
 
   const menuItems = [
     { name: 'Dashboard', href: '/dashboard', icon: Home, current: window.location.pathname === '/dashboard' },

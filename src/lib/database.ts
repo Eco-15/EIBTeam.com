@@ -1,108 +1,114 @@
-import { supabase } from './supabase';
+import { db } from './neon';
+import { 
+  users, agentProfiles, salesActivities, clients, appointments, 
+  trainingProgress, bookProgress, userRoles, announcements, 
+  scheduleEvents, userInvitations, consultationRequests, teamApplications 
+} from './schema';
+import { eq, and, desc, gte, count } from 'drizzle-orm';
 
 // Types for database tables
 export interface AgentProfile {
   id: string;
-  user_id: string;
-  first_name?: string;
-  last_name?: string;
+  userId: string;
+  firstName?: string;
+  lastName?: string;
   phone?: string;
-  agent_id?: string;
-  hire_date?: string;
-  date_of_birth?: string;
-  commission_rate?: number;
-  team_lead?: string;
+  agentId?: string;
+  hireDate?: string;
+  commissionRate?: number;
+  teamLead?: string;
   status?: 'active' | 'inactive' | 'suspended';
-  created_at: string;
-  updated_at: string;
+  dateOfBirth?: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface SalesActivity {
   id: string;
-  user_id: string;
-  client_name: string;
-  policy_type: string;
-  annual_premium: number;
-  commission_earned?: number;
-  sale_date?: string;
+  userId: string;
+  clientName: string;
+  policyType: string;
+  annualPremium: number;
+  commissionEarned?: number;
+  saleDate?: string;
   notes?: string;
   status?: 'pending' | 'completed' | 'cancelled';
-  created_at: string;
-  updated_at: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface Client {
   id: string;
-  user_id: string;
-  first_name: string;
-  last_name: string;
+  userId: string;
+  firstName: string;
+  lastName: string;
   email?: string;
   phone?: string;
   address?: string;
   city?: string;
   state?: string;
-  zip_code?: string;
-  date_of_birth?: string;
+  zipCode?: string;
+  dateOfBirth?: string;
   status?: 'active' | 'inactive' | 'prospect';
   source?: 'referral' | 'cold_call' | 'marketing' | 'walk_in' | 'online';
   notes?: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface Appointment {
   id: string;
-  user_id: string;
-  client_id?: string;
-  client_name: string;
-  client_phone?: string;
-  client_email?: string;
-  appointment_date: string;
-  appointment_time: string;
-  appointment_type: string;
+  userId: string;
+  clientId?: string;
+  clientName: string;
+  clientPhone?: string;
+  clientEmail?: string;
+  appointmentDate: string;
+  appointmentTime: string;
+  appointmentType: string;
   status?: 'scheduled' | 'completed' | 'cancelled' | 'no_show';
   notes?: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface TrainingProgress {
   id: string;
-  user_id: string;
-  training_id: number;
-  training_title: string;
-  progress_percentage?: number;
+  userId: string;
+  trainingId: number;
+  trainingTitle: string;
+  progressPercentage?: number;
   completed?: boolean;
-  started_at?: string;
-  completed_at?: string;
-  last_accessed?: string;
-  created_at: string;
-  updated_at: string;
+  startedAt?: Date;
+  completedAt?: Date;
+  lastAccessed?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface BookProgress {
   id: string;
-  user_id: string;
-  book_id: number;
-  book_title: string;
+  userId: string;
+  bookId: number;
+  bookTitle: string;
   status?: 'to-read' | 'reading' | 'completed';
-  progress_percentage?: number;
-  started_at?: string;
-  completed_at?: string;
+  progressPercentage?: number;
+  startedAt?: Date;
+  completedAt?: Date;
   rating?: number;
   notes?: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface UserRole {
   id: string;
-  user_id: string;
-  role: 'admin' | 'agent';
-  assigned_by?: string;
-  assigned_at: string;
-  created_at: string;
-  updated_at: string;
+  userId: string;
+  role: 'admin' | 'agent' | 'manager';
+  assignedBy?: string;
+  assignedAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface Announcement {
@@ -110,46 +116,46 @@ export interface Announcement {
   title: string;
   message: string;
   priority: 'low' | 'medium' | 'high' | 'urgent';
-  author_id: string;
-  author_name: string;
-  target_audience: 'all' | 'agents' ;
-  expires_at?: string;
-  is_active: boolean;
-  created_at: string;
-  updated_at: string;
+  authorId: string;
+  authorName: string;
+  targetAudience: 'all' | 'agents' | 'managers';
+  expiresAt?: Date;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface ScheduleEvent {
   id: string;
   title: string;
   description?: string;
-  event_type: 'Meeting' | 'Training' | 'Call' | 'BOM' | 'Hierarchy' | 'Sales';
-  day_of_week: string;
-  start_time: string;
-  end_time?: string;
+  eventType: 'meeting' | 'training' | 'call' | 'bom' | 'hierarchy' | 'sales';
+  dayOfWeek: string;
+  startTime: string;
+  endTime?: string;
   timezone: string;
-  zoom_link?: string;
+  zoomLink?: string;
   passcode?: string;
-  is_recurring: boolean;
-  is_active: boolean;
-  created_by: string;
-  created_at: string;
-  updated_at: string;
+  isRecurring: boolean;
+  isActive: boolean;
+  createdBy: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface UserInvitation {
   id: string;
   email: string;
-  first_name?: string;
-  last_name?: string;
-  role: 'admin' | 'agent';
-  temporary_password: string;
-  invited_by: string;
-  invited_at: string;
-  accepted_at?: string;
-  is_active: boolean;
-  created_at: string;
-  updated_at: string;
+  firstName?: string;
+  lastName?: string;
+  role: 'admin' | 'agent' | 'manager';
+  temporaryPassword: string;
+  invitedBy: string;
+  invitedAt: Date;
+  acceptedAt?: Date;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface ConsultationRequest {
@@ -159,12 +165,12 @@ export interface ConsultationRequest {
   phone: string;
   city: string;
   state: string;
-  product_interest?: string;
-  hear_about?: string;
+  productInterest?: string;
+  hearAbout?: string;
   comments?: string;
   status?: 'pending' | 'contacted' | 'completed' | 'cancelled';
-  created_at: string;
-  updated_at: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface TeamApplication {
@@ -175,255 +181,247 @@ export interface TeamApplication {
   city: string;
   state: string;
   experience?: string;
-  hear_about?: string;
+  hearAbout?: string;
   description?: string;
-  referred_by?: string;
+  referredBy?: string;
   status?: 'pending' | 'reviewing' | 'interviewed' | 'hired' | 'rejected';
-  created_at: string;
-  updated_at: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 // Database service functions
 export class DatabaseService {
   // Agent Profile functions
   static async getAgentProfile(userId: string): Promise<AgentProfile | null> {
-    const { data, error } = await supabase
-      .from('agent_profiles')
-      .select('*')
-      .eq('user_id', userId)
-      .maybeSingle();
-
-    if (error) {
+    try {
+      const [profile] = await db.select().from(agentProfiles).where(eq(agentProfiles.userId, userId)).limit(1);
+      return profile || null;
+    } catch (error) {
       console.error('Error fetching agent profile:', error);
       return null;
     }
-
-    return data;
   }
 
   static async createAgentProfile(profile: Partial<AgentProfile>): Promise<AgentProfile | null> {
-    const { data, error } = await supabase
-      .from('agent_profiles')
-      .insert([profile])
-      .select()
-      .single();
-
-    if (error) {
+    try {
+      const [newProfile] = await db.insert(agentProfiles).values(profile).returning();
+      return newProfile;
+    } catch (error) {
       console.error('Error creating agent profile:', error);
       return null;
     }
-
-    return data;
   }
 
   static async updateAgentProfile(userId: string, updates: Partial<AgentProfile>): Promise<AgentProfile | null> {
-    const { data, error } = await supabase
-      .from('agent_profiles')
-      .update(updates)
-      .eq('user_id', userId)
-      .select()
-      .single();
-
-    if (error) {
+    try {
+      const [updatedProfile] = await db
+        .update(agentProfiles)
+        .set({ ...updates, updatedAt: new Date() })
+        .where(eq(agentProfiles.userId, userId))
+        .returning();
+      return updatedProfile;
+    } catch (error) {
       console.error('Error updating agent profile:', error);
       return null;
     }
-
-    return data;
   }
 
   // Sales Activities functions
   static async getSalesActivities(userId: string): Promise<SalesActivity[]> {
-    const { data, error } = await supabase
-      .from('sales_activities')
-      .select('*')
-      .eq('user_id', userId)
-      .order('created_at', { ascending: false });
-
-    if (error) {
+    try {
+      const activities = await db
+        .select()
+        .from(salesActivities)
+        .where(eq(salesActivities.userId, userId))
+        .orderBy(desc(salesActivities.createdAt));
+      return activities;
+    } catch (error) {
       console.error('Error fetching sales activities:', error);
       return [];
     }
-
-    return data || [];
   }
 
   static async createSalesActivity(activity: Partial<SalesActivity>): Promise<SalesActivity | null> {
-    const { data, error } = await supabase
-      .from('sales_activities')
-      .insert([activity])
-      .select()
-      .single();
-
-    if (error) {
+    try {
+      const [newActivity] = await db.insert(salesActivities).values(activity).returning();
+      return newActivity;
+    } catch (error) {
       console.error('Error creating sales activity:', error);
       return null;
     }
-
-    return data;
   }
 
   static async getMonthlySalesTotal(userId: string): Promise<number> {
-    const startOfMonth = new Date();
-    startOfMonth.setDate(1);
-    startOfMonth.setHours(0, 0, 0, 0);
+    try {
+      const startOfMonth = new Date();
+      startOfMonth.setDate(1);
+      startOfMonth.setHours(0, 0, 0, 0);
 
-    const { data, error } = await supabase
-      .from('sales_activities')
-      .select('annual_premium')
-      .eq('user_id', userId)
-      .gte('sale_date', startOfMonth.toISOString().split('T')[0]);
+      const activities = await db
+        .select()
+        .from(salesActivities)
+        .where(and(
+          eq(salesActivities.userId, userId),
+          gte(salesActivities.saleDate, startOfMonth.toISOString().split('T')[0])
+        ));
 
-    if (error) {
+      return activities.reduce((total, sale) => total + (Number(sale.annualPremium) || 0), 0);
+    } catch (error) {
       console.error('Error fetching monthly sales:', error);
       return 0;
     }
-
-    return data?.reduce((total, sale) => total + (sale.annual_premium || 0), 0) || 0;
   }
 
   // Clients functions
   static async getClients(userId: string): Promise<Client[]> {
-    const { data, error } = await supabase
-      .from('clients')
-      .select('*')
-      .eq('user_id', userId)
-      .order('created_at', { ascending: false });
-
-    if (error) {
+    try {
+      const clientList = await db
+        .select()
+        .from(clients)
+        .where(eq(clients.userId, userId))
+        .orderBy(desc(clients.createdAt));
+      return clientList;
+    } catch (error) {
       console.error('Error fetching clients:', error);
       return [];
     }
-
-    return data || [];
   }
 
   static async createClient(client: Partial<Client>): Promise<Client | null> {
-    const { data, error } = await supabase
-      .from('clients')
-      .insert([client])
-      .select()
-      .single();
-
-    if (error) {
+    try {
+      const [newClient] = await db.insert(clients).values(client).returning();
+      return newClient;
+    } catch (error) {
       console.error('Error creating client:', error);
       return null;
     }
-
-    return data;
   }
 
   static async getActiveClientsCount(userId: string): Promise<number> {
-    const { count, error } = await supabase
-      .from('clients')
-      .select('*', { count: 'exact', head: true })
-      .eq('user_id', userId)
-      .eq('status', 'active');
-
-    if (error) {
+    try {
+      const [result] = await db
+        .select({ count: count() })
+        .from(clients)
+        .where(and(eq(clients.userId, userId), eq(clients.status, 'active')));
+      return result.count;
+    } catch (error) {
       console.error('Error fetching active clients count:', error);
       return 0;
     }
-
-    return count || 0;
   }
 
   // Appointments functions
   static async getAppointments(userId: string): Promise<Appointment[]> {
-    const { data, error } = await supabase
-      .from('appointments')
-      .select('*')
-      .eq('user_id', userId)
-      .order('appointment_date', { ascending: true });
-
-    if (error) {
+    try {
+      const appointmentList = await db
+        .select()
+        .from(appointments)
+        .where(eq(appointments.userId, userId))
+        .orderBy(appointments.appointmentDate);
+      return appointmentList;
+    } catch (error) {
       console.error('Error fetching appointments:', error);
       return [];
     }
-
-    return data || [];
   }
 
   static async createAppointment(appointment: Partial<Appointment>): Promise<Appointment | null> {
-    const { data, error } = await supabase
-      .from('appointments')
-      .insert([appointment])
-      .select()
-      .single();
-
-    if (error) {
+    try {
+      const [newAppointment] = await db.insert(appointments).values(appointment).returning();
+      return newAppointment;
+    } catch (error) {
       console.error('Error creating appointment:', error);
       return null;
     }
-
-    return data;
   }
 
   // Training Progress functions
   static async getTrainingProgress(userId: string): Promise<TrainingProgress[]> {
-    const { data, error } = await supabase
-      .from('training_progress')
-      .select('*')
-      .eq('user_id', userId)
-      .order('last_accessed', { ascending: false });
-
-    if (error) {
+    try {
+      const progress = await db
+        .select()
+        .from(trainingProgress)
+        .where(eq(trainingProgress.userId, userId))
+        .orderBy(desc(trainingProgress.lastAccessed));
+      return progress;
+    } catch (error) {
       console.error('Error fetching training progress:', error);
       return [];
     }
-
-    return data || [];
   }
 
   static async updateTrainingProgress(userId: string, trainingId: number, updates: Partial<TrainingProgress>): Promise<TrainingProgress | null> {
-    const { data, error } = await supabase
-      .from('training_progress')
-      .upsert({
-        user_id: userId,
-        training_id: trainingId,
-        ...updates
-      }, {
-        onConflict: 'user_id,training_id'
-      })
-      .select()
-      .single();
+    try {
+      // Check if record exists
+      const [existing] = await db
+        .select()
+        .from(trainingProgress)
+        .where(and(eq(trainingProgress.userId, userId), eq(trainingProgress.trainingId, trainingId)))
+        .limit(1);
 
-    if (error) {
+      if (existing) {
+        // Update existing record
+        const [updated] = await db
+          .update(trainingProgress)
+          .set({ ...updates, updatedAt: new Date() })
+          .where(and(eq(trainingProgress.userId, userId), eq(trainingProgress.trainingId, trainingId)))
+          .returning();
+        return updated;
+      } else {
+        // Create new record
+        const [newProgress] = await db
+          .insert(trainingProgress)
+          .values({ userId, trainingId, ...updates })
+          .returning();
+        return newProgress;
+      }
+    } catch (error) {
       console.error('Error updating training progress:', error);
       return null;
     }
-
-    return data;
   }
 
   // Book Progress functions
   static async getBookProgress(userId: string): Promise<BookProgress[]> {
-    const { data, error } = await supabase
-      .from('book_progress')
-      .select('*')
-      .eq('user_id', userId)
-      .order('created_at', { ascending: false });
-
-    if (error) {
+    try {
+      const progress = await db
+        .select()
+        .from(bookProgress)
+        .where(eq(bookProgress.userId, userId))
+        .orderBy(desc(bookProgress.createdAt));
+      return progress;
+    } catch (error) {
       console.error('Error fetching book progress:', error);
       return [];
     }
-
-    return data || [];
   }
 
   static async updateBookProgress(userId: string, bookId: number, updates: Partial<BookProgress>): Promise<BookProgress | null> {
-    const { data, error } = await supabase
-      .from('book_progress')
-      .upsert([{
-        user_id: userId,
-        book_id: bookId,
-        ...updates
-      }])
-      .select()
-      .single();
+    try {
+      // Check if record exists
+      const [existing] = await db
+        .select()
+        .from(bookProgress)
+        .where(and(eq(bookProgress.userId, userId), eq(bookProgress.bookId, bookId)))
+        .limit(1);
 
-    if (error) {
+      if (existing) {
+        // Update existing record
+        const [updated] = await db
+          .update(bookProgress)
+          .set({ ...updates, updatedAt: new Date() })
+          .where(and(eq(bookProgress.userId, userId), eq(bookProgress.bookId, bookId)))
+          .returning();
+        return updated;
+      } else {
+        // Create new record
+        const [newProgress] = await db
+          .insert(bookProgress)
+          .values({ userId, bookId, ...updates })
+          .returning();
+        return newProgress;
+      }
+    } catch (error) {
       console.error('Error updating book progress:', error);
       return null;
     }
@@ -432,18 +430,8 @@ export class DatabaseService {
   // User Role functions
   static async getUserRole(userId: string): Promise<UserRole | null> {
     try {
-      const { data, error } = await supabase
-        .from('user_roles')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
-
-      if (error) {
-        console.error('Error getting user role:', error);
-        return null;
-      }
-
-      return data;
+      const [role] = await db.select().from(userRoles).where(eq(userRoles.userId, userId)).limit(1);
+      return role || null;
     } catch (error) {
       console.error('Error fetching user role:', error);
       return null;
@@ -452,24 +440,12 @@ export class DatabaseService {
 
   static async isAdmin(userId: string): Promise<boolean> {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return false;
-      
-      // Also check user_roles table
-      const { data, error } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', userId)
-        .eq('role', 'admin')
-        .maybeSingle();
-      
-      if (error) {
-        console.error('Error checking admin role:', error);
-        return false;
-      }
-      
-      console.log('Admin role check result:', data);
-      return data?.role === 'admin';
+      const [role] = await db
+        .select()
+        .from(userRoles)
+        .where(and(eq(userRoles.userId, userId), eq(userRoles.role, 'admin')))
+        .limit(1);
+      return !!role;
     } catch (error) {
       console.error('Error checking admin status:', error);
       return false;
@@ -479,27 +455,8 @@ export class DatabaseService {
   // Announcements functions
   static async createAnnouncement(announcement: Partial<Announcement>): Promise<Announcement | null> {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return null;
-
-      const announcementData = {
-        ...announcement,
-        author_id: user.id,
-        author_name: announcement.author_name || 'Admin'
-      };
-
-      const { data, error } = await supabase
-        .from('announcements')
-        .insert([announcementData])
-        .select()
-        .single();
-
-      if (error) {
-        console.error('Error creating announcement:', error);
-        return null;
-      }
-
-      return data;
+      const [newAnnouncement] = await db.insert(announcements).values(announcement).returning();
+      return newAnnouncement;
     } catch (error) {
       console.error('Error creating announcement:', error);
       return null;
@@ -508,18 +465,12 @@ export class DatabaseService {
 
   static async getAnnouncements(): Promise<Announcement[]> {
     try {
-      const { data, error } = await supabase
-        .from('announcements')
-        .select('*')
-        .eq('is_active', true)
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Error fetching announcements:', error);
-        return [];
-      }
-
-      return data || [];
+      const announcementList = await db
+        .select()
+        .from(announcements)
+        .where(eq(announcements.isActive, true))
+        .orderBy(desc(announcements.createdAt));
+      return announcementList;
     } catch (error) {
       console.error('Error fetching announcements:', error);
       return [];
@@ -527,58 +478,34 @@ export class DatabaseService {
   }
 
   static async updateAnnouncement(id: string, updates: Partial<Announcement>): Promise<Announcement | null> {
-    const { data, error } = await supabase
-      .from('announcements')
-      .update(updates)
-      .eq('id', id)
-      .select()
-      .single();
-
-    if (error) {
+    try {
+      const [updated] = await db
+        .update(announcements)
+        .set({ ...updates, updatedAt: new Date() })
+        .where(eq(announcements.id, id))
+        .returning();
+      return updated;
+    } catch (error) {
       console.error('Error updating announcement:', error);
       return null;
     }
-
-    return data;
   }
 
   static async deleteAnnouncement(id: string): Promise<boolean> {
-    const { error } = await supabase
-      .from('announcements')
-      .update({ is_active: false })
-      .eq('id', id);
-
-    if (error) {
+    try {
+      await db.update(announcements).set({ isActive: false }).where(eq(announcements.id, id));
+      return true;
+    } catch (error) {
       console.error('Error deleting announcement:', error);
       return false;
     }
-
-    return true;
   }
 
   // Schedule Events functions
   static async createScheduleEvent(event: Partial<ScheduleEvent>): Promise<ScheduleEvent | null> {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return null;
-
-      const eventData = {
-        ...event,
-        created_by: user.id
-      };
-
-      const { data, error } = await supabase
-        .from('schedule_events')
-        .insert([eventData])
-        .select()
-        .single();
-
-      if (error) {
-        console.error('Error creating schedule event:', error);
-        return null;
-      }
-
-      return data;
+      const [newEvent] = await db.insert(scheduleEvents).values(event).returning();
+      return newEvent;
     } catch (error) {
       console.error('Error creating schedule event:', error);
       return null;
@@ -587,18 +514,12 @@ export class DatabaseService {
 
   static async getScheduleEvents(): Promise<ScheduleEvent[]> {
     try {
-      const { data, error } = await supabase
-        .from('schedule_events')
-        .select('*')
-        .eq('is_active', true)
-        .order('day_of_week', { ascending: true });
-
-      if (error) {
-        console.error('Error fetching schedule events:', error);
-        return [];
-      }
-
-      return data || [];
+      const events = await db
+        .select()
+        .from(scheduleEvents)
+        .where(eq(scheduleEvents.isActive, true))
+        .orderBy(scheduleEvents.dayOfWeek);
+      return events;
     } catch (error) {
       console.error('Error fetching schedule events:', error);
       return [];
@@ -606,94 +527,76 @@ export class DatabaseService {
   }
 
   static async updateScheduleEvent(id: string, updates: Partial<ScheduleEvent>): Promise<ScheduleEvent | null> {
-    const { data, error } = await supabase
-      .from('schedule_events')
-      .update(updates)
-      .eq('id', id)
-      .select()
-      .single();
-
-    if (error) {
+    try {
+      const [updated] = await db
+        .update(scheduleEvents)
+        .set({ ...updates, updatedAt: new Date() })
+        .where(eq(scheduleEvents.id, id))
+        .returning();
+      return updated;
+    } catch (error) {
       console.error('Error updating schedule event:', error);
       return null;
     }
-
-    return data;
   }
 
   static async deleteScheduleEvent(id: string): Promise<boolean> {
-    const { error } = await supabase
-      .from('schedule_events')
-      .update({ is_active: false })
-      .eq('id', id);
-
-    if (error) {
+    try {
+      await db.update(scheduleEvents).set({ isActive: false }).where(eq(scheduleEvents.id, id));
+      return true;
+    } catch (error) {
       console.error('Error deleting schedule event:', error);
       return false;
     }
-
-    return true;
   }
 
   // User Invitations functions
   static async getUserInvitations(): Promise<UserInvitation[]> {
-    const { data, error } = await supabase
-      .from('user_invitations')
-      .select('*')
-      .eq('is_active', true)
-      .order('created_at', { ascending: false });
-
-    if (error) {
+    try {
+      const invitations = await db
+        .select()
+        .from(userInvitations)
+        .where(eq(userInvitations.isActive, true))
+        .orderBy(desc(userInvitations.createdAt));
+      return invitations;
+    } catch (error) {
       console.error('Error fetching user invitations:', error);
       return [];
     }
-
-    return data || [];
   }
 
   static async createUserInvitation(invitation: Partial<UserInvitation>): Promise<UserInvitation | null> {
-    const { data, error } = await supabase
-      .from('user_invitations')
-      .insert([invitation])
-      .select()
-      .single();
-
-    if (error) {
+    try {
+      const [newInvitation] = await db.insert(userInvitations).values(invitation).returning();
+      return newInvitation;
+    } catch (error) {
       console.error('Error creating user invitation:', error);
       return null;
     }
-
-    return data;
   }
 
   static async updateUserInvitation(id: string, updates: Partial<UserInvitation>): Promise<UserInvitation | null> {
-    const { data, error } = await supabase
-      .from('user_invitations')
-      .update(updates)
-      .eq('id', id)
-      .select()
-      .single();
-
-    if (error) {
+    try {
+      const [updated] = await db
+        .update(userInvitations)
+        .set({ ...updates, updatedAt: new Date() })
+        .where(eq(userInvitations.id, id))
+        .returning();
+      return updated;
+    } catch (error) {
       console.error('Error updating user invitation:', error);
       return null;
     }
-
-    return data;
   }
 
   static async deleteUserInvitation(id: string): Promise<boolean> {
-    const { error } = await supabase
-      .from('user_invitations')
-      .update({ is_active: false })
-      .eq('id', id);
-
-    if (error) {
+    try {
+      await db.update(userInvitations).set({ isActive: false }).where(eq(userInvitations.id, id));
+      return true;
+    } catch (error) {
       console.error('Error deleting user invitation:', error);
       return false;
     }
-
-    return true;
   }
 
   // Consultation Requests functions
@@ -703,35 +606,22 @@ export class DatabaseService {
     phone: string;
     city: string;
     state: string;
-    product_interest?: string;
-    hear_about?: string;
+    productInterest?: string;
+    hearAbout?: string;
     comments?: string;
   }): Promise<boolean> {
     try {
-      console.log('Creating consultation request with data:', consultationData);
-      
-      const { data, error } = await supabase
-        .from('consultation_requests')
-        .insert([{
-          name: consultationData.name,
-          email: consultationData.email,
-          phone: consultationData.phone,
-          city: consultationData.city,
-          state: consultationData.state,
-          product_interest: consultationData.product_interest || null,
-          hear_about: consultationData.hear_about || null,
-          comments: consultationData.comments || null,
-          status: 'pending'
-        }])
-        .select()
-        .single();
-
-      if (error) {
-        console.error('Supabase error creating consultation request:', error);
-        throw new Error(error.message);
-      }
-
-      console.log('Consultation request created successfully:', data);
+      await db.insert(consultationRequests).values({
+        name: consultationData.name,
+        email: consultationData.email,
+        phone: consultationData.phone,
+        city: consultationData.city,
+        state: consultationData.state,
+        productInterest: consultationData.productInterest || null,
+        hearAbout: consultationData.hearAbout || null,
+        comments: consultationData.comments || null,
+        status: 'pending'
+      });
       return true;
     } catch (error) {
       console.error('Error creating consultation request:', error);
@@ -746,36 +636,23 @@ export class DatabaseService {
     city: string;
     state: string;
     experience?: string;
-    hear_about?: string;
+    hearAbout?: string;
     description?: string;
-    referred_by?: string;
+    referredBy?: string;
   }): Promise<boolean> {
     try {
-      console.log('Creating team application with data:', applicationData);
-      
-      const { data, error } = await supabase
-        .from('team_applications')
-        .insert([{
-          name: applicationData.name,
-          email: applicationData.email,
-          phone: applicationData.phone,
-          city: applicationData.city,
-          state: applicationData.state,
-          experience: applicationData.experience || null,
-          hear_about: applicationData.hear_about || null,
-          description: applicationData.description || null,
-          referred_by: applicationData.referred_by || null,
-          status: 'pending'
-        }])
-        .select()
-        .single();
-
-      if (error) {
-        console.error('Supabase error creating team application:', error);
-        throw new Error(error.message);
-      }
-
-      console.log('Team application created successfully:', data);
+      await db.insert(teamApplications).values({
+        name: applicationData.name,
+        email: applicationData.email,
+        phone: applicationData.phone,
+        city: applicationData.city,
+        state: applicationData.state,
+        experience: applicationData.experience || null,
+        hearAbout: applicationData.hearAbout || null,
+        description: applicationData.description || null,
+        referredBy: applicationData.referredBy || null,
+        status: 'pending'
+      });
       return true;
     } catch (error) {
       console.error('Error creating team application:', error);
@@ -785,17 +662,11 @@ export class DatabaseService {
 
   static async getConsultationRequests(): Promise<ConsultationRequest[]> {
     try {
-      const { data, error } = await supabase
-        .from('consultation_requests')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Error fetching consultation requests:', error);
-        return [];
-      }
-
-      return data || [];
+      const requests = await db
+        .select()
+        .from(consultationRequests)
+        .orderBy(desc(consultationRequests.createdAt));
+      return requests;
     } catch (error) {
       console.error('Error fetching consultation requests:', error);
       return [];
@@ -804,39 +675,25 @@ export class DatabaseService {
 
   static async updateConsultationRequest(id: string, updates: Partial<ConsultationRequest>): Promise<ConsultationRequest | null> {
     try {
-      const { data, error } = await supabase
-        .from('consultation_requests')
-        .update(updates)
-        .eq('id', id)
-        .select()
-        .single();
-
-      if (error) {
-        console.error('Error updating consultation request:', error);
-        return null;
-      }
-
-      return data;
+      const [updated] = await db
+        .update(consultationRequests)
+        .set({ ...updates, updatedAt: new Date() })
+        .where(eq(consultationRequests.id, id))
+        .returning();
+      return updated;
     } catch (error) {
       console.error('Error updating consultation request:', error);
       return null;
     }
   }
 
-
   static async getTeamApplications(): Promise<TeamApplication[]> {
     try {
-      const { data, error } = await supabase
-        .from('team_applications')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Error fetching team applications:', error);
-        return [];
-      }
-
-      return data || [];
+      const applications = await db
+        .select()
+        .from(teamApplications)
+        .orderBy(desc(teamApplications.createdAt));
+      return applications;
     } catch (error) {
       console.error('Error fetching team applications:', error);
       return [];
@@ -845,23 +702,15 @@ export class DatabaseService {
 
   static async updateTeamApplication(id: string, updates: Partial<TeamApplication>): Promise<TeamApplication | null> {
     try {
-      const { data, error } = await supabase
-        .from('team_applications')
-        .update(updates)
-        .eq('id', id)
-        .select()
-        .single();
-
-      if (error) {
-        console.error('Error updating team application:', error);
-        return null;
-      }
-
-      return data;
+      const [updated] = await db
+        .update(teamApplications)
+        .set({ ...updates, updatedAt: new Date() })
+        .where(eq(teamApplications.id, id))
+        .returning();
+      return updated;
     } catch (error) {
       console.error('Error updating team application:', error);
       return null;
     }
   }
-
 }
