@@ -109,7 +109,7 @@ const AdminUsersPage = () => {
       });
 
       if (result.success) {
-        setSubmitSuccess('User created successfully! They can now log in with their credentials.');
+        setSubmitSuccess(`User created successfully! Email: ${userForm.email}, Password: ${result.temporaryPassword}`);
         setUserForm({ email: '', firstName: '', lastName: '', dateOfBirth: '', role: 'agent', temporaryPassword: '' });
         setShowAddUserForm(false);
         await loadInvitations();

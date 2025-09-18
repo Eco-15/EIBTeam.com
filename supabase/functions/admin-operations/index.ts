@@ -13,7 +13,6 @@ interface CreateUserRequest {
   dateOfBirth?: string;
   role: 'admin' | 'agent';
   temporaryPassword?: string;
-  emailRedirectTo?: string;
 }
 
 interface CreateInvitationRequest {
@@ -32,7 +31,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // Initialize Supabase client with service role key
+    // Initialize Supabase client with service role key for admin operations
     const supabaseAdmin = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
@@ -42,6 +41,12 @@ Deno.serve(async (req) => {
           persistSession: false
         }
       }
+    )
+
+    // Initialize regular client for user verification
+    const supabaseClient = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_ANON_KEY') ?? ''
     )
 
     // Get the authorization header to verify the requesting user
@@ -56,9 +61,9 @@ Deno.serve(async (req) => {
       )
     }
 
-    // Verify the user is authenticated and is an admin
+    // Verify the user is authenticated and is an admin using regular client
     const token = authHeader.replace('Bearer ', '')
-    const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token)
+    const { data: { user }, error: authError } = await supabaseClient.auth.getUser(token)
     
     if (authError || !user) {
       return new Response(
@@ -70,7 +75,7 @@ Deno.serve(async (req) => {
       )
     }
 
-    // Check if user is admin
+    // Check if user is admin using service role client
     const { data: userRole, error: roleError } = await supabaseAdmin
       .from('user_roles')
       .select('role')
@@ -80,7 +85,7 @@ Deno.serve(async (req) => {
 
     if (roleError || !userRole) {
       return new Response(
-        JSON.stringify({ error: 'Insufficient permissions' }),
+        JSON.stringify({ error: 'Insufficient permissions - admin role required' }),
         { 
           status: 403, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -96,35 +101,48 @@ Deno.serve(async (req) => {
 
       switch (operation) {
         case 'create-user': {
-          const { email, firstName, lastName, dateOfBirth, role, temporaryPassword, emailRedirectTo }: CreateUserRequest = body
+          const { email, firstName, lastName, dateOfBirth, role, temporaryPassword }: CreateUserRequest = body
 
           // Generate password if not provided
           const password = temporaryPassword || generateTemporaryPassword()
 
-          // Create user with admin privileges
-          const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
-            email,
-            password,
-            email_confirm: true,
-            user_metadata: {
-              first_name: firstName,
-              last_name: lastName,
-              full_name: `${firstName} ${lastName}`.trim()
-            }
-          })
-
-          if (createError) {
-            return new Response(
-              JSON.stringify({ error: createError.message }),
-              { 
-                status: 400, 
-                headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+          try {
+            // Create user with admin privileges using service role
+            const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
+              email,
+              password,
+              email_confirm: true, // Skip email confirmation
+              user_metadata: {
+                first_name: firstName,
+                last_name: lastName,
+                full_name: `${firstName} ${lastName}`.trim()
               }
-            )
-          }
+            })
 
-          if (newUser.user) {
-            // Create agent profile
+            if (createError) {
+              console.error('User creation error:', createError)
+              return new Response(
+                JSON.stringify({ error: `Failed to create user: ${createError.message}` }),
+                { 
+                  status: 400, 
+                  headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+                }
+              )
+            }
+
+            if (!newUser.user) {
+              return new Response(
+                JSON.stringify({ error: 'User creation failed - no user returned' }),
+                { 
+                  status: 400, 
+                  headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+                }
+              )
+            }
+
+            console.log('User created successfully:', newUser.user.email)
+
+            // Create agent profile using service role
             const { error: profileError } = await supabaseAdmin
               .from('agent_profiles')
               .insert([{
@@ -132,15 +150,15 @@ Deno.serve(async (req) => {
                 first_name: firstName,
                 last_name: lastName,
                 date_of_birth: dateOfBirth || null,
-                date_of_birth: dateOfBirth || null,
                 status: 'active'
               }])
 
             if (profileError) {
               console.error('Error creating agent profile:', profileError)
+              // Don't fail the entire operation for profile creation
             }
 
-            // Create user role
+            // Create user role using service role
             const { error: roleError } = await supabaseAdmin
               .from('user_roles')
               .insert([{
@@ -151,9 +169,10 @@ Deno.serve(async (req) => {
 
             if (roleError) {
               console.error('Error creating user role:', roleError)
+              // Don't fail the entire operation for role creation
             }
 
-            // Create invitation record
+            // Create invitation record using service role
             const { data: invitation, error: invitationError } = await supabaseAdmin
               .from('user_invitations')
               .insert([{
@@ -163,29 +182,43 @@ Deno.serve(async (req) => {
                 role,
                 temporary_password: password,
                 invited_by: user.id,
-                accepted_at: new Date().toISOString()
+                accepted_at: new Date().toISOString() // Mark as accepted since user is created
               }])
               .select()
               .single()
 
             if (invitationError) {
               console.error('Error creating invitation:', invitationError)
+              // Don't fail the entire operation for invitation creation
             }
 
             return new Response(
               JSON.stringify({ 
                 success: true, 
-                user: newUser.user,
+                user: {
+                  id: newUser.user.id,
+                  email: newUser.user.email,
+                  created_at: newUser.user.created_at
+                },
                 invitation,
-                temporaryPassword: password
+                temporaryPassword: password,
+                message: 'User created successfully with confirmed email'
               }),
               { 
                 status: 200, 
                 headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
               }
             )
+          } catch (userCreationError) {
+            console.error('Unexpected error during user creation:', userCreationError)
+            return new Response(
+              JSON.stringify({ error: `User creation failed: ${userCreationError.message}` }),
+              { 
+                status: 500, 
+                headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+              }
+            )
           }
-          break
         }
 
         case 'create-invitation': {
@@ -263,7 +296,7 @@ Deno.serve(async (req) => {
   } catch (error) {
     console.error('Edge function error:', error)
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
+      JSON.stringify({ error: `Internal server error: ${error.message}` }),
       { 
         status: 500, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
