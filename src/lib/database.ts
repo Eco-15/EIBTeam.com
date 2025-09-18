@@ -427,6 +427,8 @@ export class DatabaseService {
       console.error('Error updating book progress:', error);
       return null;
     }
+
+    return data;
   }
 
   // User Role functions
