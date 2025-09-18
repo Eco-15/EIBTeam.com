@@ -33,6 +33,7 @@ class AdminService {
     firstName: string;
     lastName: string;
     dateOfBirth?: string;
+    dateOfBirth?: string;
     role: 'admin' | 'agent';
     temporaryPassword?: string;
   }) {

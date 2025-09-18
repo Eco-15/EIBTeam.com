@@ -31,6 +31,7 @@ const AnnuitiesPage = () => {
     {
       type: 'Fixed Annuities',
       description: 'Guaranteed interest rates and predictable growth',
+      features: ['Guaranteed minimum interest rate', 'Predictable returns', 'principle protection', 'Simple and straightforward'],
       features: ['Guaranteed minimum interest rate', 'Predictable returns', 'Principle protection', 'Simple and straightforward'],
       idealFor: 'Conservative investors seeking guaranteed growth'
     },
