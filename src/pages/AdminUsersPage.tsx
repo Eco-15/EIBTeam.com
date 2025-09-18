@@ -32,6 +32,7 @@ const AdminUsersPage = () => {
     email: '',
     firstName: '',
     lastName: '',
+    dateOfBirth: '',
     role: 'agent',
     temporaryPassword: ''
   });
@@ -102,13 +103,14 @@ const AdminUsersPage = () => {
         email: userForm.email,
         firstName: userForm.firstName,
         lastName: userForm.lastName,
+        dateOfBirth: userForm.dateOfBirth,
         role: userForm.role as 'admin' | 'agent',
         temporaryPassword: userForm.temporaryPassword
       });
 
       if (result.success) {
         setSubmitSuccess('User created successfully! They can now log in with their credentials.');
-        setUserForm({ email: '', firstName: '', lastName: '', role: 'agent', temporaryPassword: '' });
+        setUserForm({ email: '', firstName: '', lastName: '', dateOfBirth: '', role: 'agent', temporaryPassword: '' });
         setShowAddUserForm(false);
         await loadInvitations();
         
