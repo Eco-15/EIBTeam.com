@@ -725,6 +725,7 @@ export class DatabaseService {
         headers: {
           'Content-Type': 'application/json',
           'apikey': supabaseAnonKey,
+          'Authorization': `Bearer ${supabaseAnonKey}`,
           'Prefer': 'return=representation'
         },
         body: JSON.stringify(request)
@@ -792,6 +793,7 @@ export class DatabaseService {
         headers: {
           'Content-Type': 'application/json',
           'apikey': supabaseAnonKey,
+          'Authorization': `Bearer ${supabaseAnonKey}`,
           'Prefer': 'return=representation'
         },
         body: JSON.stringify(application)
