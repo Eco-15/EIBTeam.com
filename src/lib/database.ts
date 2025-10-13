@@ -1,4 +1,14 @@
 import { supabase } from './supabase';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseAnonUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+if (!supabaseAnonUrl || !supabaseAnonKey) {
+  throw new Error('Missing Supabase environment variables for anonymous client');
+}
+
+const supabaseAnon = createClient(supabaseAnonUrl, supabaseAnonKey);
 
 // Types for database tables
 export interface AgentProfile {
@@ -699,7 +709,7 @@ export class DatabaseService {
   // Consultation Requests functions
   static async createConsultationRequest(request: Partial<ConsultationRequest>): Promise<ConsultationRequest | null> {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAnon
         .from('consultation_requests')
         .insert([request])
         .select()
@@ -760,7 +770,7 @@ export class DatabaseService {
   // Team Applications functions
   static async createTeamApplication(application: Partial<TeamApplication>): Promise<TeamApplication | null> {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAnon
         .from('team_applications')
         .insert([application])
         .select()
