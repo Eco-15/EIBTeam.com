@@ -235,7 +235,7 @@ const ContactPage = () => {
           <div className="grid md:grid-cols-3 gap-6">
             {contactMethods.map((method, index) => (
               <a
-                href="mailto:admin@eibagency.com"
+                key={index}
                 href={method.href}
                 className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
               >

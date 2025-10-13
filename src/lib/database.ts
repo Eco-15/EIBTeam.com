@@ -8,7 +8,18 @@ if (!supabaseAnonUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables for anonymous client');
 }
 
-const supabaseAnon = createClient(supabaseAnonUrl, supabaseAnonKey);
+const supabaseAnon = createClient(supabaseAnonUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+    detectSessionInUrl: false
+  },
+  global: {
+    headers: {
+      apikey: supabaseAnonKey
+    }
+  }
+});
 
 // Types for database tables
 export interface AgentProfile {
@@ -709,18 +720,24 @@ export class DatabaseService {
   // Consultation Requests functions
   static async createConsultationRequest(request: Partial<ConsultationRequest>): Promise<ConsultationRequest | null> {
     try {
-      const { data, error } = await supabaseAnon
-        .from('consultation_requests')
-        .insert([request])
-        .select()
-        .single();
+      const response = await fetch(`${supabaseAnonUrl}/rest/v1/consultation_requests`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': supabaseAnonKey,
+          'Prefer': 'return=representation'
+        },
+        body: JSON.stringify(request)
+      });
 
-      if (error) {
-        console.error('Error creating consultation request:', error);
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error creating consultation request:', response.status, errorText);
         return null;
       }
 
-      return data;
+      const data = await response.json();
+      return Array.isArray(data) ? data[0] : data;
     } catch (error) {
       console.error('Error creating consultation request:', error);
       return null;
@@ -770,18 +787,24 @@ export class DatabaseService {
   // Team Applications functions
   static async createTeamApplication(application: Partial<TeamApplication>): Promise<TeamApplication | null> {
     try {
-      const { data, error } = await supabaseAnon
-        .from('team_applications')
-        .insert([application])
-        .select()
-        .single();
+      const response = await fetch(`${supabaseAnonUrl}/rest/v1/team_applications`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': supabaseAnonKey,
+          'Prefer': 'return=representation'
+        },
+        body: JSON.stringify(application)
+      });
 
-      if (error) {
-        console.error('Error creating team application:', error);
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error creating team application:', response.status, errorText);
         return null;
       }
 
-      return data;
+      const data = await response.json();
+      return Array.isArray(data) ? data[0] : data;
     } catch (error) {
       console.error('Error creating team application:', error);
       return null;
